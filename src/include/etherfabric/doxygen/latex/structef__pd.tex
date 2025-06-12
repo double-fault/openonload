@@ -1,0 +1,125 @@
+\hypertarget{structef__pd}{}\doxysection{ef\+\_\+pd Struct Reference}
+\label{structef__pd}\index{ef\_pd@{ef\_pd}}
+
+
+A protection domain.  
+
+
+
+
+{\ttfamily \#include $<$pd.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9}{ef\+\_\+pd\+\_\+flags}} \mbox{\hyperlink{structef__pd_a8008262247708b139712e4952c272a02}{pd\+\_\+flags}}
+\item 
+unsigned \mbox{\hyperlink{structef__pd_af400e575e4ef46d89ba4a344df892cc3}{pd\+\_\+resource\+\_\+id}}
+\item 
+char $\ast$ \mbox{\hyperlink{structef__pd_a6abdebf37864187f8632f4a5c1a6ee81}{pd\+\_\+intf\+\_\+name}}
+\item 
+char $\ast$ \mbox{\hyperlink{structef__pd_a7b7b3e3c7cc9335a6e565e86be833929}{pd\+\_\+cluster\+\_\+name}}
+\item 
+int \mbox{\hyperlink{structef__pd_a93c959ed67288d8aa511224932c7658e}{pd\+\_\+cluster\+\_\+sock}}
+\item 
+\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} \mbox{\hyperlink{structef__pd_abba8c064bb8b3354f522a5fd19d5b801}{pd\+\_\+cluster\+\_\+dh}}
+\item 
+unsigned \mbox{\hyperlink{structef__pd_a5222d871bc18c30b65ee6630e9644495}{pd\+\_\+cluster\+\_\+viset\+\_\+resource\+\_\+id}}
+\item 
+int \mbox{\hyperlink{structef__pd_a1473f4ccf283bb841fdce667deed9db6}{pd\+\_\+cluster\+\_\+viset\+\_\+index}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A protection domain. 
+
+Definition at line 57 of file pd.\+h.
+
+
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{structef__pd_abba8c064bb8b3354f522a5fd19d5b801}\label{structef__pd_abba8c064bb8b3354f522a5fd19d5b801}} 
+\index{ef\_pd@{ef\_pd}!pd\_cluster\_dh@{pd\_cluster\_dh}}
+\index{pd\_cluster\_dh@{pd\_cluster\_dh}!ef\_pd@{ef\_pd}}
+\doxysubsubsection{\texorpdfstring{pd\_cluster\_dh}{pd\_cluster\_dh}}
+{\footnotesize\ttfamily \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} pd\+\_\+cluster\+\_\+dh}
+
+Driver handle for the application cluster associated with the protection domain 
+
+Definition at line 73 of file pd.\+h.
+
+\mbox{\Hypertarget{structef__pd_a7b7b3e3c7cc9335a6e565e86be833929}\label{structef__pd_a7b7b3e3c7cc9335a6e565e86be833929}} 
+\index{ef\_pd@{ef\_pd}!pd\_cluster\_name@{pd\_cluster\_name}}
+\index{pd\_cluster\_name@{pd\_cluster\_name}!ef\_pd@{ef\_pd}}
+\doxysubsubsection{\texorpdfstring{pd\_cluster\_name}{pd\_cluster\_name}}
+{\footnotesize\ttfamily char$\ast$ pd\+\_\+cluster\+\_\+name}
+
+Name of the application cluster associated with the protection domain 
+
+Definition at line 67 of file pd.\+h.
+
+\mbox{\Hypertarget{structef__pd_a93c959ed67288d8aa511224932c7658e}\label{structef__pd_a93c959ed67288d8aa511224932c7658e}} 
+\index{ef\_pd@{ef\_pd}!pd\_cluster\_sock@{pd\_cluster\_sock}}
+\index{pd\_cluster\_sock@{pd\_cluster\_sock}!ef\_pd@{ef\_pd}}
+\doxysubsubsection{\texorpdfstring{pd\_cluster\_sock}{pd\_cluster\_sock}}
+{\footnotesize\ttfamily int pd\+\_\+cluster\+\_\+sock}
+
+Socket for the application cluster associated with the protection domain 
+
+Definition at line 70 of file pd.\+h.
+
+\mbox{\Hypertarget{structef__pd_a1473f4ccf283bb841fdce667deed9db6}\label{structef__pd_a1473f4ccf283bb841fdce667deed9db6}} 
+\index{ef\_pd@{ef\_pd}!pd\_cluster\_viset\_index@{pd\_cluster\_viset\_index}}
+\index{pd\_cluster\_viset\_index@{pd\_cluster\_viset\_index}!ef\_pd@{ef\_pd}}
+\doxysubsubsection{\texorpdfstring{pd\_cluster\_viset\_index}{pd\_cluster\_viset\_index}}
+{\footnotesize\ttfamily int pd\+\_\+cluster\+\_\+viset\+\_\+index}
+
+Index of VI wanted within a cluster. 
+
+Definition at line 78 of file pd.\+h.
+
+\mbox{\Hypertarget{structef__pd_a5222d871bc18c30b65ee6630e9644495}\label{structef__pd_a5222d871bc18c30b65ee6630e9644495}} 
+\index{ef\_pd@{ef\_pd}!pd\_cluster\_viset\_resource\_id@{pd\_cluster\_viset\_resource\_id}}
+\index{pd\_cluster\_viset\_resource\_id@{pd\_cluster\_viset\_resource\_id}!ef\_pd@{ef\_pd}}
+\doxysubsubsection{\texorpdfstring{pd\_cluster\_viset\_resource\_id}{pd\_cluster\_viset\_resource\_id}}
+{\footnotesize\ttfamily unsigned pd\+\_\+cluster\+\_\+viset\+\_\+resource\+\_\+id}
+
+Resource ID of the virtual interface set for the application cluster associated with the protection domain 
+
+Definition at line 76 of file pd.\+h.
+
+\mbox{\Hypertarget{structef__pd_a8008262247708b139712e4952c272a02}\label{structef__pd_a8008262247708b139712e4952c272a02}} 
+\index{ef\_pd@{ef\_pd}!pd\_flags@{pd\_flags}}
+\index{pd\_flags@{pd\_flags}!ef\_pd@{ef\_pd}}
+\doxysubsubsection{\texorpdfstring{pd\_flags}{pd\_flags}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9}{ef\+\_\+pd\+\_\+flags}} pd\+\_\+flags}
+
+Flags for the protection domain 
+
+Definition at line 189 of file pd.\+h.
+
+\mbox{\Hypertarget{structef__pd_a6abdebf37864187f8632f4a5c1a6ee81}\label{structef__pd_a6abdebf37864187f8632f4a5c1a6ee81}} 
+\index{ef\_pd@{ef\_pd}!pd\_intf\_name@{pd\_intf\_name}}
+\index{pd\_intf\_name@{pd\_intf\_name}!ef\_pd@{ef\_pd}}
+\doxysubsubsection{\texorpdfstring{pd\_intf\_name}{pd\_intf\_name}}
+{\footnotesize\ttfamily char$\ast$ pd\+\_\+intf\+\_\+name}
+
+Name of the interface associated with the protection domain 
+
+Definition at line 63 of file pd.\+h.
+
+\mbox{\Hypertarget{structef__pd_af400e575e4ef46d89ba4a344df892cc3}\label{structef__pd_af400e575e4ef46d89ba4a344df892cc3}} 
+\index{ef\_pd@{ef\_pd}!pd\_resource\_id@{pd\_resource\_id}}
+\index{pd\_resource\_id@{pd\_resource\_id}!ef\_pd@{ef\_pd}}
+\doxysubsubsection{\texorpdfstring{pd\_resource\_id}{pd\_resource\_id}}
+{\footnotesize\ttfamily unsigned pd\+\_\+resource\+\_\+id}
+
+Resource ID of the protection domain 
+
+Definition at line 61 of file pd.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{pd_8h}{pd.\+h}}\end{DoxyCompactItemize}

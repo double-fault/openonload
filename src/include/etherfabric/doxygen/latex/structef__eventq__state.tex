@@ -1,0 +1,115 @@
+\hypertarget{structef__eventq__state}{}\doxysection{ef\+\_\+eventq\+\_\+state Struct Reference}
+\label{structef__eventq__state}\index{ef\_eventq\_state@{ef\_eventq\_state}}
+
+
+State of event queue.  
+
+
+
+
+{\ttfamily \#include $<$ef\+\_\+vi.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ef__vi_8h_af0de858383958b916bfe38019179bc75}{ef\+\_\+eventq\+\_\+ptr}} \mbox{\hyperlink{structef__eventq__state_a030094039c827292d6faa43e09a21489}{evq\+\_\+ptr}}
+\item 
+int32\+\_\+t \mbox{\hyperlink{structef__eventq__state_aee0cf9306b613a7724e5ac9c5e11759a}{evq\+\_\+clear\+\_\+stride}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structef__eventq__state_a32efb3d880e7d3d1625d724788e35bb3}{sync\+\_\+timestamp\+\_\+major}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structef__eventq__state_a242652d1d1682fbdef32a3b99936279f}{sync\+\_\+timestamp\+\_\+minor}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structef__eventq__state_ac6311bc822c57f6ae778bb587412c44f}{sync\+\_\+timestamp\+\_\+minimum}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structef__eventq__state_ae53d2eb2e11cb251aa4897e9dfbe46d5}{sync\+\_\+timestamp\+\_\+synchronised}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structef__eventq__state_a3c7d31fb730daee3db8e0e835bcfe0ad}{sync\+\_\+flags}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+State of event queue. 
+
+Users should not access this structure. 
+
+Definition at line 599 of file ef\+\_\+vi.\+h.
+
+
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{structef__eventq__state_aee0cf9306b613a7724e5ac9c5e11759a}\label{structef__eventq__state_aee0cf9306b613a7724e5ac9c5e11759a}} 
+\index{ef\_eventq\_state@{ef\_eventq\_state}!evq\_clear\_stride@{evq\_clear\_stride}}
+\index{evq\_clear\_stride@{evq\_clear\_stride}!ef\_eventq\_state@{ef\_eventq\_state}}
+\doxysubsubsection{\texorpdfstring{evq\_clear\_stride}{evq\_clear\_stride}}
+{\footnotesize\ttfamily int32\+\_\+t evq\+\_\+clear\+\_\+stride}
+
+For internal use only 
+
+Definition at line 603 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__eventq__state_a030094039c827292d6faa43e09a21489}\label{structef__eventq__state_a030094039c827292d6faa43e09a21489}} 
+\index{ef\_eventq\_state@{ef\_eventq\_state}!evq\_ptr@{evq\_ptr}}
+\index{evq\_ptr@{evq\_ptr}!ef\_eventq\_state@{ef\_eventq\_state}}
+\doxysubsubsection{\texorpdfstring{evq\_ptr}{evq\_ptr}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ef__vi_8h_af0de858383958b916bfe38019179bc75}{ef\+\_\+eventq\+\_\+ptr}} evq\+\_\+ptr}
+
+Event queue pointer 
+
+Definition at line 601 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__eventq__state_a3c7d31fb730daee3db8e0e835bcfe0ad}\label{structef__eventq__state_a3c7d31fb730daee3db8e0e835bcfe0ad}} 
+\index{ef\_eventq\_state@{ef\_eventq\_state}!sync\_flags@{sync\_flags}}
+\index{sync\_flags@{sync\_flags}!ef\_eventq\_state@{ef\_eventq\_state}}
+\doxysubsubsection{\texorpdfstring{sync\_flags}{sync\_flags}}
+{\footnotesize\ttfamily uint32\+\_\+t sync\+\_\+flags}
+
+Time synchronization flags 
+
+Definition at line 613 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__eventq__state_a32efb3d880e7d3d1625d724788e35bb3}\label{structef__eventq__state_a32efb3d880e7d3d1625d724788e35bb3}} 
+\index{ef\_eventq\_state@{ef\_eventq\_state}!sync\_timestamp\_major@{sync\_timestamp\_major}}
+\index{sync\_timestamp\_major@{sync\_timestamp\_major}!ef\_eventq\_state@{ef\_eventq\_state}}
+\doxysubsubsection{\texorpdfstring{sync\_timestamp\_major}{sync\_timestamp\_major}}
+{\footnotesize\ttfamily uint32\+\_\+t sync\+\_\+timestamp\+\_\+major}
+
+Timestamp (major part) 
+
+Definition at line 605 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__eventq__state_ac6311bc822c57f6ae778bb587412c44f}\label{structef__eventq__state_ac6311bc822c57f6ae778bb587412c44f}} 
+\index{ef\_eventq\_state@{ef\_eventq\_state}!sync\_timestamp\_minimum@{sync\_timestamp\_minimum}}
+\index{sync\_timestamp\_minimum@{sync\_timestamp\_minimum}!ef\_eventq\_state@{ef\_eventq\_state}}
+\doxysubsubsection{\texorpdfstring{sync\_timestamp\_minimum}{sync\_timestamp\_minimum}}
+{\footnotesize\ttfamily uint32\+\_\+t sync\+\_\+timestamp\+\_\+minimum}
+
+Smallest possible seconds value for given sync\+\_\+timestamp\+\_\+major 
+
+Definition at line 609 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__eventq__state_a242652d1d1682fbdef32a3b99936279f}\label{structef__eventq__state_a242652d1d1682fbdef32a3b99936279f}} 
+\index{ef\_eventq\_state@{ef\_eventq\_state}!sync\_timestamp\_minor@{sync\_timestamp\_minor}}
+\index{sync\_timestamp\_minor@{sync\_timestamp\_minor}!ef\_eventq\_state@{ef\_eventq\_state}}
+\doxysubsubsection{\texorpdfstring{sync\_timestamp\_minor}{sync\_timestamp\_minor}}
+{\footnotesize\ttfamily uint32\+\_\+t sync\+\_\+timestamp\+\_\+minor}
+
+Timestamp (minor part) 
+
+Definition at line 607 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__eventq__state_ae53d2eb2e11cb251aa4897e9dfbe46d5}\label{structef__eventq__state_ae53d2eb2e11cb251aa4897e9dfbe46d5}} 
+\index{ef\_eventq\_state@{ef\_eventq\_state}!sync\_timestamp\_synchronised@{sync\_timestamp\_synchronised}}
+\index{sync\_timestamp\_synchronised@{sync\_timestamp\_synchronised}!ef\_eventq\_state@{ef\_eventq\_state}}
+\doxysubsubsection{\texorpdfstring{sync\_timestamp\_synchronised}{sync\_timestamp\_synchronised}}
+{\footnotesize\ttfamily uint32\+\_\+t sync\+\_\+timestamp\+\_\+synchronised}
+
+Timestamp synchronized with adapter 
+
+Definition at line 611 of file ef\+\_\+vi.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ef__vi_8h}{ef\+\_\+vi.\+h}}\end{DoxyCompactItemize}

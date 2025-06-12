@@ -1,0 +1,231 @@
+\hypertarget{unionef__event}{}\doxysection{ef\+\_\+event Union Reference}
+\label{unionef__event}\index{ef\_event@{ef\_event}}
+
+
+A token that identifies something that has happened.  
+
+
+
+
+{\ttfamily \#include $<$ef\+\_\+vi.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>unsigned {\bfseries type}:16\\
+\} \mbox{\hyperlink{unionef__event_ae15442397f19cd930d8392002e343fcf}{generic}}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>unsigned {\bfseries type}:16\\
+\>unsigned {\bfseries q\_id}:8\\
+\>unsigned {\bfseries \_\_reserved}:8\\
+\>unsigned {\bfseries rq\_id}:32\\
+\>unsigned {\bfseries len}:16\\
+\>unsigned {\bfseries flags}:16\\
+\} \mbox{\hyperlink{unionef__event_a2a3ebab5b43cb43b8f56963bfa817a93}{rx}}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>unsigned {\bfseries type}:16\\
+\>unsigned {\bfseries q\_id}:8\\
+\>unsigned {\bfseries \_\_reserved}:8\\
+\>unsigned {\bfseries rq\_id}:32\\
+\>unsigned {\bfseries len}:16\\
+\>unsigned {\bfseries flags}:16\\
+\>unsigned {\bfseries subtype}:16\\
+\} \mbox{\hyperlink{unionef__event_a8115bbd1b91b16ba8703f8f3355e0b9b}{rx\_discard}}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>unsigned {\bfseries type}:16\\
+\>unsigned {\bfseries q\_id}:8\\
+\>unsigned {\bfseries flags}:8\\
+\>unsigned {\bfseries desc\_id}:16\\
+\} \mbox{\hyperlink{unionef__event_a83eb6de88f8f10e76f7d7022fd8a59fa}{tx}}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>unsigned {\bfseries type}:16\\
+\>unsigned {\bfseries q\_id}:8\\
+\>unsigned {\bfseries flags}:8\\
+\>unsigned {\bfseries desc\_id}:16\\
+\>unsigned {\bfseries subtype}:16\\
+\} \mbox{\hyperlink{unionef__event_aa175e8fad3d2b7a3f38a50bd6daa1723}{tx\_error}}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>unsigned {\bfseries type}:16\\
+\>unsigned {\bfseries q\_id}:8\\
+\>unsigned {\bfseries flags}:8\\
+\>unsigned {\bfseries rq\_id}:32\\
+\>unsigned {\bfseries ts\_sec}:32\\
+\>unsigned {\bfseries ts\_nsec}:32\\
+\} \mbox{\hyperlink{unionef__event_a9ee7db60fcc40e57b2ca6fb09a25b2fa}{tx\_timestamp}}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>unsigned {\bfseries type}:16\\
+\>unsigned {\bfseries q\_id}:8\\
+\>unsigned {\bfseries \_\_reserved}:8\\
+\>unsigned {\bfseries alt\_id}:16\\
+\} \mbox{\hyperlink{unionef__event_a9e79a54c27d8481bd0496399bd2109d7}{tx\_alt}}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>unsigned {\bfseries type}:16\\
+\>unsigned {\bfseries q\_id}:8\\
+\} \mbox{\hyperlink{unionef__event_a921c3632c2d1f77d2e2ff75243114023}{rx\_no\_desc\_trunc}}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>unsigned {\bfseries type}:16\\
+\>unsigned {\bfseries q\_id}:8\\
+\>unsigned {\bfseries \_\_reserved}:8\\
+\>unsigned {\bfseries flags}:16\\
+\>unsigned {\bfseries n\_pkts}:16\\
+\>unsigned {\bfseries ps\_flags}:8\\
+\} \mbox{\hyperlink{unionef__event_af6fac9f03b768dbe679c61339febdc91}{rx\_packed\_stream}}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>unsigned {\bfseries type}:16\\
+\>unsigned {\bfseries data}\\
+\} \mbox{\hyperlink{unionef__event_a2f7ace6c88f1ae612e61e7c43ce8801a}{sw}}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>unsigned {\bfseries type}:16\\
+\>unsigned {\bfseries q\_id}:8\\
+\>unsigned {\bfseries \_\_reserved}:8\\
+\>unsigned {\bfseries n\_descs}:16\\
+\>unsigned {\bfseries flags}:16\\
+\} \mbox{\hyperlink{unionef__event_a423f0a3212b16cf8b34802a8f4a8befa}{rx\_multi}}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>unsigned {\bfseries type}:16\\
+\>unsigned {\bfseries q\_id}:8\\
+\>unsigned {\bfseries \_\_reserved}:8\\
+\>unsigned {\bfseries n\_descs}:16\\
+\>unsigned {\bfseries flags}:16\\
+\>unsigned {\bfseries subtype}:16\\
+\} \mbox{\hyperlink{unionef__event_a0c50a0d012258937863aaf8876af0ff5}{rx\_multi\_discard}}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A token that identifies something that has happened. 
+
+Examples include packets received, packets transmitted, and errors.
+
+Users should not access this structure, but should instead use the macros provided. 
+
+Definition at line 139 of file ef\+\_\+vi.\+h.
+
+
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{unionef__event_ae15442397f19cd930d8392002e343fcf}\label{unionef__event_ae15442397f19cd930d8392002e343fcf}} 
+\index{ef\_event@{ef\_event}!generic@{generic}}
+\index{generic@{generic}!ef\_event@{ef\_event}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct \{ ... \}  generic}
+
+A generic event, to query the type when it is unknown \mbox{\Hypertarget{unionef__event_a2a3ebab5b43cb43b8f56963bfa817a93}\label{unionef__event_a2a3ebab5b43cb43b8f56963bfa817a93}} 
+\index{ef\_event@{ef\_event}!rx@{rx}}
+\index{rx@{rx}!ef\_event@{ef\_event}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct \{ ... \}  rx}
+
+An event of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX \mbox{\Hypertarget{unionef__event_a8115bbd1b91b16ba8703f8f3355e0b9b}\label{unionef__event_a8115bbd1b91b16ba8703f8f3355e0b9b}} 
+\index{ef\_event@{ef\_event}!rx\_discard@{rx\_discard}}
+\index{rx\_discard@{rx\_discard}!ef\_event@{ef\_event}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct \{ ... \}  rx\+\_\+discard}
+
+An event of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+DISCARD \mbox{\Hypertarget{unionef__event_a423f0a3212b16cf8b34802a8f4a8befa}\label{unionef__event_a423f0a3212b16cf8b34802a8f4a8befa}} 
+\index{ef\_event@{ef\_event}!rx\_multi@{rx\_multi}}
+\index{rx\_multi@{rx\_multi}!ef\_event@{ef\_event}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct \{ ... \}  rx\+\_\+multi}
+
+An event of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+MULTI \mbox{\Hypertarget{unionef__event_a0c50a0d012258937863aaf8876af0ff5}\label{unionef__event_a0c50a0d012258937863aaf8876af0ff5}} 
+\index{ef\_event@{ef\_event}!rx\_multi\_discard@{rx\_multi\_discard}}
+\index{rx\_multi\_discard@{rx\_multi\_discard}!ef\_event@{ef\_event}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct \{ ... \}  rx\+\_\+multi\+\_\+discard}
+
+An event of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+DISCARD \mbox{\Hypertarget{unionef__event_a921c3632c2d1f77d2e2ff75243114023}\label{unionef__event_a921c3632c2d1f77d2e2ff75243114023}} 
+\index{ef\_event@{ef\_event}!rx\_no\_desc\_trunc@{rx\_no\_desc\_trunc}}
+\index{rx\_no\_desc\_trunc@{rx\_no\_desc\_trunc}!ef\_event@{ef\_event}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct \{ ... \}  rx\+\_\+no\+\_\+desc\+\_\+trunc}
+
+An event of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+NO\+\_\+\+DESC\+\_\+\+TRUNC \mbox{\Hypertarget{unionef__event_af6fac9f03b768dbe679c61339febdc91}\label{unionef__event_af6fac9f03b768dbe679c61339febdc91}} 
+\index{ef\_event@{ef\_event}!rx\_packed\_stream@{rx\_packed\_stream}}
+\index{rx\_packed\_stream@{rx\_packed\_stream}!ef\_event@{ef\_event}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct \{ ... \}  rx\+\_\+packed\+\_\+stream}
+
+An event of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+PACKED\+\_\+\+STREAM \mbox{\Hypertarget{unionef__event_a2f7ace6c88f1ae612e61e7c43ce8801a}\label{unionef__event_a2f7ace6c88f1ae612e61e7c43ce8801a}} 
+\index{ef\_event@{ef\_event}!sw@{sw}}
+\index{sw@{sw}!ef\_event@{ef\_event}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct \{ ... \}  sw}
+
+An event of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+SW \mbox{\Hypertarget{unionef__event_a83eb6de88f8f10e76f7d7022fd8a59fa}\label{unionef__event_a83eb6de88f8f10e76f7d7022fd8a59fa}} 
+\index{ef\_event@{ef\_event}!tx@{tx}}
+\index{tx@{tx}!ef\_event@{ef\_event}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct \{ ... \}  tx}
+
+An event of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX \mbox{\Hypertarget{unionef__event_a9e79a54c27d8481bd0496399bd2109d7}\label{unionef__event_a9e79a54c27d8481bd0496399bd2109d7}} 
+\index{ef\_event@{ef\_event}!tx\_alt@{tx\_alt}}
+\index{tx\_alt@{tx\_alt}!ef\_event@{ef\_event}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct \{ ... \}  tx\+\_\+alt}
+
+An event of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+ALT \mbox{\Hypertarget{unionef__event_aa175e8fad3d2b7a3f38a50bd6daa1723}\label{unionef__event_aa175e8fad3d2b7a3f38a50bd6daa1723}} 
+\index{ef\_event@{ef\_event}!tx\_error@{tx\_error}}
+\index{tx\_error@{tx\_error}!ef\_event@{ef\_event}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct \{ ... \}  tx\+\_\+error}
+
+An event of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+ERROR \mbox{\Hypertarget{unionef__event_a9ee7db60fcc40e57b2ca6fb09a25b2fa}\label{unionef__event_a9ee7db60fcc40e57b2ca6fb09a25b2fa}} 
+\index{ef\_event@{ef\_event}!tx\_timestamp@{tx\_timestamp}}
+\index{tx\_timestamp@{tx\_timestamp}!ef\_event@{ef\_event}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct \{ ... \}  tx\+\_\+timestamp}
+
+An event of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+WITH\+\_\+\+TIMESTAMP 
+
+The documentation for this union was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ef__vi_8h}{ef\+\_\+vi.\+h}}\end{DoxyCompactItemize}

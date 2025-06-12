@@ -1,0 +1,137 @@
+\hypertarget{memreg_8h}{}\doxysection{memreg.\+h File Reference}
+\label{memreg_8h}\index{memreg.h@{memreg.h}}
+
+
+Registering memory for Ether\+Fabric Virtual Interface HAL.  
+
+
+{\ttfamily \#include $<$etherfabric/base.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structef__memreg}{ef\+\_\+memreg}}
+\begin{DoxyCompactList}\small\item\em Memory that has been registered for use with \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{memreg_8h_a59f5c9f3c7c9bd0be86538d1842804d1}\label{memreg_8h_a59f5c9f3c7c9bd0be86538d1842804d1}} 
+typedef struct \mbox{\hyperlink{structef__memreg}{ef\+\_\+memreg}} \mbox{\hyperlink{memreg_8h_a59f5c9f3c7c9bd0be86538d1842804d1}{ef\+\_\+memreg}}
+\begin{DoxyCompactList}\small\item\em Memory that has been registered for use with \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{memreg_8h_ad802d1d7c6487fbeeff8ed682caf71c8}{ef\+\_\+memreg\+\_\+alloc}} (\mbox{\hyperlink{structef__memreg}{ef\+\_\+memreg}} $\ast$mr, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} mr\+\_\+dh, struct \mbox{\hyperlink{structef__pd}{ef\+\_\+pd}} $\ast$pd, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} pd\+\_\+dh, void $\ast$p\+\_\+mem, size\+\_\+t len\+\_\+bytes)
+\begin{DoxyCompactList}\small\item\em Register a memory region for use with \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{memreg_8h_a50faeb36b707ebf538b789d9f311642f}{ef\+\_\+memreg\+\_\+free}} (\mbox{\hyperlink{structef__memreg}{ef\+\_\+memreg}} $\ast$mr, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} mr\+\_\+dh)
+\begin{DoxyCompactList}\small\item\em Unregister a memory region. \end{DoxyCompactList}\item 
+ef\+\_\+vi\+\_\+inline \mbox{\hyperlink{ef__vi_8h_a45dc6a6b117562bf1fb95bda721aba14}{ef\+\_\+addr}} \mbox{\hyperlink{memreg_8h_aa2bb8edc3f2cd0ac924404f25474ac21}{ef\+\_\+memreg\+\_\+dma\+\_\+addr}} (\mbox{\hyperlink{structef__memreg}{ef\+\_\+memreg}} $\ast$mr, size\+\_\+t offset)
+\begin{DoxyCompactList}\small\item\em Return the DMA address for the given offset within a registered memory region. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Registering memory for Ether\+Fabric Virtual Interface HAL. 
+
+\begin{DoxyAuthor}{Author}
+Solarflare Communications, Inc. 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2018/11/06 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright \copyright{} 2018 Solarflare Communications, Inc. All rights reserved. Solarflare, Open\+Onload and Enterprise\+Onload are trademarks of Solarflare Communications, Inc. 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{memreg_8h_ad802d1d7c6487fbeeff8ed682caf71c8}\label{memreg_8h_ad802d1d7c6487fbeeff8ed682caf71c8}} 
+\index{memreg.h@{memreg.h}!ef\_memreg\_alloc@{ef\_memreg\_alloc}}
+\index{ef\_memreg\_alloc@{ef\_memreg\_alloc}!memreg.h@{memreg.h}}
+\doxysubsubsection{\texorpdfstring{ef\_memreg\_alloc()}{ef\_memreg\_alloc()}}
+{\footnotesize\ttfamily int ef\+\_\+memreg\+\_\+alloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__memreg}{ef\+\_\+memreg}} $\ast$}]{mr,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{mr\+\_\+dh,  }\item[{struct \mbox{\hyperlink{structef__pd}{ef\+\_\+pd}} $\ast$}]{pd,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{pd\+\_\+dh,  }\item[{void $\ast$}]{p\+\_\+mem,  }\item[{size\+\_\+t}]{len\+\_\+bytes }\end{DoxyParamCaption})}
+
+
+
+Register a memory region for use with \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mr} & The \mbox{\hyperlink{structef__memreg}{ef\+\_\+memreg}} object to initialize. \\
+\hline
+{\em mr\+\_\+dh} & Driver handle for the \mbox{\hyperlink{structef__memreg}{ef\+\_\+memreg}}. \\
+\hline
+{\em pd} & Protection domain in which to register memory. \\
+\hline
+{\em pd\+\_\+dh} & Driver handle for the protection domain. \\
+\hline
+{\em p\+\_\+mem} & Start of memory region to be registered. This must be page-\/aligned, and so be on a 4K boundary. \\
+\hline
+{\em len\+\_\+bytes} & Length of memory region to be registered. This must be a multiple of the packet buffer size (currently 2048 bytes).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Register memory for use with \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}}.
+
+Before calling this function, the memory must be allocated. using malloc or similar.
+
+After calling this function, the memory is registered, and can be used for DMA buffers. \mbox{\hyperlink{memreg_8h_aa2bb8edc3f2cd0ac924404f25474ac21}{ef\+\_\+memreg\+\_\+dma\+\_\+addr()}} can then be used to obtain DMA addresses for buffers within the registered area.
+
+Registered memory is associated with a particular protection domain, and the DMA addresses can be used only with virtual interfaces that are associated with the same protection domain. Memory can be registered with multiple protection domains so that a single pool of buffers can be used with multiple virtual interfaces.
+
+Memory that is registered is pinned, and therefore it cannot be swapped out to disk.
+
+\begin{DoxyNote}{Note}
+If an application that has registered memory forks, then copy-\/on-\/write semantics can cause new pages to be allocated which are not registered. This problem can be solved either by ensuring that the registered memory regions are shared by parent and child (e.\+g. by using MAP\+\_\+\+SHARED), or by using madvise(\+MADV\+\_\+\+DONTFORK) to prevent the registered memory from being accessible in the child. 
+\end{DoxyNote}
+\mbox{\Hypertarget{memreg_8h_aa2bb8edc3f2cd0ac924404f25474ac21}\label{memreg_8h_aa2bb8edc3f2cd0ac924404f25474ac21}} 
+\index{memreg.h@{memreg.h}!ef\_memreg\_dma\_addr@{ef\_memreg\_dma\_addr}}
+\index{ef\_memreg\_dma\_addr@{ef\_memreg\_dma\_addr}!memreg.h@{memreg.h}}
+\doxysubsubsection{\texorpdfstring{ef\_memreg\_dma\_addr()}{ef\_memreg\_dma\_addr()}}
+{\footnotesize\ttfamily ef\+\_\+vi\+\_\+inline \mbox{\hyperlink{ef__vi_8h_a45dc6a6b117562bf1fb95bda721aba14}{ef\+\_\+addr}} ef\+\_\+memreg\+\_\+dma\+\_\+addr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__memreg}{ef\+\_\+memreg}} $\ast$}]{mr,  }\item[{size\+\_\+t}]{offset }\end{DoxyParamCaption})}
+
+
+
+Return the DMA address for the given offset within a registered memory region. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mr} & The \mbox{\hyperlink{structef__memreg}{ef\+\_\+memreg}} object to query. \\
+\hline
+{\em offset} & The offset within the \mbox{\hyperlink{structef__memreg}{ef\+\_\+memreg}} object.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The DMA address for the given offset within a registered memory region.
+\end{DoxyReturn}
+Return the DMA address for the given offset within a registered memory region.
+
+Note that DMA addresses are only contiguous within each 4K block of a memory region. 
+
+Definition at line 109 of file memreg.\+h.
+
+\mbox{\Hypertarget{memreg_8h_a50faeb36b707ebf538b789d9f311642f}\label{memreg_8h_a50faeb36b707ebf538b789d9f311642f}} 
+\index{memreg.h@{memreg.h}!ef\_memreg\_free@{ef\_memreg\_free}}
+\index{ef\_memreg\_free@{ef\_memreg\_free}!memreg.h@{memreg.h}}
+\doxysubsubsection{\texorpdfstring{ef\_memreg\_free()}{ef\_memreg\_free()}}
+{\footnotesize\ttfamily int ef\+\_\+memreg\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__memreg}{ef\+\_\+memreg}} $\ast$}]{mr,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{mr\+\_\+dh }\end{DoxyParamCaption})}
+
+
+
+Unregister a memory region. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mr} & The \mbox{\hyperlink{structef__memreg}{ef\+\_\+memreg}} object to unregister. \\
+\hline
+{\em mr\+\_\+dh} & Driver handle for the \mbox{\hyperlink{structef__memreg}{ef\+\_\+memreg}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Unregister a memory region.
+
+\begin{DoxyNote}{Note}
+To free all the resources, the driver handle associated with the memory must also be closed by calling \mbox{\hyperlink{base_8h_ac7afa09b92436d8007255c3a8723c759}{ef\+\_\+driver\+\_\+close()}}. 
+\end{DoxyNote}

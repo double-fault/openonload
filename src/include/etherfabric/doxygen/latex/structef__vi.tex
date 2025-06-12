@@ -1,0 +1,492 @@
+\hypertarget{structef__vi}{}\doxysection{ef\+\_\+vi Struct Reference}
+\label{structef__vi}\index{ef\_vi@{ef\_vi}}
+
+
+A virtual interface.  
+
+
+
+
+{\ttfamily \#include $<$ef\+\_\+vi.\+h$>$}
+
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structef__vi_1_1ops}{ops}}
+\begin{DoxyCompactList}\small\item\em Driver-\/dependent operations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+unsigned \mbox{\hyperlink{structef__vi_a75196cd7800199ff1b87152adec121bb}{inited}}
+\item 
+unsigned \mbox{\hyperlink{structef__vi_ab6e2b1e72a50e7ef9a52fd7b35ff8ee0}{vi\+\_\+resource\+\_\+id}}
+\item 
+unsigned \mbox{\hyperlink{structef__vi_af45eb4c57cefef9d0b400932d9e13c30}{vi\+\_\+i}}
+\item 
+unsigned \mbox{\hyperlink{structef__vi_a5602b0f929b1264676d867bbaab8d6c3}{rx\+\_\+buffer\+\_\+len}}
+\item 
+unsigned \mbox{\hyperlink{structef__vi_a1969b67d2b98a3e9d2f2aa4c5fe2e5e1}{rx\+\_\+prefix\+\_\+len}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structef__vi_a27026e942fc7037cdf3e998ab787ed6e}{rx\+\_\+discard\+\_\+mask}}
+\item 
+int \mbox{\hyperlink{structef__vi_a126009de332f2f54e37adefaa69828fc}{rx\+\_\+ts\+\_\+correction}}
+\item 
+int \mbox{\hyperlink{structef__vi_a7c3665ab2be6cfec8b3bdef1054dc39d}{tx\+\_\+ts\+\_\+correction\+\_\+ns}}
+\item 
+enum \mbox{\hyperlink{ef__vi_8h_a0ed3fae25127eb79f580ec2fea89a9a4}{ef\+\_\+timestamp\+\_\+format}} \mbox{\hyperlink{structef__vi_ad66d8e591a5f943163c2e2c526059f49}{ts\+\_\+format}}
+\item 
+char $\ast$ \mbox{\hyperlink{structef__vi_aa51701ff72a4b77f0a07996f31ed735a}{vi\+\_\+mem\+\_\+mmap\+\_\+ptr}}
+\item 
+int \mbox{\hyperlink{structef__vi_ae73285ae5d4db2c28351f0c5522a90b4}{vi\+\_\+mem\+\_\+mmap\+\_\+bytes}}
+\item 
+char $\ast$ \mbox{\hyperlink{structef__vi_ab3986bffe863822850866a3f6244dc6e}{vi\+\_\+io\+\_\+mmap\+\_\+ptr}}
+\item 
+int \mbox{\hyperlink{structef__vi_ad68573d55742534a6871e46dc5b8ada8}{vi\+\_\+io\+\_\+mmap\+\_\+bytes}}
+\item 
+char $\ast$ \mbox{\hyperlink{structef__vi_a04ddb37db271afd47d8166c869447456}{vi\+\_\+ctpio\+\_\+mmap\+\_\+ptr}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structef__vi_a69497eb712ace41b68499fe416e4fd74}{vi\+\_\+ctpio\+\_\+wb\+\_\+ticks}}
+\item 
+int \mbox{\hyperlink{structef__vi_a116d03c36f76129e917241c365db2d17}{vi\+\_\+clustered}}
+\item 
+int \mbox{\hyperlink{structef__vi_a306aefb19c2d74b9ff35a92e25979d0c}{vi\+\_\+is\+\_\+packed\+\_\+stream}}
+\item 
+int \mbox{\hyperlink{structef__vi_a3667d661345e24008677fcc7efc6bf6a}{vi\+\_\+is\+\_\+normal}}
+\item 
+unsigned \mbox{\hyperlink{structef__vi_a920c15ef4e619cf2056b4d157cbf4adf}{vi\+\_\+ps\+\_\+buf\+\_\+size}}
+\item 
+\mbox{\hyperlink{ef__vi_8h_ad68493b7b12823bda18218c21c904d84}{ef\+\_\+vi\+\_\+ioaddr\+\_\+t}} \mbox{\hyperlink{structef__vi_ae5b1afa2fd43fb1edf31fd326406f174}{io}}
+\item 
+struct \mbox{\hyperlink{structef__pio}{ef\+\_\+pio}} $\ast$ \mbox{\hyperlink{structef__vi_ab72218a5ccec374df49aa0adeb5e4e3b}{linked\+\_\+pio}}
+\item 
+char $\ast$ \mbox{\hyperlink{structef__vi_a831238f0da8947cdb6c3adafe8025105}{evq\+\_\+base}}
+\item 
+unsigned \mbox{\hyperlink{structef__vi_a7a0e28e66b3195b038a6776cc1a75ac7}{evq\+\_\+mask}}
+\item 
+unsigned \mbox{\hyperlink{structef__vi_a3f1e563b5711d63ce594dd236ba6cec0}{timer\+\_\+quantum\+\_\+ns}}
+\item 
+unsigned \mbox{\hyperlink{structef__vi_afc3793477dec6563882de6079be2ea14}{tx\+\_\+push\+\_\+thresh}}
+\item 
+\mbox{\hyperlink{structef__vi__txq}{ef\+\_\+vi\+\_\+txq}} \mbox{\hyperlink{structef__vi_a882d8253020aa6ffaa1b836b5c146929}{vi\+\_\+txq}}
+\item 
+\mbox{\hyperlink{structef__vi__rxq}{ef\+\_\+vi\+\_\+rxq}} \mbox{\hyperlink{structef__vi_a4faf41b013d32c179bd3748dcf2f4be3}{vi\+\_\+rxq}}
+\item 
+\mbox{\hyperlink{structef__vi__state}{ef\+\_\+vi\+\_\+state}} $\ast$ \mbox{\hyperlink{structef__vi_a71c15bf502f0d308c0a5319c505dc793}{ep\+\_\+state}}
+\item 
+enum \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772}{ef\+\_\+vi\+\_\+flags}} \mbox{\hyperlink{structef__vi_a5c27893916247ccc6135dca3142f423a}{vi\+\_\+flags}}
+\item 
+enum \mbox{\hyperlink{ef__vi_8h_a0096b5a5f0ec6a67ff4d1ff1b8bbbb4c}{ef\+\_\+vi\+\_\+out\+\_\+flags}} \mbox{\hyperlink{structef__vi_a71389beaff30005948c46c31e3c05e8d}{vi\+\_\+out\+\_\+flags}}
+\item 
+\mbox{\hyperlink{structef__vi__stats}{ef\+\_\+vi\+\_\+stats}} $\ast$ \mbox{\hyperlink{structef__vi_a1877c4992306395de2a87b86d5c4d280}{vi\+\_\+stats}}
+\item 
+struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$ \mbox{\hyperlink{structef__vi_ab0a059a5934960dcfdfb5f44af4bf14a}{vi\+\_\+qs}} \mbox{[}\mbox{\hyperlink{ef__vi_8h_ad7197cc7fd7e78d1d887e9df0e26862f}{EF\+\_\+\+VI\+\_\+\+MAX\+\_\+\+QS}}\mbox{]}
+\item 
+int \mbox{\hyperlink{structef__vi_a6ab0708a8b5304e4ea8eda5478dd0d0d}{vi\+\_\+qs\+\_\+n}}
+\item 
+unsigned \mbox{\hyperlink{structef__vi_a7e923d573d2a650979c5d97585fa4b37}{tx\+\_\+alt\+\_\+num}}
+\item 
+unsigned $\ast$ \mbox{\hyperlink{structef__vi_a70d11f7285b2443e8f01257556882d97}{tx\+\_\+alt\+\_\+id2hw}}
+\item 
+unsigned $\ast$ \mbox{\hyperlink{structef__vi_a1a40b8b9dba6aa8f98d1a084b6d25fee}{tx\+\_\+alt\+\_\+hw2id}}
+\item 
+struct \mbox{\hyperlink{structef__vi__nic__type}{ef\+\_\+vi\+\_\+nic\+\_\+type}} \mbox{\hyperlink{structef__vi_a9e6086f5555263ce7dce7f631ec998b5}{nic\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structef__vi_1_1ops}{ef\+\_\+vi\+::ops}} \mbox{\hyperlink{structef__vi_a4116598ec5e715916b18f630f25448b6}{ops}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A virtual interface. 
+
+An \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} represents a virtual interface on a specific NIC. A virtual interface is a collection of an event queue and two DMA queues used to pass Ethernet frames between the transport implementation and the network.
+
+Users should not access this structure. 
+
+Definition at line 716 of file ef\+\_\+vi.\+h.
+
+
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{structef__vi_a71c15bf502f0d308c0a5319c505dc793}\label{structef__vi_a71c15bf502f0d308c0a5319c505dc793}} 
+\index{ef\_vi@{ef\_vi}!ep\_state@{ep\_state}}
+\index{ep\_state@{ep\_state}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{ep\_state}{ep\_state}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structef__vi__state}{ef\+\_\+vi\+\_\+state}}$\ast$ ep\+\_\+state}
+
+The state of the virtual interface 
+
+Definition at line 779 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a831238f0da8947cdb6c3adafe8025105}\label{structef__vi_a831238f0da8947cdb6c3adafe8025105}} 
+\index{ef\_vi@{ef\_vi}!evq\_base@{evq\_base}}
+\index{evq\_base@{evq\_base}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{evq\_base}{evq\_base}}
+{\footnotesize\ttfamily char$\ast$ evq\+\_\+base}
+
+Base of the event queue for the virtual interface 
+
+Definition at line 764 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a7a0e28e66b3195b038a6776cc1a75ac7}\label{structef__vi_a7a0e28e66b3195b038a6776cc1a75ac7}} 
+\index{ef\_vi@{ef\_vi}!evq\_mask@{evq\_mask}}
+\index{evq\_mask@{evq\_mask}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{evq\_mask}{evq\_mask}}
+{\footnotesize\ttfamily unsigned evq\+\_\+mask}
+
+Mask for offsets within the event queue for the virtual interface 
+
+Definition at line 766 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a75196cd7800199ff1b87152adec121bb}\label{structef__vi_a75196cd7800199ff1b87152adec121bb}} 
+\index{ef\_vi@{ef\_vi}!inited@{inited}}
+\index{inited@{inited}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{inited}{inited}}
+{\footnotesize\ttfamily unsigned inited}
+
+True if the virtual interface has been initialized 
+
+Definition at line 718 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_ae5b1afa2fd43fb1edf31fd326406f174}\label{structef__vi_ae5b1afa2fd43fb1edf31fd326406f174}} 
+\index{ef\_vi@{ef\_vi}!io@{io}}
+\index{io@{io}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{io}{io}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ef__vi_8h_ad68493b7b12823bda18218c21c904d84}{ef\+\_\+vi\+\_\+ioaddr\+\_\+t}} io}
+
+I/O address for the virtual interface 
+
+Definition at line 758 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_ab72218a5ccec374df49aa0adeb5e4e3b}\label{structef__vi_ab72218a5ccec374df49aa0adeb5e4e3b}} 
+\index{ef\_vi@{ef\_vi}!linked\_pio@{linked\_pio}}
+\index{linked\_pio@{linked\_pio}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{linked\_pio}{linked\_pio}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structef__pio}{ef\+\_\+pio}}$\ast$ linked\+\_\+pio}
+
+Programmed I/O region linked to the virtual interface 
+
+Definition at line 761 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a9e6086f5555263ce7dce7f631ec998b5}\label{structef__vi_a9e6086f5555263ce7dce7f631ec998b5}} 
+\index{ef\_vi@{ef\_vi}!nic\_type@{nic\_type}}
+\index{nic\_type@{nic\_type}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{nic\_type}{nic\_type}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structef__vi__nic__type}{ef\+\_\+vi\+\_\+nic\+\_\+type}} nic\+\_\+type}
+
+The type of NIC hosting the virtual interface 
+
+Definition at line 797 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a4116598ec5e715916b18f630f25448b6}\label{structef__vi_a4116598ec5e715916b18f630f25448b6}} 
+\index{ef\_vi@{ef\_vi}!ops@{ops}}
+\index{ops@{ops}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{ops}{ops}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structef__vi_1_1ops}{ef\+\_\+vi\+::ops}} \mbox{\hyperlink{structef__vi_1_1ops}{ops}}}
+
+Driver-\/dependent operations. \mbox{\Hypertarget{structef__vi_a5602b0f929b1264676d867bbaab8d6c3}\label{structef__vi_a5602b0f929b1264676d867bbaab8d6c3}} 
+\index{ef\_vi@{ef\_vi}!rx\_buffer\_len@{rx\_buffer\_len}}
+\index{rx\_buffer\_len@{rx\_buffer\_len}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{rx\_buffer\_len}{rx\_buffer\_len}}
+{\footnotesize\ttfamily unsigned rx\+\_\+buffer\+\_\+len}
+
+The length of a receive buffer 
+
+Definition at line 725 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a27026e942fc7037cdf3e998ab787ed6e}\label{structef__vi_a27026e942fc7037cdf3e998ab787ed6e}} 
+\index{ef\_vi@{ef\_vi}!rx\_discard\_mask@{rx\_discard\_mask}}
+\index{rx\_discard\_mask@{rx\_discard\_mask}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{rx\_discard\_mask}{rx\_discard\_mask}}
+{\footnotesize\ttfamily uint64\+\_\+t rx\+\_\+discard\+\_\+mask}
+
+The mask to select which errors cause a discard event 
+
+Definition at line 729 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a1969b67d2b98a3e9d2f2aa4c5fe2e5e1}\label{structef__vi_a1969b67d2b98a3e9d2f2aa4c5fe2e5e1}} 
+\index{ef\_vi@{ef\_vi}!rx\_prefix\_len@{rx\_prefix\_len}}
+\index{rx\_prefix\_len@{rx\_prefix\_len}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{rx\_prefix\_len}{rx\_prefix\_len}}
+{\footnotesize\ttfamily unsigned rx\+\_\+prefix\+\_\+len}
+
+The length of the prefix at the start of a received packet 
+
+Definition at line 727 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a126009de332f2f54e37adefaa69828fc}\label{structef__vi_a126009de332f2f54e37adefaa69828fc}} 
+\index{ef\_vi@{ef\_vi}!rx\_ts\_correction@{rx\_ts\_correction}}
+\index{rx\_ts\_correction@{rx\_ts\_correction}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{rx\_ts\_correction}{rx\_ts\_correction}}
+{\footnotesize\ttfamily int rx\+\_\+ts\+\_\+correction}
+
+The timestamp correction (ticks) for received packets 
+
+Definition at line 731 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a3f1e563b5711d63ce594dd236ba6cec0}\label{structef__vi_a3f1e563b5711d63ce594dd236ba6cec0}} 
+\index{ef\_vi@{ef\_vi}!timer\_quantum\_ns@{timer\_quantum\_ns}}
+\index{timer\_quantum\_ns@{timer\_quantum\_ns}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{timer\_quantum\_ns}{timer\_quantum\_ns}}
+{\footnotesize\ttfamily unsigned timer\+\_\+quantum\+\_\+ns}
+
+The timer quantum for the virtual interface, in nanoseconds 
+
+Definition at line 768 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_ad66d8e591a5f943163c2e2c526059f49}\label{structef__vi_ad66d8e591a5f943163c2e2c526059f49}} 
+\index{ef\_vi@{ef\_vi}!ts\_format@{ts\_format}}
+\index{ts\_format@{ts\_format}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{ts\_format}{ts\_format}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{ef__vi_8h_a0ed3fae25127eb79f580ec2fea89a9a4}{ef\+\_\+timestamp\+\_\+format}} ts\+\_\+format}
+
+The timestamp format used by the hardware 
+
+Definition at line 733 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a1a40b8b9dba6aa8f98d1a084b6d25fee}\label{structef__vi_a1a40b8b9dba6aa8f98d1a084b6d25fee}} 
+\index{ef\_vi@{ef\_vi}!tx\_alt\_hw2id@{tx\_alt\_hw2id}}
+\index{tx\_alt\_hw2id@{tx\_alt\_hw2id}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{tx\_alt\_hw2id}{tx\_alt\_hw2id}}
+{\footnotesize\ttfamily unsigned$\ast$ tx\+\_\+alt\+\_\+hw2id}
+
+Mapping from hardware TX alternative IDs to end-\/user IDs ~\newline
+ 
+
+Definition at line 797 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a70d11f7285b2443e8f01257556882d97}\label{structef__vi_a70d11f7285b2443e8f01257556882d97}} 
+\index{ef\_vi@{ef\_vi}!tx\_alt\_id2hw@{tx\_alt\_id2hw}}
+\index{tx\_alt\_id2hw@{tx\_alt\_id2hw}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{tx\_alt\_id2hw}{tx\_alt\_id2hw}}
+{\footnotesize\ttfamily unsigned$\ast$ tx\+\_\+alt\+\_\+id2hw}
+
+Mapping from end-\/user TX alternative IDs to hardware IDs ~\newline
+ 
+
+Definition at line 795 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a7e923d573d2a650979c5d97585fa4b37}\label{structef__vi_a7e923d573d2a650979c5d97585fa4b37}} 
+\index{ef\_vi@{ef\_vi}!tx\_alt\_num@{tx\_alt\_num}}
+\index{tx\_alt\_num@{tx\_alt\_num}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{tx\_alt\_num}{tx\_alt\_num}}
+{\footnotesize\ttfamily unsigned tx\+\_\+alt\+\_\+num}
+
+Number of TX alternatives for the virtual interface 
+
+Definition at line 793 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_afc3793477dec6563882de6079be2ea14}\label{structef__vi_afc3793477dec6563882de6079be2ea14}} 
+\index{ef\_vi@{ef\_vi}!tx\_push\_thresh@{tx\_push\_thresh}}
+\index{tx\_push\_thresh@{tx\_push\_thresh}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{tx\_push\_thresh}{tx\_push\_thresh}}
+{\footnotesize\ttfamily unsigned tx\+\_\+push\+\_\+thresh}
+
+The threshold at which to switch from using TX descriptor push to using a doorbell 
+
+Definition at line 772 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a7c3665ab2be6cfec8b3bdef1054dc39d}\label{structef__vi_a7c3665ab2be6cfec8b3bdef1054dc39d}} 
+\index{ef\_vi@{ef\_vi}!tx\_ts\_correction\_ns@{tx\_ts\_correction\_ns}}
+\index{tx\_ts\_correction\_ns@{tx\_ts\_correction\_ns}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{tx\_ts\_correction\_ns}{tx\_ts\_correction\_ns}}
+{\footnotesize\ttfamily int tx\+\_\+ts\+\_\+correction\+\_\+ns}
+
+The timestamp correction (ns) for transmitted packets 
+
+Definition at line 733 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a116d03c36f76129e917241c365db2d17}\label{structef__vi_a116d03c36f76129e917241c365db2d17}} 
+\index{ef\_vi@{ef\_vi}!vi\_clustered@{vi\_clustered}}
+\index{vi\_clustered@{vi\_clustered}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{vi\_clustered}{vi\_clustered}}
+{\footnotesize\ttfamily int vi\+\_\+clustered}
+
+True if the virtual interface is in a cluster 
+
+Definition at line 749 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a04ddb37db271afd47d8166c869447456}\label{structef__vi_a04ddb37db271afd47d8166c869447456}} 
+\index{ef\_vi@{ef\_vi}!vi\_ctpio\_mmap\_ptr@{vi\_ctpio\_mmap\_ptr}}
+\index{vi\_ctpio\_mmap\_ptr@{vi\_ctpio\_mmap\_ptr}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{vi\_ctpio\_mmap\_ptr}{vi\_ctpio\_mmap\_ptr}}
+{\footnotesize\ttfamily char$\ast$ vi\+\_\+ctpio\+\_\+mmap\+\_\+ptr}
+
+Pointer to CTPIO region 
+
+Definition at line 745 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a69497eb712ace41b68499fe416e4fd74}\label{structef__vi_a69497eb712ace41b68499fe416e4fd74}} 
+\index{ef\_vi@{ef\_vi}!vi\_ctpio\_wb\_ticks@{vi\_ctpio\_wb\_ticks}}
+\index{vi\_ctpio\_wb\_ticks@{vi\_ctpio\_wb\_ticks}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{vi\_ctpio\_wb\_ticks}{vi\_ctpio\_wb\_ticks}}
+{\footnotesize\ttfamily uint32\+\_\+t vi\+\_\+ctpio\+\_\+wb\+\_\+ticks}
+
+Controls rate of writes into CTPIO aperture 
+
+Definition at line 747 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a5c27893916247ccc6135dca3142f423a}\label{structef__vi_a5c27893916247ccc6135dca3142f423a}} 
+\index{ef\_vi@{ef\_vi}!vi\_flags@{vi\_flags}}
+\index{vi\_flags@{vi\_flags}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{vi\_flags}{vi\_flags}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772}{ef\+\_\+vi\+\_\+flags}} vi\+\_\+flags}
+
+The flags for the virtual interface 
+
+Definition at line 779 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_af45eb4c57cefef9d0b400932d9e13c30}\label{structef__vi_af45eb4c57cefef9d0b400932d9e13c30}} 
+\index{ef\_vi@{ef\_vi}!vi\_i@{vi\_i}}
+\index{vi\_i@{vi\_i}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{vi\_i}{vi\_i}}
+{\footnotesize\ttfamily unsigned vi\+\_\+i}
+
+The instance ID of the virtual interface 
+
+Definition at line 722 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_ad68573d55742534a6871e46dc5b8ada8}\label{structef__vi_ad68573d55742534a6871e46dc5b8ada8}} 
+\index{ef\_vi@{ef\_vi}!vi\_io\_mmap\_bytes@{vi\_io\_mmap\_bytes}}
+\index{vi\_io\_mmap\_bytes@{vi\_io\_mmap\_bytes}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{vi\_io\_mmap\_bytes}{vi\_io\_mmap\_bytes}}
+{\footnotesize\ttfamily int vi\+\_\+io\+\_\+mmap\+\_\+bytes}
+
+Length of virtual interface I/O region 
+
+Definition at line 743 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_ab3986bffe863822850866a3f6244dc6e}\label{structef__vi_ab3986bffe863822850866a3f6244dc6e}} 
+\index{ef\_vi@{ef\_vi}!vi\_io\_mmap\_ptr@{vi\_io\_mmap\_ptr}}
+\index{vi\_io\_mmap\_ptr@{vi\_io\_mmap\_ptr}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{vi\_io\_mmap\_ptr}{vi\_io\_mmap\_ptr}}
+{\footnotesize\ttfamily char$\ast$ vi\+\_\+io\+\_\+mmap\+\_\+ptr}
+
+Pointer to virtual interface I/O region 
+
+Definition at line 741 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a3667d661345e24008677fcc7efc6bf6a}\label{structef__vi_a3667d661345e24008677fcc7efc6bf6a}} 
+\index{ef\_vi@{ef\_vi}!vi\_is\_normal@{vi\_is\_normal}}
+\index{vi\_is\_normal@{vi\_is\_normal}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{vi\_is\_normal}{vi\_is\_normal}}
+{\footnotesize\ttfamily int vi\+\_\+is\+\_\+normal}
+
+True if no special mode is enabled for the virtual interface 
+
+Definition at line 753 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a306aefb19c2d74b9ff35a92e25979d0c}\label{structef__vi_a306aefb19c2d74b9ff35a92e25979d0c}} 
+\index{ef\_vi@{ef\_vi}!vi\_is\_packed\_stream@{vi\_is\_packed\_stream}}
+\index{vi\_is\_packed\_stream@{vi\_is\_packed\_stream}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{vi\_is\_packed\_stream}{vi\_is\_packed\_stream}}
+{\footnotesize\ttfamily int vi\+\_\+is\+\_\+packed\+\_\+stream}
+
+True if packed stream mode is enabled for the virtual interface 
+
+Definition at line 751 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_ae73285ae5d4db2c28351f0c5522a90b4}\label{structef__vi_ae73285ae5d4db2c28351f0c5522a90b4}} 
+\index{ef\_vi@{ef\_vi}!vi\_mem\_mmap\_bytes@{vi\_mem\_mmap\_bytes}}
+\index{vi\_mem\_mmap\_bytes@{vi\_mem\_mmap\_bytes}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{vi\_mem\_mmap\_bytes}{vi\_mem\_mmap\_bytes}}
+{\footnotesize\ttfamily int vi\+\_\+mem\+\_\+mmap\+\_\+bytes}
+
+Length of virtual interface memory 
+
+Definition at line 739 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_aa51701ff72a4b77f0a07996f31ed735a}\label{structef__vi_aa51701ff72a4b77f0a07996f31ed735a}} 
+\index{ef\_vi@{ef\_vi}!vi\_mem\_mmap\_ptr@{vi\_mem\_mmap\_ptr}}
+\index{vi\_mem\_mmap\_ptr@{vi\_mem\_mmap\_ptr}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{vi\_mem\_mmap\_ptr}{vi\_mem\_mmap\_ptr}}
+{\footnotesize\ttfamily char$\ast$ vi\+\_\+mem\+\_\+mmap\+\_\+ptr}
+
+Pointer to virtual interface memory 
+
+Definition at line 737 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a71389beaff30005948c46c31e3c05e8d}\label{structef__vi_a71389beaff30005948c46c31e3c05e8d}} 
+\index{ef\_vi@{ef\_vi}!vi\_out\_flags@{vi\_out\_flags}}
+\index{vi\_out\_flags@{vi\_out\_flags}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{vi\_out\_flags}{vi\_out\_flags}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{ef__vi_8h_a0096b5a5f0ec6a67ff4d1ff1b8bbbb4c}{ef\+\_\+vi\+\_\+out\+\_\+flags}} vi\+\_\+out\+\_\+flags}
+
+Flags returned when the virtual interface is allocated 
+
+Definition at line 779 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a920c15ef4e619cf2056b4d157cbf4adf}\label{structef__vi_a920c15ef4e619cf2056b4d157cbf4adf}} 
+\index{ef\_vi@{ef\_vi}!vi\_ps\_buf\_size@{vi\_ps\_buf\_size}}
+\index{vi\_ps\_buf\_size@{vi\_ps\_buf\_size}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{vi\_ps\_buf\_size}{vi\_ps\_buf\_size}}
+{\footnotesize\ttfamily unsigned vi\+\_\+ps\+\_\+buf\+\_\+size}
+
+The packed stream buffer size for the virtual interface 
+
+Definition at line 755 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_ab0a059a5934960dcfdfb5f44af4bf14a}\label{structef__vi_ab0a059a5934960dcfdfb5f44af4bf14a}} 
+\index{ef\_vi@{ef\_vi}!vi\_qs@{vi\_qs}}
+\index{vi\_qs@{vi\_qs}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{vi\_qs}{vi\_qs}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}}$\ast$ vi\+\_\+qs\mbox{[}\mbox{\hyperlink{ef__vi_8h_ad7197cc7fd7e78d1d887e9df0e26862f}{EF\+\_\+\+VI\+\_\+\+MAX\+\_\+\+QS}}\mbox{]}}
+
+Virtual queues for the virtual interface 
+
+Definition at line 788 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a6ab0708a8b5304e4ea8eda5478dd0d0d}\label{structef__vi_a6ab0708a8b5304e4ea8eda5478dd0d0d}} 
+\index{ef\_vi@{ef\_vi}!vi\_qs\_n@{vi\_qs\_n}}
+\index{vi\_qs\_n@{vi\_qs\_n}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{vi\_qs\_n}{vi\_qs\_n}}
+{\footnotesize\ttfamily int vi\+\_\+qs\+\_\+n}
+
+Number of virtual queues for the virtual interface 
+
+Definition at line 790 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_ab6e2b1e72a50e7ef9a52fd7b35ff8ee0}\label{structef__vi_ab6e2b1e72a50e7ef9a52fd7b35ff8ee0}} 
+\index{ef\_vi@{ef\_vi}!vi\_resource\_id@{vi\_resource\_id}}
+\index{vi\_resource\_id@{vi\_resource\_id}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{vi\_resource\_id}{vi\_resource\_id}}
+{\footnotesize\ttfamily unsigned vi\+\_\+resource\+\_\+id}
+
+The resource ID of the virtual interface 
+
+Definition at line 720 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a4faf41b013d32c179bd3748dcf2f4be3}\label{structef__vi_a4faf41b013d32c179bd3748dcf2f4be3}} 
+\index{ef\_vi@{ef\_vi}!vi\_rxq@{vi\_rxq}}
+\index{vi\_rxq@{vi\_rxq}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{vi\_rxq}{vi\_rxq}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structef__vi__rxq}{ef\+\_\+vi\+\_\+rxq}} vi\+\_\+rxq}
+
+The RX descriptor ring for the virtual interface 
+
+Definition at line 777 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a1877c4992306395de2a87b86d5c4d280}\label{structef__vi_a1877c4992306395de2a87b86d5c4d280}} 
+\index{ef\_vi@{ef\_vi}!vi\_stats@{vi\_stats}}
+\index{vi\_stats@{vi\_stats}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{vi\_stats}{vi\_stats}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structef__vi__stats}{ef\+\_\+vi\+\_\+stats}}$\ast$ vi\+\_\+stats}
+
+Statistics for the virtual interface 
+
+Definition at line 785 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_a882d8253020aa6ffaa1b836b5c146929}\label{structef__vi_a882d8253020aa6ffaa1b836b5c146929}} 
+\index{ef\_vi@{ef\_vi}!vi\_txq@{vi\_txq}}
+\index{vi\_txq@{vi\_txq}!ef\_vi@{ef\_vi}}
+\doxysubsubsection{\texorpdfstring{vi\_txq}{vi\_txq}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structef__vi__txq}{ef\+\_\+vi\+\_\+txq}} vi\+\_\+txq}
+
+The TX descriptor ring for the virtual interface 
+
+Definition at line 775 of file ef\+\_\+vi.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ef__vi_8h}{ef\+\_\+vi.\+h}}\end{DoxyCompactItemize}

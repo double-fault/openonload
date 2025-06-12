@@ -1,0 +1,205 @@
+This part of the documentation examines a simplified version of \mbox{\hyperlink{applications_eflatency}{eflatency}}. This is a small application which listens for packets and replies, with as low latency as possible.
+
+This documentation discusses the tradeoffs that have been chosen, some performance issues to avoid, and some possible additions that have been omitted for clarity.
+
+See also the supplied code for \mbox{\hyperlink{applications_eflatency}{eflatency}} , which includes many of these improvements.\hypertarget{example_example_setup}{}\doxysection{Setup}\label{example_example_setup}
+The first step is to set up ef\+\_\+vi\+:
+\begin{DoxyItemize}
+\item \#include the various headers we need (\mbox{\hyperlink{pd_8h}{etherfabric/pd.\+h}}, \mbox{\hyperlink{vi_8h}{vi.\+h}}, \mbox{\hyperlink{memreg_8h}{memreg.\+h}})
+\item open the driver
+\item allocate a protection domain
+\item allocate a virtual interface from the protection domain.
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\_driver\_handle}}  driver\_handle;}
+\DoxyCodeLine{\mbox{\hyperlink{structef__vi}{ef\_vi}}             vi;}
+\DoxyCodeLine{\mbox{\hyperlink{structef__pd}{ef\_pd}}             pd;}
+\DoxyCodeLine{\textcolor{keyword}{static} \textcolor{keywordtype}{void} do\_init(\textcolor{keywordtype}{int} ifindex)\{}
+\DoxyCodeLine{  \mbox{\hyperlink{base_8h_acb2b46854a36c5eb295878d306a274d2}{ef\_driver\_open}}(\&driver\_handle);}
+\DoxyCodeLine{  \mbox{\hyperlink{pd_8h_a65e7675bc0fb9da9551c83ada8b4b995}{ef\_pd\_alloc}}(\&pd, driver\_handle, ifindex, \mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9aee8bd6800bf8bd7b9af02e9b19663ea9}{EF\_PD\_DEFAULT}} );}
+\DoxyCodeLine{  \mbox{\hyperlink{vi_8h_a66124c16b919445b44e2bcba50dbc344}{ef\_vi\_alloc\_from\_pd}}(\&vi, driver\_handle, \&pd, driver\_handle,}
+\DoxyCodeLine{                      -\/1, -\/1, -\/1, NULL, -\/1, 0);}
+
+\end{DoxyCode}
+
+
+The following improvements could be made\+:
+\begin{DoxyItemize}
+\item check the return values from these functions, in case the card has run out of resources and is unable to allocate more virtual interfaces
+\item offer physical buffer mode here.
+\end{DoxyItemize}\hypertarget{example_example_buffers}{}\doxysection{Creating Packet buffers}\label{example_example_buffers}
+The next step is to allocate a memory region and register it for packet buffers.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{int} BUF\_SIZE = 2048;  \textcolor{comment}{/* Hardware always wants 2k buffers */}}
+\DoxyCodeLine{\textcolor{keywordtype}{int} bytes = N\_BUFS * BUF\_SIZE;}
+\DoxyCodeLine{\textcolor{keywordtype}{void}* p;}
+\DoxyCodeLine{posix\_memalign(\&p, 4096, bytes)  \textcolor{comment}{/* allocate aligned memory */}}
+\DoxyCodeLine{\mbox{\hyperlink{memreg_8h_ad802d1d7c6487fbeeff8ed682caf71c8}{ef\_memreg\_alloc}}(\&memreg, driver\_handle, \&pd, driver\_handle,}
+\DoxyCodeLine{                p, bytes); \textcolor{comment}{/* Make it available to ef\_vi */}}
+
+\end{DoxyCode}
+
+
+This is all that is strictly necessary to set up the packet buffers.
+
+However, the packet buffer is 2048 bytes long, whereas the normal MTU size for a transmitted packet is only 1500 bytes. There is some spare memory in each packet buffer. Performance can be improved by using this space to cache some of the packet meta-\/data, so that it does not have to be recalculated\+:
+
+
+\begin{DoxyItemize}
+\item The DMA address of the packet is cached. It is determined by getting the DMA address of the base of the memory chunk, and then incrementing in 2KB chunks.
+\item The packet ID is also cached.
+\end{DoxyItemize}
+
+A structure is used to store the cached meta-\/data and a few pointers in the buffer. An array is used to track all the buffers\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define MEMBER\_OFFSET(c\_type, mbr\_name) \(\backslash\)}}
+\DoxyCodeLine{\textcolor{preprocessor}{                     ((uint32\_t) (uintptr\_t)(\&((c\_type*)0)-\/>mbr\_name))}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define CACHE\_ALIGN  \_\_attribute\_\_((aligned(EF\_VI\_DMA\_ALIGN)))}}
+\DoxyCodeLine{\textcolor{keyword}{struct }pkt\_buf \{}
+\DoxyCodeLine{  \textcolor{keyword}{struct }pkt\_buf* next;}
+\DoxyCodeLine{  \textcolor{comment}{/* We're not actually going to use this;}}
+\DoxyCodeLine{\textcolor{comment}{     but chaining multiple buffers together is a common and useful trick. */}}
+\DoxyCodeLine{  \mbox{\hyperlink{ef__vi_8h_a45dc6a6b117562bf1fb95bda721aba14}{ef\_addr}}         dma\_buf\_addr;}
+\DoxyCodeLine{  \textcolor{keywordtype}{int}             id;}
+\DoxyCodeLine{  uint8\_t         dma\_buf[1] CACHE\_ALIGN;}
+\DoxyCodeLine{  \textcolor{comment}{/* Not strictly required, but cache aligning the payload is a speed}}
+\DoxyCodeLine{\textcolor{comment}{     boost, so do it. */}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{\textcolor{comment}{/* We're also going to want to keep track of all our buffers, so have an}}
+\DoxyCodeLine{\textcolor{comment}{   array of them.  Not strictly needed, but convenient.  */}}
+\DoxyCodeLine{    \textcolor{keyword}{struct }pkt\_buf* pkt\_bufs [N\_BUFS];}
+\DoxyCodeLine{    \textcolor{keywordflow}{for}( i = 0; i < N\_BUFS; ++i ) \{}
+\DoxyCodeLine{      \textcolor{keyword}{struct }pkt\_buf* pb = (\textcolor{keyword}{struct }pkt\_buf*) ((\textcolor{keywordtype}{char}*) p + i * 2048);}
+\DoxyCodeLine{      pb-\/>id = i;}
+\DoxyCodeLine{      pb-\/>dma\_buf\_addr = \mbox{\hyperlink{memreg_8h_aa2bb8edc3f2cd0ac924404f25474ac21}{ef\_memreg\_dma\_addr}}(\&memreg, i * 2048);}
+\DoxyCodeLine{      pb-\/>dma\_buf\_addr += MEMBER\_OFFSET(\textcolor{keyword}{struct} pkt\_buf, dma\_buf);}
+\DoxyCodeLine{      pkt\_bufs[i] = pb;}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+
+
+\begin{DoxyNote}{Note}
+When receiving, the hardware will only fill up to 1824 bytes per buffer. Larger jumbo frames are split across multiple buffers.
+\end{DoxyNote}
+\hypertarget{example_example_filters}{}\doxysection{Adding Filters}\label{example_example_filters}
+Next, a filter is specified and added, so that the virtual interface receives traffic. Assuming there is a sockaddr to work from\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{struct }sockaddr\_in sa\_local;  \textcolor{comment}{/* TODO: Fill this out somehow */}}
+\DoxyCodeLine{\mbox{\hyperlink{structef__filter__spec}{ef\_filter\_spec}} filter\_spec;}
+\DoxyCodeLine{\mbox{\hyperlink{vi_8h_a2195efb4c62ebcf9c98c04bcbc842979}{ef\_filter\_spec\_init}}(\&filter\_spec, \mbox{\hyperlink{vi_8h_ae25195780aad9dcfb218728db965a8b6afd3eba67836afefa719c85cc43381517}{EF\_FILTER\_FLAG\_NONE}});}
+\DoxyCodeLine{TRY(\mbox{\hyperlink{vi_8h_a1d04a4feb412f3584ffb8eeb36207912}{ef\_filter\_spec\_set\_ip4\_local}}(\&filter\_spec, IPPROTO\_UDP,}
+\DoxyCodeLine{                                 sa\_local.sin\_addr.s\_addr,}
+\DoxyCodeLine{                                 sa\_local.sin\_port));}
+\DoxyCodeLine{TRY(\mbox{\hyperlink{vi_8h_a71909d1557f3064579781604fc117e4e}{ef\_vi\_filter\_add}}(\&vi, driver\_handle, \&filter\_spec, NULL));}
+
+\end{DoxyCode}
+\hypertarget{example_example_receive}{}\doxysection{Receiving packets}\label{example_example_receive}
+At this point, packets will start arriving at the interface, be diverted to the application, and immediately be dropped.
+
+So the next step is to push some packet buffers to the RX descriptor ring, to receive the incoming packets.
+
+For efficiency, the code pushes packet buffers eight at a time.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{unsigned} rx\_posted = 0;  \textcolor{comment}{/* We need to keep track of which buffers are}}
+\DoxyCodeLine{\textcolor{comment}{                            already on the ring */}}
+\DoxyCodeLine{\textcolor{keywordtype}{void} rx\_post( \textcolor{keywordtype}{int} n ) \{}
+\DoxyCodeLine{  \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < n; ++i ) \{}
+\DoxyCodeLine{    \textcolor{keyword}{struct }pkt\_buf* pb = pkt\_bufs[rx\_posted \% N\_RX\_BUFS];}
+\DoxyCodeLine{    \mbox{\hyperlink{ef__vi_8h_a9e1fbd2c66475fde3aa1b7df19841ef9}{ef\_vi\_receive\_init}}(\&vi, pb-\/>dma\_buf\_addr, pb-\/>id);}
+\DoxyCodeLine{    ++rx\_posted;}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{  \mbox{\hyperlink{ef__vi_8h_abcd5dc1be7ff1e9f9a4a84df86305099}{ef\_vi\_receive\_push}}(\&vi);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+So now, there are packet buffers on the descriptor ring. But once they are filled, the application will start dropping again.\hypertarget{example_example_events}{}\doxysection{Handling Events}\label{example_example_events}
+The next step is to handle these incoming packets, by polling the event queue.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void} rx\_wait(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{  \textcolor{comment}{/* Again, for efficiency, poll multiple events at once.  */}}
+\DoxyCodeLine{  \mbox{\hyperlink{unionef__event}{ef\_event}}      evs[NUM\_POLL\_EVENTS];}
+\DoxyCodeLine{  \textcolor{keywordtype}{int}           n\_ev, i;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keywordflow}{while}( 1 ) \{}
+\DoxyCodeLine{    n\_ev = \mbox{\hyperlink{ef__vi_8h_ab340116b526f45dd378fe279f0c05a48}{ef\_eventq\_poll}}(\&vi, evs, NUM\_POLL\_EVENTS);}
+\DoxyCodeLine{    \textcolor{keywordflow}{if}( n\_ev > 0 )}
+\DoxyCodeLine{      \textcolor{keywordflow}{for}( i = 0; i < n\_ev; ++i )}
+\DoxyCodeLine{        \textcolor{keywordflow}{switch}( \mbox{\hyperlink{ef__vi_8h_a66c3866ad0c965c4a257a02cbb125388}{EF\_EVENT\_TYPE}}(evs[i]) ) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba60ca113e8fe79115ba9efe22471a9001}{EF\_EVENT\_TYPE\_RX}}:}
+\DoxyCodeLine{          handle\_rx\_packet(\mbox{\hyperlink{ef__vi_8h_a58ef1696c2087e9a569baed9c49fecef}{EF\_EVENT\_RX\_RQ\_ID}}(evs[i]),}
+\DoxyCodeLine{                           \mbox{\hyperlink{ef__vi_8h_abc676af3c8675d8bf305f6313252c55f}{EF\_EVENT\_RX\_BYTES}}(evs[i]) );}
+\DoxyCodeLine{          \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba117a208b3f2e58062cc505b88f984057}{EF\_EVENT\_TYPE\_RX\_DISCARD}}:}
+\DoxyCodeLine{          \textcolor{comment}{/* Interesting to print out the cause of the discard */}}
+\DoxyCodeLine{          fprintf(stderr, \textcolor{stringliteral}{"{}ERROR: RX\_DISCARD type=\%d"{}},}
+\DoxyCodeLine{                  \mbox{\hyperlink{ef__vi_8h_a5749f57091aca02d94b7990a5f50ac0a}{EF\_EVENT\_RX\_DISCARD\_TYPE}}(evs[i]));}
+\DoxyCodeLine{          \textcolor{comment}{/* but let's handle it like a normal packet anyway */}}
+\DoxyCodeLine{          handle\_rx\_packet(\mbox{\hyperlink{ef__vi_8h_a58ef1696c2087e9a569baed9c49fecef}{EF\_EVENT\_RX\_RQ\_ID}}(evs[i]),}
+\DoxyCodeLine{                           \mbox{\hyperlink{ef__vi_8h_abc676af3c8675d8bf305f6313252c55f}{EF\_EVENT\_RX\_BYTES}}(evs[i]) );}
+\DoxyCodeLine{          \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\} \} \}}
+
+\end{DoxyCode}
+
+
+This code is calling a {\ttfamily handle\+\_\+rx\+\_\+packet()} function, passing it the packet id (which corresponds directly to the {\ttfamily pkt\+\_\+bufs} array -\/ see \mbox{\hyperlink{example_example_buffers}{Creating Packet buffers}}) and the length of data. The body of this function is not shown, but it should do the following\+:
+
+
+\begin{DoxyItemize}
+\item note that this packet buffer has been consumed, and so is ready to be re-\/posted\+:
+\begin{DoxyItemize}
+\item the {\ttfamily rx\+\_\+post()} function(see \mbox{\hyperlink{example_example_receive}{Receiving packets}}) must also be updated to use this information, so a buffer is not re-\/posted until it is marked as consumed
+\end{DoxyItemize}
+\item ensure that the received packet is processed according to the purpose of the application\+:
+\begin{DoxyItemize}
+\item if the application can always process incoming packets as fast as they are received, then it can do its work inline, and immediately repost the buffer on the ring
+\item otherwise, the application should probably post an item on a work queue for another thread to act upon, and arrange for the refill to come from a larger pool of buffers
+\end{DoxyItemize}
+\item optionally, handle discards in some different way (perhaps not raising the work event).
+\end{DoxyItemize}\hypertarget{example_example_transmit}{}\doxysection{Transmitting packets}\label{example_example_transmit}
+The next step is to implement the transmit side. The hard part is filling out the payload, and getting all the fields of IP and UDP correct. (ef\+\_\+vi is usually used to transmit UDP, as it\textquotesingle{}s a much simpler protocol to implement than TCP.)
+
+There\textquotesingle{}s some sample code to fill out the headers in the functions {\ttfamily ci\+\_\+$\ast$\+\_\+hdr\+\_\+init()}, which can be found in {\ttfamily src/lib/citools/ippacket.\+c}.
+
+After that, to transmit one of the {\ttfamily pb} structures (see \mbox{\hyperlink{example_example_buffers}{Creating Packet buffers}}), a single function call is needed\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{ef__vi_8h_a62408f50ae79efed0239d0b8bde3a9d8}{ef\_vi\_transmit}}(\&vi, pb-\/>dma\_buf\_addr, frame\_length, 0);}
+
+\end{DoxyCode}
+
+
+But the application must also keep track of when that buffer is used, and when it is free. This means adding some complexity to the poll loop (see \mbox{\hyperlink{example_example_events}{Handling Events}}). The absolute minimum is\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{case} \mbox{\hyperlink{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba48528de8329421a4ac7785774bb4c894}{EF\_EVENT\_TYPE\_TX}}:}
+\DoxyCodeLine{  \mbox{\hyperlink{ef__vi_8h_a03c43da4cdac5419b1d859b20854ec37}{ef\_vi\_transmit\_unbundle}}(\&vi, \&evs[i], ids);}
+\DoxyCodeLine{  \textcolor{keywordflow}{break};}
+
+\end{DoxyCode}
+
+
+This is only sufficient if the TX buffers and the RX buffers are from different pools.
+
+\begin{DoxyNote}{Note}
+In ping pong there is only ever one outstanding send. The application does not transmit another packet until the remote side has processed the current one, and so the application does not even need to keep track of its state.
+\end{DoxyNote}
+One option would be to free up sent buffers, to a pool ready to be filled with data. Other applications may instead fill a few packet buffers with data, and then transmit them as and when, only keeping track to make sure that the TX ring never overfills. 

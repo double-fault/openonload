@@ -1,0 +1,128 @@
+\hypertarget{base_8h}{}\doxysection{base.\+h File Reference}
+\label{base_8h}\index{base.h@{base.h}}
+
+
+Base definitions for Ether\+Fabric Virtual Interface HAL.  
+
+
+{\ttfamily \#include $<$etherfabric/ef\+\_\+vi.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{base_8h_a8aa89f1968cc73d6aa51edf2286c5b74}\label{base_8h_a8aa89f1968cc73d6aa51edf2286c5b74}} 
+\#define \mbox{\hyperlink{base_8h_a8aa89f1968cc73d6aa51edf2286c5b74}{EF\+\_\+\+VI\+\_\+\+NIC\+\_\+\+PAGE\+\_\+\+SHIFT}}~12
+\begin{DoxyCompactList}\small\item\em How much to shift an address to get the page number. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{base_8h_ab3764cd076507e01681afaa72c296533}\label{base_8h_ab3764cd076507e01681afaa72c296533}} 
+\#define \mbox{\hyperlink{base_8h_ab3764cd076507e01681afaa72c296533}{EF\+\_\+\+VI\+\_\+\+NIC\+\_\+\+PAGE\+\_\+\+SIZE}}~(1$<$$<$\mbox{\hyperlink{base_8h_a8aa89f1968cc73d6aa51edf2286c5b74}{EF\+\_\+\+VI\+\_\+\+NIC\+\_\+\+PAGE\+\_\+\+SHIFT}})
+\begin{DoxyCompactList}\small\item\em The size of a page of memory on the NIC, in bytes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{base_8h_aee52ef5da30a363cd9235824e4de9a22}\label{base_8h_aee52ef5da30a363cd9235824e4de9a22}} 
+\#define \mbox{\hyperlink{base_8h_aee52ef5da30a363cd9235824e4de9a22}{EF\+\_\+\+ADDR\+\_\+\+FMT}}~\char`\"{}\%\char`\"{} CI\+\_\+\+PRIx64
+\begin{DoxyCompactList}\small\item\em Format for outputting an ef\+\_\+addr. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{base_8h_ab7b91e89c0e002c474f9a62af3b26245}\label{base_8h_ab7b91e89c0e002c474f9a62af3b26245}} 
+\#define \mbox{\hyperlink{base_8h_ab7b91e89c0e002c474f9a62af3b26245}{EF\+\_\+\+INVALID\+\_\+\+ADDR}}~((\mbox{\hyperlink{ef__vi_8h_a45dc6a6b117562bf1fb95bda721aba14}{ef\+\_\+addr}}) -\/1)
+\begin{DoxyCompactList}\small\item\em An address that is always invalid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{base_8h_afcca014c719554b834e89f0c30e87561}\label{base_8h_afcca014c719554b834e89f0c30e87561}} 
+typedef int \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}
+\begin{DoxyCompactList}\small\item\em An ef\+\_\+driver\+\_\+handle is needed to allocate resources. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{base_8h_a282e0ba3717d2e509cd4ebc984f62461}{ef\+\_\+eventq\+\_\+wait}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} vi\+\_\+dh, unsigned current\+\_\+ptr, const struct timeval $\ast$timeout)
+\begin{DoxyCompactList}\small\item\em Block, waiting until the event queue is non-\/empty. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{base_8h_acb2b46854a36c5eb295878d306a274d2}{ef\+\_\+driver\+\_\+open}} (\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} $\ast$dh\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Obtain a driver handle. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{base_8h_ac7afa09b92436d8007255c3a8723c759}{ef\+\_\+driver\+\_\+close}} (\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} dh)
+\begin{DoxyCompactList}\small\item\em Close a driver handle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base definitions for Ether\+Fabric Virtual Interface HAL. 
+
+\begin{DoxyAuthor}{Author}
+Solarflare Communications, Inc. 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2018/11/06 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright \copyright{} 2018 Solarflare Communications, Inc. All rights reserved. Solarflare, Open\+Onload and Enterprise\+Onload are trademarks of Solarflare Communications, Inc. 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{base_8h_ac7afa09b92436d8007255c3a8723c759}\label{base_8h_ac7afa09b92436d8007255c3a8723c759}} 
+\index{base.h@{base.h}!ef\_driver\_close@{ef\_driver\_close}}
+\index{ef\_driver\_close@{ef\_driver\_close}!base.h@{base.h}}
+\doxysubsubsection{\texorpdfstring{ef\_driver\_close()}{ef\_driver\_close()}}
+{\footnotesize\ttfamily int ef\+\_\+driver\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{dh }\end{DoxyParamCaption})}
+
+
+
+Close a driver handle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dh} & The handle to the driver to close.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Close a driver handle.
+
+This should be called to free up resources when the driver handle is no longer needed, but the application is to contimue running.
+
+Any associated virtual interface, protection domain, or driver structures must not be used after this call has been made.
+
+\begin{DoxyNote}{Note}
+Resources are also freed when the application exits, and so this function does not need to be called on exit. 
+\end{DoxyNote}
+\mbox{\Hypertarget{base_8h_acb2b46854a36c5eb295878d306a274d2}\label{base_8h_acb2b46854a36c5eb295878d306a274d2}} 
+\index{base.h@{base.h}!ef\_driver\_open@{ef\_driver\_open}}
+\index{ef\_driver\_open@{ef\_driver\_open}!base.h@{base.h}}
+\doxysubsubsection{\texorpdfstring{ef\_driver\_open()}{ef\_driver\_open()}}
+{\footnotesize\ttfamily int ef\+\_\+driver\+\_\+open (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} $\ast$}]{dh\+\_\+out }\end{DoxyParamCaption})}
+
+
+
+Obtain a driver handle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dh\+\_\+out} & Pointer to an ef\+\_\+driver\+\_\+handle, that is updated on return with the new driver handle.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Obtain a driver handle. \mbox{\Hypertarget{base_8h_a282e0ba3717d2e509cd4ebc984f62461}\label{base_8h_a282e0ba3717d2e509cd4ebc984f62461}} 
+\index{base.h@{base.h}!ef\_eventq\_wait@{ef\_eventq\_wait}}
+\index{ef\_eventq\_wait@{ef\_eventq\_wait}!base.h@{base.h}}
+\doxysubsubsection{\texorpdfstring{ef\_eventq\_wait()}{ef\_eventq\_wait()}}
+{\footnotesize\ttfamily int ef\+\_\+eventq\+\_\+wait (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{vi\+\_\+dh,  }\item[{unsigned}]{current\+\_\+ptr,  }\item[{const struct timeval $\ast$}]{timeout }\end{DoxyParamCaption})}
+
+
+
+Block, waiting until the event queue is non-\/empty. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface on which to wait. \\
+\hline
+{\em vi\+\_\+dh} & Driver handle associated with the virtual interface. \\
+\hline
+{\em current\+\_\+ptr} & Must come from \mbox{\hyperlink{ef__vi_8h_a4729338fad56b630f44ae1b2515dfd69}{ef\+\_\+eventq\+\_\+current()}}. \\
+\hline
+{\em timeout} & Maximum time to wait for, or 0 to wait forever.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/ETIMEDOUT on time-\/out).
+\end{DoxyReturn}
+Block, waiting until the event queue is non-\/empty. This enables interrupts.
+
+Note that when this function returns it is not guaranteed that an event will be present in the event queue, but in most cases there will be. 

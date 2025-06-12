@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['variant_795',['variant',['../structef__vi__nic__type.html#a36df5b9dbda8a335a2a2627699022e71',1,'ef_vi_nic_type']]],
+  ['vi_5fclustered_796',['vi_clustered',['../structef__vi.html#a116d03c36f76129e917241c365db2d17',1,'ef_vi']]],
+  ['vi_5fctpio_5fmmap_5fptr_797',['vi_ctpio_mmap_ptr',['../structef__vi.html#a04ddb37db271afd47d8166c869447456',1,'ef_vi']]],
+  ['vi_5fctpio_5fwb_5fticks_798',['vi_ctpio_wb_ticks',['../structef__vi.html#a69497eb712ace41b68499fe416e4fd74',1,'ef_vi']]],
+  ['vi_5fflags_799',['vi_flags',['../structef__vi.html#a5c27893916247ccc6135dca3142f423a',1,'ef_vi']]],
+  ['vi_5fi_800',['vi_i',['../structef__vi.html#af45eb4c57cefef9d0b400932d9e13c30',1,'ef_vi']]],
+  ['vi_5fio_5fmmap_5fbytes_801',['vi_io_mmap_bytes',['../structef__vi.html#ad68573d55742534a6871e46dc5b8ada8',1,'ef_vi']]],
+  ['vi_5fio_5fmmap_5fptr_802',['vi_io_mmap_ptr',['../structef__vi.html#ab3986bffe863822850866a3f6244dc6e',1,'ef_vi']]],
+  ['vi_5fis_5fnormal_803',['vi_is_normal',['../structef__vi.html#a3667d661345e24008677fcc7efc6bf6a',1,'ef_vi']]],
+  ['vi_5fis_5fpacked_5fstream_804',['vi_is_packed_stream',['../structef__vi.html#a306aefb19c2d74b9ff35a92e25979d0c',1,'ef_vi']]],
+  ['vi_5fmem_5fmmap_5fbytes_805',['vi_mem_mmap_bytes',['../structef__vi.html#ae73285ae5d4db2c28351f0c5522a90b4',1,'ef_vi']]],
+  ['vi_5fmem_5fmmap_5fptr_806',['vi_mem_mmap_ptr',['../structef__vi.html#aa51701ff72a4b77f0a07996f31ed735a',1,'ef_vi']]],
+  ['vi_5fout_5fflags_807',['vi_out_flags',['../structef__vi.html#a71389beaff30005948c46c31e3c05e8d',1,'ef_vi']]],
+  ['vi_5fps_5fbuf_5fsize_808',['vi_ps_buf_size',['../structef__vi.html#a920c15ef4e619cf2056b4d157cbf4adf',1,'ef_vi']]],
+  ['vi_5fqs_809',['vi_qs',['../structef__vi.html#ab0a059a5934960dcfdfb5f44af4bf14a',1,'ef_vi']]],
+  ['vi_5fqs_5fn_810',['vi_qs_n',['../structef__vi.html#a6ab0708a8b5304e4ea8eda5478dd0d0d',1,'ef_vi']]],
+  ['vi_5fresource_5fid_811',['vi_resource_id',['../structef__vi.html#ab6e2b1e72a50e7ef9a52fd7b35ff8ee0',1,'ef_vi']]],
+  ['vi_5frxq_812',['vi_rxq',['../structef__vi.html#a4faf41b013d32c179bd3748dcf2f4be3',1,'ef_vi']]],
+  ['vi_5fstats_813',['vi_stats',['../structef__vi.html#a1877c4992306395de2a87b86d5c4d280',1,'ef_vi']]],
+  ['vi_5ftxq_814',['vi_txq',['../structef__vi.html#a882d8253020aa6ffaa1b836b5c146929',1,'ef_vi']]],
+  ['vis_5fpd_815',['vis_pd',['../structef__vi__set.html#aa73501bbaab9e17cc8b9484c554a160a',1,'ef_vi_set']]],
+  ['vis_5fres_5fid_816',['vis_res_id',['../structef__vi__set.html#a52518165ffc7c1150358389d2dbbd70b',1,'ef_vi_set']]]
+];

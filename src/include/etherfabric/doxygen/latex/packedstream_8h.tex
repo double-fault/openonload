@@ -1,0 +1,216 @@
+\hypertarget{packedstream_8h}{}\doxysection{packedstream.\+h File Reference}
+\label{packedstream_8h}\index{packedstream.h@{packedstream.h}}
+
+
+Packed streams for Ether\+Fabric Virtual Interface HAL.  
+
+
+{\ttfamily \#include $<$etherfabric/base.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structef__packed__stream__packet}{ef\+\_\+packed\+\_\+stream\+\_\+packet}}
+\begin{DoxyCompactList}\small\item\em Per-\/packet meta-\/data. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structef__packed__stream__params}{ef\+\_\+packed\+\_\+stream\+\_\+params}}
+\begin{DoxyCompactList}\small\item\em Packed-\/stream mode parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{packedstream_8h_add05a08a7c753db89f644cf46359ab1d}\label{packedstream_8h_add05a08a7c753db89f644cf46359ab1d}} 
+\#define \mbox{\hyperlink{packedstream_8h_add05a08a7c753db89f644cf46359ab1d}{EF\+\_\+\+VI\+\_\+\+PS\+\_\+\+FLAG\+\_\+\+CLOCK\+\_\+\+SET}}~0x1
+\begin{DoxyCompactList}\small\item\em Set if the adapter clock has ever been set (in sync with system). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packedstream_8h_a9b37e63cd0775848e0d0a144b3ca9228}\label{packedstream_8h_a9b37e63cd0775848e0d0a144b3ca9228}} 
+\#define \mbox{\hyperlink{packedstream_8h_a9b37e63cd0775848e0d0a144b3ca9228}{EF\+\_\+\+VI\+\_\+\+PS\+\_\+\+FLAG\+\_\+\+CLOCK\+\_\+\+IN\+\_\+\+SYNC}}~0x2
+\begin{DoxyCompactList}\small\item\em Set if the adapter clock is in sync with the external clock (PTP). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packedstream_8h_aaee4ac38da4b724339729c3fdfebc74b}\label{packedstream_8h_aaee4ac38da4b724339729c3fdfebc74b}} 
+\#define \mbox{\hyperlink{packedstream_8h_aaee4ac38da4b724339729c3fdfebc74b}{EF\+\_\+\+VI\+\_\+\+PS\+\_\+\+FLAG\+\_\+\+BAD\+\_\+\+FCS}}~0x4
+\begin{DoxyCompactList}\small\item\em Set if a bad Frame Check Sequence has occurred. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packedstream_8h_a4d02a37a5524240cea6ecb5deb8510f3}\label{packedstream_8h_a4d02a37a5524240cea6ecb5deb8510f3}} 
+\#define \mbox{\hyperlink{packedstream_8h_a4d02a37a5524240cea6ecb5deb8510f3}{EF\+\_\+\+VI\+\_\+\+PS\+\_\+\+FLAG\+\_\+\+BAD\+\_\+\+L4\+\_\+\+CSUM}}~0x8
+\begin{DoxyCompactList}\small\item\em Set if a layer-\/4 (TCP/\+UDP) checksum error is detected, or if a good layer-\/4 checksum is not detected (depending on adapter). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packedstream_8h_a06d0137a6c0818798d4389edcafd975b}\label{packedstream_8h_a06d0137a6c0818798d4389edcafd975b}} 
+\#define \mbox{\hyperlink{packedstream_8h_a06d0137a6c0818798d4389edcafd975b}{EF\+\_\+\+VI\+\_\+\+PS\+\_\+\+FLAG\+\_\+\+BAD\+\_\+\+L3\+\_\+\+CSUM}}~0x10
+\begin{DoxyCompactList}\small\item\em Set if a layer-\/3 (IPv4) checksum error is detected, or if a good layer-\/3 checksum is not detected (depending on adapter). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{packedstream_8h_a7b65836976a633b06590d7e307b275b2}{EF\+\_\+\+VI\+\_\+\+PS\+\_\+\+FLAG\+\_\+\+BAD\+\_\+\+IP\+\_\+\+CSUM}}
+\begin{DoxyCompactList}\small\item\em Retained for backwards compatibility. Do not use. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{packedstream_8h_ac20b746555d2b8d3447673753bf05a97}{ef\+\_\+vi\+\_\+packed\+\_\+stream\+\_\+get\+\_\+params}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{structef__packed__stream__params}{ef\+\_\+packed\+\_\+stream\+\_\+params}} $\ast$psp\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Get the parameters for packed-\/stream mode. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{packedstream_8h_af90d79b99864cb467bff68c75b6ed05d}{ef\+\_\+vi\+\_\+packed\+\_\+stream\+\_\+unbundle}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, const \mbox{\hyperlink{unionef__event}{ef\+\_\+event}} $\ast$ev, \mbox{\hyperlink{structef__packed__stream__packet}{ef\+\_\+packed\+\_\+stream\+\_\+packet}} $\ast$$\ast$pkt\+\_\+iter, int $\ast$n\+\_\+pkts\+\_\+out, int $\ast$n\+\_\+bytes\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Unbundle an event of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+PACKED\+\_\+\+STREAM. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structef__packed__stream__packet}{ef\+\_\+packed\+\_\+stream\+\_\+packet}} $\ast$ \mbox{\hyperlink{packedstream_8h_a8aa463f2b84342ccc6d97f6a3a4a2dae}{ef\+\_\+packed\+\_\+stream\+\_\+packet\+\_\+first}} (void $\ast$start\+\_\+of\+\_\+buffer, int psp\+\_\+start\+\_\+offset)
+\begin{DoxyCompactList}\small\item\em Get the metadata for the first packet in a packed stream. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structef__packed__stream__packet}{ef\+\_\+packed\+\_\+stream\+\_\+packet}} $\ast$ \mbox{\hyperlink{packedstream_8h_ac082e45868111efc5aa88a2aa54ccba8}{ef\+\_\+packed\+\_\+stream\+\_\+packet\+\_\+next}} (\mbox{\hyperlink{structef__packed__stream__packet}{ef\+\_\+packed\+\_\+stream\+\_\+packet}} $\ast$ps\+\_\+pkt)
+\begin{DoxyCompactList}\small\item\em Get the metadata for the next packet in a packed stream. \end{DoxyCompactList}\item 
+static void $\ast$ \mbox{\hyperlink{packedstream_8h_a212e86d9d1d535c083cce684673e1be8}{ef\+\_\+packed\+\_\+stream\+\_\+packet\+\_\+payload}} (\mbox{\hyperlink{structef__packed__stream__packet}{ef\+\_\+packed\+\_\+stream\+\_\+packet}} $\ast$ps\+\_\+pkt)
+\begin{DoxyCompactList}\small\item\em Return a pointer to the packet payload. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Packed streams for Ether\+Fabric Virtual Interface HAL. 
+
+\begin{DoxyAuthor}{Author}
+Solarflare Communications, Inc. 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2018/11/06 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright \copyright{} 2018 Solarflare Communications, Inc. All rights reserved. Solarflare, Open\+Onload and Enterprise\+Onload are trademarks of Solarflare Communications, Inc. 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{packedstream_8h_a7b65836976a633b06590d7e307b275b2}\label{packedstream_8h_a7b65836976a633b06590d7e307b275b2}} 
+\index{packedstream.h@{packedstream.h}!EF\_VI\_PS\_FLAG\_BAD\_IP\_CSUM@{EF\_VI\_PS\_FLAG\_BAD\_IP\_CSUM}}
+\index{EF\_VI\_PS\_FLAG\_BAD\_IP\_CSUM@{EF\_VI\_PS\_FLAG\_BAD\_IP\_CSUM}!packedstream.h@{packedstream.h}}
+\doxysubsubsection{\texorpdfstring{EF\_VI\_PS\_FLAG\_BAD\_IP\_CSUM}{EF\_VI\_PS\_FLAG\_BAD\_IP\_CSUM}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+VI\+\_\+\+PS\+\_\+\+FLAG\+\_\+\+BAD\+\_\+\+IP\+\_\+\+CSUM}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{                                        (\mbox{\hyperlink{packedstream_8h_a4d02a37a5524240cea6ecb5deb8510f3}{EF\_VI\_PS\_FLAG\_BAD\_L4\_CSUM}} |     \(\backslash\)}
+\DoxyCodeLine{                                        EF\_VI\_PS\_FLAG\_BAD\_L3\_CSUM)}
+
+\end{DoxyCode}
+
+
+Retained for backwards compatibility. Do not use. 
+
+
+
+Definition at line 60 of file packedstream.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{packedstream_8h_a8aa463f2b84342ccc6d97f6a3a4a2dae}\label{packedstream_8h_a8aa463f2b84342ccc6d97f6a3a4a2dae}} 
+\index{packedstream.h@{packedstream.h}!ef\_packed\_stream\_packet\_first@{ef\_packed\_stream\_packet\_first}}
+\index{ef\_packed\_stream\_packet\_first@{ef\_packed\_stream\_packet\_first}!packedstream.h@{packedstream.h}}
+\doxysubsubsection{\texorpdfstring{ef\_packed\_stream\_packet\_first()}{ef\_packed\_stream\_packet\_first()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{structef__packed__stream__packet}{ef\+\_\+packed\+\_\+stream\+\_\+packet}}$\ast$ ef\+\_\+packed\+\_\+stream\+\_\+packet\+\_\+first (\begin{DoxyParamCaption}\item[{void $\ast$}]{start\+\_\+of\+\_\+buffer,  }\item[{int}]{psp\+\_\+start\+\_\+offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Get the metadata for the first packet in a packed stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+\_\+of\+\_\+buffer} & Pointer to the start of the buffer. \\
+\hline
+{\em psp\+\_\+start\+\_\+offset} & Offset within the buffer to the start of the packet.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to packet metadata
+\end{DoxyReturn}
+Get the metadata for the first packet in a packed stream.
+
+The packet is identified by its storage location, as an offset within a buffer. 
+
+Definition at line 156 of file packedstream.\+h.
+
+\mbox{\Hypertarget{packedstream_8h_ac082e45868111efc5aa88a2aa54ccba8}\label{packedstream_8h_ac082e45868111efc5aa88a2aa54ccba8}} 
+\index{packedstream.h@{packedstream.h}!ef\_packed\_stream\_packet\_next@{ef\_packed\_stream\_packet\_next}}
+\index{ef\_packed\_stream\_packet\_next@{ef\_packed\_stream\_packet\_next}!packedstream.h@{packedstream.h}}
+\doxysubsubsection{\texorpdfstring{ef\_packed\_stream\_packet\_next()}{ef\_packed\_stream\_packet\_next()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{structef__packed__stream__packet}{ef\+\_\+packed\+\_\+stream\+\_\+packet}}$\ast$ ef\+\_\+packed\+\_\+stream\+\_\+packet\+\_\+next (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__packed__stream__packet}{ef\+\_\+packed\+\_\+stream\+\_\+packet}} $\ast$}]{ps\+\_\+pkt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Get the metadata for the next packet in a packed stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ps\+\_\+pkt} & Pointer to a packed stream packet.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the next packed stream packet.
+\end{DoxyReturn}
+Get the metadata for the next packet in a packed stream.
+
+The packet is identified by giving the current packet in the iteration. 
+
+Definition at line 173 of file packedstream.\+h.
+
+\mbox{\Hypertarget{packedstream_8h_a212e86d9d1d535c083cce684673e1be8}\label{packedstream_8h_a212e86d9d1d535c083cce684673e1be8}} 
+\index{packedstream.h@{packedstream.h}!ef\_packed\_stream\_packet\_payload@{ef\_packed\_stream\_packet\_payload}}
+\index{ef\_packed\_stream\_packet\_payload@{ef\_packed\_stream\_packet\_payload}!packedstream.h@{packedstream.h}}
+\doxysubsubsection{\texorpdfstring{ef\_packed\_stream\_packet\_payload()}{ef\_packed\_stream\_packet\_payload()}}
+{\footnotesize\ttfamily static void$\ast$ ef\+\_\+packed\+\_\+stream\+\_\+packet\+\_\+payload (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__packed__stream__packet}{ef\+\_\+packed\+\_\+stream\+\_\+packet}} $\ast$}]{ps\+\_\+pkt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Return a pointer to the packet payload. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ps\+\_\+pkt} & Pointer to a packed stream packet.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the packet payload.
+\end{DoxyReturn}
+Return a pointer to the packet payload. 
+
+Definition at line 188 of file packedstream.\+h.
+
+\mbox{\Hypertarget{packedstream_8h_ac20b746555d2b8d3447673753bf05a97}\label{packedstream_8h_ac20b746555d2b8d3447673753bf05a97}} 
+\index{packedstream.h@{packedstream.h}!ef\_vi\_packed\_stream\_get\_params@{ef\_vi\_packed\_stream\_get\_params}}
+\index{ef\_vi\_packed\_stream\_get\_params@{ef\_vi\_packed\_stream\_get\_params}!packedstream.h@{packedstream.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_packed\_stream\_get\_params()}{ef\_vi\_packed\_stream\_get\_params()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+packed\+\_\+stream\+\_\+get\+\_\+params (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{structef__packed__stream__params}{ef\+\_\+packed\+\_\+stream\+\_\+params}} $\ast$}]{psp\+\_\+out }\end{DoxyParamCaption})}
+
+
+
+Get the parameters for packed-\/stream mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query. \\
+\hline
+{\em psp\+\_\+out} & Pointer to an \mbox{\hyperlink{structef__packed__stream__params}{ef\+\_\+packed\+\_\+stream\+\_\+params}}, that is updated on return with the parameters for packed-\/stream mode.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EINVAL if the virtual interface is not in packed-\/stream mode.
+\end{DoxyReturn}
+Get the parameters for packed-\/stream mode. \mbox{\Hypertarget{packedstream_8h_af90d79b99864cb467bff68c75b6ed05d}\label{packedstream_8h_af90d79b99864cb467bff68c75b6ed05d}} 
+\index{packedstream.h@{packedstream.h}!ef\_vi\_packed\_stream\_unbundle@{ef\_vi\_packed\_stream\_unbundle}}
+\index{ef\_vi\_packed\_stream\_unbundle@{ef\_vi\_packed\_stream\_unbundle}!packedstream.h@{packedstream.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_packed\_stream\_unbundle()}{ef\_vi\_packed\_stream\_unbundle()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+packed\+\_\+stream\+\_\+unbundle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{const \mbox{\hyperlink{unionef__event}{ef\+\_\+event}} $\ast$}]{ev,  }\item[{\mbox{\hyperlink{structef__packed__stream__packet}{ef\+\_\+packed\+\_\+stream\+\_\+packet}} $\ast$$\ast$}]{pkt\+\_\+iter,  }\item[{int $\ast$}]{n\+\_\+pkts\+\_\+out,  }\item[{int $\ast$}]{n\+\_\+bytes\+\_\+out }\end{DoxyParamCaption})}
+
+
+
+Unbundle an event of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+PACKED\+\_\+\+STREAM. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface that has raised the event. \\
+\hline
+{\em ev} & The event, of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+PACKED\+\_\+\+STREAM. \\
+\hline
+{\em pkt\+\_\+iter} & Pointer to an ef\+\_\+packed\+\_\+stream\+\_\+packet$\ast$, that is updated on return with the value for the next call to this function. See below for more details. \\
+\hline
+{\em n\+\_\+pkts\+\_\+out} & Pointer to an int, that is updated on return with the number of packets unpacked. \\
+\hline
+{\em n\+\_\+bytes\+\_\+out} & Pointer to an int, that is updated on return with the number of bytes unpacked.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Unbundle an event of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+PACKED\+\_\+\+STREAM.
+
+This function should be called once for each EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+PACKED\+\_\+\+STREAM event received.
+
+If \mbox{\hyperlink{ef__vi_8h_ae76be60f4986e05ebbadb4fa6ebd74aa}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+PS\+\_\+\+NEXT\+\_\+\+BUFFER($\ast$ev)}} is true, $\ast$pkt\+\_\+iter should be initialized to the value returned by \mbox{\hyperlink{packedstream_8h_a8aa463f2b84342ccc6d97f6a3a4a2dae}{ef\+\_\+packed\+\_\+stream\+\_\+packet\+\_\+first()}}.
+
+When \mbox{\hyperlink{ef__vi_8h_ae76be60f4986e05ebbadb4fa6ebd74aa}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+PS\+\_\+\+NEXT\+\_\+\+BUFFER($\ast$ev)}} is not true, $\ast$pkt\+\_\+iter should contain the value left by the previous call. After each call $\ast$pkt\+\_\+iter points at the location where the next packet will be delivered.
+
+The return value is 0, or a negative error code. If the error code is -\/ENOMSG, -\/ENODATA or -\/EL2\+NSYNC then there was a problem with the hardware timestamp\+: see \mbox{\hyperlink{ef__vi_8h_aa9652955145145b911fa18f8555db781}{ef\+\_\+vi\+\_\+receive\+\_\+get\+\_\+timestamp\+\_\+with\+\_\+sync\+\_\+flags()}} for details. 

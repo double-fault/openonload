@@ -1,0 +1,79 @@
+\hypertarget{structef__packed__stream__params}{}\doxysection{ef\+\_\+packed\+\_\+stream\+\_\+params Struct Reference}
+\label{structef__packed__stream__params}\index{ef\_packed\_stream\_params@{ef\_packed\_stream\_params}}
+
+
+Packed-\/stream mode parameters.  
+
+
+
+
+{\ttfamily \#include $<$packedstream.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structef__packed__stream__params_a8829b145c1683bd5c3d5d934035e9060}{psp\+\_\+buffer\+\_\+size}}
+\item 
+int \mbox{\hyperlink{structef__packed__stream__params_aa2ef4b107cb516eb0e3ce25b83108152}{psp\+\_\+buffer\+\_\+align}}
+\item 
+int \mbox{\hyperlink{structef__packed__stream__params_af14a17c1fae9fff274e67bb72bf4c749}{psp\+\_\+start\+\_\+offset}}
+\item 
+int \mbox{\hyperlink{structef__packed__stream__params_a700521034decd5f05346841aee62037f}{psp\+\_\+max\+\_\+usable\+\_\+buffers}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Packed-\/stream mode parameters. 
+
+The application should query these parameters using \mbox{\hyperlink{packedstream_8h_ac20b746555d2b8d3447673753bf05a97}{ef\+\_\+vi\+\_\+packed\+\_\+stream\+\_\+get\+\_\+params()}} to determine buffer size etc. 
+
+Definition at line 69 of file packedstream.\+h.
+
+
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{structef__packed__stream__params_aa2ef4b107cb516eb0e3ce25b83108152}\label{structef__packed__stream__params_aa2ef4b107cb516eb0e3ce25b83108152}} 
+\index{ef\_packed\_stream\_params@{ef\_packed\_stream\_params}!psp\_buffer\_align@{psp\_buffer\_align}}
+\index{psp\_buffer\_align@{psp\_buffer\_align}!ef\_packed\_stream\_params@{ef\_packed\_stream\_params}}
+\doxysubsubsection{\texorpdfstring{psp\_buffer\_align}{psp\_buffer\_align}}
+{\footnotesize\ttfamily int psp\+\_\+buffer\+\_\+align}
+
+Alignment requirement for start of packed-\/stream buffers. 
+
+Definition at line 74 of file packedstream.\+h.
+
+\mbox{\Hypertarget{structef__packed__stream__params_a8829b145c1683bd5c3d5d934035e9060}\label{structef__packed__stream__params_a8829b145c1683bd5c3d5d934035e9060}} 
+\index{ef\_packed\_stream\_params@{ef\_packed\_stream\_params}!psp\_buffer\_size@{psp\_buffer\_size}}
+\index{psp\_buffer\_size@{psp\_buffer\_size}!ef\_packed\_stream\_params@{ef\_packed\_stream\_params}}
+\doxysubsubsection{\texorpdfstring{psp\_buffer\_size}{psp\_buffer\_size}}
+{\footnotesize\ttfamily int psp\+\_\+buffer\+\_\+size}
+
+Size of each packed-\/stream buffer. 
+
+Definition at line 71 of file packedstream.\+h.
+
+\mbox{\Hypertarget{structef__packed__stream__params_a700521034decd5f05346841aee62037f}\label{structef__packed__stream__params_a700521034decd5f05346841aee62037f}} 
+\index{ef\_packed\_stream\_params@{ef\_packed\_stream\_params}!psp\_max\_usable\_buffers@{psp\_max\_usable\_buffers}}
+\index{psp\_max\_usable\_buffers@{psp\_max\_usable\_buffers}!ef\_packed\_stream\_params@{ef\_packed\_stream\_params}}
+\doxysubsubsection{\texorpdfstring{psp\_max\_usable\_buffers}{psp\_max\_usable\_buffers}}
+{\footnotesize\ttfamily int psp\+\_\+max\+\_\+usable\+\_\+buffers}
+
+The maximum number of packed-\/stream buffers that the adapter can deliver packets into without software consuming any completion events. The application can post more buffers, but they will only be used as events are consumed. 
+
+Definition at line 86 of file packedstream.\+h.
+
+\mbox{\Hypertarget{structef__packed__stream__params_af14a17c1fae9fff274e67bb72bf4c749}\label{structef__packed__stream__params_af14a17c1fae9fff274e67bb72bf4c749}} 
+\index{ef\_packed\_stream\_params@{ef\_packed\_stream\_params}!psp\_start\_offset@{psp\_start\_offset}}
+\index{psp\_start\_offset@{psp\_start\_offset}!ef\_packed\_stream\_params@{ef\_packed\_stream\_params}}
+\doxysubsubsection{\texorpdfstring{psp\_start\_offset}{psp\_start\_offset}}
+{\footnotesize\ttfamily int psp\+\_\+start\+\_\+offset}
+
+Offset from the start of a packed-\/stream buffer to where the first packet will be delivered. 
+
+Definition at line 79 of file packedstream.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{packedstream_8h}{packedstream.\+h}}\end{DoxyCompactItemize}

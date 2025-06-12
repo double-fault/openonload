@@ -1,0 +1,26 @@
+var annotated_dup =
+[
+    [ "ef_event", "unionef__event.html", "unionef__event" ],
+    [ "ef_eventq_state", "structef__eventq__state.html", "structef__eventq__state" ],
+    [ "ef_filter_cookie", "structef__filter__cookie.html", "structef__filter__cookie" ],
+    [ "ef_filter_spec", "structef__filter__spec.html", "structef__filter__spec" ],
+    [ "ef_iovec", "structef__iovec.html", "structef__iovec" ],
+    [ "ef_memreg", "structef__memreg.html", "structef__memreg" ],
+    [ "ef_packed_stream_packet", "structef__packed__stream__packet.html", "structef__packed__stream__packet" ],
+    [ "ef_packed_stream_params", "structef__packed__stream__params.html", "structef__packed__stream__params" ],
+    [ "ef_pd", "structef__pd.html", "structef__pd" ],
+    [ "ef_pio", "structef__pio.html", "structef__pio" ],
+    [ "ef_vi", "structef__vi.html", "structef__vi" ],
+    [ "ef_vi_layout_entry", "structef__vi__layout__entry.html", "structef__vi__layout__entry" ],
+    [ "ef_vi_nic_type", "structef__vi__nic__type.html", "structef__vi__nic__type" ],
+    [ "ef_vi_rxq", "structef__vi__rxq.html", "structef__vi__rxq" ],
+    [ "ef_vi_rxq_state", "structef__vi__rxq__state.html", "structef__vi__rxq__state" ],
+    [ "ef_vi_set", "structef__vi__set.html", "structef__vi__set" ],
+    [ "ef_vi_state", "structef__vi__state.html", "structef__vi__state" ],
+    [ "ef_vi_stats", "structef__vi__stats.html", "structef__vi__stats" ],
+    [ "ef_vi_stats_field_layout", "structef__vi__stats__field__layout.html", "structef__vi__stats__field__layout" ],
+    [ "ef_vi_stats_layout", "structef__vi__stats__layout.html", "structef__vi__stats__layout" ],
+    [ "ef_vi_transmit_alt_overhead", "structef__vi__transmit__alt__overhead.html", "structef__vi__transmit__alt__overhead" ],
+    [ "ef_vi_txq", "structef__vi__txq.html", "structef__vi__txq" ],
+    [ "ef_vi_txq_state", "structef__vi__txq__state.html", "structef__vi__txq__state" ]
+];

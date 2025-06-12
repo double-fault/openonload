@@ -1,0 +1,240 @@
+\hypertarget{checksum_8h}{}\doxysection{checksum.\+h File Reference}
+\label{checksum_8h}\index{checksum.h@{checksum.h}}
+
+
+Checksum utility functions.  
+
+
+{\ttfamily \#include $<$etherfabric/base.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/ip.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/tcp.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/udp.\+h$>$}\newline
+{\ttfamily \#include $<$ci/compat.\+h$>$}\newline
+{\ttfamily \#include $<$ci/net/ipv6.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{checksum_8h_ad9af0d266a817dc37ddce3c8454aa6a1}{ef\+\_\+ip\+\_\+checksum}} (const struct iphdr $\ast$ip)
+\begin{DoxyCompactList}\small\item\em Calculate the checksum for an IP header. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{checksum_8h_ae82c2b845653c7963ebfa09ef6714b57}{ef\+\_\+udp\+\_\+checksum}} (const struct iphdr $\ast$ip, const struct udphdr $\ast$udp, const struct iovec $\ast$iov, int iovlen)
+\begin{DoxyCompactList}\small\item\em Calculate the checksum for a non-\/\+IPv6 UDP packet. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{checksum_8h_a78ef61cf9c5647d5183d38d81c2f6dad}{ef\+\_\+udp\+\_\+checksum\+\_\+ip6}} (const ci\+\_\+ip6\+\_\+hdr $\ast$ip6, const struct udphdr $\ast$udp, const struct iovec $\ast$iov, int iovlen)
+\begin{DoxyCompactList}\small\item\em Calculate the checksum for an IPv6 UDP packet. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{checksum_8h_a3a3b0e857ad40c7634fabbf1ce827936}{ef\+\_\+udp\+\_\+checksum\+\_\+ipx}} (int af, const void $\ast$ipx, const struct udphdr $\ast$udp, const struct iovec $\ast$iov, int iovlen)
+\begin{DoxyCompactList}\small\item\em Calculate the checksum for a UDP packet. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{checksum_8h_a00e6e00fb8498773e52ffee84128e21e}{ef\+\_\+tcp\+\_\+checksum}} (const struct iphdr $\ast$ip, const struct tcphdr $\ast$tcp, const struct iovec $\ast$iov, int iovlen)
+\begin{DoxyCompactList}\small\item\em Calculate the checksum for a non-\/\+IPv6 TCP packet. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{checksum_8h_af420eaa825b8122c8c6d4b23fb2b9f48}{ef\+\_\+tcp\+\_\+checksum\+\_\+ip6}} (const ci\+\_\+ip6\+\_\+hdr $\ast$ip6, const struct tcphdr $\ast$tcp, const struct iovec $\ast$iov, int iovlen)
+\begin{DoxyCompactList}\small\item\em Calculate the checksum for an IPv6 TCP packet. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{checksum_8h_ab559a661fcfd910e70576bb7b50b1226}{ef\+\_\+tcp\+\_\+checksum\+\_\+ipx}} (int af, const void $\ast$ipx, const struct tcphdr $\ast$tcp, const struct iovec $\ast$iov, int iovlen)
+\begin{DoxyCompactList}\small\item\em Calculate the checksum for a TCP packet. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{checksum_8h_a8792cb638331e86408acf76ecfd80fe7}{ef\+\_\+icmpv6\+\_\+checksum}} (const ci\+\_\+ip6\+\_\+hdr $\ast$ip6, const void $\ast$icmp, const struct iovec $\ast$iov, int iovlen)
+\begin{DoxyCompactList}\small\item\em Calculate the checksum for an IPv6 ICMP packet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Checksum utility functions. 
+
+\begin{DoxyAuthor}{Author}
+Solarflare Communications, Inc. 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2018/11/06 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright \copyright{} 2018 Solarflare Communications, Inc. All rights reserved. Solarflare, Open\+Onload and Enterprise\+Onload are trademarks of Solarflare Communications, Inc. 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{checksum_8h_a8792cb638331e86408acf76ecfd80fe7}\label{checksum_8h_a8792cb638331e86408acf76ecfd80fe7}} 
+\index{checksum.h@{checksum.h}!ef\_icmpv6\_checksum@{ef\_icmpv6\_checksum}}
+\index{ef\_icmpv6\_checksum@{ef\_icmpv6\_checksum}!checksum.h@{checksum.h}}
+\doxysubsubsection{\texorpdfstring{ef\_icmpv6\_checksum()}{ef\_icmpv6\_checksum()}}
+{\footnotesize\ttfamily uint32\+\_\+t ef\+\_\+icmpv6\+\_\+checksum (\begin{DoxyParamCaption}\item[{const ci\+\_\+ip6\+\_\+hdr $\ast$}]{ip6,  }\item[{const void $\ast$}]{icmp,  }\item[{const struct iovec $\ast$}]{iov,  }\item[{int}]{iovlen }\end{DoxyParamCaption})}
+
+
+
+Calculate the checksum for an IPv6 ICMP packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip6} & The IPv6 header for the packet. \\
+\hline
+{\em icmp} & The ICMP header for the packet. \\
+\hline
+{\em iov} & Start of the iovec array describing the TCP payload. \\
+\hline
+{\em iovlen} & Length of the iovec array.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The checksum of the ICMP packet.
+\end{DoxyReturn}
+Calculate the checksum for an IPv6 ICMP packet. The ICMP header must be populated (with the exception of the checksum field itself, which is ignored) before calling this function. \mbox{\Hypertarget{checksum_8h_ad9af0d266a817dc37ddce3c8454aa6a1}\label{checksum_8h_ad9af0d266a817dc37ddce3c8454aa6a1}} 
+\index{checksum.h@{checksum.h}!ef\_ip\_checksum@{ef\_ip\_checksum}}
+\index{ef\_ip\_checksum@{ef\_ip\_checksum}!checksum.h@{checksum.h}}
+\doxysubsubsection{\texorpdfstring{ef\_ip\_checksum()}{ef\_ip\_checksum()}}
+{\footnotesize\ttfamily uint32\+\_\+t ef\+\_\+ip\+\_\+checksum (\begin{DoxyParamCaption}\item[{const struct iphdr $\ast$}]{ip }\end{DoxyParamCaption})}
+
+
+
+Calculate the checksum for an IP header. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip} & The IP header to use.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The checksum of the IP header.
+\end{DoxyReturn}
+Calculate the checksum for an IP header. The IP header must be populated (with the exception of the checksum field itself, which is ignored) before calling this function. \mbox{\Hypertarget{checksum_8h_a00e6e00fb8498773e52ffee84128e21e}\label{checksum_8h_a00e6e00fb8498773e52ffee84128e21e}} 
+\index{checksum.h@{checksum.h}!ef\_tcp\_checksum@{ef\_tcp\_checksum}}
+\index{ef\_tcp\_checksum@{ef\_tcp\_checksum}!checksum.h@{checksum.h}}
+\doxysubsubsection{\texorpdfstring{ef\_tcp\_checksum()}{ef\_tcp\_checksum()}}
+{\footnotesize\ttfamily uint32\+\_\+t ef\+\_\+tcp\+\_\+checksum (\begin{DoxyParamCaption}\item[{const struct iphdr $\ast$}]{ip,  }\item[{const struct tcphdr $\ast$}]{tcp,  }\item[{const struct iovec $\ast$}]{iov,  }\item[{int}]{iovlen }\end{DoxyParamCaption})}
+
+
+
+Calculate the checksum for a non-\/\+IPv6 TCP packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip} & The IP header for the packet. \\
+\hline
+{\em tcp} & The TCP header for the packet. \\
+\hline
+{\em iov} & Start of the iovec array describing the TCP payload. \\
+\hline
+{\em iovlen} & Length of the iovec array.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The checksum of the TCP packet.
+\end{DoxyReturn}
+Calculate the checksum for a non-\/\+IPv6 TCP packet. The TCP header must be populated (with the exception of the checksum field itself, which is ignored) before calling this function. \mbox{\Hypertarget{checksum_8h_af420eaa825b8122c8c6d4b23fb2b9f48}\label{checksum_8h_af420eaa825b8122c8c6d4b23fb2b9f48}} 
+\index{checksum.h@{checksum.h}!ef\_tcp\_checksum\_ip6@{ef\_tcp\_checksum\_ip6}}
+\index{ef\_tcp\_checksum\_ip6@{ef\_tcp\_checksum\_ip6}!checksum.h@{checksum.h}}
+\doxysubsubsection{\texorpdfstring{ef\_tcp\_checksum\_ip6()}{ef\_tcp\_checksum\_ip6()}}
+{\footnotesize\ttfamily uint32\+\_\+t ef\+\_\+tcp\+\_\+checksum\+\_\+ip6 (\begin{DoxyParamCaption}\item[{const ci\+\_\+ip6\+\_\+hdr $\ast$}]{ip6,  }\item[{const struct tcphdr $\ast$}]{tcp,  }\item[{const struct iovec $\ast$}]{iov,  }\item[{int}]{iovlen }\end{DoxyParamCaption})}
+
+
+
+Calculate the checksum for an IPv6 TCP packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip6} & The IPv6 header for the packet. \\
+\hline
+{\em tcp} & The TCP header for the packet. \\
+\hline
+{\em iov} & Start of the iovec array describing the TCP payload. \\
+\hline
+{\em iovlen} & Length of the iovec array.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The checksum of the TCP packet.
+\end{DoxyReturn}
+Calculate the checksum for an IPv6 TCP packet. The TCP header must be populated (with the exception of the checksum field itself, which is ignored) before calling this function. \mbox{\Hypertarget{checksum_8h_ab559a661fcfd910e70576bb7b50b1226}\label{checksum_8h_ab559a661fcfd910e70576bb7b50b1226}} 
+\index{checksum.h@{checksum.h}!ef\_tcp\_checksum\_ipx@{ef\_tcp\_checksum\_ipx}}
+\index{ef\_tcp\_checksum\_ipx@{ef\_tcp\_checksum\_ipx}!checksum.h@{checksum.h}}
+\doxysubsubsection{\texorpdfstring{ef\_tcp\_checksum\_ipx()}{ef\_tcp\_checksum\_ipx()}}
+{\footnotesize\ttfamily uint32\+\_\+t ef\+\_\+tcp\+\_\+checksum\+\_\+ipx (\begin{DoxyParamCaption}\item[{int}]{af,  }\item[{const void $\ast$}]{ipx,  }\item[{const struct tcphdr $\ast$}]{tcp,  }\item[{const struct iovec $\ast$}]{iov,  }\item[{int}]{iovlen }\end{DoxyParamCaption})}
+
+
+
+Calculate the checksum for a TCP packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em af} & The address family of the IP header for the packet. \\
+\hline
+{\em ipx} & The IP header for the packet. \\
+\hline
+{\em tcp} & The TCP header for the packet. \\
+\hline
+{\em iov} & Start of the iovec array describing the TCP payload. \\
+\hline
+{\em iovlen} & Length of the iovec array.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The checksum of the TCP packet.
+\end{DoxyReturn}
+Calculate the checksum for a TCP packet. The TCP header must be populated (with the exception of the checksum field itself, which is ignored) before calling this function. \mbox{\Hypertarget{checksum_8h_ae82c2b845653c7963ebfa09ef6714b57}\label{checksum_8h_ae82c2b845653c7963ebfa09ef6714b57}} 
+\index{checksum.h@{checksum.h}!ef\_udp\_checksum@{ef\_udp\_checksum}}
+\index{ef\_udp\_checksum@{ef\_udp\_checksum}!checksum.h@{checksum.h}}
+\doxysubsubsection{\texorpdfstring{ef\_udp\_checksum()}{ef\_udp\_checksum()}}
+{\footnotesize\ttfamily uint32\+\_\+t ef\+\_\+udp\+\_\+checksum (\begin{DoxyParamCaption}\item[{const struct iphdr $\ast$}]{ip,  }\item[{const struct udphdr $\ast$}]{udp,  }\item[{const struct iovec $\ast$}]{iov,  }\item[{int}]{iovlen }\end{DoxyParamCaption})}
+
+
+
+Calculate the checksum for a non-\/\+IPv6 UDP packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip} & The IP header for the packet. \\
+\hline
+{\em udp} & The UDP header for the packet. \\
+\hline
+{\em iov} & Start of the iovec array describing the UDP payload. \\
+\hline
+{\em iovlen} & Length of the iovec array.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The checksum of the UDP packet.
+\end{DoxyReturn}
+Calculate the checksum for a non-\/\+IPv6 UDP packet. The UDP header must be populated (with the exception of the checksum field itself, which is ignored) before calling this function. \mbox{\Hypertarget{checksum_8h_a78ef61cf9c5647d5183d38d81c2f6dad}\label{checksum_8h_a78ef61cf9c5647d5183d38d81c2f6dad}} 
+\index{checksum.h@{checksum.h}!ef\_udp\_checksum\_ip6@{ef\_udp\_checksum\_ip6}}
+\index{ef\_udp\_checksum\_ip6@{ef\_udp\_checksum\_ip6}!checksum.h@{checksum.h}}
+\doxysubsubsection{\texorpdfstring{ef\_udp\_checksum\_ip6()}{ef\_udp\_checksum\_ip6()}}
+{\footnotesize\ttfamily uint32\+\_\+t ef\+\_\+udp\+\_\+checksum\+\_\+ip6 (\begin{DoxyParamCaption}\item[{const ci\+\_\+ip6\+\_\+hdr $\ast$}]{ip6,  }\item[{const struct udphdr $\ast$}]{udp,  }\item[{const struct iovec $\ast$}]{iov,  }\item[{int}]{iovlen }\end{DoxyParamCaption})}
+
+
+
+Calculate the checksum for an IPv6 UDP packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip6} & The IPv6 header for the packet. \\
+\hline
+{\em udp} & The UDP header for the packet. \\
+\hline
+{\em iov} & Start of the iovec array describing the UDP payload. \\
+\hline
+{\em iovlen} & Length of the iovec array.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The checksum of the UDP packet.
+\end{DoxyReturn}
+Calculate the checksum for an IPv6 UDP packet. The UDP header must be populated (with the exception of the checksum field itself, which is ignored) before calling this function. \mbox{\Hypertarget{checksum_8h_a3a3b0e857ad40c7634fabbf1ce827936}\label{checksum_8h_a3a3b0e857ad40c7634fabbf1ce827936}} 
+\index{checksum.h@{checksum.h}!ef\_udp\_checksum\_ipx@{ef\_udp\_checksum\_ipx}}
+\index{ef\_udp\_checksum\_ipx@{ef\_udp\_checksum\_ipx}!checksum.h@{checksum.h}}
+\doxysubsubsection{\texorpdfstring{ef\_udp\_checksum\_ipx()}{ef\_udp\_checksum\_ipx()}}
+{\footnotesize\ttfamily uint32\+\_\+t ef\+\_\+udp\+\_\+checksum\+\_\+ipx (\begin{DoxyParamCaption}\item[{int}]{af,  }\item[{const void $\ast$}]{ipx,  }\item[{const struct udphdr $\ast$}]{udp,  }\item[{const struct iovec $\ast$}]{iov,  }\item[{int}]{iovlen }\end{DoxyParamCaption})}
+
+
+
+Calculate the checksum for a UDP packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em af} & The address family of the IP header for the packet. \\
+\hline
+{\em ipx} & The IP header for the packet. \\
+\hline
+{\em udp} & The UDP header for the packet. \\
+\hline
+{\em iov} & Start of the iovec array describing the UDP payload. \\
+\hline
+{\em iovlen} & Length of the iovec array.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The checksum of the UDP packet.
+\end{DoxyReturn}
+Calculate the checksum for a UDP packet. The UDP header must be populated (with the exception of the checksum field itself, which is ignored) before calling this function. 

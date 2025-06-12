@@ -1,0 +1,113 @@
+\hypertarget{structef__packed__stream__packet}{}\doxysection{ef\+\_\+packed\+\_\+stream\+\_\+packet Struct Reference}
+\label{structef__packed__stream__packet}\index{ef\_packed\_stream\_packet@{ef\_packed\_stream\_packet}}
+
+
+Per-\/packet meta-\/data.  
+
+
+
+
+{\ttfamily \#include $<$packedstream.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structef__packed__stream__packet_a87f25b7b9f8286cd63f3cd204d70d45f}{ps\+\_\+next\+\_\+offset}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structef__packed__stream__packet_acadda7d16ba3426611bb1e36fc472279}{ps\+\_\+pkt\+\_\+start\+\_\+offset}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structef__packed__stream__packet_aaadb50d391b98b96ac2c304a4d3f8284}{ps\+\_\+flags}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structef__packed__stream__packet_aceca64430474cb9650e4ff8fc8c52bbf}{ps\+\_\+cap\+\_\+len}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structef__packed__stream__packet_ab2399c17c5a56ad2357662d84e1a9440}{ps\+\_\+orig\+\_\+len}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structef__packed__stream__packet_a7f9483b693553edff44fd3f1612fe594}{ps\+\_\+ts\+\_\+sec}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structef__packed__stream__packet_a41684f804b8d6b92c2f329e75fb84152}{ps\+\_\+ts\+\_\+nsec}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Per-\/packet meta-\/data. 
+
+Definition at line 26 of file packedstream.\+h.
+
+
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{structef__packed__stream__packet_aceca64430474cb9650e4ff8fc8c52bbf}\label{structef__packed__stream__packet_aceca64430474cb9650e4ff8fc8c52bbf}} 
+\index{ef\_packed\_stream\_packet@{ef\_packed\_stream\_packet}!ps\_cap\_len@{ps\_cap\_len}}
+\index{ps\_cap\_len@{ps\_cap\_len}!ef\_packed\_stream\_packet@{ef\_packed\_stream\_packet}}
+\doxysubsubsection{\texorpdfstring{ps\_cap\_len}{ps\_cap\_len}}
+{\footnotesize\ttfamily uint16\+\_\+t ps\+\_\+cap\+\_\+len}
+
+Number of bytes of packet payload stored. 
+
+Definition at line 34 of file packedstream.\+h.
+
+\mbox{\Hypertarget{structef__packed__stream__packet_aaadb50d391b98b96ac2c304a4d3f8284}\label{structef__packed__stream__packet_aaadb50d391b98b96ac2c304a4d3f8284}} 
+\index{ef\_packed\_stream\_packet@{ef\_packed\_stream\_packet}!ps\_flags@{ps\_flags}}
+\index{ps\_flags@{ps\_flags}!ef\_packed\_stream\_packet@{ef\_packed\_stream\_packet}}
+\doxysubsubsection{\texorpdfstring{ps\_flags}{ps\_flags}}
+{\footnotesize\ttfamily uint8\+\_\+t ps\+\_\+flags}
+
+EF\+\_\+\+VI\+\_\+\+PS\+\_\+\+FLAG\+\_\+$\ast$ flags. 
+
+Definition at line 32 of file packedstream.\+h.
+
+\mbox{\Hypertarget{structef__packed__stream__packet_a87f25b7b9f8286cd63f3cd204d70d45f}\label{structef__packed__stream__packet_a87f25b7b9f8286cd63f3cd204d70d45f}} 
+\index{ef\_packed\_stream\_packet@{ef\_packed\_stream\_packet}!ps\_next\_offset@{ps\_next\_offset}}
+\index{ps\_next\_offset@{ps\_next\_offset}!ef\_packed\_stream\_packet@{ef\_packed\_stream\_packet}}
+\doxysubsubsection{\texorpdfstring{ps\_next\_offset}{ps\_next\_offset}}
+{\footnotesize\ttfamily uint16\+\_\+t ps\+\_\+next\+\_\+offset}
+
+Offset of next packet from start of this struct. 
+
+Definition at line 28 of file packedstream.\+h.
+
+\mbox{\Hypertarget{structef__packed__stream__packet_ab2399c17c5a56ad2357662d84e1a9440}\label{structef__packed__stream__packet_ab2399c17c5a56ad2357662d84e1a9440}} 
+\index{ef\_packed\_stream\_packet@{ef\_packed\_stream\_packet}!ps\_orig\_len@{ps\_orig\_len}}
+\index{ps\_orig\_len@{ps\_orig\_len}!ef\_packed\_stream\_packet@{ef\_packed\_stream\_packet}}
+\doxysubsubsection{\texorpdfstring{ps\_orig\_len}{ps\_orig\_len}}
+{\footnotesize\ttfamily uint16\+\_\+t ps\+\_\+orig\+\_\+len}
+
+Length of the frame on the wire. 
+
+Definition at line 36 of file packedstream.\+h.
+
+\mbox{\Hypertarget{structef__packed__stream__packet_acadda7d16ba3426611bb1e36fc472279}\label{structef__packed__stream__packet_acadda7d16ba3426611bb1e36fc472279}} 
+\index{ef\_packed\_stream\_packet@{ef\_packed\_stream\_packet}!ps\_pkt\_start\_offset@{ps\_pkt\_start\_offset}}
+\index{ps\_pkt\_start\_offset@{ps\_pkt\_start\_offset}!ef\_packed\_stream\_packet@{ef\_packed\_stream\_packet}}
+\doxysubsubsection{\texorpdfstring{ps\_pkt\_start\_offset}{ps\_pkt\_start\_offset}}
+{\footnotesize\ttfamily uint8\+\_\+t ps\+\_\+pkt\+\_\+start\+\_\+offset}
+
+Offset of packet payload from start of this struct. 
+
+Definition at line 30 of file packedstream.\+h.
+
+\mbox{\Hypertarget{structef__packed__stream__packet_a41684f804b8d6b92c2f329e75fb84152}\label{structef__packed__stream__packet_a41684f804b8d6b92c2f329e75fb84152}} 
+\index{ef\_packed\_stream\_packet@{ef\_packed\_stream\_packet}!ps\_ts\_nsec@{ps\_ts\_nsec}}
+\index{ps\_ts\_nsec@{ps\_ts\_nsec}!ef\_packed\_stream\_packet@{ef\_packed\_stream\_packet}}
+\doxysubsubsection{\texorpdfstring{ps\_ts\_nsec}{ps\_ts\_nsec}}
+{\footnotesize\ttfamily uint32\+\_\+t ps\+\_\+ts\+\_\+nsec}
+
+Hardware timestamp (nanoseconds). 
+
+Definition at line 40 of file packedstream.\+h.
+
+\mbox{\Hypertarget{structef__packed__stream__packet_a7f9483b693553edff44fd3f1612fe594}\label{structef__packed__stream__packet_a7f9483b693553edff44fd3f1612fe594}} 
+\index{ef\_packed\_stream\_packet@{ef\_packed\_stream\_packet}!ps\_ts\_sec@{ps\_ts\_sec}}
+\index{ps\_ts\_sec@{ps\_ts\_sec}!ef\_packed\_stream\_packet@{ef\_packed\_stream\_packet}}
+\doxysubsubsection{\texorpdfstring{ps\_ts\_sec}{ps\_ts\_sec}}
+{\footnotesize\ttfamily uint32\+\_\+t ps\+\_\+ts\+\_\+sec}
+
+Hardware timestamp (seconds). 
+
+Definition at line 38 of file packedstream.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{packedstream_8h}{packedstream.\+h}}\end{DoxyCompactItemize}

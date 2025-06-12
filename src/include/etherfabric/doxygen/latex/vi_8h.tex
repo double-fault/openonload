@@ -1,0 +1,1266 @@
+\hypertarget{vi_8h}{}\doxysection{vi.\+h File Reference}
+\label{vi_8h}\index{vi.h@{vi.h}}
+
+
+Virtual packet / DMA interface for Ether\+Fabric Virtual Interface HAL.  
+
+
+{\ttfamily \#include $<$etherfabric/ef\+\_\+vi.\+h$>$}\newline
+{\ttfamily \#include $<$etherfabric/base.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structef__vi__set}{ef\+\_\+vi\+\_\+set}}
+\begin{DoxyCompactList}\small\item\em A virtual interface set within a protection domain. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}}
+\begin{DoxyCompactList}\small\item\em Specification of a filter. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structef__filter__cookie}{ef\+\_\+filter\+\_\+cookie}}
+\begin{DoxyCompactList}\small\item\em Cookie identifying a filter. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structef__vi__stats__field__layout}{ef\+\_\+vi\+\_\+stats\+\_\+field\+\_\+layout}}
+\begin{DoxyCompactList}\small\item\em Layout for a field of statistics. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structef__vi__stats__layout}{ef\+\_\+vi\+\_\+stats\+\_\+layout}}
+\begin{DoxyCompactList}\small\item\em Layout for statistics. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{vi_8h_ae25195780aad9dcfb218728db965a8b6}{ef\+\_\+filter\+\_\+flags}} \{ \mbox{\hyperlink{vi_8h_ae25195780aad9dcfb218728db965a8b6afd3eba67836afefa719c85cc43381517}{EF\+\_\+\+FILTER\+\_\+\+FLAG\+\_\+\+NONE}} = 0x0
+, \mbox{\hyperlink{vi_8h_ae25195780aad9dcfb218728db965a8b6ab5ce404419a6405c710f04331f069ec7}{EF\+\_\+\+FILTER\+\_\+\+FLAG\+\_\+\+MCAST\+\_\+\+LOOP\+\_\+\+RECEIVE}} = 0x2
+ \}
+\begin{DoxyCompactList}\small\item\em Flags for a filter. \end{DoxyCompactList}\item 
+enum \{ \mbox{\hyperlink{vi_8h_aba01db17f4a2bfbc3db60dc172972a25a423b2ad106dfce76c8115a1be1e3fe82}{EF\+\_\+\+FILTER\+\_\+\+VLAN\+\_\+\+ID\+\_\+\+ANY}} = -\/1
+ \}
+\begin{DoxyCompactList}\small\item\em Virtual LANs for a filter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{vi_8h_a66124c16b919445b44e2bcba50dbc344}{ef\+\_\+vi\+\_\+alloc\+\_\+from\+\_\+pd}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} vi\+\_\+dh, struct \mbox{\hyperlink{structef__pd}{ef\+\_\+pd}} $\ast$pd, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} pd\+\_\+dh, int evq\+\_\+capacity, int rxq\+\_\+capacity, int txq\+\_\+capacity, \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$evq\+\_\+opt, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} evq\+\_\+dh, enum \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772}{ef\+\_\+vi\+\_\+flags}} flags)
+\begin{DoxyCompactList}\small\item\em Allocate a virtual interface from a protection domain. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_ac9c8bc0bab4933eb9a3448a025209f3f}{ef\+\_\+vi\+\_\+free}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} nic)
+\begin{DoxyCompactList}\small\item\em Free a virtual interface. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_aca91a5b7b6569d14c434ca242ecf3af9}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+alloc}} (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} vi\+\_\+dh, int num\+\_\+alts, size\+\_\+t buf\+\_\+space)
+\begin{DoxyCompactList}\small\item\em Allocate a set of TX alternatives. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a64953ac5b034eea110f27d411686b735}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+free}} (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} vi\+\_\+dh)
+\begin{DoxyCompactList}\small\item\em Free a set of TX alternatives. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a16b8fed8c7b4af2cbcdc559d8ac28572}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+query\+\_\+buffering}} (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, int ifindex, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} vi\+\_\+dh, int n\+\_\+alts)
+\begin{DoxyCompactList}\small\item\em Query available buffering. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a2d42bb597cdedc552d364a6d0b6e10a2}{ef\+\_\+vi\+\_\+flush}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} nic)
+\begin{DoxyCompactList}\small\item\em Flush the virtual interface. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a504b3415e315aeb55bd7ba05bed61bc5}{ef\+\_\+vi\+\_\+pace}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} nic, int val)
+\begin{DoxyCompactList}\small\item\em Pace the virtual interface. \end{DoxyCompactList}\item 
+unsigned \mbox{\hyperlink{vi_8h_a05e18721b7055b77c2fe2d02e1575b9f}{ef\+\_\+vi\+\_\+mtu}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} vi\+\_\+dh)
+\begin{DoxyCompactList}\small\item\em Return the virtual interface MTU. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a144164cd992dd9155ce192092f74735d}{ef\+\_\+vi\+\_\+get\+\_\+mac}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} vi\+\_\+dh, void $\ast$mac\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Get the Ethernet MAC address for the virtual interface. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_aec100d01d3b9b3ca25f277bb9bab3410}{ef\+\_\+eventq\+\_\+put}} (unsigned resource\+\_\+id, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} evq\+\_\+dh, unsigned ev\+\_\+bits)
+\begin{DoxyCompactList}\small\item\em Send a software-\/generated event to an event queue. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a341b60d550339b63abf0ad8b79828cec}{ef\+\_\+vi\+\_\+set\+\_\+alloc\+\_\+from\+\_\+pd}} (\mbox{\hyperlink{structef__vi__set}{ef\+\_\+vi\+\_\+set}} $\ast$vi\+\_\+set, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} vi\+\_\+set\+\_\+dh, struct \mbox{\hyperlink{structef__pd}{ef\+\_\+pd}} $\ast$pd, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} pd\+\_\+dh, int n\+\_\+vis)
+\begin{DoxyCompactList}\small\item\em Allocate a virtual interface set within a protection domain. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a356ed04bbd54430fa4065b8d7c5dbc78}{ef\+\_\+vi\+\_\+set\+\_\+free}} (\mbox{\hyperlink{structef__vi__set}{ef\+\_\+vi\+\_\+set}} $\ast$vi\+\_\+set, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} vi\+\_\+set\+\_\+dh)
+\begin{DoxyCompactList}\small\item\em Free a virtual interface set. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a555084325f97dc1fe99f11295f3f1f8e}{ef\+\_\+vi\+\_\+alloc\+\_\+from\+\_\+set}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} vi\+\_\+dh, \mbox{\hyperlink{structef__vi__set}{ef\+\_\+vi\+\_\+set}} $\ast$vi\+\_\+set, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} vi\+\_\+set\+\_\+dh, int index\+\_\+in\+\_\+vi\+\_\+set, int evq\+\_\+capacity, int rxq\+\_\+capacity, int txq\+\_\+capacity, \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$evq\+\_\+opt, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} evq\+\_\+dh, enum \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772}{ef\+\_\+vi\+\_\+flags}} flags)
+\begin{DoxyCompactList}\small\item\em Allocate a virtual interface from a virtual interface set. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a7940e2ef8c2df90ce777e6db1556e19a}{ef\+\_\+vi\+\_\+prime}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} dh, unsigned current\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Prime a virtual interface. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vi_8h_a2195efb4c62ebcf9c98c04bcbc842979}{ef\+\_\+filter\+\_\+spec\+\_\+init}} (\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec, enum \mbox{\hyperlink{vi_8h_ae25195780aad9dcfb218728db965a8b6}{ef\+\_\+filter\+\_\+flags}} flags)
+\begin{DoxyCompactList}\small\item\em Initialize an \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a1d04a4feb412f3584ffb8eeb36207912}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip4\+\_\+local}} (\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec, int protocol, unsigned host\+\_\+be32, int port\+\_\+be16)
+\begin{DoxyCompactList}\small\item\em Set an IP4 Local filter on the filter specification. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_ae91372fd3996c517136a236ef0669db5}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip4\+\_\+full}} (\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec, int protocol, unsigned host\+\_\+be32, int port\+\_\+be16, unsigned rhost\+\_\+be32, int rport\+\_\+be16)
+\begin{DoxyCompactList}\small\item\em Set an IP4 Full filter on the filter specification. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a33228093a9326e0606581ce03260dc76}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip6\+\_\+local}} (\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec, int protocol, const struct in6\+\_\+addr $\ast$host, int port\+\_\+be16)
+\begin{DoxyCompactList}\small\item\em Set an IP6 Local filter on the filter specification. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a90dde88cfc07177f35be74c77cfb9e40}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip6\+\_\+full}} (\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec, int protocol, const struct in6\+\_\+addr $\ast$host, int port\+\_\+be16, const struct in6\+\_\+addr $\ast$rhost, int rport\+\_\+be16)
+\begin{DoxyCompactList}\small\item\em Set an IP6 Full filter on the filter specification. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a5f8e4fb095dc588c49cfcbc064ef7810}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+vlan}} (\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec, int vlan\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Add a Virtual LAN filter on the filter specification. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_af528ebfe9024176f75d55a7733552435}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+eth\+\_\+local}} (\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec, int vlan\+\_\+id, const void $\ast$mac)
+\begin{DoxyCompactList}\small\item\em Set an Ethernet MAC Address filter on the filter specification. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a7ebf6ecc2966a4b88367cc274a717417}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+unicast\+\_\+all}} (\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec)
+\begin{DoxyCompactList}\small\item\em Set a Unicast All filter on the filter specification. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a0c7d3ebf1cc5c5f318ac18ff0c1ff914}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+multicast\+\_\+all}} (\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec)
+\begin{DoxyCompactList}\small\item\em Set a Multicast All filter on the filter specification. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a6a8a8227b658a5d93548818a45445815}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+unicast\+\_\+mismatch}} (\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec)
+\begin{DoxyCompactList}\small\item\em Set a Unicast Mismatch filter on the filter specification. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_af58cc298c09a1337a0118f39f27b9845}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+multicast\+\_\+mismatch}} (\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec)
+\begin{DoxyCompactList}\small\item\em Set a Multicast Mismatch filter on the filter specification. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a377a64780b4b9e9fd01fd7c79dd36edb}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+port\+\_\+sniff}} (\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec, int promiscuous)
+\begin{DoxyCompactList}\small\item\em Set a Port Sniff filter on the filter specification. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a85d2fd83f222962b65890b29193b1618}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+tx\+\_\+port\+\_\+sniff}} (\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec)
+\begin{DoxyCompactList}\small\item\em Set a TX Port Sniff filter on the filter specification. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_ab2eff00234093a967c29f57a727af98a}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+block\+\_\+kernel}} (\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec)
+\begin{DoxyCompactList}\small\item\em Set a Block Kernel filter on the filter specification. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_ab0f191fe076d51ef701e4d1b2709e4b1}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+block\+\_\+kernel\+\_\+multicast}} (\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec)
+\begin{DoxyCompactList}\small\item\em Set a Block Kernel Multicast filter on the filter specification. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a9f8fcdc598fa4971ea44ca765de4d51c}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+eth\+\_\+type}} (\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec, uint16\+\_\+t ether\+\_\+type\+\_\+be16)
+\begin{DoxyCompactList}\small\item\em Add an Ether\+Type filter on the filter specification. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a547f8ff5a2e578a41ec4d3015320e7cf}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip\+\_\+proto}} (\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec, uint8\+\_\+t ip\+\_\+proto)
+\begin{DoxyCompactList}\small\item\em Add an IP protocol filter on the filter specification. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_ae8128e39ce98e1f64a54cba31bae14d0}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+block\+\_\+kernel\+\_\+unicast}} (\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec)
+\begin{DoxyCompactList}\small\item\em Set a Block Kernel Unicast filter on the filter specification. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a71909d1557f3064579781604fc117e4e}{ef\+\_\+vi\+\_\+filter\+\_\+add}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} vi\+\_\+dh, const \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec, \mbox{\hyperlink{structef__filter__cookie}{ef\+\_\+filter\+\_\+cookie}} $\ast$filter\+\_\+cookie\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Add a filter to a virtual interface. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a42f633c2483fb182434c8f7f3ea732fd}{ef\+\_\+vi\+\_\+filter\+\_\+del}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} vi\+\_\+dh, \mbox{\hyperlink{structef__filter__cookie}{ef\+\_\+filter\+\_\+cookie}} $\ast$filter\+\_\+cookie)
+\begin{DoxyCompactList}\small\item\em Delete a filter from a virtual interface. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a89aa0805536fccbaf79c2120c316ff65}{ef\+\_\+vi\+\_\+set\+\_\+filter\+\_\+add}} (\mbox{\hyperlink{structef__vi__set}{ef\+\_\+vi\+\_\+set}} $\ast$vi\+\_\+set, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} vi\+\_\+set\+\_\+dh, const \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$filter\+\_\+spec, \mbox{\hyperlink{structef__filter__cookie}{ef\+\_\+filter\+\_\+cookie}} $\ast$filter\+\_\+cookie\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Add a filter to a virtual interface set. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_ad2bce41b1eccaa8c393c9abacab9905c}{ef\+\_\+vi\+\_\+set\+\_\+filter\+\_\+del}} (\mbox{\hyperlink{structef__vi__set}{ef\+\_\+vi\+\_\+set}} $\ast$vi\+\_\+set, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} vi\+\_\+set\+\_\+dh, \mbox{\hyperlink{structef__filter__cookie}{ef\+\_\+filter\+\_\+cookie}} $\ast$filter\+\_\+cookie)
+\begin{DoxyCompactList}\small\item\em Delete a filter from a virtual interface set. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a35ed5db7f791c4f30758e31a59fa8d1f}{ef\+\_\+vi\+\_\+stats\+\_\+query\+\_\+layout}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, const \mbox{\hyperlink{structef__vi__stats__layout}{ef\+\_\+vi\+\_\+stats\+\_\+layout}} $\ast$$\ast$const layout\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Retrieve layout for available statistics. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vi_8h_a98b0da6b8cd8d0acdf75a709f0795a0c}{ef\+\_\+vi\+\_\+stats\+\_\+query}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} vi\+\_\+dh, void $\ast$data, int do\+\_\+reset)
+\begin{DoxyCompactList}\small\item\em Retrieve a set of statistic values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Virtual packet / DMA interface for Ether\+Fabric Virtual Interface HAL. 
+
+\begin{DoxyAuthor}{Author}
+Solarflare Communications, Inc. 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2018/11/06 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright \copyright{} 2018 Solarflare Communications, Inc. All rights reserved. Solarflare, Open\+Onload and Enterprise\+Onload are trademarks of Solarflare Communications, Inc. 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{vi_8h_aba01db17f4a2bfbc3db60dc172972a25}\label{vi_8h_aba01db17f4a2bfbc3db60dc172972a25}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+
+
+Virtual LANs for a filter. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_FILTER\_VLAN\_ID\_ANY@{EF\_FILTER\_VLAN\_ID\_ANY}!vi.h@{vi.h}}\index{vi.h@{vi.h}!EF\_FILTER\_VLAN\_ID\_ANY@{EF\_FILTER\_VLAN\_ID\_ANY}}}\mbox{\Hypertarget{vi_8h_aba01db17f4a2bfbc3db60dc172972a25a423b2ad106dfce76c8115a1be1e3fe82}\label{vi_8h_aba01db17f4a2bfbc3db60dc172972a25a423b2ad106dfce76c8115a1be1e3fe82}} 
+EF\+\_\+\+FILTER\+\_\+\+VLAN\+\_\+\+ID\+\_\+\+ANY&Any Virtual LAN \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 455 of file vi.\+h.
+
+\mbox{\Hypertarget{vi_8h_ae25195780aad9dcfb218728db965a8b6}\label{vi_8h_ae25195780aad9dcfb218728db965a8b6}} 
+\index{vi.h@{vi.h}!ef\_filter\_flags@{ef\_filter\_flags}}
+\index{ef\_filter\_flags@{ef\_filter\_flags}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_filter\_flags}{ef\_filter\_flags}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{vi_8h_ae25195780aad9dcfb218728db965a8b6}{ef\+\_\+filter\+\_\+flags}}}
+
+
+
+Flags for a filter. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_FILTER\_FLAG\_NONE@{EF\_FILTER\_FLAG\_NONE}!vi.h@{vi.h}}\index{vi.h@{vi.h}!EF\_FILTER\_FLAG\_NONE@{EF\_FILTER\_FLAG\_NONE}}}\mbox{\Hypertarget{vi_8h_ae25195780aad9dcfb218728db965a8b6afd3eba67836afefa719c85cc43381517}\label{vi_8h_ae25195780aad9dcfb218728db965a8b6afd3eba67836afefa719c85cc43381517}} 
+EF\+\_\+\+FILTER\+\_\+\+FLAG\+\_\+\+NONE&No flags \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_FILTER\_FLAG\_MCAST\_LOOP\_RECEIVE@{EF\_FILTER\_FLAG\_MCAST\_LOOP\_RECEIVE}!vi.h@{vi.h}}\index{vi.h@{vi.h}!EF\_FILTER\_FLAG\_MCAST\_LOOP\_RECEIVE@{EF\_FILTER\_FLAG\_MCAST\_LOOP\_RECEIVE}}}\mbox{\Hypertarget{vi_8h_ae25195780aad9dcfb218728db965a8b6ab5ce404419a6405c710f04331f069ec7}\label{vi_8h_ae25195780aad9dcfb218728db965a8b6ab5ce404419a6405c710f04331f069ec7}} 
+EF\+\_\+\+FILTER\+\_\+\+FLAG\+\_\+\+MCAST\+\_\+\+LOOP\+\_\+\+RECEIVE&If set, the filter will receive looped back packets for matching (see \mbox{\hyperlink{vi_8h_a85d2fd83f222962b65890b29193b1618}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+tx\+\_\+port\+\_\+sniff()}}) \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 436 of file vi.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{vi_8h_aec100d01d3b9b3ca25f277bb9bab3410}\label{vi_8h_aec100d01d3b9b3ca25f277bb9bab3410}} 
+\index{vi.h@{vi.h}!ef\_eventq\_put@{ef\_eventq\_put}}
+\index{ef\_eventq\_put@{ef\_eventq\_put}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_eventq\_put()}{ef\_eventq\_put()}}
+{\footnotesize\ttfamily int ef\+\_\+eventq\+\_\+put (\begin{DoxyParamCaption}\item[{unsigned}]{resource\+\_\+id,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{evq\+\_\+dh,  }\item[{unsigned}]{ev\+\_\+bits }\end{DoxyParamCaption})}
+
+
+
+Send a software-\/generated event to an event queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em resource\+\_\+id} & The ID of the event queue. \\
+\hline
+{\em evq\+\_\+dh} & The ef\+\_\+driver\+\_\+handle for the event queue. \\
+\hline
+{\em ev\+\_\+bits} & Data for the event. The lowest 16 bits only are used, and all other bits must be clear.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Send a software-\/generated event to an event queue.
+
+An application can use this feature to put its own signals onto the event queue. For example, a thread might block waiting for events. An application could use a software-\/generated event to wake up the thread, so the thread could then process some non-\/ef\+\_\+vi resources. \mbox{\Hypertarget{vi_8h_a2195efb4c62ebcf9c98c04bcbc842979}\label{vi_8h_a2195efb4c62ebcf9c98c04bcbc842979}} 
+\index{vi.h@{vi.h}!ef\_filter\_spec\_init@{ef\_filter\_spec\_init}}
+\index{ef\_filter\_spec\_init@{ef\_filter\_spec\_init}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_filter\_spec\_init()}{ef\_filter\_spec\_init()}}
+{\footnotesize\ttfamily void ef\+\_\+filter\+\_\+spec\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec,  }\item[{enum \mbox{\hyperlink{vi_8h_ae25195780aad9dcfb218728db965a8b6}{ef\+\_\+filter\+\_\+flags}}}]{flags }\end{DoxyParamCaption})}
+
+
+
+Initialize an \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+spec} & The \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} to initialize. \\
+\hline
+{\em flags} & The flags to set in the \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None.
+\end{DoxyReturn}
+Initialize an \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}}.
+
+This function must be called to initialize a filter before calling the other filter functions.
+
+The EF\+\_\+\+FILTER\+\_\+\+FLAG\+\_\+\+MCAST\+\_\+\+LOOP\+\_\+\+RECEIVE flag does the following\+:
+\begin{DoxyItemize}
+\item if set, the filter will receive looped back packets for matching (see \mbox{\hyperlink{vi_8h_a85d2fd83f222962b65890b29193b1618}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+tx\+\_\+port\+\_\+sniff()}})
+\item otherwise, the filter will not receive looped back packets. 
+\end{DoxyItemize}\mbox{\Hypertarget{vi_8h_ab2eff00234093a967c29f57a727af98a}\label{vi_8h_ab2eff00234093a967c29f57a727af98a}} 
+\index{vi.h@{vi.h}!ef\_filter\_spec\_set\_block\_kernel@{ef\_filter\_spec\_set\_block\_kernel}}
+\index{ef\_filter\_spec\_set\_block\_kernel@{ef\_filter\_spec\_set\_block\_kernel}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_filter\_spec\_set\_block\_kernel()}{ef\_filter\_spec\_set\_block\_kernel()}}
+{\footnotesize\ttfamily int ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+block\+\_\+kernel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec }\end{DoxyParamCaption})}
+
+
+
+Set a Block Kernel filter on the filter specification. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+spec} & The \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} on which to set the filter.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EPROTONOSUPPORT indicates that a filter is already set that is incompatible with the new filter.
+\end{DoxyReturn}
+Set a Block Kernel filter on the filter specification.
+
+This filter blocks all packets from reaching the kernel.
+
+This filter is not supported by 5000-\/series and 6000-\/series adapters. \mbox{\Hypertarget{vi_8h_ab0f191fe076d51ef701e4d1b2709e4b1}\label{vi_8h_ab0f191fe076d51ef701e4d1b2709e4b1}} 
+\index{vi.h@{vi.h}!ef\_filter\_spec\_set\_block\_kernel\_multicast@{ef\_filter\_spec\_set\_block\_kernel\_multicast}}
+\index{ef\_filter\_spec\_set\_block\_kernel\_multicast@{ef\_filter\_spec\_set\_block\_kernel\_multicast}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_filter\_spec\_set\_block\_kernel\_multicast()}{ef\_filter\_spec\_set\_block\_kernel\_multicast()}}
+{\footnotesize\ttfamily int ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+block\+\_\+kernel\+\_\+multicast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec }\end{DoxyParamCaption})}
+
+
+
+Set a Block Kernel Multicast filter on the filter specification. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+spec} & The \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} on which to set the filter.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EPROTONOSUPPORT indicates that a filter is already set that is incompatible with the new filter.
+\end{DoxyReturn}
+Set a Block Kernel Multicast filter on the filter specification.
+
+This filter blocks all multicast packets from reaching the kernel.
+
+This filter is not supported by 5000-\/series and 6000-\/series adapters. \mbox{\Hypertarget{vi_8h_ae8128e39ce98e1f64a54cba31bae14d0}\label{vi_8h_ae8128e39ce98e1f64a54cba31bae14d0}} 
+\index{vi.h@{vi.h}!ef\_filter\_spec\_set\_block\_kernel\_unicast@{ef\_filter\_spec\_set\_block\_kernel\_unicast}}
+\index{ef\_filter\_spec\_set\_block\_kernel\_unicast@{ef\_filter\_spec\_set\_block\_kernel\_unicast}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_filter\_spec\_set\_block\_kernel\_unicast()}{ef\_filter\_spec\_set\_block\_kernel\_unicast()}}
+{\footnotesize\ttfamily int ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+block\+\_\+kernel\+\_\+unicast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec }\end{DoxyParamCaption})}
+
+
+
+Set a Block Kernel Unicast filter on the filter specification. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+spec} & The \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} on which to set the filter.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EPROTONOSUPPORT indicates that a filter is already set that is incompatible with the new filter.
+\end{DoxyReturn}
+Set a Block Kernel Unicast filter on the filter specification.
+
+This filter blocks all unicast packets from reaching the kernel.
+
+This filter is not supported by 5000-\/series and 6000-\/series adapters. \mbox{\Hypertarget{vi_8h_af528ebfe9024176f75d55a7733552435}\label{vi_8h_af528ebfe9024176f75d55a7733552435}} 
+\index{vi.h@{vi.h}!ef\_filter\_spec\_set\_eth\_local@{ef\_filter\_spec\_set\_eth\_local}}
+\index{ef\_filter\_spec\_set\_eth\_local@{ef\_filter\_spec\_set\_eth\_local}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_filter\_spec\_set\_eth\_local()}{ef\_filter\_spec\_set\_eth\_local()}}
+{\footnotesize\ttfamily int ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+eth\+\_\+local (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec,  }\item[{int}]{vlan\+\_\+id,  }\item[{const void $\ast$}]{mac }\end{DoxyParamCaption})}
+
+
+
+Set an Ethernet MAC Address filter on the filter specification. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+spec} & The \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} on which to set the filter. \\
+\hline
+{\em vlan\+\_\+id} & The ID of the virtual LAN on which to filter, or EF\+\_\+\+FILTER\+\_\+\+VLAN\+\_\+\+ID\+\_\+\+ANY to match all VLANs. \\
+\hline
+{\em mac} & The MAC address on which to filter, as a six-\/byte array.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EPROTONOSUPPORT indicates that a filter is already set that is incompatible with the new filter.
+\end{DoxyReturn}
+Set an Ethernet MAC Address filter on the filter specification.
+
+This filter intercepts all packets that match the given MAC address and VLAN. \mbox{\Hypertarget{vi_8h_a9f8fcdc598fa4971ea44ca765de4d51c}\label{vi_8h_a9f8fcdc598fa4971ea44ca765de4d51c}} 
+\index{vi.h@{vi.h}!ef\_filter\_spec\_set\_eth\_type@{ef\_filter\_spec\_set\_eth\_type}}
+\index{ef\_filter\_spec\_set\_eth\_type@{ef\_filter\_spec\_set\_eth\_type}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_filter\_spec\_set\_eth\_type()}{ef\_filter\_spec\_set\_eth\_type()}}
+{\footnotesize\ttfamily int ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+eth\+\_\+type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec,  }\item[{uint16\+\_\+t}]{ether\+\_\+type\+\_\+be16 }\end{DoxyParamCaption})}
+
+
+
+Add an Ether\+Type filter on the filter specification. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+spec} & The \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} on which to set the filter. \\
+\hline
+{\em ether\+\_\+type\+\_\+be16} & The Ether\+Type on which to filter, in network order.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EPROTONOSUPPORT indicates that a filter is already set that is incompatible with the new filter.
+\end{DoxyReturn}
+Add an Ether\+Type filter on the filter specification
+
+The Ether\+Type filter can be combined with other filters as follows\+:
+\begin{DoxyItemize}
+\item Ethernet MAC Address filters\+: supported. See \mbox{\hyperlink{vi_8h_af528ebfe9024176f75d55a7733552435}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+eth\+\_\+local()}}.
+\item Other filters\+: not supported, -\/EPROTONOSUPPORT is returned.
+\end{DoxyItemize}
+
+This filter is not supported by 5000-\/series and 6000-\/series adapters. 7000-\/series adapters require a firmware version of at least v4.\+6 for full support for these filters. v4.\+5 firmware supports such filters only when not combined with a MAC address. Insertion of such filters on firmware versions that do not support them will fail.
+
+Due to a current firmware limitation, this method does not support ether\+\_\+type IP or IPv6 and will return no error if these values are specified. \mbox{\Hypertarget{vi_8h_ae91372fd3996c517136a236ef0669db5}\label{vi_8h_ae91372fd3996c517136a236ef0669db5}} 
+\index{vi.h@{vi.h}!ef\_filter\_spec\_set\_ip4\_full@{ef\_filter\_spec\_set\_ip4\_full}}
+\index{ef\_filter\_spec\_set\_ip4\_full@{ef\_filter\_spec\_set\_ip4\_full}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_filter\_spec\_set\_ip4\_full()}{ef\_filter\_spec\_set\_ip4\_full()}}
+{\footnotesize\ttfamily int ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip4\+\_\+full (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec,  }\item[{int}]{protocol,  }\item[{unsigned}]{host\+\_\+be32,  }\item[{int}]{port\+\_\+be16,  }\item[{unsigned}]{rhost\+\_\+be32,  }\item[{int}]{rport\+\_\+be16 }\end{DoxyParamCaption})}
+
+
+
+Set an IP4 Full filter on the filter specification. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+spec} & The \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} on which to set the filter. \\
+\hline
+{\em protocol} & The protocol on which to filter (IPPROTO\+\_\+\+UDP or IPPROTO\+\_\+\+TCP). \\
+\hline
+{\em host\+\_\+be32} & The local host address on which to filter, as a 32-\/bit big-\/endian value (e.\+g. the output of htonl()). \\
+\hline
+{\em port\+\_\+be16} & The local port on which to filter, as a 16-\/bit big-\/endian value (e.\+g. the output of htons()). \\
+\hline
+{\em rhost\+\_\+be32} & The remote host address on which to filter, as a 32-\/bit big-\/endian value (e.\+g. the output of htonl()). \\
+\hline
+{\em rport\+\_\+be16} & The remote port on which to filter, as a 16-\/bit big-\/endian value (e.\+g. the output of htons()).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EPROTONOSUPPORT indicates that a filter is already set that is incompatible with the new filter.
+\end{DoxyReturn}
+Set an IP4 Full filter on the filter specification.
+
+This filter intercepts all packets that match the given protocol and host/port combinations.
+
+\begin{DoxyNote}{Note}
+You cannot specify a range, or a wildcard, for any parameter. 
+\end{DoxyNote}
+\mbox{\Hypertarget{vi_8h_a1d04a4feb412f3584ffb8eeb36207912}\label{vi_8h_a1d04a4feb412f3584ffb8eeb36207912}} 
+\index{vi.h@{vi.h}!ef\_filter\_spec\_set\_ip4\_local@{ef\_filter\_spec\_set\_ip4\_local}}
+\index{ef\_filter\_spec\_set\_ip4\_local@{ef\_filter\_spec\_set\_ip4\_local}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_filter\_spec\_set\_ip4\_local()}{ef\_filter\_spec\_set\_ip4\_local()}}
+{\footnotesize\ttfamily int ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip4\+\_\+local (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec,  }\item[{int}]{protocol,  }\item[{unsigned}]{host\+\_\+be32,  }\item[{int}]{port\+\_\+be16 }\end{DoxyParamCaption})}
+
+
+
+Set an IP4 Local filter on the filter specification. 
+
+Set various types of filters on the filter spec
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+spec} & The \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} on which to set the filter. \\
+\hline
+{\em protocol} & The protocol on which to filter (IPPROTO\+\_\+\+UDP or IPPROTO\+\_\+\+TCP). \\
+\hline
+{\em host\+\_\+be32} & The local host address on which to filter, as a 32-\/bit big-\/endian value (e.\+g. the output of htonl()). \\
+\hline
+{\em port\+\_\+be16} & The local port on which to filter, as a 16-\/bit big-\/endian value (e.\+g. the output of htons()).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EPROTONOSUPPORT indicates that a filter is already set that is incompatible with the new filter.
+\end{DoxyReturn}
+Set an IP4 Local filter on the filter specification.
+
+This filter intercepts all packets that match the given protocol and host/port combination.
+
+\begin{DoxyNote}{Note}
+You cannot specify a range, or a wildcard, for any parameter. 
+\end{DoxyNote}
+\mbox{\Hypertarget{vi_8h_a90dde88cfc07177f35be74c77cfb9e40}\label{vi_8h_a90dde88cfc07177f35be74c77cfb9e40}} 
+\index{vi.h@{vi.h}!ef\_filter\_spec\_set\_ip6\_full@{ef\_filter\_spec\_set\_ip6\_full}}
+\index{ef\_filter\_spec\_set\_ip6\_full@{ef\_filter\_spec\_set\_ip6\_full}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_filter\_spec\_set\_ip6\_full()}{ef\_filter\_spec\_set\_ip6\_full()}}
+{\footnotesize\ttfamily int ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip6\+\_\+full (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec,  }\item[{int}]{protocol,  }\item[{const struct in6\+\_\+addr $\ast$}]{host,  }\item[{int}]{port\+\_\+be16,  }\item[{const struct in6\+\_\+addr $\ast$}]{rhost,  }\item[{int}]{rport\+\_\+be16 }\end{DoxyParamCaption})}
+
+
+
+Set an IP6 Full filter on the filter specification. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+spec} & The \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} on which to set the filter. \\
+\hline
+{\em protocol} & The protocol on which to filter (IPPROTO\+\_\+\+UDP or IPPROTO\+\_\+\+TCP). \\
+\hline
+{\em host} & The local host address on which to filter, as a pointer to a struct in6\+\_\+addr. \\
+\hline
+{\em port\+\_\+be16} & The local port on which to filter, as a 16-\/bit big-\/endian value (e.\+g. the output of htons()). \\
+\hline
+{\em rhost} & The remote host address on which to filter, as a pointer to a struct in6\+\_\+addr. \\
+\hline
+{\em rport\+\_\+be16} & The remote port on which to filter, as a 16-\/bit big-\/endian value (e.\+g. the output of htons()).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EPROTONOSUPPORT indicates that a filter is already set that is incompatible with the new filter.
+\end{DoxyReturn}
+Set an IP6 Full filter on the filter specification.
+
+This filter intercepts all packets that match the given protocol and host/port combinations.
+
+\begin{DoxyNote}{Note}
+You cannot specify a range, or a wildcard, for any parameter. 
+\end{DoxyNote}
+\mbox{\Hypertarget{vi_8h_a33228093a9326e0606581ce03260dc76}\label{vi_8h_a33228093a9326e0606581ce03260dc76}} 
+\index{vi.h@{vi.h}!ef\_filter\_spec\_set\_ip6\_local@{ef\_filter\_spec\_set\_ip6\_local}}
+\index{ef\_filter\_spec\_set\_ip6\_local@{ef\_filter\_spec\_set\_ip6\_local}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_filter\_spec\_set\_ip6\_local()}{ef\_filter\_spec\_set\_ip6\_local()}}
+{\footnotesize\ttfamily int ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip6\+\_\+local (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec,  }\item[{int}]{protocol,  }\item[{const struct in6\+\_\+addr $\ast$}]{host,  }\item[{int}]{port\+\_\+be16 }\end{DoxyParamCaption})}
+
+
+
+Set an IP6 Local filter on the filter specification. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+spec} & The \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} on which to set the filter. \\
+\hline
+{\em protocol} & The protocol on which to filter (IPPROTO\+\_\+\+UDP or IPPROTO\+\_\+\+TCP). \\
+\hline
+{\em host} & The local host address on which to filter, as a pointer to a struct in6\+\_\+addr. \\
+\hline
+{\em port\+\_\+be16} & The local port on which to filter, as a 16-\/bit big-\/endian value (e.\+g. the output of htons()).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EPROTONOSUPPORT indicates that a filter is already set that is incompatible with the new filter.
+\end{DoxyReturn}
+Set an IP6 Local filter on the filter specification.
+
+This filter intercepts all packets that match the given protocol and host/port combination.
+
+\begin{DoxyNote}{Note}
+You cannot specify a range, or a wildcard, for any parameter. 
+\end{DoxyNote}
+\mbox{\Hypertarget{vi_8h_a547f8ff5a2e578a41ec4d3015320e7cf}\label{vi_8h_a547f8ff5a2e578a41ec4d3015320e7cf}} 
+\index{vi.h@{vi.h}!ef\_filter\_spec\_set\_ip\_proto@{ef\_filter\_spec\_set\_ip\_proto}}
+\index{ef\_filter\_spec\_set\_ip\_proto@{ef\_filter\_spec\_set\_ip\_proto}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_filter\_spec\_set\_ip\_proto()}{ef\_filter\_spec\_set\_ip\_proto()}}
+{\footnotesize\ttfamily int ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip\+\_\+proto (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec,  }\item[{uint8\+\_\+t}]{ip\+\_\+proto }\end{DoxyParamCaption})}
+
+
+
+Add an IP protocol filter on the filter specification. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+spec} & The \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} on which to set the filter. \\
+\hline
+{\em ip\+\_\+proto} & The IP protocol on which to filter.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EPROTONOSUPPORT indicates that a filter is already set that is incompatible with the new filter.
+\end{DoxyReturn}
+Add an IP protocol filter on the filter specification
+
+The IP protocol filter can be combined with other filters as follows\+:
+\begin{DoxyItemize}
+\item Ethernet MAC Address filters\+: supported. See \mbox{\hyperlink{vi_8h_af528ebfe9024176f75d55a7733552435}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+eth\+\_\+local()}}.
+\item Other filters\+: not supported, -\/EPROTONOSUPPORT is returned.
+\end{DoxyItemize}
+
+This filter is not supported by 5000-\/series and 6000-\/series adapters. Other adapters require a firmware version of at least v4.\+5. Insertion of such filters on firmware versions that do not support them will fail.
+
+Due to a current firmware limitation, this method does not support ip\+\_\+proto=6 (TCP) or ip\+\_\+proto=17 (UDP) and will return no error if these values are used. ~\newline
+ \mbox{\Hypertarget{vi_8h_a0c7d3ebf1cc5c5f318ac18ff0c1ff914}\label{vi_8h_a0c7d3ebf1cc5c5f318ac18ff0c1ff914}} 
+\index{vi.h@{vi.h}!ef\_filter\_spec\_set\_multicast\_all@{ef\_filter\_spec\_set\_multicast\_all}}
+\index{ef\_filter\_spec\_set\_multicast\_all@{ef\_filter\_spec\_set\_multicast\_all}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_filter\_spec\_set\_multicast\_all()}{ef\_filter\_spec\_set\_multicast\_all()}}
+{\footnotesize\ttfamily int ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+multicast\+\_\+all (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec }\end{DoxyParamCaption})}
+
+
+
+Set a Multicast All filter on the filter specification. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+spec} & The \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} on which to set the filter.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EPROTONOSUPPORT indicates that a filter is already set that is incompatible with the new filter.
+\end{DoxyReturn}
+Set a Multicast All filter on the filter specification.
+
+This filter must be used with caution. It intercepts all multicast packets that arrive, including IGMP group membership queries, which must normally be handled by the kernel to avoid any membership lapses. \mbox{\Hypertarget{vi_8h_af58cc298c09a1337a0118f39f27b9845}\label{vi_8h_af58cc298c09a1337a0118f39f27b9845}} 
+\index{vi.h@{vi.h}!ef\_filter\_spec\_set\_multicast\_mismatch@{ef\_filter\_spec\_set\_multicast\_mismatch}}
+\index{ef\_filter\_spec\_set\_multicast\_mismatch@{ef\_filter\_spec\_set\_multicast\_mismatch}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_filter\_spec\_set\_multicast\_mismatch()}{ef\_filter\_spec\_set\_multicast\_mismatch()}}
+{\footnotesize\ttfamily int ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+multicast\+\_\+mismatch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec }\end{DoxyParamCaption})}
+
+
+
+Set a Multicast Mismatch filter on the filter specification. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+spec} & The \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} on which to set the filter.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EPROTONOSUPPORT indicates that a filter is already set that is incompatible with the new filter.
+\end{DoxyReturn}
+Set a Multicast Mismatch filter on the filter specification.
+
+This filter intercepts all multicast traffic that would otherwise be discarded; that is, all traffic that does not match either an existing multicast filter or a kernel subscription.
+
+This filter is not supported by 5000-\/series and 6000-\/series adapters. \mbox{\Hypertarget{vi_8h_a377a64780b4b9e9fd01fd7c79dd36edb}\label{vi_8h_a377a64780b4b9e9fd01fd7c79dd36edb}} 
+\index{vi.h@{vi.h}!ef\_filter\_spec\_set\_port\_sniff@{ef\_filter\_spec\_set\_port\_sniff}}
+\index{ef\_filter\_spec\_set\_port\_sniff@{ef\_filter\_spec\_set\_port\_sniff}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_filter\_spec\_set\_port\_sniff()}{ef\_filter\_spec\_set\_port\_sniff()}}
+{\footnotesize\ttfamily int ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+port\+\_\+sniff (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec,  }\item[{int}]{promiscuous }\end{DoxyParamCaption})}
+
+
+
+Set a Port Sniff filter on the filter specification. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+spec} & The \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} on which to set the filter. \\
+\hline
+{\em promiscuous} & True to enable promiscuous mode on any virtual interface using this filter.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EPROTONOSUPPORT indicates that a filter is already set that is incompatible with the new filter.
+\end{DoxyReturn}
+Set a Port Sniff filter on the filter specification.
+
+This filter enables sniff mode for the virtual interface. All filtering on that interface then copies packets instead of intercepting them. Consequently, the kernel receives the filtered packets; otherwise it would not.
+
+If promiscuous mode is enabled, this filter copies all packets, instead of only those matched by other filters.
+
+This filter is not supported by 5000-\/series and 6000-\/series adapters. \mbox{\Hypertarget{vi_8h_a85d2fd83f222962b65890b29193b1618}\label{vi_8h_a85d2fd83f222962b65890b29193b1618}} 
+\index{vi.h@{vi.h}!ef\_filter\_spec\_set\_tx\_port\_sniff@{ef\_filter\_spec\_set\_tx\_port\_sniff}}
+\index{ef\_filter\_spec\_set\_tx\_port\_sniff@{ef\_filter\_spec\_set\_tx\_port\_sniff}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_filter\_spec\_set\_tx\_port\_sniff()}{ef\_filter\_spec\_set\_tx\_port\_sniff()}}
+{\footnotesize\ttfamily int ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+tx\+\_\+port\+\_\+sniff (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec }\end{DoxyParamCaption})}
+
+
+
+Set a TX Port Sniff filter on the filter specification. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+spec} & The \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} on which to set the filter.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EPROTONOSUPPORT indicates that a filter is already set that is incompatible with the new filter.
+\end{DoxyReturn}
+Set a TX Port Sniff filter on the filter specification.
+
+This filter loops back a copy of all outgoing packets, so that your application can process them.
+
+This filter is not supported by 5000-\/series and 6000-\/series adapters. \mbox{\Hypertarget{vi_8h_a7ebf6ecc2966a4b88367cc274a717417}\label{vi_8h_a7ebf6ecc2966a4b88367cc274a717417}} 
+\index{vi.h@{vi.h}!ef\_filter\_spec\_set\_unicast\_all@{ef\_filter\_spec\_set\_unicast\_all}}
+\index{ef\_filter\_spec\_set\_unicast\_all@{ef\_filter\_spec\_set\_unicast\_all}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_filter\_spec\_set\_unicast\_all()}{ef\_filter\_spec\_set\_unicast\_all()}}
+{\footnotesize\ttfamily int ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+unicast\+\_\+all (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec }\end{DoxyParamCaption})}
+
+
+
+Set a Unicast All filter on the filter specification. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+spec} & The \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} on which to set the filter.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EPROTONOSUPPORT indicates that a filter is already set that is incompatible with the new filter.
+\end{DoxyReturn}
+Set a Unicast All filter on the filter specification.
+
+This filter must be used with caution. It intercepts all unicast packets that arrive, including ARP resolutions, which must normally be handled by the kernel for routing to work. \mbox{\Hypertarget{vi_8h_a6a8a8227b658a5d93548818a45445815}\label{vi_8h_a6a8a8227b658a5d93548818a45445815}} 
+\index{vi.h@{vi.h}!ef\_filter\_spec\_set\_unicast\_mismatch@{ef\_filter\_spec\_set\_unicast\_mismatch}}
+\index{ef\_filter\_spec\_set\_unicast\_mismatch@{ef\_filter\_spec\_set\_unicast\_mismatch}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_filter\_spec\_set\_unicast\_mismatch()}{ef\_filter\_spec\_set\_unicast\_mismatch()}}
+{\footnotesize\ttfamily int ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+unicast\+\_\+mismatch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec }\end{DoxyParamCaption})}
+
+
+
+Set a Unicast Mismatch filter on the filter specification. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+spec} & The \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} on which to set the filter.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EPROTONOSUPPORT indicates that a filter is already set that is incompatible with the new filter.
+\end{DoxyReturn}
+Set a Unicast Mismatch filter on the filter specification.
+
+This filter intercepts all unicast traffic that would otherwise be discarded; that is, all traffic that does not match either an existing unicast filter or a kernel subscription.
+
+This filter is not supported by 5000-\/series and 6000-\/series adapters. \mbox{\Hypertarget{vi_8h_a5f8e4fb095dc588c49cfcbc064ef7810}\label{vi_8h_a5f8e4fb095dc588c49cfcbc064ef7810}} 
+\index{vi.h@{vi.h}!ef\_filter\_spec\_set\_vlan@{ef\_filter\_spec\_set\_vlan}}
+\index{ef\_filter\_spec\_set\_vlan@{ef\_filter\_spec\_set\_vlan}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_filter\_spec\_set\_vlan()}{ef\_filter\_spec\_set\_vlan()}}
+{\footnotesize\ttfamily int ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+vlan (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec,  }\item[{int}]{vlan\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Add a Virtual LAN filter on the filter specification. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+spec} & The \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} on which to set the filter. \\
+\hline
+{\em vlan\+\_\+id} & The ID of the virtual LAN on which to filter.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EPROTONOSUPPORT indicates that a filter is already set that is incompatible with the new filter.
+\end{DoxyReturn}
+Add a Virtual LAN filter on the filter specification.
+
+The Virtual LAN filter can be combined with other filters as follows\+:
+\begin{DoxyItemize}
+\item Ethernet MAC Address filters\+: supported. See \mbox{\hyperlink{vi_8h_af528ebfe9024176f75d55a7733552435}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+eth\+\_\+local()}}.
+\item Ether\+Type filters\+: supported.
+\item IP protocol filters\+: supported.
+\item IP4 filters\+:
+\begin{DoxyItemize}
+\item 7000-\/series adapter with full feature firmware\+: supported. Packets that match the IP4 filter will be received only if they also match the VLAN.
+\item Otherwise\+: not supported. Packets that match the IP4 filter will always be received, whatever the VLAN.
+\end{DoxyItemize}
+\item Other filters\+: not supported, -\/EPROTONOSUPPORT is returned. 
+\end{DoxyItemize}\mbox{\Hypertarget{vi_8h_a66124c16b919445b44e2bcba50dbc344}\label{vi_8h_a66124c16b919445b44e2bcba50dbc344}} 
+\index{vi.h@{vi.h}!ef\_vi\_alloc\_from\_pd@{ef\_vi\_alloc\_from\_pd}}
+\index{ef\_vi\_alloc\_from\_pd@{ef\_vi\_alloc\_from\_pd}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_alloc\_from\_pd()}{ef\_vi\_alloc\_from\_pd()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+alloc\+\_\+from\+\_\+pd (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{vi\+\_\+dh,  }\item[{struct \mbox{\hyperlink{structef__pd}{ef\+\_\+pd}} $\ast$}]{pd,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{pd\+\_\+dh,  }\item[{int}]{evq\+\_\+capacity,  }\item[{int}]{rxq\+\_\+capacity,  }\item[{int}]{txq\+\_\+capacity,  }\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{evq\+\_\+opt,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{evq\+\_\+dh,  }\item[{enum \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772}{ef\+\_\+vi\+\_\+flags}}}]{flags }\end{DoxyParamCaption})}
+
+
+
+Allocate a virtual interface from a protection domain. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & Memory for the allocated virtual interface. \\
+\hline
+{\em vi\+\_\+dh} & The ef\+\_\+driver\+\_\+handle to associate with the virtual interface. \\
+\hline
+{\em pd} & The protection domain from which to allocate the virtual interface. \\
+\hline
+{\em pd\+\_\+dh} & The ef\+\_\+driver\+\_\+handle to associate with the protection domain. \\
+\hline
+{\em evq\+\_\+capacity} & The capacity of the event queue, or\+:~\newline
+
+\begin{DoxyItemize}
+\item 0 for no event queue~\newline
+
+\item -\/1 for the default size (EF\+\_\+\+VI\+\_\+\+EVQ\+\_\+\+SIZE if set, otherwise it is rxq\+\_\+capacity + txq\+\_\+capacity + extra bytes if timestamps are enabled). 
+\end{DoxyItemize}\\
+\hline
+{\em rxq\+\_\+capacity} & The number of slots in the RX descriptor ring, or\+:~\newline
+
+\begin{DoxyItemize}
+\item 0 for no event queue~\newline
+
+\item -\/1 for the default size (EF\+\_\+\+VI\+\_\+\+RXQ\+\_\+\+SIZE if set, otherwise 512). 
+\end{DoxyItemize}\\
+\hline
+{\em txq\+\_\+capacity} & The number of slots in the TX descriptor ring, or\+:~\newline
+
+\begin{DoxyItemize}
+\item 0 for no TX descriptor ring~\newline
+
+\item -\/1 for the default size (EF\+\_\+\+VI\+\_\+\+TXQ\+\_\+\+SIZE if set, otherwise 512). 
+\end{DoxyItemize}\\
+\hline
+{\em evq\+\_\+opt} & event queue to use if evq\+\_\+capacity=0. \\
+\hline
+{\em evq\+\_\+dh} & The ef\+\_\+driver\+\_\+handle of the evq\+\_\+opt event queue. \\
+\hline
+{\em flags} & Flags to select hardware attributes of the virtual interface.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$>$= 0 on success (value is Q\+\_\+\+ID), or a negative error code.
+\end{DoxyReturn}
+Allocate a virtual interface from a protection domain.
+
+This allocates an RX and TX descriptor ring, an event queue, timers and interrupt etc. on the card. It also initializes the (opaque) structures needed to access them in software.
+
+An existing virtual interface can be specified, to resize its descriptor rings and event queue.
+
+When setting the sizes of the descriptor rings and event queue for a new or existing virtual interface\+:
+\begin{DoxyItemize}
+\item the event queue should be left at its default size unless extra rings are added
+\item if extra descriptor rings are added, the event queue should also be made correspondingly larger
+\item the maximum size of the event queue effectively limits how many descriptor ring slots can be supported without risking the event queue overflowing. 
+\end{DoxyItemize}\mbox{\Hypertarget{vi_8h_a555084325f97dc1fe99f11295f3f1f8e}\label{vi_8h_a555084325f97dc1fe99f11295f3f1f8e}} 
+\index{vi.h@{vi.h}!ef\_vi\_alloc\_from\_set@{ef\_vi\_alloc\_from\_set}}
+\index{ef\_vi\_alloc\_from\_set@{ef\_vi\_alloc\_from\_set}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_alloc\_from\_set()}{ef\_vi\_alloc\_from\_set()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+alloc\+\_\+from\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{vi\+\_\+dh,  }\item[{\mbox{\hyperlink{structef__vi__set}{ef\+\_\+vi\+\_\+set}} $\ast$}]{vi\+\_\+set,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{vi\+\_\+set\+\_\+dh,  }\item[{int}]{index\+\_\+in\+\_\+vi\+\_\+set,  }\item[{int}]{evq\+\_\+capacity,  }\item[{int}]{rxq\+\_\+capacity,  }\item[{int}]{txq\+\_\+capacity,  }\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{evq\+\_\+opt,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{evq\+\_\+dh,  }\item[{enum \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772}{ef\+\_\+vi\+\_\+flags}}}]{flags }\end{DoxyParamCaption})}
+
+
+
+Allocate a virtual interface from a virtual interface set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & Memory for the allocated virtual interface. \\
+\hline
+{\em vi\+\_\+dh} & The ef\+\_\+driver\+\_\+handle to associate with the virtual interface. \\
+\hline
+{\em vi\+\_\+set} & The virtual interface set from which to allocate the virtual interface. \\
+\hline
+{\em vi\+\_\+set\+\_\+dh} & The ef\+\_\+driver\+\_\+handle to associate with the virtual interface set. \\
+\hline
+{\em index\+\_\+in\+\_\+vi\+\_\+set} & Index of the virtual interface within the set to allocate, or -\/1 for any. \\
+\hline
+{\em evq\+\_\+capacity} & The number of events in the event queue (maximum 32768), or\+:~\newline
+
+\begin{DoxyItemize}
+\item 0 for no event queue~\newline
+
+\item -\/1 for the default size. 
+\end{DoxyItemize}\\
+\hline
+{\em rxq\+\_\+capacity} & The number of slots in the RX descriptor ring, or\+:~\newline
+
+\begin{DoxyItemize}
+\item 0 for no RX queue~\newline
+
+\item -\/1 for the default size (EF\+\_\+\+VI\+\_\+\+RXQ\+\_\+\+SIZE if set, otherwise 512). 
+\end{DoxyItemize}\\
+\hline
+{\em txq\+\_\+capacity} & The number of slots in the TX descriptor ring, or\+:~\newline
+
+\begin{DoxyItemize}
+\item 0 for no TX queue~\newline
+
+\item -\/1 for the default size (EF\+\_\+\+VI\+\_\+\+TXQ\+\_\+\+SIZE if set, otherwise 512). 
+\end{DoxyItemize}\\
+\hline
+{\em evq\+\_\+opt} & event queue to use if evq\+\_\+capacity=0. \\
+\hline
+{\em evq\+\_\+dh} & The ef\+\_\+driver\+\_\+handle of the evq\+\_\+opt event queue. \\
+\hline
+{\em flags} & Flags to select hardware attributes of the virtual interface.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$>$= 0 on success (value is Q\+\_\+\+ID), or a negative error code.
+\end{DoxyReturn}
+Allocate a virtual interface from a virtual interface set.
+
+This allocates an RX and TX descriptor ring, an event queue, timers and interrupt etc. on the card. It also initializes the (opaque) structures needed to access them in software.
+
+An existing virtual interface can be specified, to resize its descriptor rings and event queue.
+
+When setting the sizes of the descriptor rings and event queue for a new or existing virtual interface\+:
+\begin{DoxyItemize}
+\item the event queue should be left at its default size unless extra rings are added
+\item if extra descriptor rings are added, the event queue should also be made correspondingly larger
+\item the maximum size of the event queue effectively limits how many descriptor ring slots can be supported without risking the event queue overflowing. 
+\end{DoxyItemize}\mbox{\Hypertarget{vi_8h_a71909d1557f3064579781604fc117e4e}\label{vi_8h_a71909d1557f3064579781604fc117e4e}} 
+\index{vi.h@{vi.h}!ef\_vi\_filter\_add@{ef\_vi\_filter\_add}}
+\index{ef\_vi\_filter\_add@{ef\_vi\_filter\_add}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_filter\_add()}{ef\_vi\_filter\_add()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+filter\+\_\+add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{vi\+\_\+dh,  }\item[{const \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec,  }\item[{\mbox{\hyperlink{structef__filter__cookie}{ef\+\_\+filter\+\_\+cookie}} $\ast$}]{filter\+\_\+cookie\+\_\+out }\end{DoxyParamCaption})}
+
+
+
+Add a filter to a virtual interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface on which to add the filter. \\
+\hline
+{\em vi\+\_\+dh} & The ef\+\_\+driver\+\_\+handle for the virtual interface. \\
+\hline
+{\em filter\+\_\+spec} & The filter to add. \\
+\hline
+{\em filter\+\_\+cookie\+\_\+out} & Optional pointer to an \mbox{\hyperlink{structef__filter__cookie}{ef\+\_\+filter\+\_\+cookie}}, that is updated on return with a cookie for the filter.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Add a filter to a virtual interface.
+
+filter\+\_\+cookie\+\_\+out can be NULL. If not null, then the returned value can be used in \mbox{\hyperlink{vi_8h_a42f633c2483fb182434c8f7f3ea732fd}{ef\+\_\+vi\+\_\+filter\+\_\+del()}} to remove this filter.
+
+After calling this function, any local copy of the filter can be deleted. \mbox{\Hypertarget{vi_8h_a42f633c2483fb182434c8f7f3ea732fd}\label{vi_8h_a42f633c2483fb182434c8f7f3ea732fd}} 
+\index{vi.h@{vi.h}!ef\_vi\_filter\_del@{ef\_vi\_filter\_del}}
+\index{ef\_vi\_filter\_del@{ef\_vi\_filter\_del}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_filter\_del()}{ef\_vi\_filter\_del()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+filter\+\_\+del (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{vi\+\_\+dh,  }\item[{\mbox{\hyperlink{structef__filter__cookie}{ef\+\_\+filter\+\_\+cookie}} $\ast$}]{filter\+\_\+cookie }\end{DoxyParamCaption})}
+
+
+
+Delete a filter from a virtual interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface from which to delete the filter. \\
+\hline
+{\em vi\+\_\+dh} & The ef\+\_\+driver\+\_\+handle for the virtual interface. \\
+\hline
+{\em filter\+\_\+cookie} & The filter cookie for the filter to delete, as set on return from \mbox{\hyperlink{vi_8h_a71909d1557f3064579781604fc117e4e}{ef\+\_\+vi\+\_\+filter\+\_\+add()}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Delete a filter from a virtual interface. \mbox{\Hypertarget{vi_8h_a2d42bb597cdedc552d364a6d0b6e10a2}\label{vi_8h_a2d42bb597cdedc552d364a6d0b6e10a2}} 
+\index{vi.h@{vi.h}!ef\_vi\_flush@{ef\_vi\_flush}}
+\index{ef\_vi\_flush@{ef\_vi\_flush}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_flush()}{ef\_vi\_flush()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+flush (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{nic }\end{DoxyParamCaption})}
+
+
+
+Flush the virtual interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to flush. \\
+\hline
+{\em nic} & The ef\+\_\+driver\+\_\+handle for the NIC hosting the interface.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Flush the virtual interface.
+
+After this function returns, it is safe to reuse all buffers which have been pushed onto the NIC. \mbox{\Hypertarget{vi_8h_ac9c8bc0bab4933eb9a3448a025209f3f}\label{vi_8h_ac9c8bc0bab4933eb9a3448a025209f3f}} 
+\index{vi.h@{vi.h}!ef\_vi\_free@{ef\_vi\_free}}
+\index{ef\_vi\_free@{ef\_vi\_free}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_free()}{ef\_vi\_free()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{nic }\end{DoxyParamCaption})}
+
+
+
+Free a virtual interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to free. \\
+\hline
+{\em nic} & The ef\+\_\+driver\+\_\+handle for the NIC hosting the interface.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Free a virtual interface.
+
+This should be called when a virtual interface is no longer needed.
+
+To free up all resources, you must also close the associated driver handle using ef\+\_\+driver\+\_\+close and free up memory from the protection domain ef\+\_\+pd\+\_\+free. See \mbox{\hyperlink{using_using_freeing}{Freeing Resources}}
+
+If successful\+:
+\begin{DoxyItemize}
+\item the memory for state provided for this virtual interface is no longer required
+\item no further events from this virtual interface will be delivered to its event queue. 
+\end{DoxyItemize}\mbox{\Hypertarget{vi_8h_a144164cd992dd9155ce192092f74735d}\label{vi_8h_a144164cd992dd9155ce192092f74735d}} 
+\index{vi.h@{vi.h}!ef\_vi\_get\_mac@{ef\_vi\_get\_mac}}
+\index{ef\_vi\_get\_mac@{ef\_vi\_get\_mac}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_get\_mac()}{ef\_vi\_get\_mac()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+get\+\_\+mac (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{vi\+\_\+dh,  }\item[{void $\ast$}]{mac\+\_\+out }\end{DoxyParamCaption})}
+
+
+
+Get the Ethernet MAC address for the virtual interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query. \\
+\hline
+{\em vi\+\_\+dh} & The ef\+\_\+driver\+\_\+handle for the NIC hosting the interface. \\
+\hline
+{\em mac\+\_\+out} & Pointer to a six-\/byte buffer, that is updated on return with the Ethernet MAC address.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Get the Ethernet MAC address for the virtual interface.
+
+This is not a cheap call, so cache the result if you care about performance. \mbox{\Hypertarget{vi_8h_a05e18721b7055b77c2fe2d02e1575b9f}\label{vi_8h_a05e18721b7055b77c2fe2d02e1575b9f}} 
+\index{vi.h@{vi.h}!ef\_vi\_mtu@{ef\_vi\_mtu}}
+\index{ef\_vi\_mtu@{ef\_vi\_mtu}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_mtu()}{ef\_vi\_mtu()}}
+{\footnotesize\ttfamily unsigned ef\+\_\+vi\+\_\+mtu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{vi\+\_\+dh }\end{DoxyParamCaption})}
+
+
+
+Return the virtual interface MTU. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query. \\
+\hline
+{\em vi\+\_\+dh} & The ef\+\_\+driver\+\_\+handle for the NIC hosting the interface.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The virtual interface Maximum Transmission Unit.
+\end{DoxyReturn}
+Return the virtual interface MTU. (This is the maximum size of Ethernet frames that can be transmitted through, and received by the interface).
+
+The returned value is the total frame size, including all headers, but not including the Ethernet frame check. \mbox{\Hypertarget{vi_8h_a504b3415e315aeb55bd7ba05bed61bc5}\label{vi_8h_a504b3415e315aeb55bd7ba05bed61bc5}} 
+\index{vi.h@{vi.h}!ef\_vi\_pace@{ef\_vi\_pace}}
+\index{ef\_vi\_pace@{ef\_vi\_pace}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_pace()}{ef\_vi\_pace()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+pace (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{nic,  }\item[{int}]{val }\end{DoxyParamCaption})}
+
+
+
+Pace the virtual interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to pace. \\
+\hline
+{\em nic} & The ef\+\_\+driver\+\_\+handle for the NIC hosting the interface. \\
+\hline
+{\em val} & The minimum inter-\/packet gap for the TXQ.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Pace the virtual interface.
+
+This sets a minimum inter-\/packet gap for the TXQ\+:
+\begin{DoxyItemize}
+\item if val is -\/1 then the TXQ is put into the \char`\"{}pacing\char`\"{} bin, but no gap is enforced
+\item otherwise, the gap is (2$^\wedge$val)$\ast$100ns.
+\end{DoxyItemize}
+
+This can be used to give priority to latency sensitive traffic over bulk traffic. \mbox{\Hypertarget{vi_8h_a7940e2ef8c2df90ce777e6db1556e19a}\label{vi_8h_a7940e2ef8c2df90ce777e6db1556e19a}} 
+\index{vi.h@{vi.h}!ef\_vi\_prime@{ef\_vi\_prime}}
+\index{ef\_vi\_prime@{ef\_vi\_prime}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_prime()}{ef\_vi\_prime()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+prime (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{dh,  }\item[{unsigned}]{current\+\_\+ptr }\end{DoxyParamCaption})}
+
+
+
+Prime a virtual interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to prime. \\
+\hline
+{\em dh} & The ef\+\_\+driver\+\_\+handle to associate with the virtual interface. \\
+\hline
+{\em current\+\_\+ptr} & Value returned from \mbox{\hyperlink{ef__vi_8h_a4729338fad56b630f44ae1b2515dfd69}{ef\+\_\+eventq\+\_\+current()}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Prime a virtual interface. This enables interrupts so you can block on the file descriptor associated with the ef\+\_\+driver\+\_\+handle using select/poll/epoll, etc.
+
+Passing the current event queue pointer ensures correct handling of any events that occur between this prime and the epoll\+\_\+wait call. \mbox{\Hypertarget{vi_8h_a341b60d550339b63abf0ad8b79828cec}\label{vi_8h_a341b60d550339b63abf0ad8b79828cec}} 
+\index{vi.h@{vi.h}!ef\_vi\_set\_alloc\_from\_pd@{ef\_vi\_set\_alloc\_from\_pd}}
+\index{ef\_vi\_set\_alloc\_from\_pd@{ef\_vi\_set\_alloc\_from\_pd}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_set\_alloc\_from\_pd()}{ef\_vi\_set\_alloc\_from\_pd()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+set\+\_\+alloc\+\_\+from\+\_\+pd (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi__set}{ef\+\_\+vi\+\_\+set}} $\ast$}]{vi\+\_\+set,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{vi\+\_\+set\+\_\+dh,  }\item[{struct \mbox{\hyperlink{structef__pd}{ef\+\_\+pd}} $\ast$}]{pd,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{pd\+\_\+dh,  }\item[{int}]{n\+\_\+vis }\end{DoxyParamCaption})}
+
+
+
+Allocate a virtual interface set within a protection domain. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi\+\_\+set} & Memory for the allocated virtual interface set. \\
+\hline
+{\em vi\+\_\+set\+\_\+dh} & The ef\+\_\+driver\+\_\+handle to associate with the virtual interface set. \\
+\hline
+{\em pd} & The protection domain from which to allocate the virtual interface set. \\
+\hline
+{\em pd\+\_\+dh} & The ef\+\_\+driver\+\_\+handle of the associated protection domain. \\
+\hline
+{\em n\+\_\+vis} & The number of virtual interfaces in the virtual interface set.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Allocate a virtual interface set within a protection domain.
+
+A virtual interface set is usually used to spread the load of handling received packets. This is sometimes called receive-\/side scaling, or RSS. \mbox{\Hypertarget{vi_8h_a89aa0805536fccbaf79c2120c316ff65}\label{vi_8h_a89aa0805536fccbaf79c2120c316ff65}} 
+\index{vi.h@{vi.h}!ef\_vi\_set\_filter\_add@{ef\_vi\_set\_filter\_add}}
+\index{ef\_vi\_set\_filter\_add@{ef\_vi\_set\_filter\_add}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_set\_filter\_add()}{ef\_vi\_set\_filter\_add()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+set\+\_\+filter\+\_\+add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi__set}{ef\+\_\+vi\+\_\+set}} $\ast$}]{vi\+\_\+set,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{vi\+\_\+set\+\_\+dh,  }\item[{const \mbox{\hyperlink{structef__filter__spec}{ef\+\_\+filter\+\_\+spec}} $\ast$}]{filter\+\_\+spec,  }\item[{\mbox{\hyperlink{structef__filter__cookie}{ef\+\_\+filter\+\_\+cookie}} $\ast$}]{filter\+\_\+cookie\+\_\+out }\end{DoxyParamCaption})}
+
+
+
+Add a filter to a virtual interface set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi\+\_\+set} & The virtual interface set on which to add the filter. \\
+\hline
+{\em vi\+\_\+set\+\_\+dh} & The ef\+\_\+driver\+\_\+handle for the virtual interface set. \\
+\hline
+{\em filter\+\_\+spec} & The filter to add. \\
+\hline
+{\em filter\+\_\+cookie\+\_\+out} & Optional pointer to an \mbox{\hyperlink{structef__filter__cookie}{ef\+\_\+filter\+\_\+cookie}}, that is updated on return with a cookie for the filter.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ Add a filter to a virtual interface set.
+\end{DoxyReturn}
+filter\+\_\+cookie\+\_\+out can be NULL. If not null, then the returned value can be used in \mbox{\hyperlink{vi_8h_a42f633c2483fb182434c8f7f3ea732fd}{ef\+\_\+vi\+\_\+filter\+\_\+del()}} to delete this filter.
+
+After calling this function, any local copy of the filter can be deleted. \mbox{\Hypertarget{vi_8h_ad2bce41b1eccaa8c393c9abacab9905c}\label{vi_8h_ad2bce41b1eccaa8c393c9abacab9905c}} 
+\index{vi.h@{vi.h}!ef\_vi\_set\_filter\_del@{ef\_vi\_set\_filter\_del}}
+\index{ef\_vi\_set\_filter\_del@{ef\_vi\_set\_filter\_del}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_set\_filter\_del()}{ef\_vi\_set\_filter\_del()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+set\+\_\+filter\+\_\+del (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi__set}{ef\+\_\+vi\+\_\+set}} $\ast$}]{vi\+\_\+set,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{vi\+\_\+set\+\_\+dh,  }\item[{\mbox{\hyperlink{structef__filter__cookie}{ef\+\_\+filter\+\_\+cookie}} $\ast$}]{filter\+\_\+cookie }\end{DoxyParamCaption})}
+
+
+
+Delete a filter from a virtual interface set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi\+\_\+set} & The virtual interface set from which to delete the filter. \\
+\hline
+{\em vi\+\_\+set\+\_\+dh} & The ef\+\_\+driver\+\_\+handle for the virtual interface set. \\
+\hline
+{\em filter\+\_\+cookie} & The filter cookie for the filter to delete.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Delete a filter from a virtual interface set. \mbox{\Hypertarget{vi_8h_a356ed04bbd54430fa4065b8d7c5dbc78}\label{vi_8h_a356ed04bbd54430fa4065b8d7c5dbc78}} 
+\index{vi.h@{vi.h}!ef\_vi\_set\_free@{ef\_vi\_set\_free}}
+\index{ef\_vi\_set\_free@{ef\_vi\_set\_free}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_set\_free()}{ef\_vi\_set\_free()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+set\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi__set}{ef\+\_\+vi\+\_\+set}} $\ast$}]{vi\+\_\+set,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{vi\+\_\+set\+\_\+dh }\end{DoxyParamCaption})}
+
+
+
+Free a virtual interface set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi\+\_\+set} & Memory for the allocated virtual interface set. \\
+\hline
+{\em vi\+\_\+set\+\_\+dh} & The ef\+\_\+driver\+\_\+handle to associate with the virtual interface set.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Free a virtual interface set.
+
+To free up all resources, you must also close the associated driver handle. \mbox{\Hypertarget{vi_8h_a98b0da6b8cd8d0acdf75a709f0795a0c}\label{vi_8h_a98b0da6b8cd8d0acdf75a709f0795a0c}} 
+\index{vi.h@{vi.h}!ef\_vi\_stats\_query@{ef\_vi\_stats\_query}}
+\index{ef\_vi\_stats\_query@{ef\_vi\_stats\_query}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_stats\_query()}{ef\_vi\_stats\_query()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+stats\+\_\+query (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{vi\+\_\+dh,  }\item[{void $\ast$}]{data,  }\item[{int}]{do\+\_\+reset }\end{DoxyParamCaption})}
+
+
+
+Retrieve a set of statistic values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query. \\
+\hline
+{\em vi\+\_\+dh} & The ef\+\_\+driver\+\_\+handle for the virtual interface. \\
+\hline
+{\em data} & Pointer to a buffer, into which the statistics are retrieved.~\newline
+ The size of this buffer should be equal to the evsl\+\_\+data\+\_\+bytes field of the layout description, that can be fetched using \mbox{\hyperlink{vi_8h_a35ed5db7f791c4f30758e31a59fa8d1f}{ef\+\_\+vi\+\_\+stats\+\_\+query\+\_\+layout()}}. \\
+\hline
+{\em do\+\_\+reset} & True to reset the statistics after retrieving them.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Retrieve a set of statistic values.
+
+If do\+\_\+reset is true, the statistics are reset after reading.
+
+\begin{DoxyNote}{Note}
+This requires full feature firmware. If used with low-\/latency firmware, no error is given, and the statistics are invalid (typically all zeroes). 
+\end{DoxyNote}
+\mbox{\Hypertarget{vi_8h_a35ed5db7f791c4f30758e31a59fa8d1f}\label{vi_8h_a35ed5db7f791c4f30758e31a59fa8d1f}} 
+\index{vi.h@{vi.h}!ef\_vi\_stats\_query\_layout@{ef\_vi\_stats\_query\_layout}}
+\index{ef\_vi\_stats\_query\_layout@{ef\_vi\_stats\_query\_layout}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_stats\_query\_layout()}{ef\_vi\_stats\_query\_layout()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+stats\+\_\+query\+\_\+layout (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{const \mbox{\hyperlink{structef__vi__stats__layout}{ef\+\_\+vi\+\_\+stats\+\_\+layout}} $\ast$$\ast$const}]{layout\+\_\+out }\end{DoxyParamCaption})}
+
+
+
+Retrieve layout for available statistics. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query. \\
+\hline
+{\em layout\+\_\+out} & Pointer to an ef\+\_\+vi\+\_\+stats\+\_\+layout$\ast$, that is updated on return with the layout for available statistics.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Retrieve layout for available statistics. \mbox{\Hypertarget{vi_8h_aca91a5b7b6569d14c434ca242ecf3af9}\label{vi_8h_aca91a5b7b6569d14c434ca242ecf3af9}} 
+\index{vi.h@{vi.h}!ef\_vi\_transmit\_alt\_alloc@{ef\_vi\_transmit\_alt\_alloc}}
+\index{ef\_vi\_transmit\_alt\_alloc@{ef\_vi\_transmit\_alt\_alloc}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_alt\_alloc()}{ef\_vi\_transmit\_alt\_alloc()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+alloc (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{vi\+\_\+dh,  }\item[{int}]{num\+\_\+alts,  }\item[{size\+\_\+t}]{buf\+\_\+space }\end{DoxyParamCaption})}
+
+
+
+Allocate a set of TX alternatives. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface that is to use the TX alternatives. \\
+\hline
+{\em vi\+\_\+dh} & The ef\+\_\+driver\+\_\+handle for the NIC hosting the interface. \\
+\hline
+{\em num\+\_\+alts} & The number of TX alternatives for which to allocate space. \\
+\hline
+{\em buf\+\_\+space} & The buffer space required for the set of TX alternatives, in bytes.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 Success.
+
+-\/EINVAL The num\+\_\+alts or buf\+\_\+space parameters are invalid, or the VI was allocated without EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+ALT set.
+
+-\/EALREADY A set of TX alternatives has already been allocated for use with this VI.
+
+-\/EBUSY Insufficient memory was available (either host memory or packet buffers on the adapter); or too many alternatives requested, or alternatives requested on too many distinct VIs.
+\end{DoxyReturn}
+Allocate a set of TX alternatives for use with a virtual interface. The virtual interface must have been allocated with the EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+ALT flag.
+
+The space remains allocated until \mbox{\hyperlink{vi_8h_a64953ac5b034eea110f27d411686b735}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+free()}} is called or the virtual interface is freed.
+
+TX alternatives provide a mechanism to send with very low latency. They work by pre-\/loading packets into the adapter in advance, and then calling \mbox{\hyperlink{ef__vi_8h_a70e8d8c2fa4927392174223bcdd2cc31}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+go()}} to transmit the packets.
+
+Packets are pre-\/loaded into the adapter using normal send calls such as \mbox{\hyperlink{ef__vi_8h_a62408f50ae79efed0239d0b8bde3a9d8}{ef\+\_\+vi\+\_\+transmit()}}. Use \mbox{\hyperlink{ef__vi_8h_add2a128213fafba3ebb74d137ab36178}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+select()}} to select which \char`\"{}alternative\char`\"{} to load the packet into.
+
+Each alternative has three states\+: STOP, GO and DISCARD. The \mbox{\hyperlink{ef__vi_8h_a51050ee6dc126b1326c6d5775808e639}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+stop()}}, \mbox{\hyperlink{ef__vi_8h_a70e8d8c2fa4927392174223bcdd2cc31}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+go()}} and \mbox{\hyperlink{ef__vi_8h_ac273e4b11c2b98664cf7363574eb5f70}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+discard()}} calls transition between the states. Typically an alternative is placed in the STOP state, selected, pre-\/loaded with one or more packets, and then later on the critical path placed in the GO state.
+
+When packets are transmitted via TX alternatives, events of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+ALT are returned to the application. The application is responsible for ensuring that all of the packets in an alternative have been sent before transitioning from GO or DISCARD to the STOP state.
+
+The {\ttfamily buf\+\_\+space} parameter gives the amount of buffering to allocate for this set of TX alternatives, in bytes. Note that if this buffering is exceeded then packets sent to TX alternatives may be truncated or dropped, and no error is reported in this case. \mbox{\Hypertarget{vi_8h_a64953ac5b034eea110f27d411686b735}\label{vi_8h_a64953ac5b034eea110f27d411686b735}} 
+\index{vi.h@{vi.h}!ef\_vi\_transmit\_alt\_free@{ef\_vi\_transmit\_alt\_free}}
+\index{ef\_vi\_transmit\_alt\_free@{ef\_vi\_transmit\_alt\_free}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_alt\_free()}{ef\_vi\_transmit\_alt\_free()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+free (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{vi\+\_\+dh }\end{DoxyParamCaption})}
+
+
+
+Free a set of TX alternatives. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface whose alternatives are to be freed. \\
+\hline
+{\em vi\+\_\+dh} & The ef\+\_\+driver\+\_\+handle for the NIC hosting the interface.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Release the set of TX alternatives allocated by \mbox{\hyperlink{vi_8h_aca91a5b7b6569d14c434ca242ecf3af9}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+alloc()}}. \mbox{\Hypertarget{vi_8h_a16b8fed8c7b4af2cbcdc559d8ac28572}\label{vi_8h_a16b8fed8c7b4af2cbcdc559d8ac28572}} 
+\index{vi.h@{vi.h}!ef\_vi\_transmit\_alt\_query\_buffering@{ef\_vi\_transmit\_alt\_query\_buffering}}
+\index{ef\_vi\_transmit\_alt\_query\_buffering@{ef\_vi\_transmit\_alt\_query\_buffering}!vi.h@{vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_alt\_query\_buffering()}{ef\_vi\_transmit\_alt\_query\_buffering()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+query\+\_\+buffering (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{int}]{ifindex,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{vi\+\_\+dh,  }\item[{int}]{n\+\_\+alts }\end{DoxyParamCaption})}
+
+
+
+Query available buffering. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & Interface to be queried \\
+\hline
+{\em ifindex} & The index of the interface that you wish to query. You can use if\+\_\+nametoindex() to obtain this. This should be the underlying physical interface, rather than a bond, VLAN, or similar. \\
+\hline
+{\em vi\+\_\+dh} & The ef\+\_\+driver\+\_\+handle for the NIC hosting the interface. \\
+\hline
+{\em n\+\_\+alts} & Intended number of alternatives\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/EINVAL if this VI doesn\textquotesingle{}t support alternatives, else the number of bytes available
+\end{DoxyReturn}
+Owing to per-\/packet and other overheads, the amount of data which can be stored in TX alternatives is generally slightly less than the amount of memory available on the hardware.
+
+This function allows the caller to find out how much user-\/visible buffering will be available if the given number of alternatives are allocated on the given VI. 

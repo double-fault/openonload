@@ -1,0 +1,210 @@
+\hypertarget{pio_8h}{}\doxysection{pio.\+h File Reference}
+\label{pio_8h}\index{pio.h@{pio.h}}
+
+
+Programmed Input/\+Output for Ether\+Fabric Virtual Interface HAL.  
+
+
+{\ttfamily \#include $<$etherfabric/base.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structef__pio}{ef\+\_\+pio}}
+\begin{DoxyCompactList}\small\item\em A Programmed I/O region. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{pio_8h_ac059b316b3af647d626285eff4d9450a}\label{pio_8h_ac059b316b3af647d626285eff4d9450a}} 
+\#define \mbox{\hyperlink{pio_8h_ac059b316b3af647d626285eff4d9450a}{EF\+\_\+\+VI\+\_\+\+CONFIG\+\_\+\+PIO}}~1
+\begin{DoxyCompactList}\small\item\em True if Programmed I/O regions can be configured. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{pio_8h_aed54d489cfa81e3d0e72f5544063719c}\label{pio_8h_aed54d489cfa81e3d0e72f5544063719c}} 
+typedef struct \mbox{\hyperlink{structef__pio}{ef\+\_\+pio}} \mbox{\hyperlink{pio_8h_aed54d489cfa81e3d0e72f5544063719c}{ef\+\_\+pio}}
+\begin{DoxyCompactList}\small\item\em A Programmed I/O region. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pio_8h_ac9e4ea764649add2b6680835ddce07c9}{ef\+\_\+pio\+\_\+alloc}} (\mbox{\hyperlink{structef__pio}{ef\+\_\+pio}} $\ast$pio, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} pio\+\_\+dh, struct \mbox{\hyperlink{structef__pd}{ef\+\_\+pd}} $\ast$pd, unsigned len\+\_\+hint, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} pd\+\_\+dh)
+\begin{DoxyCompactList}\small\item\em Allocate a Programmed I/O region. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{pio_8h_af6d414f3df5a52faaf81a63714428fde}{ef\+\_\+vi\+\_\+get\+\_\+pio\+\_\+size}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi)
+\begin{DoxyCompactList}\small\item\em Get the size of the Programmed I/O region. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{pio_8h_acb13345a50dd777eb4f4e9a99a0e2558}{ef\+\_\+pio\+\_\+free}} (\mbox{\hyperlink{structef__pio}{ef\+\_\+pio}} $\ast$pio, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} pio\+\_\+dh)
+\begin{DoxyCompactList}\small\item\em Free a Programmed I/O region. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{pio_8h_aa51c1c3a2c2c6b0c8644b1fa07458a19}{ef\+\_\+pio\+\_\+link\+\_\+vi}} (\mbox{\hyperlink{structef__pio}{ef\+\_\+pio}} $\ast$pio, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} pio\+\_\+dh, struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} vi\+\_\+dh)
+\begin{DoxyCompactList}\small\item\em Link a Programmed I/O region with a virtual interface. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{pio_8h_a84806b695423f76bbcc421261547b184}{ef\+\_\+pio\+\_\+unlink\+\_\+vi}} (\mbox{\hyperlink{structef__pio}{ef\+\_\+pio}} $\ast$pio, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} pio\+\_\+dh, struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} vi\+\_\+dh)
+\begin{DoxyCompactList}\small\item\em Unlink a Programmed I/O region from a virtual interface. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{pio_8h_a1966f51d747aea4416d1a20890bb9fb4}{ef\+\_\+pio\+\_\+memcpy}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, const void $\ast$base, int offset, int len)
+\begin{DoxyCompactList}\small\item\em Copy data from memory into a Programmed I/O region. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Programmed Input/\+Output for Ether\+Fabric Virtual Interface HAL. 
+
+\begin{DoxyAuthor}{Author}
+Solarflare Communications, Inc. 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2018/11/06 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright \copyright{} 2018 Solarflare Communications, Inc. All rights reserved. Solarflare, Open\+Onload and Enterprise\+Onload are trademarks of Solarflare Communications, Inc. 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{pio_8h_ac9e4ea764649add2b6680835ddce07c9}\label{pio_8h_ac9e4ea764649add2b6680835ddce07c9}} 
+\index{pio.h@{pio.h}!ef\_pio\_alloc@{ef\_pio\_alloc}}
+\index{ef\_pio\_alloc@{ef\_pio\_alloc}!pio.h@{pio.h}}
+\doxysubsubsection{\texorpdfstring{ef\_pio\_alloc()}{ef\_pio\_alloc()}}
+{\footnotesize\ttfamily int ef\+\_\+pio\+\_\+alloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__pio}{ef\+\_\+pio}} $\ast$}]{pio,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{pio\+\_\+dh,  }\item[{struct \mbox{\hyperlink{structef__pd}{ef\+\_\+pd}} $\ast$}]{pd,  }\item[{unsigned}]{len\+\_\+hint,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{pd\+\_\+dh }\end{DoxyParamCaption})}
+
+
+
+Allocate a Programmed I/O region. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pio} & Memory to use for the allocated Programmed I/O region. \\
+\hline
+{\em pio\+\_\+dh} & The ef\+\_\+driver\+\_\+handle to associate with the Programmed I/O region. \\
+\hline
+{\em pd} & The protection domain to associate with the Programmed I/O region. \\
+\hline
+{\em len\+\_\+hint} & Hint for the requested length of the Programmed I/O region. \\
+\hline
+{\em pd\+\_\+dh} & The ef\+\_\+driver\+\_\+handle for the protection domain.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Allocate a Programmed I/O region.
+
+This function is available only on 64-\/bit x86 processors. \mbox{\Hypertarget{pio_8h_acb13345a50dd777eb4f4e9a99a0e2558}\label{pio_8h_acb13345a50dd777eb4f4e9a99a0e2558}} 
+\index{pio.h@{pio.h}!ef\_pio\_free@{ef\_pio\_free}}
+\index{ef\_pio\_free@{ef\_pio\_free}!pio.h@{pio.h}}
+\doxysubsubsection{\texorpdfstring{ef\_pio\_free()}{ef\_pio\_free()}}
+{\footnotesize\ttfamily int ef\+\_\+pio\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__pio}{ef\+\_\+pio}} $\ast$}]{pio,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{pio\+\_\+dh }\end{DoxyParamCaption})}
+
+
+
+Free a Programmed I/O region. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pio} & The Programmed I/O region. \\
+\hline
+{\em pio\+\_\+dh} & The ef\+\_\+driver\+\_\+handle for the Programmed I/O region.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Free a Programmed I/O region.
+
+The Programmed I/O region must not be linked when this function is called. See \mbox{\hyperlink{pio_8h_a84806b695423f76bbcc421261547b184}{ef\+\_\+pio\+\_\+unlink\+\_\+vi()}}.
+
+To free up all resources, the associated driver handle must then be closed by calling \mbox{\hyperlink{base_8h_ac7afa09b92436d8007255c3a8723c759}{ef\+\_\+driver\+\_\+close()}}). \mbox{\Hypertarget{pio_8h_aa51c1c3a2c2c6b0c8644b1fa07458a19}\label{pio_8h_aa51c1c3a2c2c6b0c8644b1fa07458a19}} 
+\index{pio.h@{pio.h}!ef\_pio\_link\_vi@{ef\_pio\_link\_vi}}
+\index{ef\_pio\_link\_vi@{ef\_pio\_link\_vi}!pio.h@{pio.h}}
+\doxysubsubsection{\texorpdfstring{ef\_pio\_link\_vi()}{ef\_pio\_link\_vi()}}
+{\footnotesize\ttfamily int ef\+\_\+pio\+\_\+link\+\_\+vi (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__pio}{ef\+\_\+pio}} $\ast$}]{pio,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{pio\+\_\+dh,  }\item[{struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{vi\+\_\+dh }\end{DoxyParamCaption})}
+
+
+
+Link a Programmed I/O region with a virtual interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pio} & The Programmed I/O region. \\
+\hline
+{\em pio\+\_\+dh} & The ef\+\_\+driver\+\_\+handle for the Programmed I/O region. \\
+\hline
+{\em vi} & The virtual interface to link with the Programmed I/O region. \\
+\hline
+{\em vi\+\_\+dh} & The ef\+\_\+driver\+\_\+handle for the virtual interface.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Link a Programmed I/O region with a virtual interface. Only one region can be linked to a virtual interface. \mbox{\Hypertarget{pio_8h_a1966f51d747aea4416d1a20890bb9fb4}\label{pio_8h_a1966f51d747aea4416d1a20890bb9fb4}} 
+\index{pio.h@{pio.h}!ef\_pio\_memcpy@{ef\_pio\_memcpy}}
+\index{ef\_pio\_memcpy@{ef\_pio\_memcpy}!pio.h@{pio.h}}
+\doxysubsubsection{\texorpdfstring{ef\_pio\_memcpy()}{ef\_pio\_memcpy()}}
+{\footnotesize\ttfamily int ef\+\_\+pio\+\_\+memcpy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{const void $\ast$}]{base,  }\item[{int}]{offset,  }\item[{int}]{len }\end{DoxyParamCaption})}
+
+
+
+Copy data from memory into a Programmed I/O region. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface for the Programmed I/O region. \\
+\hline
+{\em base} & The base address of the memory to copy. \\
+\hline
+{\em offset} & The offset into the Programmed I/O region at which to copy the data to. You shouldn\textquotesingle{}t try to copy memory to part of the PIO region that is already in use for an ongoing send as this may result in corruption. \\
+\hline
+{\em len} & The number of bytes to copy.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+This function copies data from the user buffer to the adapter\textquotesingle{}s PIO buffer. It goes via an intermediate buffer to meet any alignment requirements that the adapter may have.
+
+Please refer to the PIO transmit functions (e.\+g.\+: \mbox{\hyperlink{ef__vi_8h_a1c5757be9dbfe3271bb2875f89e838b6}{ef\+\_\+vi\+\_\+transmit\+\_\+pio()}} and \mbox{\hyperlink{ef__vi_8h_a7fd42b3874604101680daca3ceec07a3}{ef\+\_\+vi\+\_\+transmit\+\_\+copy\+\_\+pio()}}) for alignment requirements of packets.
+
+The Programmed I/O region can hold multiple smaller packets, referenced by different offset parameters. All other constraints must still be observed, including\+:
+\begin{DoxyItemize}
+\item alignment
+\item minimum size
+\item maximum size
+\item avoiding reuse until transmission is complete. 
+\end{DoxyItemize}\mbox{\Hypertarget{pio_8h_a84806b695423f76bbcc421261547b184}\label{pio_8h_a84806b695423f76bbcc421261547b184}} 
+\index{pio.h@{pio.h}!ef\_pio\_unlink\_vi@{ef\_pio\_unlink\_vi}}
+\index{ef\_pio\_unlink\_vi@{ef\_pio\_unlink\_vi}!pio.h@{pio.h}}
+\doxysubsubsection{\texorpdfstring{ef\_pio\_unlink\_vi()}{ef\_pio\_unlink\_vi()}}
+{\footnotesize\ttfamily int ef\+\_\+pio\+\_\+unlink\+\_\+vi (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__pio}{ef\+\_\+pio}} $\ast$}]{pio,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{pio\+\_\+dh,  }\item[{struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{vi\+\_\+dh }\end{DoxyParamCaption})}
+
+
+
+Unlink a Programmed I/O region from a virtual interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pio} & The Programmed I/O region. \\
+\hline
+{\em pio\+\_\+dh} & The ef\+\_\+driver\+\_\+handle for the Programmed I/O region. \\
+\hline
+{\em vi} & The virtual interface to unlink from the Programmed I/O region. \\
+\hline
+{\em vi\+\_\+dh} & The ef\+\_\+driver\+\_\+handle for the virtual interface.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Unlink a Programmed I/O region from a virtual interface. \mbox{\Hypertarget{pio_8h_af6d414f3df5a52faaf81a63714428fde}\label{pio_8h_af6d414f3df5a52faaf81a63714428fde}} 
+\index{pio.h@{pio.h}!ef\_vi\_get\_pio\_size@{ef\_vi\_get\_pio\_size}}
+\index{ef\_vi\_get\_pio\_size@{ef\_vi\_get\_pio\_size}!pio.h@{pio.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_get\_pio\_size()}{ef\_vi\_get\_pio\_size()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+get\+\_\+pio\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi }\end{DoxyParamCaption})}
+
+
+
+Get the size of the Programmed I/O region. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The size of the Programmed I/O region.
+\end{DoxyReturn}
+Get the size of the Programmed I/O region. 

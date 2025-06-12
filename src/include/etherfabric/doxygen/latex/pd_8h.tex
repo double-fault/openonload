@@ -1,0 +1,255 @@
+\hypertarget{pd_8h}{}\doxysection{pd.\+h File Reference}
+\label{pd_8h}\index{pd.h@{pd.h}}
+
+
+Protection Domains for Ether\+Fabric Virtual Interface HAL.  
+
+
+{\ttfamily \#include $<$etherfabric/base.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structef__pd}{ef\+\_\+pd}}
+\begin{DoxyCompactList}\small\item\em A protection domain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{pd_8h_acc65c5e5c2fba7aee012422dd7e123d9}\label{pd_8h_acc65c5e5c2fba7aee012422dd7e123d9}} 
+\#define \mbox{\hyperlink{pd_8h_acc65c5e5c2fba7aee012422dd7e123d9}{EF\+\_\+\+PD\+\_\+\+VLAN\+\_\+\+NONE}}~-\/1
+\begin{DoxyCompactList}\small\item\em May be passed to \mbox{\hyperlink{pd_8h_ad3524370759daa4ec0bb714f865867f8}{ef\+\_\+pd\+\_\+alloc\+\_\+with\+\_\+vport()}} to indicate that the PD is not associated with a particular VLAN. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{pd_8h_ac4e8abe9a5ad046cf80bd5fa5b90db92}\label{pd_8h_ac4e8abe9a5ad046cf80bd5fa5b90db92}} 
+typedef struct \mbox{\hyperlink{structef__pd}{ef\+\_\+pd}} \mbox{\hyperlink{pd_8h_ac4e8abe9a5ad046cf80bd5fa5b90db92}{ef\+\_\+pd}}
+\begin{DoxyCompactList}\small\item\em A protection domain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9}{ef\+\_\+pd\+\_\+flags}} \{ \newline
+\mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9aee8bd6800bf8bd7b9af02e9b19663ea9}{EF\+\_\+\+PD\+\_\+\+DEFAULT}} = 0x0
+, \mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9a316380d12f5953bd5f9245bb0a4c95b4}{EF\+\_\+\+PD\+\_\+\+VF}} = 0x1
+, \mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9abb3bfda040ff4a314571e75fa8d999eb}{EF\+\_\+\+PD\+\_\+\+PHYS\+\_\+\+MODE}} = 0x2
+, \mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9a530f7fc834b4f94fff1d3311e100f16a}{EF\+\_\+\+PD\+\_\+\+RX\+\_\+\+PACKED\+\_\+\+STREAM}} = 0x4
+, \newline
+\mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9a3b56e13e03f9f4ad86a5d777abdc0ee5}{EF\+\_\+\+PD\+\_\+\+VPORT}} = 0x8
+, \mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9a2b19077ae85b0c404edc6b7dbf5f8900}{EF\+\_\+\+PD\+\_\+\+MCAST\+\_\+\+LOOP}} = 0x10
+, \mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9a9a82f745b33512af129ae8a442b1bb62}{EF\+\_\+\+PD\+\_\+\+MEMREG\+\_\+64\+KiB}} = 0x20
+, \mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9aa637f8944f8aa52010029d981c6b1ce1}{EF\+\_\+\+PD\+\_\+\+IGNORE\+\_\+\+BLACKLIST}} = 0x40
+ \}
+\begin{DoxyCompactList}\small\item\em Flags for a protection domain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pd_8h_a65e7675bc0fb9da9551c83ada8b4b995}{ef\+\_\+pd\+\_\+alloc}} (\mbox{\hyperlink{structef__pd}{ef\+\_\+pd}} $\ast$pd, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} pd\+\_\+dh, int ifindex, enum \mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9}{ef\+\_\+pd\+\_\+flags}} flags)
+\begin{DoxyCompactList}\small\item\em Allocate a protection domain. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{pd_8h_a0fecddb71ca39ffafe3eb68f85eb2ab6}{ef\+\_\+pd\+\_\+alloc\+\_\+by\+\_\+name}} (\mbox{\hyperlink{structef__pd}{ef\+\_\+pd}} $\ast$pd, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} pd\+\_\+dh, const char $\ast$cluster\+\_\+or\+\_\+intf\+\_\+name, enum \mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9}{ef\+\_\+pd\+\_\+flags}} flags)
+\begin{DoxyCompactList}\small\item\em Allocate a protection domain for a named interface or cluster. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{pd_8h_ad3524370759daa4ec0bb714f865867f8}{ef\+\_\+pd\+\_\+alloc\+\_\+with\+\_\+vport}} (\mbox{\hyperlink{structef__pd}{ef\+\_\+pd}} $\ast$pd, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} pd\+\_\+dh, const char $\ast$intf\+\_\+name, enum \mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9}{ef\+\_\+pd\+\_\+flags}} flags, int vlan\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Allocate a protection domain with vport support. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{pd_8h_a4e9fe7517bfbc61c291e35a6174ea1ef}{ef\+\_\+pd\+\_\+interface\+\_\+name}} (\mbox{\hyperlink{structef__pd}{ef\+\_\+pd}} $\ast$pd)
+\begin{DoxyCompactList}\small\item\em Look up the interface being used by the protection domain. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{pd_8h_a74417cfe9364bda64435834a8086b91f}{ef\+\_\+pd\+\_\+free}} (\mbox{\hyperlink{structef__pd}{ef\+\_\+pd}} $\ast$pd, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} pd\+\_\+dh)
+\begin{DoxyCompactList}\small\item\em Free a protection domain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Protection Domains for Ether\+Fabric Virtual Interface HAL. 
+
+\begin{DoxyAuthor}{Author}
+Solarflare Communications, Inc. 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2018/11/06 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright \copyright{} 2018 Solarflare Communications, Inc. All rights reserved. Solarflare, Open\+Onload and Enterprise\+Onload are trademarks of Solarflare Communications, Inc. 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{pd_8h_a09263cdade29abed15a6775debbf27d9}\label{pd_8h_a09263cdade29abed15a6775debbf27d9}} 
+\index{pd.h@{pd.h}!ef\_pd\_flags@{ef\_pd\_flags}}
+\index{ef\_pd\_flags@{ef\_pd\_flags}!pd.h@{pd.h}}
+\doxysubsubsection{\texorpdfstring{ef\_pd\_flags}{ef\_pd\_flags}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9}{ef\+\_\+pd\+\_\+flags}}}
+
+
+
+Flags for a protection domain. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_PD\_DEFAULT@{EF\_PD\_DEFAULT}!pd.h@{pd.h}}\index{pd.h@{pd.h}!EF\_PD\_DEFAULT@{EF\_PD\_DEFAULT}}}\mbox{\Hypertarget{pd_8h_a09263cdade29abed15a6775debbf27d9aee8bd6800bf8bd7b9af02e9b19663ea9}\label{pd_8h_a09263cdade29abed15a6775debbf27d9aee8bd6800bf8bd7b9af02e9b19663ea9}} 
+EF\+\_\+\+PD\+\_\+\+DEFAULT&Default flags \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_PD\_VF@{EF\_PD\_VF}!pd.h@{pd.h}}\index{pd.h@{pd.h}!EF\_PD\_VF@{EF\_PD\_VF}}}\mbox{\Hypertarget{pd_8h_a09263cdade29abed15a6775debbf27d9a316380d12f5953bd5f9245bb0a4c95b4}\label{pd_8h_a09263cdade29abed15a6775debbf27d9a316380d12f5953bd5f9245bb0a4c95b4}} 
+EF\+\_\+\+PD\+\_\+\+VF&Protection domain uses a virtual function and the system IOMMU instead of NIC buffer table. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_PD\_PHYS\_MODE@{EF\_PD\_PHYS\_MODE}!pd.h@{pd.h}}\index{pd.h@{pd.h}!EF\_PD\_PHYS\_MODE@{EF\_PD\_PHYS\_MODE}}}\mbox{\Hypertarget{pd_8h_a09263cdade29abed15a6775debbf27d9abb3bfda040ff4a314571e75fa8d999eb}\label{pd_8h_a09263cdade29abed15a6775debbf27d9abb3bfda040ff4a314571e75fa8d999eb}} 
+EF\+\_\+\+PD\+\_\+\+PHYS\+\_\+\+MODE&Protection domain uses physical addressing mode \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_PD\_RX\_PACKED\_STREAM@{EF\_PD\_RX\_PACKED\_STREAM}!pd.h@{pd.h}}\index{pd.h@{pd.h}!EF\_PD\_RX\_PACKED\_STREAM@{EF\_PD\_RX\_PACKED\_STREAM}}}\mbox{\Hypertarget{pd_8h_a09263cdade29abed15a6775debbf27d9a530f7fc834b4f94fff1d3311e100f16a}\label{pd_8h_a09263cdade29abed15a6775debbf27d9a530f7fc834b4f94fff1d3311e100f16a}} 
+EF\+\_\+\+PD\+\_\+\+RX\+\_\+\+PACKED\+\_\+\+STREAM&Protection domain supports packed stream mode \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_PD\_VPORT@{EF\_PD\_VPORT}!pd.h@{pd.h}}\index{pd.h@{pd.h}!EF\_PD\_VPORT@{EF\_PD\_VPORT}}}\mbox{\Hypertarget{pd_8h_a09263cdade29abed15a6775debbf27d9a3b56e13e03f9f4ad86a5d777abdc0ee5}\label{pd_8h_a09263cdade29abed15a6775debbf27d9a3b56e13e03f9f4ad86a5d777abdc0ee5}} 
+EF\+\_\+\+PD\+\_\+\+VPORT&Protection domain supports virtual ports \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_PD\_MCAST\_LOOP@{EF\_PD\_MCAST\_LOOP}!pd.h@{pd.h}}\index{pd.h@{pd.h}!EF\_PD\_MCAST\_LOOP@{EF\_PD\_MCAST\_LOOP}}}\mbox{\Hypertarget{pd_8h_a09263cdade29abed15a6775debbf27d9a2b19077ae85b0c404edc6b7dbf5f8900}\label{pd_8h_a09263cdade29abed15a6775debbf27d9a2b19077ae85b0c404edc6b7dbf5f8900}} 
+EF\+\_\+\+PD\+\_\+\+MCAST\+\_\+\+LOOP&Protection domain supports HW multicast loopback \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_PD\_MEMREG\_64KiB@{EF\_PD\_MEMREG\_64KiB}!pd.h@{pd.h}}\index{pd.h@{pd.h}!EF\_PD\_MEMREG\_64KiB@{EF\_PD\_MEMREG\_64KiB}}}\mbox{\Hypertarget{pd_8h_a09263cdade29abed15a6775debbf27d9a9a82f745b33512af129ae8a442b1bb62}\label{pd_8h_a09263cdade29abed15a6775debbf27d9a9a82f745b33512af129ae8a442b1bb62}} 
+EF\+\_\+\+PD\+\_\+\+MEMREG\+\_\+64\+KiB&Protection domain uses $>$= 64KB registered memory mappings \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_PD\_IGNORE\_BLACKLIST@{EF\_PD\_IGNORE\_BLACKLIST}!pd.h@{pd.h}}\index{pd.h@{pd.h}!EF\_PD\_IGNORE\_BLACKLIST@{EF\_PD\_IGNORE\_BLACKLIST}}}\mbox{\Hypertarget{pd_8h_a09263cdade29abed15a6775debbf27d9aa637f8944f8aa52010029d981c6b1ce1}\label{pd_8h_a09263cdade29abed15a6775debbf27d9aa637f8944f8aa52010029d981c6b1ce1}} 
+EF\+\_\+\+PD\+\_\+\+IGNORE\+\_\+\+BLACKLIST&Bypass the /proc/driver/sfc\+\_\+resource/.../enable blacklist feature. Required CAP\+\_\+\+NET\+\_\+\+ADMIN \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 27 of file pd.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{pd_8h_a65e7675bc0fb9da9551c83ada8b4b995}\label{pd_8h_a65e7675bc0fb9da9551c83ada8b4b995}} 
+\index{pd.h@{pd.h}!ef\_pd\_alloc@{ef\_pd\_alloc}}
+\index{ef\_pd\_alloc@{ef\_pd\_alloc}!pd.h@{pd.h}}
+\doxysubsubsection{\texorpdfstring{ef\_pd\_alloc()}{ef\_pd\_alloc()}}
+{\footnotesize\ttfamily int ef\+\_\+pd\+\_\+alloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__pd}{ef\+\_\+pd}} $\ast$}]{pd,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{pd\+\_\+dh,  }\item[{int}]{ifindex,  }\item[{enum \mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9}{ef\+\_\+pd\+\_\+flags}}}]{flags }\end{DoxyParamCaption})}
+
+
+
+Allocate a protection domain. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pd} & Memory to use for the allocated protection domain. \\
+\hline
+{\em pd\+\_\+dh} & The ef\+\_\+driver\+\_\+handle to associate with the protection domain. \\
+\hline
+{\em ifindex} & Index of the interface to use for the protection domain. \\
+\hline
+{\em flags} & Flags to specify protection domain properties.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Allocate a protection domain.
+
+Allocates a \textquotesingle{}protection domain\textquotesingle{} which specifies how memory should be protected for your VIs. For supported modes -\/ see \mbox{\hyperlink{using_pb_addressing}{Packet Buffer Addressing}}
+
+\begin{DoxyNote}{Note}
+If you are using a \textquotesingle{}hardened\textquotesingle{} kernel (e.\+g. Gentoo-\/hardened) then this is the first call which will probably fail. Currently, the only workaround to this is to run as root.
+\end{DoxyNote}
+Use \char`\"{}if\+\_\+nametoindex\char`\"{} to find the index of an interface, which needs to be the physical interface (i.\+e. eth2, not eth2.\+6 or bond0 or similar.) \mbox{\Hypertarget{pd_8h_a0fecddb71ca39ffafe3eb68f85eb2ab6}\label{pd_8h_a0fecddb71ca39ffafe3eb68f85eb2ab6}} 
+\index{pd.h@{pd.h}!ef\_pd\_alloc\_by\_name@{ef\_pd\_alloc\_by\_name}}
+\index{ef\_pd\_alloc\_by\_name@{ef\_pd\_alloc\_by\_name}!pd.h@{pd.h}}
+\doxysubsubsection{\texorpdfstring{ef\_pd\_alloc\_by\_name()}{ef\_pd\_alloc\_by\_name()}}
+{\footnotesize\ttfamily int ef\+\_\+pd\+\_\+alloc\+\_\+by\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__pd}{ef\+\_\+pd}} $\ast$}]{pd,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{pd\+\_\+dh,  }\item[{const char $\ast$}]{cluster\+\_\+or\+\_\+intf\+\_\+name,  }\item[{enum \mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9}{ef\+\_\+pd\+\_\+flags}}}]{flags }\end{DoxyParamCaption})}
+
+
+
+Allocate a protection domain for a named interface or cluster. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pd} & Memory to use for the allocated protection domain. \\
+\hline
+{\em pd\+\_\+dh} & An ef\+\_\+driver\+\_\+handle. \\
+\hline
+{\em cluster\+\_\+or\+\_\+intf\+\_\+name} & Name of cluster, or name of interface. \\
+\hline
+{\em flags} & Flags to specify protection domain properties.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Allocate a protection domain, trying first from a cluster of the given name, or if no cluster of that name exists assume that {\ttfamily cluster\+\_\+or\+\_\+intf\+\_\+name} is the name of an interface.
+
+When {\ttfamily cluster\+\_\+or\+\_\+intf\+\_\+name} gives the name of a cluster it may optionally be prefixed with a channel number. For example\+: \char`\"{}0@cluster\char`\"{}. In this case the specified channel instance within the cluster is allocated. \mbox{\Hypertarget{pd_8h_ad3524370759daa4ec0bb714f865867f8}\label{pd_8h_ad3524370759daa4ec0bb714f865867f8}} 
+\index{pd.h@{pd.h}!ef\_pd\_alloc\_with\_vport@{ef\_pd\_alloc\_with\_vport}}
+\index{ef\_pd\_alloc\_with\_vport@{ef\_pd\_alloc\_with\_vport}!pd.h@{pd.h}}
+\doxysubsubsection{\texorpdfstring{ef\_pd\_alloc\_with\_vport()}{ef\_pd\_alloc\_with\_vport()}}
+{\footnotesize\ttfamily int ef\+\_\+pd\+\_\+alloc\+\_\+with\+\_\+vport (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__pd}{ef\+\_\+pd}} $\ast$}]{pd,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{pd\+\_\+dh,  }\item[{const char $\ast$}]{intf\+\_\+name,  }\item[{enum \mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9}{ef\+\_\+pd\+\_\+flags}}}]{flags,  }\item[{int}]{vlan\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Allocate a protection domain with vport support. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pd} & Memory to use for the allocated protection domain. \\
+\hline
+{\em pd\+\_\+dh} & The ef\+\_\+driver\+\_\+handle to associate with the protection domain. \\
+\hline
+{\em intf\+\_\+name} & Name of interface to use for the protection domain. \\
+\hline
+{\em flags} & Flags to specify protection domain properties. \\
+\hline
+{\em vlan\+\_\+id} & The vlan id to associate with the protection domain.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Allocate a protection domain with vport support.
+
+Solarflare adapters have an internal switch to connect virtual ports (vports) to functions. This call is used to add an extra vport to a function, typically so that the function can then pass traffic to itself between an existing vport and the extra vport.
+
+The {\ttfamily vlan\+\_\+id} can be either EF\+\_\+\+PD\+\_\+\+VLAN\+\_\+\+NONE, or the id of a vlan to associate a vlan with the vport.
+
+This call requires full-\/featured firmware. \mbox{\Hypertarget{pd_8h_a74417cfe9364bda64435834a8086b91f}\label{pd_8h_a74417cfe9364bda64435834a8086b91f}} 
+\index{pd.h@{pd.h}!ef\_pd\_free@{ef\_pd\_free}}
+\index{ef\_pd\_free@{ef\_pd\_free}!pd.h@{pd.h}}
+\doxysubsubsection{\texorpdfstring{ef\_pd\_free()}{ef\_pd\_free()}}
+{\footnotesize\ttfamily int ef\+\_\+pd\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__pd}{ef\+\_\+pd}} $\ast$}]{pd,  }\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{pd\+\_\+dh }\end{DoxyParamCaption})}
+
+
+
+Free a protection domain. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pd} & Memory used by the protection domain. \\
+\hline
+{\em pd\+\_\+dh} & The ef\+\_\+driver\+\_\+handle associated with the protection domain.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Free a protection domain.
+
+To free up all resources, you must also close the associated driver handle.
+
+You should call this when you\textquotesingle{}re finished; although they will be cleaned up when the application exits, if you don\textquotesingle{}t.
+
+Be very sure that you don\textquotesingle{}t try and re-\/use the vi/pd/driver structure after it has been freed. \mbox{\Hypertarget{pd_8h_a4e9fe7517bfbc61c291e35a6174ea1ef}\label{pd_8h_a4e9fe7517bfbc61c291e35a6174ea1ef}} 
+\index{pd.h@{pd.h}!ef\_pd\_interface\_name@{ef\_pd\_interface\_name}}
+\index{ef\_pd\_interface\_name@{ef\_pd\_interface\_name}!pd.h@{pd.h}}
+\doxysubsubsection{\texorpdfstring{ef\_pd\_interface\_name()}{ef\_pd\_interface\_name()}}
+{\footnotesize\ttfamily const char$\ast$ ef\+\_\+pd\+\_\+interface\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__pd}{ef\+\_\+pd}} $\ast$}]{pd }\end{DoxyParamCaption})}
+
+
+
+Look up the interface being used by the protection domain. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pd} & Memory used by the protection domain.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The interface being used by the protection domain. NULL when interface was not accessible for user context.
+\end{DoxyReturn}
+Look up the interface being used by the protection domain. 

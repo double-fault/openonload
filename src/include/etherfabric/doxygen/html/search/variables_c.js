@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['receive_5finit_741',['receive_init',['../structef__vi_1_1ops.html#abbda497343b45e4802d7299cfa2b6d8c',1,'ef_vi::ops']]],
+  ['receive_5fpush_742',['receive_push',['../structef__vi_1_1ops.html#a3b0dd840d24904ad0899938502c98f9a',1,'ef_vi::ops']]],
+  ['removed_743',['removed',['../structef__vi__txq__state.html#a5aabf4fee37b46b46ffb7233754fd26c',1,'ef_vi_txq_state::removed()'],['../structef__vi__rxq__state.html#a5aabf4fee37b46b46ffb7233754fd26c',1,'ef_vi_rxq_state::removed()']]],
+  ['revision_744',['revision',['../structef__vi__nic__type.html#af3d9265da105cdb5ac5f2544580aee19',1,'ef_vi_nic_type']]],
+  ['rx_745',['rx',['../unionef__event.html#a2a3ebab5b43cb43b8f56963bfa817a93',1,'ef_event']]],
+  ['rx_5fbuffer_5flen_746',['rx_buffer_len',['../structef__vi.html#a5602b0f929b1264676d867bbaab8d6c3',1,'ef_vi']]],
+  ['rx_5fdiscard_747',['rx_discard',['../unionef__event.html#a8115bbd1b91b16ba8703f8f3355e0b9b',1,'ef_event']]],
+  ['rx_5fdiscard_5fmask_748',['rx_discard_mask',['../structef__vi.html#a27026e942fc7037cdf3e998ab787ed6e',1,'ef_vi']]],
+  ['rx_5fev_5fbad_5fdesc_5fi_749',['rx_ev_bad_desc_i',['../structef__vi__stats.html#a2c408109705c81e8eee6206a5898a759',1,'ef_vi_stats']]],
+  ['rx_5fev_5fbad_5fq_5flabel_750',['rx_ev_bad_q_label',['../structef__vi__stats.html#a8e4c40eac23afb00712f6607a53ebcb5',1,'ef_vi_stats']]],
+  ['rx_5fev_5flost_751',['rx_ev_lost',['../structef__vi__stats.html#a86f594ef8d64101d88979904cc13d0d7',1,'ef_vi_stats']]],
+  ['rx_5fmulti_752',['rx_multi',['../unionef__event.html#a423f0a3212b16cf8b34802a8f4a8befa',1,'ef_event']]],
+  ['rx_5fmulti_5fdiscard_753',['rx_multi_discard',['../unionef__event.html#a0c50a0d012258937863aaf8876af0ff5',1,'ef_event']]],
+  ['rx_5fno_5fdesc_5ftrunc_754',['rx_no_desc_trunc',['../unionef__event.html#a921c3632c2d1f77d2e2ff75243114023',1,'ef_event']]],
+  ['rx_5fpacked_5fstream_755',['rx_packed_stream',['../unionef__event.html#af6fac9f03b768dbe679c61339febdc91',1,'ef_event']]],
+  ['rx_5fprefix_5flen_756',['rx_prefix_len',['../structef__vi.html#a1969b67d2b98a3e9d2f2aa4c5fe2e5e1',1,'ef_vi']]],
+  ['rx_5fps_5fcredit_5favail_757',['rx_ps_credit_avail',['../structef__vi__rxq__state.html#a22f2303d8ebb312bcd57617cca4872ca',1,'ef_vi_rxq_state']]],
+  ['rx_5fts_5fcorrection_758',['rx_ts_correction',['../structef__vi.html#a126009de332f2f54e37adefaa69828fc',1,'ef_vi']]],
+  ['rxq_759',['rxq',['../structef__vi__state.html#a52ac6cbeae843d719fdb398528c40cc0',1,'ef_vi_state']]]
+];

@@ -1,0 +1,22 @@
+Solarflare\textquotesingle{}s ef\+\_\+vi API is a flexible interface for passing Ethernet frames between applications and the network. It is the internal API used by Onload for sending and receiving packets.\hypertarget{index_introduction}{}\doxysection{Introduction}\label{index_introduction}
+ef\+\_\+vi grants an application direct access to the Solarflare network adapter datapath to deliver lower latency and reduced per message processing overheads. It can be used directly by applications that want the very lowest latency send and receive API, and that do not require a POSIX socket interface.
+
+The key features of ef\+\_\+vi are\+:
+\begin{DoxyItemize}
+\item {\bfseries{User-\/space\+:}} Ef\+\_\+vi can be used by unprivileged user-\/space applications.
+\item {\bfseries{Kernel bypass}}\+: Data path operations do not require system calls.
+\item {\bfseries{Low CPU overhead}}\+: Data path operations consume very few CPU cycles.
+\item {\bfseries{Low latency}}\+: Suitable for ultra-\/low latency applications.
+\item {\bfseries{High packet rates}}\+: Supports millions of packets per second per core.
+\item {\bfseries{Zero-\/copy}}\+: Particularly efficient for filtering and forwarding applications.
+\item {\bfseries{Flexibility}}\+: Supports many use cases (see \mbox{\hyperlink{overview_use_cases}{Use cases}}).
+\item {\bfseries{Redistributable}}\+: ef\+\_\+vi is free software distributed under a LGPL license.
+\end{DoxyItemize}
+
+Each ef\+\_\+vi instance provides a \mbox{\hyperlink{concepts_vi}{Virtual Interface}} for an application to use\+:
+
+
+\begin{DoxyItemize}
+\item Each virtual interface provides a TX channel for passing packets to the adapter. Packets may be transmitted onto the wire, or looped-\/back in the adapter for delivery back into the host, or both.
+\item Each virtual interface also provides an RX channel for receiving packets from the adapter. These can be packets received from the wire, or looped-\/back from the TX path. 
+\end{DoxyItemize}

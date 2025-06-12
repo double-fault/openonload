@@ -1,0 +1,176 @@
+Solarflare ef\+\_\+vi comes with a range of example applications -\/ including source code and make files. This is a quick guide to using them, both for testing ef\+\_\+vi\textquotesingle{}s effectiveness in an environment, and as starting points for developing applications.
+
+Most of these applications have additional options to test physical addressing mode, or hardware timestamping. Run with \char`\"{}-\/-\/help\char`\"{} to check this.
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Application   }&\cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Application   }&\cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endhead
+\mbox{\hyperlink{applications_eflatency}{eflatency}}   &Measure latency by pinging a simple message between two interfaces.    \\\cline{1-2}
+\mbox{\hyperlink{applications_efsend}{efsend}}   &Send UDP packets on a specified interface.    \\\cline{1-2}
+\mbox{\hyperlink{applications_efsink}{efsink}}   &Receive streams of packets on a single interface.    \\\cline{1-2}
+\mbox{\hyperlink{applications_efforward}{efforward}}   &Forward packets between two interfaces without modification.    \\\cline{1-2}
+\mbox{\hyperlink{applications_efsend_timestamping}{efsend\+\_\+timestamping}}   &Send UDP packets on a specified interface, with TX timestamping.    \\\cline{1-2}
+\mbox{\hyperlink{applications_efsend_pio}{efsend\+\_\+pio}}   &Send UDP packets on a specified interface using Programmed I/O.    \\\cline{1-2}
+\mbox{\hyperlink{applications_efsend_pio_warm}{efsend\+\_\+pio\+\_\+warm}}   &Send UDP packets on a specified interface using Programmed I/O with transmit warming.    \\\cline{1-2}
+\mbox{\hyperlink{applications_efsink_packed}{efsink\+\_\+packed}}   &Receive streams of packets on a single interface using packed streams.    \\\cline{1-2}
+\mbox{\hyperlink{applications_efforward_packed}{efforward\+\_\+packed}}   &Forward packets between two interfaces without modification using packed stream mode for receive.    \\\cline{1-2}
+\mbox{\hyperlink{applications_efrss}{efrss}}   &Forward packets between two interfaces without modification, spreading the load over multiple virtual interfaces and threads.    \\\cline{1-2}
+\mbox{\hyperlink{applications_efjumborx}{efjumborx}}   &Receive jumbo packets.    \\\cline{1-2}
+\mbox{\hyperlink{applications_exchange}{exchange}}   &Simplified electronic trading exchange.    \\\cline{1-2}
+\mbox{\hyperlink{applications_trader_onload_ds_efvi}{trader\+\_\+onload\+\_\+ds\+\_\+efvi}}   &Simplified electronic trader.    \\\cline{1-2}
+\mbox{\hyperlink{applications_efrink_controller}{efrink\+\_\+controller}}   &Receive packets on a single interface into a shared memory ring.    \\\cline{1-2}
+\mbox{\hyperlink{applications_efrink_consumer}{efrink\+\_\+consumer}}   &Consume packets from a shared memory ring.   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{applications_eflatency}{}\doxysection{eflatency}\label{applications_eflatency}
+The eflatency application echoes a single packet back and forth repeatedly, measuring the round-\/trip time.
+
+This is the most useful example application for testing lowest possible latency. It is not a very good sample for building an application, because\+:
+\begin{DoxyItemize}
+\item it uses only one filter
+\item it operates knowing that there is only ever a single packet on the wire, and so\+:
+\begin{DoxyItemize}
+\item does not need to refill the rings
+\item does not handle multiple event types.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{applications_eflatency_usage}{}\doxysubsection{Usage}\label{applications_eflatency_usage}
+{\bfseries{Server\+:}} {\ttfamily eflatency pong {\itshape interface}}
+
+{\bfseries{Client\+:}} {\ttfamily eflatency ping {\itshape interface}}
+
+where\+:
+\begin{DoxyItemize}
+\item {\itshape interface} is the multicast interface on the server or client machine (e.\+g. {\ttfamily eth0})
+\end{DoxyItemize}
+
+There are various additional options. See the help text for details.\hypertarget{applications_efsend}{}\doxysection{efsend}\label{applications_efsend}
+The efsend application sends UDP packets on a specified interface.
+
+The application sends a UDP packet, waits for transmission of the packet to finish and then sends the next.
+
+The number of packets sent, the size of the packet, the amount of time to wait between sends can be controlled.\hypertarget{applications_efsink}{}\doxysection{efsink}\label{applications_efsink}
+The efsink application is a demonstration of capturing packets, and the flexibility of filters.
+
+It supports all filter types that ef\+\_\+vi supports. By default it just reports the amount of data captured, but it also demonstrates simple actions upon the packet data, with the option to hexdump incoming packets.
+
+It is a very useful jumping off point as it shows\+:
+\begin{DoxyItemize}
+\item creation of a virtual interface
+\item creation and installation of filters
+\item polling the event queue.
+\end{DoxyItemize}\hypertarget{applications_efsink_usage}{}\doxysubsection{Usage}\label{applications_efsink_usage}
+To receive a single multicast group\+:
+
+efsink {\ttfamily {\itshape local interface} udp\+:$<$multicast-\/addr$>$\+:port}
+
+To receive multiple multicast groups\+:
+
+efsink {\ttfamily {\itshape interface} udp\+:$<$multicast-\/addr$>$\+:port udp\+:$<$multicast-\/group$>$\+:port}
+
+To receive all multicast traffic\+:
+
+efsink {\ttfamily {\itshape interface} multicast-\/all}
+
+The efsink application does not send packets.\hypertarget{applications_efforward}{}\doxysection{efforward}\label{applications_efforward}
+The efforward application listens for traffic on one interface and echoes it out of a second; and vice versa. It demonstrates a very simple high-\/performance bridge.
+
+Some route configuration on the clients might be necessary to get this working, but it is a very simple example, and is very easy to start adding packet re-\/writing rules etc.
+
+Although this is a viable starting point for a bridging application, a better option might be the Solar\+Capture API, which includes a more complete pre-\/made bridging application.\hypertarget{applications_efsend_timestamping}{}\doxysection{efsend\+\_\+timestamping}\label{applications_efsend_timestamping}
+The efsend\+\_\+timestamping application sends UDP packets on a specified interface.
+
+The application sends a UDP packet, waits for transmission of the packet to finish and then sends the next.
+
+This application requests tx timestamping, allowing it to report the time each packet was transmitted.
+
+The number of packets sent, the size of the packet, the amount of time to wait between sends can be controlled.\hypertarget{applications_efsend_pio}{}\doxysection{efsend\+\_\+pio}\label{applications_efsend_pio}
+The efsend\+\_\+pio application sends UDP packets on a specified interface.
+
+Packet data is copied to the NIC\textquotesingle{}s PIO buffer before being sent, which typically results in lower latency sends compared to accessing packet data stored on the host via DMA, which is the method used by the efsend sample app.
+
+The application sends a UDP packet, waits for transmission of the packet to finish and then sends the next.
+
+The number of packets sent, the size of the packet, the amount of time to wait between sends can be controlled.\hypertarget{applications_efsend_pio_warm}{}\doxysection{efsend\+\_\+pio\+\_\+warm}\label{applications_efsend_pio_warm}
+The efsend\+\_\+pio\+\_\+warm application demonstrates PIO transmit warming.
+
+The application sends a UDP packet using PIO each time a trigger fires. While waiting for a trigger, the application can warm the PIO transmit path to reduce latency of the subsequent send.
+
+The effect of warming can be assessed by measuring the time from when the trigger fires to when the corresponding packet leaves the adapter.
+
+Several parameters can be controlled including the delay between triggers, the enablement of warming and the frequency of warming while waiting for a trigger.\hypertarget{applications_efsink_packed}{}\doxysection{efsink\+\_\+packed}\label{applications_efsink_packed}
+The efsink\+\_\+packed application is a variant of \mbox{\hyperlink{applications_efsink}{efsink}} that demonstrates usage of the packed-\/stream firmware.\hypertarget{applications_efforward_packed}{}\doxysection{efforward\+\_\+packed}\label{applications_efforward_packed}
+The efforward\+\_\+packed application is a variant of \mbox{\hyperlink{applications_efforward}{efforward}} that demonstrates usage of the packed-\/stream firmware.\hypertarget{applications_efrss}{}\doxysection{efrss}\label{applications_efrss}
+The efrss application is a variant of \mbox{\hyperlink{applications_efforward}{efforward}}. It demonstrates automatically spreading the load over multiple threads, using a vi\+\_\+set and RSS.\hypertarget{applications_efdelegated_client}{}\doxysection{efdelegated\+\_\+client}\label{applications_efdelegated_client}
+The efdelegated\+\_\+client application demonstrates usage of Open\+Onload\textquotesingle{}s \char`\"{}\+Delegated Sends\char`\"{} feature. This API allows you to do delegate TCP sends for a particular socket to some other mechanism. For example, this sample uses the ef\+\_\+vi layer-\/2 API in order to get lower latency than is possible with a normal send() call.
+
+The API essentially boils down to first retrieving the packet headers, adding your own payload to form a raw packet, sending the packet and finally telling Onload what it was you sent so it can update the internal TCP state of the socket.
+
+This sample application allows you to compare the performance of normal sends using the kernel stack, using Open\+Onload and using ef\+\_\+vi with the delegated sends API. It establishes a TCP connection to the server process, which starts sending UDP multicast messages. The client receives these messages, and replies to a subset of them with a TCP message. The server measures the latency from the UDP send to the TCP receive.\hypertarget{applications_efjumborx}{}\doxysection{efjumborx}\label{applications_efjumborx}
+The efjumborx application demonstrates receiving jumbo packets.
+
+Various parameters can be set, including the interface, IP address and port to use. Verbose output can be enabled to view progress. The received packet can be printed as text or in hexadecimal.\hypertarget{applications_exchange}{}\doxysection{exchange}\label{applications_exchange}
+The exchange application plays the role of a simplified electronic trading exchange. It is to be used in conjunction with the \mbox{\hyperlink{applications_trader_onload_ds_efvi}{trader\+\_\+onload\+\_\+ds\+\_\+efvi}} application.\hypertarget{applications_trader_onload_ds_efvi}{}\doxysection{trader\+\_\+onload\+\_\+ds\+\_\+efvi}\label{applications_trader_onload_ds_efvi}
+The trader\+\_\+onload\+\_\+ds\+\_\+efvi application demonstrates various techniques to reduce latency. These techniques are often useful in electronic trading applications, and so this example takes the form of an extremely simplified electronic trading system.
+
+The \mbox{\hyperlink{applications_exchange}{exchange}} application provides a simplified electronic trading exchange, and this application provides a simplified electronic trader.
+
+A trader\+\_\+onload\+\_\+ds\+\_\+efvi application demonstrates similar techniques for Onload.
+
+For full details, see the {\ttfamily README} file in the {\ttfamily tests/trade\+\_\+sim} directory.\hypertarget{applications_trader_onload_ds_efvi_usage}{}\doxysubsection{Usage}\label{applications_trader_onload_ds_efvi_usage}
+For normal socket-\/based sends, run as follows\+:
+
+{\bfseries{Server\+:}} {\ttfamily onload -\/p latency-\/best ./exchange {\itshape mcast-\/intf}}
+
+{\bfseries{Client\+:}} {\ttfamily onload -\/p latency-\/best ./trader\+\_\+onload\+\_\+ds\+\_\+efvi {\itshape mcast-\/intf} {\itshape server}}
+
+For \char`\"{}delegated\char`\"{} sends, run as follows\+:
+
+{\bfseries{Server\+:}} {\ttfamily onload -\/p latency-\/best ./exchange {\itshape mcast-\/intf}}
+
+{\bfseries{Client\+:}} {\ttfamily onload -\/p latency-\/best ./trader\+\_\+onload\+\_\+ds\+\_\+efvi -\/d {\itshape mcast-\/intf} {\itshape server}}
+
+where\+:
+\begin{DoxyItemize}
+\item {\itshape mcast-\/intf} is the multicast interface on the server or client machine (e.\+g. {\ttfamily eth0})
+\item {\itshape server} is the IP address of the server machine (e.\+g. {\ttfamily 192.\+168.\+0.\+10})
+\end{DoxyItemize}
+
+There are various additional options. See the help text for details.\hypertarget{applications_efrink_controller}{}\doxysection{efrink\+\_\+controller}\label{applications_efrink_controller}
+The efrink\+\_\+controller application receives streams of packets on a single interface into a shared memory ring. This can be read by multiple consumers, such as \mbox{\hyperlink{applications_efrink_consumer}{efrink\+\_\+consumer}}.
+
+This is an advanced technique which has the potential to provide a more efficient way to receive data when multiple consumer processes want to receive the same data stream(s) from the network.
+
+A single controller sets up a region of shared memory, and posts chunks of this to the RX ring of the NIC. As the NIC writes packet data, it returns completion events. The controller receives these events and marks each packet buffer as complete.
+
+One or more readers such as \mbox{\hyperlink{applications_efrink_consumer}{efrink\+\_\+consumer}} can access the shared memory to read the packets. The data is protected via a generation counter.\hypertarget{applications_efrink_consumer}{}\doxysection{efrink\+\_\+consumer}\label{applications_efrink_consumer}
+The efrink\+\_\+consumer application consumes packets from a shared memory ring, that is being managed by \mbox{\hyperlink{applications_efrink_controller}{efrink\+\_\+controller}}.
+
+Multiple copies of efrink\+\_\+consumer can run at the same time. For best performance, all processes should share the same NUMA node/cache.\hypertarget{applications_building}{}\doxysection{Building the Example Applications}\label{applications_building}
+The ef\+\_\+vi example applications are built along with the Onload installation and will be present in the {\ttfamily /\+Onload-\/$<$version$>$/build/gnu\+\_\+x86\+\_\+64/tests/ef\+\_\+vi} subdirectory. In the build directory there will be {\ttfamily gnu}, {\ttfamily gnu\+\_\+x86\+\_\+64}, {\ttfamily x86\+\_\+64\+\_\+linux-\/$<$kernel version$>$} directories\+:
+\begin{DoxyItemize}
+\item files under the {\ttfamily gnu} directory are 32-\/bit (if these are built)
+\item files under the {\ttfamily gnu\+\_\+x86\+\_\+64} directory are 64-\/bit.
+\end{DoxyItemize}
+
+Source code files for the example applications exist in the {\ttfamily /\+Onload-\/$<$version$>$/src/tests/ef\+\_\+vi} subdirectory.
+
+After running the onload\+\_\+install command, example applications exist in the {\ttfamily /\+Onload-\/$<$version$>$/build/gnu\+\_\+x86\+\_\+64/tests/ef\+\_\+vi} subdirectory.
+
+To rebuild the example applications you must have the {\ttfamily Onload-\/$<$version$>$/scripts} subdirectory in your path and use the following procedure\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[root@server01 Onload-\/<version>]\# cd scripts/}
+\DoxyCodeLine{[root@server01 scripts]\# export PATH="{}\$PWD:\$PATH"{}}
+\DoxyCodeLine{[root@server01 scripts]\# cd ../build/gnu\_x86\_64/tests/ef\_vi/}
+\DoxyCodeLine{[root@server01 ef\_vi]\# make clean}
+\DoxyCodeLine{[root@serverr01 ef\_vi]\# make}
+
+\end{DoxyCode}
+ 

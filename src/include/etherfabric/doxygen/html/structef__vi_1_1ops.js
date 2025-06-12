@@ -1,0 +1,26 @@
+var structef__vi_1_1ops =
+[
+    [ "eventq_poll", "structef__vi_1_1ops.html#a86a70dcfe941541a6fb3e1c1092609bb", null ],
+    [ "eventq_prime", "structef__vi_1_1ops.html#acf799bbec8bc0c321b7b1e138dd869ce", null ],
+    [ "eventq_timer_clear", "structef__vi_1_1ops.html#a3b0d9a842f0a72d19b4528702dd2798a", null ],
+    [ "eventq_timer_prime", "structef__vi_1_1ops.html#a44543a051701839df7162369785dc5af", null ],
+    [ "eventq_timer_run", "structef__vi_1_1ops.html#aa01b5e1a9be895ece83b2d41f45ab026", null ],
+    [ "eventq_timer_zero", "structef__vi_1_1ops.html#a92a5b7a24475b4e364dabdceb445144f", null ],
+    [ "receive_init", "structef__vi_1_1ops.html#abbda497343b45e4802d7299cfa2b6d8c", null ],
+    [ "receive_push", "structef__vi_1_1ops.html#a3b0dd840d24904ad0899938502c98f9a", null ],
+    [ "transmit", "structef__vi_1_1ops.html#ae5d6a6accacf0c43c4a82e51cb48837a", null ],
+    [ "transmit_alt_discard", "structef__vi_1_1ops.html#a56f5d260df23920c9fce57d526917686", null ],
+    [ "transmit_alt_go", "structef__vi_1_1ops.html#a112fdbfc22d412b52f720d476e3afdcb", null ],
+    [ "transmit_alt_select", "structef__vi_1_1ops.html#ada4221a55ac4ff7fefc9b39c623adac3", null ],
+    [ "transmit_alt_select_default", "structef__vi_1_1ops.html#a478e12b45fe3818722671085e6be601b", null ],
+    [ "transmit_alt_stop", "structef__vi_1_1ops.html#a4c9a7c0131a8741a53ed142ad5286bd8", null ],
+    [ "transmit_copy_pio", "structef__vi_1_1ops.html#a13803b6bd027e08a287ab3c69c1241de", null ],
+    [ "transmit_copy_pio_warm", "structef__vi_1_1ops.html#a7b93f658a06befd8e727730d954179bb", null ],
+    [ "transmit_pio", "structef__vi_1_1ops.html#a2ce91abb426de9a578e368ff254dddc4", null ],
+    [ "transmit_pio_warm", "structef__vi_1_1ops.html#ac776fe72d52e061a91d9c1f3660c8e5e", null ],
+    [ "transmit_push", "structef__vi_1_1ops.html#ada462bb5199b2ca2c52464f347692357", null ],
+    [ "transmitv", "structef__vi_1_1ops.html#a917a655acac4c71bfaf3665ac5041024", null ],
+    [ "transmitv_ctpio", "structef__vi_1_1ops.html#a527e338d35b1a004ea555be2f3a53231", null ],
+    [ "transmitv_ctpio_copy", "structef__vi_1_1ops.html#a3951f6d219abaf48aec38bcc3ab19fda", null ],
+    [ "transmitv_init", "structef__vi_1_1ops.html#ad1e51cd9dcbff253ccf7c3996bfa267f", null ]
+];

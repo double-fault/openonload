@@ -1,0 +1,758 @@
+This part of the documentation gives information on using ef\+\_\+vi to write and build applications.\hypertarget{using_components}{}\doxysection{Components}\label{using_components}
+All components required to build and link a user application with the Solarflare ef\+\_\+vi API are distributed with Onload. When Onload is installed all required directories/files are located under the Onload distribution directory\+:\hypertarget{using_compiling}{}\doxysection{Compiling and Linking}\label{using_compiling}
+Applications or libraries using ef\+\_\+vi will need to include the header files in src/include/etherfabric/
+
+The application will need to be linked with libciul1.\+a or libciul.\+so, which can be found under the \char`\"{}build\char`\"{} directory after running scripts/onload\+\_\+build or scripts/onload\+\_\+install.
+
+If compiling your application against one version of Onload, and running on a system with a different version of Onload, some care is required. Onload currently preserves compatibility and provides a stable API between the ef\+\_\+vi user-\/space and the kernel drivers, so that applications compiled using an older ef\+\_\+vi library will work when run with newer drivers. Compatibility in the other direction (newer \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} libraries running with older drivers) is not guaranteed. Finally, Onload does not currently maintain compatibility between compiling against one version of the ef\+\_\+vi libraries, and then running against another.
+
+The simplest approach is to link statically to libciul, as this ensures that the version of the library used will match the one you have compiled against. If linking dynamically, it is recommended that you keep libciul.\+so and the application binary together. onload\+\_\+install does not install libciul.\+so into system directories to avoid the installed version being used in place of the version you compiled against.
+
+For those wishing to use ef\+\_\+vi in combination with Onload there should be no problem linking statically to libciul and dynamically to the other libraries to allow the Onload intercepts to take effect. The ef\+\_\+delegated example application does exactly this.\hypertarget{using_using_setup}{}\doxysection{Setup}\label{using_using_setup}
+Applications requiring specific features can check the versions of software\+:
+\begin{DoxyItemize}
+\item use \mbox{\hyperlink{ef__vi_8h_aadb4cde2a10513be23abfb17b414e7ff}{ef\+\_\+vi\+\_\+version\+\_\+str()}} to get the version of ef\+\_\+vi
+\item use \mbox{\hyperlink{ef__vi_8h_a5679d140bd3bb270fa1adc2085ed36a3}{ef\+\_\+vi\+\_\+driver\+\_\+interface\+\_\+str()}} to get the char driver interface required by this build of ef\+\_\+vi.
+\end{DoxyItemize}
+
+Applications can also check for specific capabilities\+:
+\begin{DoxyItemize}
+\item use \mbox{\hyperlink{capabilities_8h_ae139e415401ac1c57f29e20e0356bbed}{ef\+\_\+vi\+\_\+capabilities\+\_\+get()}} to get the value of a given capability
+\item use \mbox{\hyperlink{capabilities_8h_a37e23905e824f75e9452cea34de4a9dd}{ef\+\_\+vi\+\_\+capabilities\+\_\+max()}} to get the number of available capabilities
+\item use \mbox{\hyperlink{capabilities_8h_a3a172e16564608f36ce31d658a043bcc}{ef\+\_\+vi\+\_\+capabilities\+\_\+name()}} to get a human-\/readable string describing a given capability.
+\end{DoxyItemize}
+
+Users of ef\+\_\+vi must do the following to setup\+:
+\begin{DoxyEnumerate}
+\item Obtain a driver handle by calling \mbox{\hyperlink{base_8h_acb2b46854a36c5eb295878d306a274d2}{ef\+\_\+driver\+\_\+open()}}.
+\item Allocate a protection domain by calling one of the following\+:
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{pd_8h_a65e7675bc0fb9da9551c83ada8b4b995}{ef\+\_\+pd\+\_\+alloc()}}
+\item \mbox{\hyperlink{pd_8h_a0fecddb71ca39ffafe3eb68f85eb2ab6}{ef\+\_\+pd\+\_\+alloc\+\_\+by\+\_\+name()}}
+\item \mbox{\hyperlink{pd_8h_ad3524370759daa4ec0bb714f865867f8}{ef\+\_\+pd\+\_\+alloc\+\_\+with\+\_\+vport()}}.
+\end{DoxyItemize}
+\item Allocate a virtual interface (VI), encapsulated by the type \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}}, by calling \mbox{\hyperlink{vi_8h_a66124c16b919445b44e2bcba50dbc344}{ef\+\_\+vi\+\_\+alloc\+\_\+from\+\_\+pd()}}.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/* Allocate a protection domain */}}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{pd_8h_a65e7675bc0fb9da9551c83ada8b4b995}{ef\_pd\_alloc}}(\mbox{\hyperlink{structef__pd}{ef\_pd}} *pd,}
+\DoxyCodeLine{                \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\_driver\_handle}} pd\_dh,}
+\DoxyCodeLine{                \textcolor{keywordtype}{int} ifindex,}
+\DoxyCodeLine{                \textcolor{keyword}{enum} \mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9}{ef\_pd\_flags}} flags);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{pd_8h_a0fecddb71ca39ffafe3eb68f85eb2ab6}{ef\_pd\_alloc\_by\_name}}(\mbox{\hyperlink{structef__pd}{ef\_pd}} *pd,}
+\DoxyCodeLine{                        \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\_driver\_handle}} pd\_dh,}
+\DoxyCodeLine{                        \textcolor{keyword}{const} \textcolor{keywordtype}{char}* cluster\_or\_intf\_name,}
+\DoxyCodeLine{                        \textcolor{keyword}{enum} \mbox{\hyperlink{pd_8h_a09263cdade29abed15a6775debbf27d9}{ef\_pd\_flags}} flags);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/* Get the interface for a protection domain. */}}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{pd_8h_a4e9fe7517bfbc61c291e35a6174ea1ef}{ef\_pd\_interface\_name}}(\mbox{\hyperlink{structef__pd}{ef\_pd}} *pd);}
+
+\end{DoxyCode}
+ {\bfseries{Figure\+: Create a Protection Domain}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/* Allocate a virtual interface */}}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_a66124c16b919445b44e2bcba50dbc344}{ef\_vi\_alloc\_from\_pd}}(\mbox{\hyperlink{structef__vi}{ef\_vi}} *vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\_driver\_handle}} vi\_dh,}
+\DoxyCodeLine{                        \mbox{\hyperlink{structef__pd}{ef\_pd}} *pd, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\_driver\_handle}} pd\_dh,}
+\DoxyCodeLine{                        \textcolor{keywordtype}{int} eventq\_cap, \textcolor{keywordtype}{int} rxq\_cap, \textcolor{keywordtype}{int} txq\_cap,}
+\DoxyCodeLine{                        \mbox{\hyperlink{structef__vi}{ef\_vi}} *opt\_evq, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\_driver\_handle}} opt\_evq\_dh,}
+\DoxyCodeLine{                        \textcolor{keyword}{enum} \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772}{ef\_vi\_flags}} flags));}
+
+\end{DoxyCode}
+ {\bfseries{Figure\+: Allocate a Virtual Interface}}\hypertarget{using_using_vi_sets}{}\doxysubsection{Using Virtual Interface Sets.}\label{using_using_vi_sets}
+A virtual interface set can be used instead of a single virtual interface, to distribute load using RSS. Functionality is almost the same as working with a single virtual interface\+:
+\begin{DoxyItemize}
+\item To allocate the virtual interfaces\+:
+\begin{DoxyItemize}
+\item use \mbox{\hyperlink{vi_8h_a341b60d550339b63abf0ad8b79828cec}{ef\+\_\+vi\+\_\+set\+\_\+alloc\+\_\+from\+\_\+pd()}} to allocate the set
+\item then use \mbox{\hyperlink{vi_8h_a555084325f97dc1fe99f11295f3f1f8e}{ef\+\_\+vi\+\_\+alloc\+\_\+from\+\_\+set()}} to allocate each virtual interface in the set
+\end{DoxyItemize}
+\item To add a filter\+:
+\begin{DoxyItemize}
+\item use \mbox{\hyperlink{vi_8h_a89aa0805536fccbaf79c2120c316ff65}{ef\+\_\+vi\+\_\+set\+\_\+filter\+\_\+add()}} to add the filter onto the set, rather than adding it to each virtual interface individually (which would cause replication on a 7000-\/series NIC).
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+The \mbox{\hyperlink{applications_efrss}{efrss}} sample gives an example of usage.\hypertarget{using_using_buffers}{}\doxysection{Creating packet buffers}\label{using_using_buffers}
+Memory used for packet buffers is allocated using standard functions such as posix\+\_\+memalign(). A packet buffer should be at least as large as the value returned from \mbox{\hyperlink{ef__vi_8h_a246e386f77279d65149236a1a6265661}{ef\+\_\+vi\+\_\+receive\+\_\+buffer\+\_\+len()}}.
+
+The packet buffers must be pinned so that they cannot be paged, and they must be registered for DMA with the network adapter. These requirements are enforced by calling \mbox{\hyperlink{memreg_8h_ad802d1d7c6487fbeeff8ed682caf71c8}{ef\+\_\+memreg\+\_\+alloc()}} to register the allocated memory for use with ef\+\_\+vi.
+
+The type {\ttfamily \mbox{\hyperlink{structef__iovec}{ef\+\_\+iovec}}} encapsulates a set of buffers. The adapter uses a special address space to identify locations in these buffers, and such addresses are designated by the type {\ttfamily ef\+\_\+addr}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/* Allocate a memory region */}}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{memreg_8h_ad802d1d7c6487fbeeff8ed682caf71c8}{ef\_memreg\_alloc}}(\mbox{\hyperlink{structef__memreg}{ef\_memreg}}* mr, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\_driver\_handle}} mr\_dh,}
+\DoxyCodeLine{                    \mbox{\hyperlink{structef__pd}{ef\_pd}}* pd, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\_driver\_handle}} pd\_dh,}
+\DoxyCodeLine{                    \textcolor{keywordtype}{void}* p\_mem, \textcolor{keywordtype}{int} len\_bytes);}
+
+\end{DoxyCode}
+ {\bfseries{Figure\+: Allocate a Memory Region}}
+
+To improve performance, registered memory regions for packet buffers should be aligned on (minimum) 4KB boundaries for regular pages or 2MB boundaries when using huge pages, and should be contiguous.\hypertarget{using_buffer_tables}{}\doxysubsection{Buffer Tables}\label{using_buffer_tables}
+The memory for packet buffers is mapped using a buffer table. Implementation of this can differ, but typically\+:
+
+
+\begin{DoxyItemize}
+\item The buffer table is allocated from memory that is also used for other things, so can vary in size
+\item Entries in this table are split into sets of 32 entries
+\item In the default configuration there are typically 1926 sets available, giving a maximum of 61632 entries
+\item Each entry maps a chunk of naturally-\/aligned contiguous memory\+:
+\begin{DoxyItemize}
+\item 4KB on earlier NICs
+\item 4KB, 64KB, 1MB or 4MB on 7000-\/series and later NICs
+\end{DoxyItemize}
+\item Each packet buffer consumes 2KB.
+\end{DoxyItemize}
+
+The total number of packet buffers available might be fewer than expected from the above\+:
+
+
+\begin{DoxyItemize}
+\item Some sets of entries might not be fully utilized.
+
+In particular, the entries in a set must have the same owner ID, and so where there are multiple owner IDs, there will be unused holes in the table.
+\item Setting up virtual interfaces can consume buffer table resources.
+
+On 5000-\/ and 6000-\/series NICs, every page of host memory that is allocated to back a TX queue, RX queue or event queue uses a buffer table entry to map it. So a few hundred virtual interfaces will consume a lot of entries, especially if they are set up with large event queues.
+\item The descriptor cache can reduce buffer table resources.
+
+On 7000-\/series and later NICs, the descriptor cache consumes memory on the NIC that is otherwise available for the buffer table.
+\end{DoxyItemize}\hypertarget{using_using_transmit}{}\doxysection{Transmitting Packets}\label{using_using_transmit}
+To transmit packets, the basic process is\+:
+
+
+\begin{DoxyEnumerate}
+\item Write the packet contents (including all headers) into one or more packet buffers.
+
+The packet buffer memory must have been previously registered with the protection domain.
+\item Post a descriptor for the filled packet buffer onto the TX descriptor ring, by calling \mbox{\hyperlink{ef__vi_8h_a17215be65f036a99857092496676de26}{ef\+\_\+vi\+\_\+transmit\+\_\+init()}} and \mbox{\hyperlink{ef__vi_8h_a7bb4aa398d5a5735491e3685d6e05912}{ef\+\_\+vi\+\_\+transmit\+\_\+push()}}, or \mbox{\hyperlink{ef__vi_8h_a62408f50ae79efed0239d0b8bde3a9d8}{ef\+\_\+vi\+\_\+transmit()}}.
+
+A doorbell is \char`\"{}rung\char`\"{} to inform the adapter that the transmit ring is non-\/empty. If the transmit descriptor ring is empty when the doorbell is rung, \textquotesingle{}TX PUSH\textquotesingle{} is used. In \textquotesingle{}TX\+\_\+\+PUSH\textquotesingle{}, the doorbell is rung and the address of the packet buffer is written in one shot improving latency. TX\+\_\+\+PUSH can cause ef\+\_\+vi to poll for events, to check if the transmit descriptor ring is empty, before sending which can lead to a latency versus throughput trade off in some scenarios.
+\item Poll the event queue to find out when the transmission is complete.
+
+See \mbox{\hyperlink{using_using_events}{Handling Events}}.
+
+When transmitting, polling the event queue is less critical; but does still need to be done. The events of interest are {\ttfamily EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX} or {\ttfamily EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+WITH\+\_\+\+TIMESTAMP} telling you that a transmit completed, and {\ttfamily EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+ERROR} telling you that a transmit failed. \mbox{\hyperlink{ef__vi_8h_aa6e256d0f1bc3c61ac6ca7aca8f96008}{EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+Q\+\_\+\+ID()}} can be used to extract the id of the referenced packet, or you can just rely on the fact that ef\+\_\+vi always transmits packets in the order they are submitted.
+\item Handle the resulting event.
+
+Reclaim the packet buffer for re-\/use.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// construct packet with proper headers}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// Post on the transmit ring}}
+\DoxyCodeLine{\mbox{\hyperlink{ef__vi_8h_a17215be65f036a99857092496676de26}{ef\_vi\_transmit\_init}}(\&vi, addr, len, \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\textcolor{comment}{// Ring doorbell}}
+\DoxyCodeLine{\mbox{\hyperlink{ef__vi_8h_a7bb4aa398d5a5735491e3685d6e05912}{ef\_vi\_transmit\_push}}(\&vi);}
+
+\end{DoxyCode}
+ {\bfseries{Figure\+: Transmit Packets}}\hypertarget{using_using_tx_jumbo}{}\doxysubsection{Transmitting Jumbo Frames}\label{using_using_tx_jumbo}
+Packets of a size smaller than the interface MTU but larger than the packet buffer size must be sent from multiple buffers as jumbo packets. A single {\ttfamily EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX} (or {\ttfamily EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+ERROR}) event is raised for the entire transmit\+:
+
+
+\begin{DoxyItemize}
+\item Use \mbox{\hyperlink{ef__vi_8h_a10b8bcbc62dab623cd94db5aaf6ddbf0}{ef\+\_\+vi\+\_\+transmitv()}} to chain together multiple segments with a higher total length.
+\item MTU is not enforced. If the transmit is to remain within MTU, the application must check and enforce this.
+\item The segments must at least split along natural (4k packet) boundaries, but smaller segments can be used if desired..
+\end{DoxyItemize}\hypertarget{using_using_pio}{}\doxysubsection{Programmed I/O}\label{using_using_pio}
+Programmed IO is usable only on 7000-\/series cards, not on the older cards. It allows for faster transmit, especially of small packets, but the hardware resources available for it are limited.
+
+For this reason, a PIO buffer must be explicitly allocated and associated with a virtual interface before use, by calling \mbox{\hyperlink{pio_8h_aa51c1c3a2c2c6b0c8644b1fa07458a19}{ef\+\_\+pio\+\_\+link\+\_\+vi()}}.
+
+Data is copied into the PIO buffer with \mbox{\hyperlink{pio_8h_a1966f51d747aea4416d1a20890bb9fb4}{ef\+\_\+pio\+\_\+memcpy()}}.
+
+When the PIO buffer is no longer required it should be unlinked by calling \mbox{\hyperlink{pio_8h_a84806b695423f76bbcc421261547b184}{ef\+\_\+pio\+\_\+unlink\+\_\+vi()}}, and then freed by calling \mbox{\hyperlink{pio_8h_acb13345a50dd777eb4f4e9a99a0e2558}{ef\+\_\+pio\+\_\+free()}}.\hypertarget{using_using_ctpio}{}\doxysubsection{Cut-\/through PIO}\label{using_using_ctpio}
+A complete example showing the use of CTPIO with ef\+\_\+vi is given in {\ttfamily Onload-\/$<$version$>$/src/tests/rtt/rtt\+\_\+efvi.c}.
+
+\begin{DoxyNote}{Note}
+CTPIO bypasses the main adapter datapath, and as a result does not support checksum offload. Frames sent with CTPIO are placed on the wire without modification, so checksum fields must be completed in software before sending.
+\end{DoxyNote}
+Here is the sequence of steps needed\+:
+
+
+\begin{DoxyEnumerate}
+\item When allocating a VI (\mbox{\hyperlink{vi_8h_a66124c16b919445b44e2bcba50dbc344}{ef\+\_\+vi\+\_\+alloc\+\_\+from\+\_\+pd()}}) set the EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+CTPIO flag.
+\item To initiate a send, form a complete Ethernet frame (including L3/\+L4 checksums, but excluding FCS) in host memory. Initiate the send with \mbox{\hyperlink{ef__vi_8h_af1510ffff8d06a509fb23d9f0bb8f35f}{ef\+\_\+vi\+\_\+transmit\+\_\+ctpio()}} or \mbox{\hyperlink{ef__vi_8h_aca0074ba563465d5effcfc6d54b1bba2}{ef\+\_\+vi\+\_\+transmitv\+\_\+ctpio()}}.
+\item Post a fall-\/back descriptor using \mbox{\hyperlink{ef__vi_8h_ab822e083cda691e17b6677629cddaf19}{ef\+\_\+vi\+\_\+transmit\+\_\+ctpio\+\_\+fallback()}} or \mbox{\hyperlink{ef__vi_8h_a77c3b1b7a28206c81ae6f67cee7662f9}{ef\+\_\+vi\+\_\+transmitv\+\_\+ctpio\+\_\+fallback()}}. These calls are used just like the standard DMA send calls (\mbox{\hyperlink{ef__vi_8h_a62408f50ae79efed0239d0b8bde3a9d8}{ef\+\_\+vi\+\_\+transmit()}} etc.), and so must be provided with a copy of the frame in registered memory.
+\end{DoxyEnumerate}
+
+The posting of a fall-\/back descriptor is not on the latency critical path, provided the CTPIO operation succeeds. However, it must be posted before posting any further sends on the same VI.\hypertarget{using_using_tx_alternatives}{}\doxysubsection{TX Alternatives}\label{using_using_tx_alternatives}
+TX alternatives is a features available on Solarflare SFN8000 series adapters. To use TX alternatives for a given virtual interface, you must set the EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+ALT flag when you allocate the virtual interface. You must then allocate a set of TX alternatives for the virtual interface by calling \mbox{\hyperlink{vi_8h_aca91a5b7b6569d14c434ca242ecf3af9}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+alloc()}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_aca91a5b7b6569d14c434ca242ecf3af9}{ef\_vi\_transmit\_alt\_alloc}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structef__vi}{ef\_vi}}* vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\_driver\_handle}} vi\_dh,}
+\DoxyCodeLine{                             \textcolor{keywordtype}{int} num\_alts, \textcolor{keywordtype}{int} buf\_space);}
+
+\end{DoxyCode}
+
+
+The number of virtual interfaces that can use TX alternatives simultaneously is limited, and varies by adapter and port mode. Typical limitations are as follows\+:
+\begin{DoxyItemize}
+\item SFN8522, 2x10\+Gb\+: at least 6 virtual interfaces can use TX alternatives
+\item SFN8542, 2x40\+Gb\+: at least 6 virtual interfaces can use TX alternatives
+\item SFN8542, 1x40\+Gb + 2x10\+Gb\+: at least 3 virtual interfaces can use TX alternatives
+\item SFN8542, 4x10\+Gb\+: TX alternatives are {\itshape not} available.
+\end{DoxyItemize}
+
+This creates a set of TX alternatives. The TX alternatives remain allocated until the virtual interface is freed. They are given sequential IDs, from 0 upwards.
+
+You can get the number of TX alternatives in a set by calling \mbox{\hyperlink{ef__vi_8h_a068a248d1af10a594c10878fe029ff53}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+num\+\_\+ids()}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{ef__vi_8h_a068a248d1af10a594c10878fe029ff53}{ef\_vi\_transmit\_alt\_num\_ids}}(\mbox{\hyperlink{structef__vi}{ef\_vi}}* vi);}
+
+\end{DoxyCode}
+
+
+You can then buffer responses on the different TX alternatives, choose which to transmit, and discard any that are no longer required\+:
+
+
+\begin{DoxyItemize}
+\item All TX alternatives are initially in the STOP state, and any packets sent to them are buffered.
+\item To send packets to a particular TX alternative, select the TX alternative by calling \mbox{\hyperlink{ef__vi_8h_add2a128213fafba3ebb74d137ab36178}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+select()}}, and then send the packets to the virtual interface using normal send calls such as \mbox{\hyperlink{ef__vi_8h_a62408f50ae79efed0239d0b8bde3a9d8}{ef\+\_\+vi\+\_\+transmit()}}.
+\item To transmit the packets that are buffered on a TX alternative, call \mbox{\hyperlink{ef__vi_8h_a70e8d8c2fa4927392174223bcdd2cc31}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+go()}}.
+
+This transitions the TX alternative to the GO state. While the TX alternative remains in this state, any further packets sent to it are transmitted immediately.
+\item To transition the TX alternative back to the STOP state, call \mbox{\hyperlink{ef__vi_8h_a51050ee6dc126b1326c6d5775808e639}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+stop()}}.
+\item To discard the packets buffered on a TX alternative, transition it to the DISCARD state by calling \mbox{\hyperlink{ef__vi_8h_ac273e4b11c2b98664cf7363574eb5f70}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+discard()}}.
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{ef__vi_8h_add2a128213fafba3ebb74d137ab36178}{ef\_vi\_transmit\_alt\_select}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structef__vi}{ef\_vi}}* vi, \textcolor{keywordtype}{unsigned} alt\_id);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{ef__vi_8h_a51050ee6dc126b1326c6d5775808e639}{ef\_vi\_transmit\_alt\_stop}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structef__vi}{ef\_vi}}* vi, \textcolor{keywordtype}{unsigned} alt\_id);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{ef__vi_8h_a70e8d8c2fa4927392174223bcdd2cc31}{ef\_vi\_transmit\_alt\_go}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structef__vi}{ef\_vi}}* vi, \textcolor{keywordtype}{unsigned} alt\_id);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{ef__vi_8h_ac273e4b11c2b98664cf7363574eb5f70}{ef\_vi\_transmit\_alt\_discard}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structef__vi}{ef\_vi}}* vi, \textcolor{keywordtype}{unsigned} alt\_id);}
+
+\end{DoxyCode}
+
+
+As packets are transmitted or discarded, events of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+ALT are returned to your application. Your application should normally wait until all packets have been processed before transitioning to a different state.
+
+Calls are available to calculate the buffer usage\+:
+
+
+\begin{DoxyItemize}
+\item To query the amount of user-\/visible buffering that will be available, call \mbox{\hyperlink{vi_8h_a16b8fed8c7b4af2cbcdc559d8ac28572}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+query\+\_\+buffering()}}
+\item To query the per-\/packet overheads, call \mbox{\hyperlink{ef__vi_8h_a89b67172b16e9baa8ea4a638c17329a9}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+query\+\_\+overhead()}}.
+\item To calculate a packet\textquotesingle{}s buffer usage, pass the per-\/packet overheads and the packet length to \mbox{\hyperlink{ef__vi_8h_a18add9a422a88041e5349700a54d457e}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+usage()}}.
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_a16b8fed8c7b4af2cbcdc559d8ac28572}{ef\_vi\_transmit\_alt\_query\_buffering}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structef__vi}{ef\_vi}}* vi, \textcolor{keywordtype}{int} ifindex,}
+\DoxyCodeLine{                                       \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\_driver\_handle}} vi\_dh, \textcolor{keywordtype}{int} n\_alts);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}}
+\DoxyCodeLine{\mbox{\hyperlink{ef__vi_8h_a89b67172b16e9baa8ea4a638c17329a9}{ef\_vi\_transmit\_alt\_query\_overhead}}(\mbox{\hyperlink{structef__vi}{ef\_vi}}* vi,}
+\DoxyCodeLine{                                  \textcolor{keyword}{struct} \mbox{\hyperlink{structef__vi__transmit__alt__overhead}{ef\_vi\_transmit\_alt\_overhead}}* params);}
+\DoxyCodeLine{}
+\DoxyCodeLine{uint32\_t}
+\DoxyCodeLine{\mbox{\hyperlink{ef__vi_8h_a18add9a422a88041e5349700a54d457e}{ef\_vi\_transmit\_alt\_usage}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structef__vi__transmit__alt__overhead}{ef\_vi\_transmit\_alt\_overhead}}* params,}
+\DoxyCodeLine{                         uint32\_t pkt\_len);}
+
+\end{DoxyCode}
+\hypertarget{using_using_events}{}\doxysection{Handling Events}\label{using_using_events}
+The event queue is a channel from the adapter to software which notifies software when packets arrive from the network, and when transmits complete (so that the buffers can be freed or reused). Application threads retrieve these events in one of the following ways\+:
+\begin{DoxyItemize}
+\item A thread can busy-\/wait for an event notification by calling \mbox{\hyperlink{ef__vi_8h_ab340116b526f45dd378fe279f0c05a48}{ef\+\_\+eventq\+\_\+poll()}} repeatedly in a tight loop. This gives the lowest latency.
+\item A thread can block until event notifications arrive (or a timeout expires) by calling \mbox{\hyperlink{base_8h_a282e0ba3717d2e509cd4ebc984f62461}{ef\+\_\+eventq\+\_\+wait()}}. This frees the CPU for other usage.
+\end{DoxyItemize}
+
+The batch size for polling must be at least EF\+\_\+\+VI\+\_\+\+EVENT\+\_\+\+POLL\+\_\+\+MIN\+\_\+\+EVS. It should be greater than the batch size for refilling to detect when the receive descriptor ring is going empty.
+
+When timestamping is enabled, a number of timestamps per second are added to the event queue, even when no packets are being received. It is important that the application regularly polls the VI event queue, to avoid an event queue overflow (EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+OFLOW) which can result in an undetermined state for the VI.\hypertarget{using_fd_blocking}{}\doxysubsection{Blocking on a file descriptor}\label{using_fd_blocking}
+Ef\+\_\+vi supports integration with other types of I/O via the select, poll and epoll interfaces. Each virtual interface is associated with a file descriptor. The ef\+\_\+vi layer supports blocking on a file descriptor until it has events ready, when it becomes readable. This feature provides the functionality that is already provided by \mbox{\hyperlink{base_8h_a282e0ba3717d2e509cd4ebc984f62461}{ef\+\_\+eventq\+\_\+wait()}} with the added benefit that as you are blocking on a file descriptor, you can block for events on a virtual interface along with other file descriptors at the same time.
+
+The file descriptor to use for blocking is the driver handle that was used to allocate the virtual interface.
+
+Before you can block on the file descriptor, you need to prime interrupts on the virtual interface. This is done by calling \mbox{\hyperlink{vi_8h_a7940e2ef8c2df90ce777e6db1556e19a}{ef\+\_\+vi\+\_\+prime()}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_a7940e2ef8c2df90ce777e6db1556e19a}{ef\_vi\_prime}}(\mbox{\hyperlink{structef__vi}{ef\_vi}}* vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\_driver\_handle}} dh,}
+\DoxyCodeLine{                \textcolor{keywordtype}{unsigned} current\_ptr);}
+
+\end{DoxyCode}
+
+
+When this function is called, you must tell it how many events you\textquotesingle{}ve read from the eventq which can be retrieved by using \mbox{\hyperlink{ef__vi_8h_a4729338fad56b630f44ae1b2515dfd69}{ef\+\_\+eventq\+\_\+current()}}. Then you can simply block on the file descriptor becoming readable by using select(), poll(), epoll(), etc. When the file descriptor is returned as readable, you can then get the associated events by polling the eventq in the normal way. Note that at this point, you must call \mbox{\hyperlink{vi_8h_a7940e2ef8c2df90ce777e6db1556e19a}{ef\+\_\+vi\+\_\+prime()}} again (with the current value from \mbox{\hyperlink{ef__vi_8h_a4729338fad56b630f44ae1b2515dfd69}{ef\+\_\+eventq\+\_\+current()}}) before blocking on the file descriptor again.
+
+The \mbox{\hyperlink{applications_efsink}{efsink}} example code offers a simple example.\hypertarget{using_using_receive}{}\doxysection{Receiving packets}\label{using_using_receive}
+To receive packets, the basic process is\+:
+
+
+\begin{DoxyEnumerate}
+\item Post descriptors for empty packet buffers onto the RX descriptor ring, by calling \mbox{\hyperlink{ef__vi_8h_a9e1fbd2c66475fde3aa1b7df19841ef9}{ef\+\_\+vi\+\_\+receive\+\_\+init()}} and \mbox{\hyperlink{ef__vi_8h_abcd5dc1be7ff1e9f9a4a84df86305099}{ef\+\_\+vi\+\_\+receive\+\_\+push()}}, or \mbox{\hyperlink{ef__vi_8h_aa5ffb14e493b05738eb74fc44ca2be71}{ef\+\_\+vi\+\_\+receive\+\_\+post()}}.
+
+Receive descriptors should be posted in multiples of 8. When an application pushes 10 descriptors, ef\+\_\+vi will push 8 and ef\+\_\+vi will ignore descriptor batch sizes $<$ 8. Users should beware that if the ring is empty and the application pushes $<$ 8 descriptors before blocking on the event queue, the application will remain blocked as there are no descriptors available to receive packets so nothing gets posted to the event queue.
+
+Posting descriptors should ideally be done in batches, by a thread that is not on the critical path. A small batch size means that the ring is kept more full, but a large batch size is more efficient. A size of 8, 16 or 32 is probably the best compromise.
+\item Poll the event queue to see that they are now filled.
+
+See \mbox{\hyperlink{using_using_events}{Handling Events}}.
+
+Packets are written into the buffers in FIFO order.
+\item Handle the resulting event and the incoming packet.
+
+Since the adapter is cut-\/through, errors in receiving packets like multicast mismatch, CRC errors, etc. are delivered along with the packet. The software must detect these errors and recycle the associated packet buffers.
+\end{DoxyEnumerate}\hypertarget{using_packet_data}{}\doxysubsection{Finding the Packet Data}\label{using_packet_data}
+Use the queue ID to find the packet and its buffer. The diagram below shows the layout of the buffer, and the functions and macros for accessing it\+:
+
+  
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{packet_buffers_layout.png}
+\doxyfigcaption{Layout and functions for a packet buffer}
+\end{DoxyImage}
+
+
+
+\begin{DoxyItemize}
+\item Use \mbox{\hyperlink{ef__vi_8h_a7a58c5a2ac989e1b24f33f5d7bb7f348}{ef\+\_\+vi\+\_\+receive\+\_\+prefix\+\_\+len()}} to find the offset for the packet data. (Remember that this includes the headers, as ef\+\_\+vi does not do any protocol handling.)
+\item \mbox{\hyperlink{ef__vi_8h_abc676af3c8675d8bf305f6313252c55f}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+BYTES()}} gives the number of bytes received.
+\item \mbox{\hyperlink{ef__vi_8h_a3c1a5ccee11cafca42a09646581b8fcb}{ef\+\_\+vi\+\_\+receive\+\_\+query\+\_\+layout()}} gives more information.
+\end{DoxyItemize}
+
+Packets that are smaller than the packet buffer size are delivered one per packet buffer. An event is raised for each packet buffer that is filled\+:
+
+  
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{packet_buffers_non-jumbo.png}
+\doxyfigcaption{A single (non-\/jumbo) packet}
+\end{DoxyImage}
+\hypertarget{using_using_rx_jumbo}{}\doxysubsection{Receiving Jumbo Packets}\label{using_using_rx_jumbo}
+Packets of a size smaller than the interface MTU but larger than the packet buffer size are delivered in multiple buffers as jumbo packets. An event is raised for each packet buffer that is filled. For example, this is a packet that requires two buffers\+:
+
+  
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{packet_buffers_jumbo-2.png}
+\doxyfigcaption{A 2-\/buffer jumbo packet}
+\end{DoxyImage}
+
+
+and this is a larger packet that requires {\itshape N} buffers\+:
+
+  
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{packet_buffers_jumbo-n.png}
+\doxyfigcaption{An N-\/buffer jumbo packet}
+\end{DoxyImage}
+
+
+
+\begin{DoxyItemize}
+\item The \mbox{\hyperlink{ef__vi_8h_a2c9f892479de9126f6a731ff5f8d65be}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+CONT()}} macro can be used to check if this is not the last part of the packet, and that the next receive (on this RX descriptor ring) should also be examined as being part of this jumbo frame.
+\item The \mbox{\hyperlink{ef__vi_8h_abc676af3c8675d8bf305f6313252c55f}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+BYTES()}} macro gets the number of bytes of the packet that have been received. This is a cumulative total, so the value for the last part of the frame is the total packet length.
+\item If {\ttfamily EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+TRUNC} is set, this indicates that the packet buffer has been dropped, and so the jumbo packet has been truncated. But there might still be more parts of the jumbo packet that arrive after the drop. All packet buffers should be discarded until one is received with {\ttfamily EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+SOP} set, marking the start of a new packet.
+\end{DoxyItemize}\hypertarget{using_using_rx_event_merging}{}\doxysubsection{RX Event Merging}\label{using_using_rx_event_merging}
+RX event merging can merge multiple events into a single {\ttfamily EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+MULTI} event\+:
+
+
+\begin{DoxyItemize}
+\item There can potentially be multiple packets per event.
+\item Events can only be merged to a single {\ttfamily EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+MULTI} event when their flags are the same.
+\item When an {\ttfamily EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+MULTI} event occurs, \mbox{\hyperlink{ef__vi_8h_a7da657579f196e3a895e4527eb958d65}{ef\+\_\+vi\+\_\+receive\+\_\+unbundle()}} must always be used to find the individual buffers.
+\item When an {\ttfamily EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+DISCARD} event occurs, \mbox{\hyperlink{ef__vi_8h_a7da657579f196e3a895e4527eb958d65}{ef\+\_\+vi\+\_\+receive\+\_\+unbundle()}} must also always be called, even if the application is unconcerned with the detailed discard information.
+\item When the first buffer of a packet is found, \mbox{\hyperlink{ef__vi_8h_a7acdfde8e503ed210170ba45874068f3}{ef\+\_\+vi\+\_\+receive\+\_\+get\+\_\+bytes()}} can then give the length of the packet\+:
+\end{DoxyItemize}
+
+  
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{packet_buffers_layout_merged.png}
+\doxyfigcaption{Layout and functions for RX event merging}
+\end{DoxyImage}
+
+
+If consecutive single-\/buffer packets are received, they can be merged\+:
+
+  
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{packet_buffers_non-jumbo_merged.png}
+\doxyfigcaption{RX event merging for non-\/jumbo packets}
+\end{DoxyImage}
+
+
+For a two-\/buffer jumbo packet, the events have different flags, and so cannot be merged\+:
+
+  
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{packet_buffers_jumbo-2_merged.png}
+\doxyfigcaption{RX event merging for a 2-\/buffer jumbo packet}
+\end{DoxyImage}
+
+
+For a larger {\itshape N}-\/buffer jumbo packet, the events for the middle buffers have the same flags, and so can be merged\+:
+
+  
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{packet_buffers_jumbo-n_merged.png}
+\doxyfigcaption{Event merging for an \+\_\+\+N\+\_\+-\/buffer jumbo packet}
+\end{DoxyImage}
+
+
+So for jumbo packets, the following multiple events are typically raised\+:
+
+
+\begin{DoxyEnumerate}
+\item An event with {\ttfamily EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+SOP} and {\ttfamily EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+CONT} containing the first buffer. \mbox{\hyperlink{ef__vi_8h_a7acdfde8e503ed210170ba45874068f3}{ef\+\_\+vi\+\_\+receive\+\_\+get\+\_\+bytes()}} gives the length of the whole jumbo packet.
+\item If there are more than two buffers, event(s) with {\ttfamily EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+CONT} containing the middle buffers.
+\item An event with {\ttfamily ! EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+SOP} and {\ttfamily ! EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+CONT} containing the final buffer. The length of the payload can be inferred based on the total length of the Jumbo packet minus the lengths of previous payloads.
+\end{DoxyEnumerate}
+
+There is example code in the following locations\+:
+
+
+\begin{DoxyItemize}
+\item the \mbox{\hyperlink{applications_efsink}{efsink}} example application
+\item the handle\+\_\+rx\+\_\+scatter\+\_\+merge() function within {\ttfamily openonload/src/lib/transport/ip/netif\+\_\+event.\+c}.
+\end{DoxyItemize}\hypertarget{using_using_filters}{}\doxysection{Adding Filters}\label{using_using_filters}
+Filters are the means by which the adapter decides where to deliver packets it receives from the network. By default all packets are delivered to the kernel network stack. Filters are added by an ef\+\_\+vi application to direct received packets to a given virtual interface.
+
+
+\begin{DoxyItemize}
+\item If a filter cannot be added, for example because an incompatible filter already exists, an error is returned.
+\item By default the \textquotesingle{}all\textquotesingle{} filters are sending everything to the kernel. They are equivalent to setting promiscuous mode on the NIC.
+\item On SFN5000 and SFN6000 series NICs each filter can only exist for one virtual interface, and so each packet which arrives can be forwarded only to a single application (unless two applications share a stack). Only the first application to insert a specific filter will succeed; other applications will then get an error.
+
+Note that this includes filters inserted both by other ef\+\_\+vi applications and by Onload -\/ which typically uses only fully connected and listen filters.
+\item The SFN7000 and SFN8000 series NICs are not subject to this restriction. If two applications insert the same multicast filter, a copy of the packets is delivered to each application and applications remain unaware of each other.
+\item IP filters do not match IP fragments, which are therefore received by the kernel stack. If this is an issue, layer 2 filters should be installed by the user.
+\item There are no ranges, or other local wildcard support. To filter on a range of values, one of the following is required\+:
+\begin{DoxyItemize}
+\item insert multiple filters, one per value in the range (NICs support upwards of a thousand filters easily)
+\item have the interesting traffic sent to a specific MAC address, and use a MAC address filter
+\item have the interesting traffic sent to a specific VLAN, and use a VLAN filter.
+\end{DoxyItemize}
+\item Cookies are used to remove filters.
+\item De-\/allocating a virtual interface removes any filters set for the virtual interface.
+\end{DoxyItemize}
+
+Filters are checked in the following order, which is roughly most-\/specific first\+:
+\begin{DoxyEnumerate}
+\item Fully connected TCP/\+UDP. (Specifies local and remote port and IP)
+\item Listen socket. (Specifies local port and IP, but allows any remote IP/port)
+\item Destination MAC address, and optionally VLAN. (Useful for multicast reception, though IP can be used instead if preferred. Also useful for custom protocols.)
+\item Everything else. (All unicast, all multicast.)
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{vi_8h_a2195efb4c62ebcf9c98c04bcbc842979}{ef\_filter\_spec\_init}}(\mbox{\hyperlink{structef__filter__spec}{ef\_filter\_spec}}* fs,}
+\DoxyCodeLine{                         \textcolor{keyword}{enum} \mbox{\hyperlink{vi_8h_ae25195780aad9dcfb218728db965a8b6}{ef\_filter\_flags}} flags);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_a1d04a4feb412f3584ffb8eeb36207912}{ef\_filter\_spec\_set\_ip4\_local}}(\mbox{\hyperlink{structef__filter__spec}{ef\_filter\_spec}}* fs,}
+\DoxyCodeLine{                                 \textcolor{keywordtype}{int} protocol,}
+\DoxyCodeLine{                                 \textcolor{keywordtype}{unsigned} host\_be32, \textcolor{keywordtype}{int} port\_be16);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_ae91372fd3996c517136a236ef0669db5}{ef\_filter\_spec\_set\_ip4\_full}}(\mbox{\hyperlink{structef__filter__spec}{ef\_filter\_spec}}* fs,}
+\DoxyCodeLine{                                \textcolor{keywordtype}{int} protocol,}
+\DoxyCodeLine{                                \textcolor{keywordtype}{unsigned} host\_be32, \textcolor{keywordtype}{int} port\_be16,}
+\DoxyCodeLine{                                \textcolor{keywordtype}{unsigned} rhost\_be32, \textcolor{keywordtype}{int} rport\_be16);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_a5f8e4fb095dc588c49cfcbc064ef7810}{ef\_filter\_spec\_set\_vlan}}(\mbox{\hyperlink{structef__filter__spec}{ef\_filter\_spec}}* fs,}
+\DoxyCodeLine{                            \textcolor{keywordtype}{int} vlan\_id);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_af528ebfe9024176f75d55a7733552435}{ef\_filter\_spec\_set\_eth\_local}}(\mbox{\hyperlink{structef__filter__spec}{ef\_filter\_spec}}* fs,}
+\DoxyCodeLine{                                 \textcolor{keywordtype}{int} vlan\_id,}
+\DoxyCodeLine{                                 \textcolor{keyword}{const} \textcolor{keywordtype}{void} *mac);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_a7ebf6ecc2966a4b88367cc274a717417}{ef\_filter\_spec\_set\_unicast\_all}}(\mbox{\hyperlink{structef__filter__spec}{ef\_filter\_spec}}* fs);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_a0c7d3ebf1cc5c5f318ac18ff0c1ff914}{ef\_filter\_spec\_set\_multicast\_all}}(\mbox{\hyperlink{structef__filter__spec}{ef\_filter\_spec}}* fs);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_a6a8a8227b658a5d93548818a45445815}{ef\_filter\_spec\_set\_unicast\_mismatch}}(\mbox{\hyperlink{structef__filter__spec}{ef\_filter\_spec}}* fs);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_af58cc298c09a1337a0118f39f27b9845}{ef\_filter\_spec\_set\_multicast\_mismatch}}(\mbox{\hyperlink{structef__filter__spec}{ef\_filter\_spec}}* fs);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_a377a64780b4b9e9fd01fd7c79dd36edb}{ef\_filter\_spec\_set\_port\_sniff}}(\mbox{\hyperlink{structef__filter__spec}{ef\_filter\_spec}}* fs,}
+\DoxyCodeLine{                                  \textcolor{keywordtype}{int} promiscuous);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_a85d2fd83f222962b65890b29193b1618}{ef\_filter\_spec\_set\_tx\_port\_sniff}}(\mbox{\hyperlink{structef__filter__spec}{ef\_filter\_spec}}* fs);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_ab2eff00234093a967c29f57a727af98a}{ef\_filter\_spec\_set\_block\_kernel}}(\mbox{\hyperlink{structef__filter__spec}{ef\_filter\_spec}}* fs);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_ab0f191fe076d51ef701e4d1b2709e4b1}{ef\_filter\_spec\_set\_block\_kernel\_multicast}}(\mbox{\hyperlink{structef__filter__spec}{ef\_filter\_spec}}* fs);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_ae8128e39ce98e1f64a54cba31bae14d0}{ef\_filter\_spec\_set\_block\_kernel\_unicast}}(\mbox{\hyperlink{structef__filter__spec}{ef\_filter\_spec}}* fs);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_a71909d1557f3064579781604fc117e4e}{ef\_vi\_filter\_add}}(\mbox{\hyperlink{structef__vi}{ef\_vi}}* vi,\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\_driver\_handle}} dh,}
+\DoxyCodeLine{                     \textcolor{keyword}{const} \mbox{\hyperlink{structef__filter__spec}{ef\_filter\_spec}}* fs,}
+\DoxyCodeLine{                     \mbox{\hyperlink{structef__filter__cookie}{ef\_filter\_cookie}}* filter\_cookie\_out);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_a42f633c2483fb182434c8f7f3ea732fd}{ef\_vi\_filter\_del}}(\mbox{\hyperlink{structef__vi}{ef\_vi}}* vi, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\_driver\_handle}} dh,}
+\DoxyCodeLine{                     \mbox{\hyperlink{structef__filter__cookie}{ef\_filter\_cookie}}* filter\_cookie);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_a89aa0805536fccbaf79c2120c316ff65}{ef\_vi\_set\_filter\_add}}(\mbox{\hyperlink{structef__vi__set}{ef\_vi\_set}}*,}
+\DoxyCodeLine{                        \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\_driver\_handle}} dh,}
+\DoxyCodeLine{                        \textcolor{keyword}{const} \mbox{\hyperlink{structef__filter__spec}{ef\_filter\_spec}}* fs,}
+\DoxyCodeLine{                        \mbox{\hyperlink{structef__filter__cookie}{ef\_filter\_cookie}}* filter\_cookie\_out);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_ad2bce41b1eccaa8c393c9abacab9905c}{ef\_vi\_set\_filter\_del}}(\mbox{\hyperlink{structef__vi__set}{ef\_vi\_set}}*, \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\_driver\_handle}} dh,}
+\DoxyCodeLine{                         \mbox{\hyperlink{structef__filter__cookie}{ef\_filter\_cookie}}* filter\_cookie);}
+
+\end{DoxyCode}
+ {\bfseries{Figure\+: Creating Filters}}\hypertarget{using_filters_permission}{}\doxysubsection{Filter permission requirements}\label{using_filters_permission}
+Super-\/user rights (specifically {\ttfamily CAP\+\_\+\+NET\+\_\+\+ADMIN}) are needed to use the following filters\+:
+
+
+\begin{DoxyItemize}
+\item IP proto (and the VLAN variant)
+\item Ethertype (and the VLAN variant)
+\item Unicast-\/mismatch (and the VLAN variant)
+\item Multicast-\/mismatch (and the VLAN variant)
+\item Unicast-\/all
+\item Multicast-\/all
+\item Kernel block
+\item Sniff.
+\end{DoxyItemize}\hypertarget{using_filters_variant}{}\doxysubsection{Filters available per Firmware Variant}\label{using_filters_variant}
+The kernel will install a destination MAC address filter for each Solarflare interface. The kernel will install a broadcast MAC address filter for each Solarflare interface.
+
+A broadcast MAC address is treated like any other MAC address. Multiple applications can insert the same filter and all will receive a copy of the received traffic.
+
+As a rule, more-\/specific filters will capture traffic over less-\/specific filters.
+
+When the Solarflare adapter is configured to use the full\+\_\+featured firmware variant, the following combinations of ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+$\ast$() calls are supported, and are applied in this order\+:
+
+
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{vi_8h_ae91372fd3996c517136a236ef0669db5}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip4\+\_\+full()}} or \mbox{\hyperlink{vi_8h_a90dde88cfc07177f35be74c77cfb9e40}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip6\+\_\+full()}}
+\item \mbox{\hyperlink{vi_8h_a9f8fcdc598fa4971ea44ca765de4d51c}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+eth\+\_\+type()}}
+\item \mbox{\hyperlink{vi_8h_af528ebfe9024176f75d55a7733552435}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+eth\+\_\+local()}}
+\item optionally, \mbox{\hyperlink{vi_8h_a5f8e4fb095dc588c49cfcbc064ef7810}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+vlan()}} ~\newline
+~\newline
+
+\item \mbox{\hyperlink{vi_8h_a1d04a4feb412f3584ffb8eeb36207912}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip4\+\_\+local()}} or \mbox{\hyperlink{vi_8h_a33228093a9326e0606581ce03260dc76}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip6\+\_\+local()}}
+\item \mbox{\hyperlink{vi_8h_a9f8fcdc598fa4971ea44ca765de4d51c}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+eth\+\_\+type()}}
+\item \mbox{\hyperlink{vi_8h_af528ebfe9024176f75d55a7733552435}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+eth\+\_\+local()}}
+\item optionally, \mbox{\hyperlink{vi_8h_a5f8e4fb095dc588c49cfcbc064ef7810}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+vlan()}} ~\newline
+~\newline
+
+\item \mbox{\hyperlink{vi_8h_af528ebfe9024176f75d55a7733552435}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+eth\+\_\+local()}}
+\item optionally, \mbox{\hyperlink{vi_8h_a5f8e4fb095dc588c49cfcbc064ef7810}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+vlan()}} ~\newline
+~\newline
+
+\item \mbox{\hyperlink{vi_8h_a6a8a8227b658a5d93548818a45445815}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+unicast\+\_\+mismatch()}}
+\item optionally, \mbox{\hyperlink{vi_8h_a5f8e4fb095dc588c49cfcbc064ef7810}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+vlan()}} ~\newline
+~\newline
+
+\item \mbox{\hyperlink{vi_8h_af58cc298c09a1337a0118f39f27b9845}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+multicast\+\_\+mismatch()}}
+\item optionally, \mbox{\hyperlink{vi_8h_a5f8e4fb095dc588c49cfcbc064ef7810}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+vlan()}}
+\end{DoxyItemize}
+
+When the Solarflare adapter is configured to use the low\+\_\+latency firmware variant, the following combinations of ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+$\ast$() calls are supported, and are applied in this order\+:
+
+
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{vi_8h_ae91372fd3996c517136a236ef0669db5}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip4\+\_\+full()}} or \mbox{\hyperlink{vi_8h_a90dde88cfc07177f35be74c77cfb9e40}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip6\+\_\+full()}}
+\item \mbox{\hyperlink{vi_8h_a9f8fcdc598fa4971ea44ca765de4d51c}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+eth\+\_\+type()}} ~\newline
+~\newline
+
+\item \mbox{\hyperlink{vi_8h_a1d04a4feb412f3584ffb8eeb36207912}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip4\+\_\+local()}} or \mbox{\hyperlink{vi_8h_a33228093a9326e0606581ce03260dc76}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip6\+\_\+local()}}
+\item \mbox{\hyperlink{vi_8h_a9f8fcdc598fa4971ea44ca765de4d51c}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+eth\+\_\+type()}} ~\newline
+~\newline
+
+\item \mbox{\hyperlink{vi_8h_af528ebfe9024176f75d55a7733552435}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+eth\+\_\+local()}}
+\item optionally, \mbox{\hyperlink{vi_8h_a5f8e4fb095dc588c49cfcbc064ef7810}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+vlan()}} ~\newline
+~\newline
+
+\item \mbox{\hyperlink{vi_8h_a6a8a8227b658a5d93548818a45445815}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+unicast\+\_\+mismatch()}} ~\newline
+~\newline
+
+\item \mbox{\hyperlink{vi_8h_af58cc298c09a1337a0118f39f27b9845}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+multicast\+\_\+mismatch()}}
+\end{DoxyItemize}
+
+When the Solarflare adapter is configured to use the packed\+\_\+stream firmware variant, the following combinations of ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+$\ast$() calls are supported, and are applied in this order\+:
+
+
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{vi_8h_a1d04a4feb412f3584ffb8eeb36207912}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip4\+\_\+local()}} or \mbox{\hyperlink{vi_8h_a33228093a9326e0606581ce03260dc76}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+ip6\+\_\+local()}}
+\item \mbox{\hyperlink{vi_8h_a9f8fcdc598fa4971ea44ca765de4d51c}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+eth\+\_\+type()}} ~\newline
+~\newline
+
+\item \mbox{\hyperlink{vi_8h_af528ebfe9024176f75d55a7733552435}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+eth\+\_\+local()}} ~\newline
+~\newline
+
+\item \mbox{\hyperlink{vi_8h_a6a8a8227b658a5d93548818a45445815}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+unicast\+\_\+mismatch()}}
+\item optionally, \mbox{\hyperlink{vi_8h_a5f8e4fb095dc588c49cfcbc064ef7810}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+vlan()}} ~\newline
+~\newline
+
+\item \mbox{\hyperlink{vi_8h_af58cc298c09a1337a0118f39f27b9845}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+multicast\+\_\+mismatch()}}
+\item optionally, \mbox{\hyperlink{vi_8h_a5f8e4fb095dc588c49cfcbc064ef7810}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+vlan()}}
+\end{DoxyItemize}\hypertarget{using_using_igmp}{}\doxysection{IGMP subscriptions}\label{using_using_igmp}
+In theory it is possible to generate IGMP join/leave messages and send them via ef\+\_\+vi. For reliable operation this would mean re-\/implementing the whole IGMP protocol. As the IGMP messages are not especially latency sensitive, this would be a lot of work for minimal benefit.
+
+A common solution when using ef\+\_\+vi to receive multicast is to also create a standard UDP socket and use IP\+\_\+\+ADD\+\_\+\+MEMBERSHIP/\+IP\+\_\+\+DROP\+\_\+\+MEMBERSHIP to control the multicast groups for the interface. The kernel stack will then generate and respond to the IGMP messages as normal. This UDP socket should not be accelerated using Onload, which can be achieved by using onload\+\_\+socket\+\_\+nonaccel() to create this socket.
+
+\begin{DoxyNote}{Note}
+The onload\+\_\+socket\+\_\+nonaccel() function is a part of the Onload Extensions API, and is documented in the {\itshape Onload User Guide}.
+\end{DoxyNote}
+If the ef\+\_\+vi application installs filters for individual UDP ports then everything will work fine. Once the VI has a UDP filter installed for the multicast traffic, this filter will match the received traffic in preference to the MAC multicast address filter installed by the kernel stack. Consequently, the UDP socket won\textquotesingle{}t see the actual traffic, but the VI will. The IGMP messages will not match the ef\+\_\+vi filter, and so IGMP will still be handled by the kernel stack. If the traffic rate is high, then it is best to install the filter on the VI before joining the group, and to close the UDP socket before removing the filter or closing the VI. This prevents the UDP socket receiving lots of unwanted traffic.
+
+If the ef\+\_\+vi application installs the \char`\"{}multicast-\/all\char`\"{} filter for the VI, then this will normally consume all multicast traffic on the interface. This would potentially include IGMP messages, which could cause the subscriptions to fail. In this case, an extra filter entry can be added to redirect all incoming IGMP packets to the kernel stack, so that they can still be processed by the kernel\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ethtool -\/U <interface> flow-\/type ip4 l4proto 2 vlan 0 m 0xf000 action 0}
+
+\end{DoxyCode}
+\hypertarget{using_using_freeing}{}\doxysection{Freeing Resources}\label{using_using_freeing}
+Users of ef\+\_\+vi must do the following to free resources\+:
+\begin{DoxyEnumerate}
+\item Release and free memory regions by calling \mbox{\hyperlink{memreg_8h_a50faeb36b707ebf538b789d9f311642f}{ef\+\_\+memreg\+\_\+free()}}.
+\item Release and free a virtual interface by calling \mbox{\hyperlink{vi_8h_ac9c8bc0bab4933eb9a3448a025209f3f}{ef\+\_\+vi\+\_\+free()}}.
+\item Release and free a protection domain by calling \mbox{\hyperlink{pd_8h_a74417cfe9364bda64435834a8086b91f}{ef\+\_\+pd\+\_\+free()}}.
+\item Close a driver handle by calling \mbox{\hyperlink{base_8h_ac7afa09b92436d8007255c3a8723c759}{ef\+\_\+driver\+\_\+close()}}.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/* Release and free a memory region */}}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{memreg_8h_a50faeb36b707ebf538b789d9f311642f}{ef\_memreg\_free}}(\mbox{\hyperlink{structef__memreg}{ef\_memreg}}* mr,}
+\DoxyCodeLine{                   \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\_driver\_handle}} mr\_dh);}
+
+\end{DoxyCode}
+ {\bfseries{Figure\+: Release and Free a Memory Region}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/* Release and free a virtual interface */}}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{vi_8h_ac9c8bc0bab4933eb9a3448a025209f3f}{ef\_vi\_free}}(\mbox{\hyperlink{structef__vi}{ef\_vi}}* vi,}
+\DoxyCodeLine{               \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\_driver\_handle}} vi\_dh);}
+
+\end{DoxyCode}
+ {\bfseries{Figure\+: Release and Free a Virtual Interface}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/* Release and free a protection domain */}}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{pd_8h_a74417cfe9364bda64435834a8086b91f}{ef\_pd\_free}}(\mbox{\hyperlink{structef__pd}{ef\_pd}} *pd,}
+\DoxyCodeLine{               \mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\_driver\_handle}} pd\_dh);}
+
+\end{DoxyCode}
+ {\bfseries{Figure\+: Release and Free a Protection Domain}}\hypertarget{using_design}{}\doxysection{Design Considerations}\label{using_design}
+This section outlines some considerations that are required when designing an ef\+\_\+vi application.\hypertarget{using_interrupts}{}\doxysubsection{Interrupts}\label{using_interrupts}
+Interrupts are not enabled by ef\+\_\+vi by default.
+
+Interrupts are enabled only if \mbox{\hyperlink{base_8h_a282e0ba3717d2e509cd4ebc984f62461}{ef\+\_\+eventq\+\_\+wait()}} is called. If there are no events immediately ready, then this function will enable an interrupt, and sleep until that interrupt fires. Interrupts are then disabled again.\hypertarget{using_thread_safety}{}\doxysubsection{Thread Safety}\label{using_thread_safety}
+There is no thread-\/safety on ef\+\_\+vi functions. This is for speed. If thread-\/safety is required, it must be provided by the ef\+\_\+vi application.
+
+The usual use-\/case is to have multiple virtual interface structures for independent operation. There is then no need to lock.\hypertarget{using_pb_addressing}{}\doxysubsection{Packet Buffer Addressing}\label{using_pb_addressing}
+Different configuration modes are available for addressing packet buffers.
+
+
+\begin{DoxyItemize}
+\item {\itshape Network Adapter Buffer Table Mode} uses a block of memory on the adapter to store a translation table mapping between buffer IDs and physical addresses\+:
+\begin{DoxyItemize}
+\item When using a SFN5000 or SFN6000 series adapter there are 65536 entries in the buffer table. Each entry maps a 4KB page of memory that holds two 2KB packet buffers, and so a maxiumum of 131072 packet buffers are available. The kernel uses some of these, leaving about 120,000 packet buffers available for ef\+\_\+vi.
+\item The SFN7000 series adapters have {\itshape Large Buffer Table Support}. Each entry can map a larger region of memory, or a huge page, enabling them to support many more packet buffers without the need to use Scalable Packet Buffer Mode.
+\end{DoxyItemize}
+
+This is the default mode.
+\item {\itshape Scalable Packet Buffer Mode} allocates packet buffers from the kernel IOMMU. It uses Single Root I/O Virtualization (SR-\/\+IOV) virtual functions (VF) to provide memory protection and translation. This removes the buffer limitation of the buffer table.
+\begin{DoxyItemize}
+\item SR-\/\+IOV must be enabled
+\item the kernel must support an IOMMU.
+\end{DoxyItemize}
+
+An ef\+\_\+vi application can enable this mode by setting the environment variable {\ttfamily EF\+\_\+\+VI\+\_\+\+PD\+\_\+\+FLAGS=vf}.
+\item {\itshape Physical Addressing Mode} uses actual physical addresses to identify packet buffers. An ef\+\_\+vi application can therefore direct the adapter to access memory that is not in the application address space. For example, this can be used for zero-\/copy from the kernel buffer cache. any piece of memory.
+
+Physical Addressing Mode allows stacks to use large amounts of packet buffer memory, avoiding address translation limitations on some adapters and without the need to configure and use SR-\/\+IOV virtual functions.
+\begin{DoxyItemize}
+\item No memory protection is provided. Physical addressing mode removes memory protection from the network adapter\textquotesingle{}s access of packet buffers. Unprivileged user-\/level code is provided and directly handles the raw physical memory addresses of packet buffers. User-\/level code provides physical memory addresses directly to the adapter with the ability to read or write arbitrary memory locations.
+\item It is important to ensure that packet buffers are page aligned.
+\end{DoxyItemize}
+
+An ef\+\_\+vi application can enable this mode by setting the environment variable {\ttfamily EF\+\_\+\+VI\+\_\+\+PD\+\_\+\+FLAGS=phys}.
+
+The sfc\+\_\+char module option must also be enabled in a file in the /etc/modprobe.d directory where N is the integer group ID of the user running the ef\+\_\+vi application. Set to -\/1 means ALL users are permitted access.\+:
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{options sfc\_char phys\_mode\_gid=<N>}
+
+\end{DoxyCode}
+
+
+For more information about these configuration modes, see the chapter titled {\itshape Packet Buffers} in the {\itshape Onload User Guide} (SF-\/104474-\/\+CD).\hypertarget{using_vm}{}\doxysubsection{Virtual machines}\label{using_vm}
+Ef\+\_\+vi can be used in virtual machines provided PCI passthrough is used. With PCI passthrough a slice of the network adapter is mapped directly into the address space of the virtual machine so that device drivers in the VM OS can access the network adapter directly. To isolate VMs from one another and from the hypervisor, I/O addresses are also virtualised. I/O addresses generated by the network adapter are translated to physical memory addresses by the system IOMMU.
+
+When ef\+\_\+vi is used in virtual machines two levels of address translation are performed by default. Firstly a translation from DMA address to I/O address, performed by the adapter to isolate the application from other applications and the kernel. Then a translation from I/O address to physical address by the system IOMMU, isolating the virtual machines. Physical address mode can also be used in virtual machines, in which case the adapter translation is omitted.\hypertarget{using_limitations}{}\doxysection{Known Limitations}\label{using_limitations}
+\hypertarget{using_timestamping}{}\doxysubsection{Timestamping}\label{using_timestamping}
+When timestamping is enabled, the VI must be polled regularly (even when no packets are available). Timestamps consume four event queue slots per second and failing to poll the VI can result in event queue overflow. When there are no packets to receive, stale timestamps are not returned to the application, but polling ensures that they are cleared from the event queue.\hypertarget{using_fill_level}{}\doxysubsection{Minimum Fill Level}\label{using_fill_level}
+You must poll for at least EF\+\_\+\+VI\+\_\+\+EVENT\+\_\+\+POLL\+\_\+\+MIN\+\_\+\+EVS at a time. You will also need to initially fill the RX ring with at least 16 packet buffers to ensure that the card begins acquiring packets. (It\textquotesingle{}s OK to underrun once the application has started; although of course doing so risks drops.)
+
+It\textquotesingle{}s (very slightly) more efficient to refill the ring in batch sizes of 8/16/32 or 64 anyway.\hypertarget{using_using_example}{}\doxysection{Example}\label{using_using_example}
+Below is a simple example showing a starting framework for an ef\+\_\+vi application. This is not a complete program. There is no initialization, and much of the other required code is only indicated by comments.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{static} \textcolor{keywordtype}{void} handle\_poll(\mbox{\hyperlink{structef__vi}{ef\_vi}} *vi)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \mbox{\hyperlink{unionef__event}{ef\_event}} events[POLL\_BATCH\_SIZE];}
+\DoxyCodeLine{  \textcolor{keywordtype}{int} n\_ev = \mbox{\hyperlink{ef__vi_8h_ab340116b526f45dd378fe279f0c05a48}{ef\_eventq\_poll}}(\&vi, events, POLL\_BATCH\_SIZE);}
+\DoxyCodeLine{  \textcolor{keywordflow}{for}( i = O; i < n\_ev; ++i ) \{}
+\DoxyCodeLine{    \textcolor{keywordflow}{switch}( \mbox{\hyperlink{ef__vi_8h_a66c3866ad0c965c4a257a02cbb125388}{EF\_EVENT\_TYPE}}(events[i]) ) \{}
+\DoxyCodeLine{    \textcolor{keywordflow}{case} \mbox{\hyperlink{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba60ca113e8fe79115ba9efe22471a9001}{EF\_EVENT\_TYPE\_RX}}:}
+\DoxyCodeLine{      \textcolor{comment}{// Accumulate used buffer}}
+\DoxyCodeLine{      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{    \textcolor{keywordflow}{case} \mbox{\hyperlink{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba48528de8329421a4ac7785774bb4c894}{EF\_EVENT\_TYPE\_TX}}:}
+\DoxyCodeLine{      \textcolor{comment}{/* Each EF\_EVENT\_TYPE\_TX can signal multiple completed sends */}}
+\DoxyCodeLine{      \textcolor{keywordtype}{int} num\_completed = \mbox{\hyperlink{ef__vi_8h_a03c43da4cdac5419b1d859b20854ec37}{ef\_vi\_transmit\_unbundle}}(vi, events[i], \&dma\_id);}
+\DoxyCodeLine{      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{    \textcolor{keywordflow}{case} \mbox{\hyperlink{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba117a208b3f2e58062cc505b88f984057}{EF\_EVENT\_TYPE\_RX\_DISCARD}}:}
+\DoxyCodeLine{    \textcolor{keywordflow}{case} \mbox{\hyperlink{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba8f7d923defae51d9d8c226b51c51d56d}{EF\_EVENT\_TYPE\_RX\_NO\_DESC\_TRUNC}}:}
+\DoxyCodeLine{      \textcolor{comment}{/* Discard events also use up buffers */}}
+\DoxyCodeLine{      \textcolor{comment}{// Accumulate buffer in user space}}
+\DoxyCodeLine{      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{    \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{      \textcolor{comment}{/* Other error types */}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{static} \textcolor{keywordtype}{void} refill\_rx\_ring(\mbox{\hyperlink{structef__vi}{ef\_vi}} *vi)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keywordflow}{if}( \mbox{\hyperlink{ef__vi_8h_a4ce37375952e8174b39ec2025955122f}{ef\_vi\_receive\_space}}(\&vi) < REFILL\_BATCH\_SIZE )}
+\DoxyCodeLine{    \textcolor{keywordflow}{return};}
+\DoxyCodeLine{  \textcolor{keywordtype}{int} refill\_count = REFILL\_BATCH\_SIZE;}
+\DoxyCodeLine{  \textcolor{comment}{/* Falling too low? */}}
+\DoxyCodeLine{  \textcolor{keywordflow}{if}( \mbox{\hyperlink{ef__vi_8h_a4ce37375952e8174b39ec2025955122f}{ef\_vi\_receive\_space}}(\&vi) > \mbox{\hyperlink{ef__vi_8h_aa1d1b37d9e0352d4f2eacbbbe535f59e}{ef\_vi\_receive\_capacity}}(\&vi) / 2 )}
+\DoxyCodeLine{    refill\_count = \mbox{\hyperlink{ef__vi_8h_a4ce37375952e8174b39ec2025955122f}{ef\_vi\_receive\_space}}(\&vi);}
+\DoxyCodeLine{  \textcolor{comment}{/* Enough free buffers? */}}
+\DoxyCodeLine{  \textcolor{keywordflow}{if}( refill\_count > free\_bufs\_in\_sw )}
+\DoxyCodeLine{    refill\_count = free\_bufs\_in\_sw;}
+\DoxyCodeLine{  \textcolor{comment}{/* Round down to batch size */}}
+\DoxyCodeLine{  refill\_count \&= \string~(REFILL\_BATCH\_SIZE -\/ 1);}
+\DoxyCodeLine{  \textcolor{keywordflow}{if}( refill\_count ) \{}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}( refill\_count ) \{}
+\DoxyCodeLine{      \mbox{\hyperlink{ef__vi_8h_a9e1fbd2c66475fde3aa1b7df19841ef9}{ef\_vi\_receive\_init}}(...);}
+\DoxyCodeLine{      -\/-\/refill\_count;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    \mbox{\hyperlink{ef__vi_8h_abcd5dc1be7ff1e9f9a4a84df86305099}{ef\_vi\_receive\_push}}(\&vi);}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} argv[]) (}
+\DoxyCodeLine{  \textcolor{keywordflow}{while}( 1 ) \{}
+\DoxyCodeLine{    poll\_events(\&vi);}
+\DoxyCodeLine{    refill\_rx\_ring(\&vi);}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 

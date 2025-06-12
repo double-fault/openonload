@@ -1,0 +1,115 @@
+\hypertarget{structef__vi__rxq__state}{}\doxysection{ef\+\_\+vi\+\_\+rxq\+\_\+state Struct Reference}
+\label{structef__vi__rxq__state}\index{ef\_vi\_rxq\_state@{ef\_vi\_rxq\_state}}
+
+
+State of RX descriptor ring.  
+
+
+
+
+{\ttfamily \#include $<$ef\+\_\+vi.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structef__vi__rxq__state_ac7a15a2dd1cfde99d57db11edadba4ef}{posted}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structef__vi__rxq__state_a308b19eabdbcb82603e2415a8a3d9712}{added}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structef__vi__rxq__state_a5aabf4fee37b46b46ffb7233754fd26c}{removed}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structef__vi__rxq__state_a25a186afb2fef8c58ff202048bb92cea}{in\+\_\+jumbo}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structef__vi__rxq__state_aa67e826253f9d375235ba94a2d06a27f}{bytes\+\_\+acc}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structef__vi__rxq__state_a282bfd2168465d99e3ede3eda0187b21}{last\+\_\+desc\+\_\+i}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structef__vi__rxq__state_a22f2303d8ebb312bcd57617cca4872ca}{rx\+\_\+ps\+\_\+credit\+\_\+avail}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+State of RX descriptor ring. 
+
+Users should not access this structure. 
+
+Definition at line 578 of file ef\+\_\+vi.\+h.
+
+
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{structef__vi__rxq__state_a308b19eabdbcb82603e2415a8a3d9712}\label{structef__vi__rxq__state_a308b19eabdbcb82603e2415a8a3d9712}} 
+\index{ef\_vi\_rxq\_state@{ef\_vi\_rxq\_state}!added@{added}}
+\index{added@{added}!ef\_vi\_rxq\_state@{ef\_vi\_rxq\_state}}
+\doxysubsubsection{\texorpdfstring{added}{added}}
+{\footnotesize\ttfamily uint32\+\_\+t added}
+
+Descriptors added to the ring 
+
+Definition at line 582 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi__rxq__state_aa67e826253f9d375235ba94a2d06a27f}\label{structef__vi__rxq__state_aa67e826253f9d375235ba94a2d06a27f}} 
+\index{ef\_vi\_rxq\_state@{ef\_vi\_rxq\_state}!bytes\_acc@{bytes\_acc}}
+\index{bytes\_acc@{bytes\_acc}!ef\_vi\_rxq\_state@{ef\_vi\_rxq\_state}}
+\doxysubsubsection{\texorpdfstring{bytes\_acc}{bytes\_acc}}
+{\footnotesize\ttfamily uint32\+\_\+t bytes\+\_\+acc}
+
+Bytes received as part of a jumbo (7000-\/series only) 
+
+Definition at line 588 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi__rxq__state_a25a186afb2fef8c58ff202048bb92cea}\label{structef__vi__rxq__state_a25a186afb2fef8c58ff202048bb92cea}} 
+\index{ef\_vi\_rxq\_state@{ef\_vi\_rxq\_state}!in\_jumbo@{in\_jumbo}}
+\index{in\_jumbo@{in\_jumbo}!ef\_vi\_rxq\_state@{ef\_vi\_rxq\_state}}
+\doxysubsubsection{\texorpdfstring{in\_jumbo}{in\_jumbo}}
+{\footnotesize\ttfamily uint32\+\_\+t in\+\_\+jumbo}
+
+Packets received as part of a jumbo (7000-\/series only) 
+
+Definition at line 586 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi__rxq__state_a282bfd2168465d99e3ede3eda0187b21}\label{structef__vi__rxq__state_a282bfd2168465d99e3ede3eda0187b21}} 
+\index{ef\_vi\_rxq\_state@{ef\_vi\_rxq\_state}!last\_desc\_i@{last\_desc\_i}}
+\index{last\_desc\_i@{last\_desc\_i}!ef\_vi\_rxq\_state@{ef\_vi\_rxq\_state}}
+\doxysubsubsection{\texorpdfstring{last\_desc\_i}{last\_desc\_i}}
+{\footnotesize\ttfamily uint16\+\_\+t last\+\_\+desc\+\_\+i}
+
+Last descriptor index completed (7000-\/series only) 
+
+Definition at line 590 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi__rxq__state_ac7a15a2dd1cfde99d57db11edadba4ef}\label{structef__vi__rxq__state_ac7a15a2dd1cfde99d57db11edadba4ef}} 
+\index{ef\_vi\_rxq\_state@{ef\_vi\_rxq\_state}!posted@{posted}}
+\index{posted@{posted}!ef\_vi\_rxq\_state@{ef\_vi\_rxq\_state}}
+\doxysubsubsection{\texorpdfstring{posted}{posted}}
+{\footnotesize\ttfamily uint32\+\_\+t posted}
+
+Descriptors posted to the nic 
+
+Definition at line 580 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi__rxq__state_a5aabf4fee37b46b46ffb7233754fd26c}\label{structef__vi__rxq__state_a5aabf4fee37b46b46ffb7233754fd26c}} 
+\index{ef\_vi\_rxq\_state@{ef\_vi\_rxq\_state}!removed@{removed}}
+\index{removed@{removed}!ef\_vi\_rxq\_state@{ef\_vi\_rxq\_state}}
+\doxysubsubsection{\texorpdfstring{removed}{removed}}
+{\footnotesize\ttfamily uint32\+\_\+t removed}
+
+Descriptors removed from the ring 
+
+Definition at line 584 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi__rxq__state_a22f2303d8ebb312bcd57617cca4872ca}\label{structef__vi__rxq__state_a22f2303d8ebb312bcd57617cca4872ca}} 
+\index{ef\_vi\_rxq\_state@{ef\_vi\_rxq\_state}!rx\_ps\_credit\_avail@{rx\_ps\_credit\_avail}}
+\index{rx\_ps\_credit\_avail@{rx\_ps\_credit\_avail}!ef\_vi\_rxq\_state@{ef\_vi\_rxq\_state}}
+\doxysubsubsection{\texorpdfstring{rx\_ps\_credit\_avail}{rx\_ps\_credit\_avail}}
+{\footnotesize\ttfamily uint16\+\_\+t rx\+\_\+ps\+\_\+credit\+\_\+avail}
+
+Credit for packed stream handling (7000-\/series only) 
+
+Definition at line 592 of file ef\+\_\+vi.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ef__vi_8h}{ef\+\_\+vi.\+h}}\end{DoxyCompactItemize}

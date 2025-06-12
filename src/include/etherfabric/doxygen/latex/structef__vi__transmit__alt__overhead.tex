@@ -1,0 +1,67 @@
+\hypertarget{structef__vi__transmit__alt__overhead}{}\doxysection{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+overhead Struct Reference}
+\label{structef__vi__transmit__alt__overhead}\index{ef\_vi\_transmit\_alt\_overhead@{ef\_vi\_transmit\_alt\_overhead}}
+
+
+Per-\/packet overhead information.  
+
+
+
+
+{\ttfamily \#include $<$ef\+\_\+vi.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structef__vi__transmit__alt__overhead_a953484bc1f2d2d607e966b102598de84}{pre\+\_\+round}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structef__vi__transmit__alt__overhead_ad3bee21df6875eeccd25d3c577e0600a}{mask}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structef__vi__transmit__alt__overhead_a717b15800a7cb21a2bb1d57ea853974a}{post\+\_\+round}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Per-\/packet overhead information. 
+
+This structure is used by \mbox{\hyperlink{ef__vi_8h_a18add9a422a88041e5349700a54d457e}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+usage()}} to calculate the amount of buffering needed to store a packet. It should be filled in by \mbox{\hyperlink{ef__vi_8h_a89b67172b16e9baa8ea4a638c17329a9}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+query\+\_\+overhead()}} or similar. Its members are not intended to be meaningful to the application and should not be obtained or interpreted in any other way. 
+
+Definition at line 694 of file ef\+\_\+vi.\+h.
+
+
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{structef__vi__transmit__alt__overhead_ad3bee21df6875eeccd25d3c577e0600a}\label{structef__vi__transmit__alt__overhead_ad3bee21df6875eeccd25d3c577e0600a}} 
+\index{ef\_vi\_transmit\_alt\_overhead@{ef\_vi\_transmit\_alt\_overhead}!mask@{mask}}
+\index{mask@{mask}!ef\_vi\_transmit\_alt\_overhead@{ef\_vi\_transmit\_alt\_overhead}}
+\doxysubsubsection{\texorpdfstring{mask}{mask}}
+{\footnotesize\ttfamily uint32\+\_\+t mask}
+
+Rounding mask 
+
+Definition at line 698 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi__transmit__alt__overhead_a717b15800a7cb21a2bb1d57ea853974a}\label{structef__vi__transmit__alt__overhead_a717b15800a7cb21a2bb1d57ea853974a}} 
+\index{ef\_vi\_transmit\_alt\_overhead@{ef\_vi\_transmit\_alt\_overhead}!post\_round@{post\_round}}
+\index{post\_round@{post\_round}!ef\_vi\_transmit\_alt\_overhead@{ef\_vi\_transmit\_alt\_overhead}}
+\doxysubsubsection{\texorpdfstring{post\_round}{post\_round}}
+{\footnotesize\ttfamily uint32\+\_\+t post\+\_\+round}
+
+Bytes to add after rounding 
+
+Definition at line 700 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi__transmit__alt__overhead_a953484bc1f2d2d607e966b102598de84}\label{structef__vi__transmit__alt__overhead_a953484bc1f2d2d607e966b102598de84}} 
+\index{ef\_vi\_transmit\_alt\_overhead@{ef\_vi\_transmit\_alt\_overhead}!pre\_round@{pre\_round}}
+\index{pre\_round@{pre\_round}!ef\_vi\_transmit\_alt\_overhead@{ef\_vi\_transmit\_alt\_overhead}}
+\doxysubsubsection{\texorpdfstring{pre\_round}{pre\_round}}
+{\footnotesize\ttfamily uint32\+\_\+t pre\+\_\+round}
+
+Bytes to add before rounding 
+
+Definition at line 696 of file ef\+\_\+vi.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ef__vi_8h}{ef\+\_\+vi.\+h}}\end{DoxyCompactItemize}

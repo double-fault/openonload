@@ -1,0 +1,305 @@
+\hypertarget{structef__vi_1_1ops}{}\doxysection{ef\+\_\+vi\+::ops Struct Reference}
+\label{structef__vi_1_1ops}\index{ef\_vi::ops@{ef\_vi::ops}}
+
+
+Driver-\/dependent operations.  
+
+
+
+
+{\ttfamily \#include $<$ef\+\_\+vi.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_ae5d6a6accacf0c43c4a82e51cb48837a}{transmit}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, \mbox{\hyperlink{ef__vi_8h_a45dc6a6b117562bf1fb95bda721aba14}{ef\+\_\+addr}} base, int len, \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}})
+\item 
+int($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_a917a655acac4c71bfaf3665ac5041024}{transmitv}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, const \mbox{\hyperlink{structef__iovec}{ef\+\_\+iovec}} $\ast$, int iov\+\_\+len, \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}})
+\item 
+int($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_ad1e51cd9dcbff253ccf7c3996bfa267f}{transmitv\+\_\+init}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, const \mbox{\hyperlink{structef__iovec}{ef\+\_\+iovec}} $\ast$, int iov\+\_\+len, \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}})
+\item 
+void($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_ada462bb5199b2ca2c52464f347692357}{transmit\+\_\+push}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$)
+\item 
+int($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_a2ce91abb426de9a578e368ff254dddc4}{transmit\+\_\+pio}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, int offset, int len, \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}} dma\+\_\+id)
+\item 
+int($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_a13803b6bd027e08a287ab3c69c1241de}{transmit\+\_\+copy\+\_\+pio}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, int pio\+\_\+offset, const void $\ast$src\+\_\+buf, int len, \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}} dma\+\_\+id)
+\item 
+void($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_ac776fe72d52e061a91d9c1f3660c8e5e}{transmit\+\_\+pio\+\_\+warm}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$)
+\item 
+void($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_a7b93f658a06befd8e727730d954179bb}{transmit\+\_\+copy\+\_\+pio\+\_\+warm}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, int pio\+\_\+offset, const void $\ast$src\+\_\+buf, int len)
+\item 
+void($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_a527e338d35b1a004ea555be2f3a53231}{transmitv\+\_\+ctpio}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, size\+\_\+t frame\+\_\+len, const struct iovec $\ast$iov, int iov\+\_\+len, unsigned threshold)
+\item 
+void($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_a3951f6d219abaf48aec38bcc3ab19fda}{transmitv\+\_\+ctpio\+\_\+copy}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, size\+\_\+t frame\+\_\+len, const struct iovec $\ast$iov, int iov\+\_\+len, unsigned threshold, void $\ast$fallback)
+\item 
+int($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_ada4221a55ac4ff7fefc9b39c623adac3}{transmit\+\_\+alt\+\_\+select}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, unsigned alt\+\_\+id)
+\item 
+int($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_a478e12b45fe3818722671085e6be601b}{transmit\+\_\+alt\+\_\+select\+\_\+default}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$)
+\item 
+int($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_a4c9a7c0131a8741a53ed142ad5286bd8}{transmit\+\_\+alt\+\_\+stop}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, unsigned alt\+\_\+id)
+\item 
+int($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_a112fdbfc22d412b52f720d476e3afdcb}{transmit\+\_\+alt\+\_\+go}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, unsigned alt\+\_\+id)
+\item 
+int($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_a56f5d260df23920c9fce57d526917686}{transmit\+\_\+alt\+\_\+discard}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, unsigned alt\+\_\+id)
+\item 
+int($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_abbda497343b45e4802d7299cfa2b6d8c}{receive\+\_\+init}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, \mbox{\hyperlink{ef__vi_8h_a45dc6a6b117562bf1fb95bda721aba14}{ef\+\_\+addr}}, \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}})
+\item 
+void($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_a3b0dd840d24904ad0899938502c98f9a}{receive\+\_\+push}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$)
+\item 
+int($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_a86a70dcfe941541a6fb3e1c1092609bb}{eventq\+\_\+poll}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, \mbox{\hyperlink{unionef__event}{ef\+\_\+event}} $\ast$, int evs\+\_\+len)
+\item 
+void($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_acf799bbec8bc0c321b7b1e138dd869ce}{eventq\+\_\+prime}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$)
+\item 
+void($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_a44543a051701839df7162369785dc5af}{eventq\+\_\+timer\+\_\+prime}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, unsigned v)
+\item 
+void($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_aa01b5e1a9be895ece83b2d41f45ab026}{eventq\+\_\+timer\+\_\+run}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, unsigned v)
+\item 
+void($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_a3b0d9a842f0a72d19b4528702dd2798a}{eventq\+\_\+timer\+\_\+clear}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$)
+\item 
+void($\ast$ \mbox{\hyperlink{structef__vi_1_1ops_a92a5b7a24475b4e364dabdceb445144f}{eventq\+\_\+timer\+\_\+zero}} )(struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver-\/dependent operations. 
+
+Definition at line 804 of file ef\+\_\+vi.\+h.
+
+
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{structef__vi_1_1ops_a86a70dcfe941541a6fb3e1c1092609bb}\label{structef__vi_1_1ops_a86a70dcfe941541a6fb3e1c1092609bb}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!eventq\_poll@{eventq\_poll}}
+\index{eventq\_poll@{eventq\_poll}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{eventq\_poll}{eventq\_poll}}
+{\footnotesize\ttfamily int($\ast$ eventq\+\_\+poll) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, \mbox{\hyperlink{unionef__event}{ef\+\_\+event}} $\ast$, int evs\+\_\+len)}
+
+Poll an event queue 
+
+Definition at line 853 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_acf799bbec8bc0c321b7b1e138dd869ce}\label{structef__vi_1_1ops_acf799bbec8bc0c321b7b1e138dd869ce}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!eventq\_prime@{eventq\_prime}}
+\index{eventq\_prime@{eventq\_prime}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{eventq\_prime}{eventq\_prime}}
+{\footnotesize\ttfamily void($\ast$ eventq\+\_\+prime) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$)}
+
+Prime a virtual interface allowing you to go to sleep blocking on it 
+
+Definition at line 855 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_a3b0d9a842f0a72d19b4528702dd2798a}\label{structef__vi_1_1ops_a3b0d9a842f0a72d19b4528702dd2798a}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!eventq\_timer\_clear@{eventq\_timer\_clear}}
+\index{eventq\_timer\_clear@{eventq\_timer\_clear}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{eventq\_timer\_clear}{eventq\_timer\_clear}}
+{\footnotesize\ttfamily void($\ast$ eventq\+\_\+timer\+\_\+clear) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$)}
+
+Stop an event-\/queue timer 
+
+Definition at line 861 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_a44543a051701839df7162369785dc5af}\label{structef__vi_1_1ops_a44543a051701839df7162369785dc5af}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!eventq\_timer\_prime@{eventq\_timer\_prime}}
+\index{eventq\_timer\_prime@{eventq\_timer\_prime}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{eventq\_timer\_prime}{eventq\_timer\_prime}}
+{\footnotesize\ttfamily void($\ast$ eventq\+\_\+timer\+\_\+prime) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, unsigned v)}
+
+Prime an event queue timer with a new timeout 
+
+Definition at line 857 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_aa01b5e1a9be895ece83b2d41f45ab026}\label{structef__vi_1_1ops_aa01b5e1a9be895ece83b2d41f45ab026}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!eventq\_timer\_run@{eventq\_timer\_run}}
+\index{eventq\_timer\_run@{eventq\_timer\_run}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{eventq\_timer\_run}{eventq\_timer\_run}}
+{\footnotesize\ttfamily void($\ast$ eventq\+\_\+timer\+\_\+run) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, unsigned v)}
+
+Start an event queue timer running 
+
+Definition at line 859 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_a92a5b7a24475b4e364dabdceb445144f}\label{structef__vi_1_1ops_a92a5b7a24475b4e364dabdceb445144f}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!eventq\_timer\_zero@{eventq\_timer\_zero}}
+\index{eventq\_timer\_zero@{eventq\_timer\_zero}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{eventq\_timer\_zero}{eventq\_timer\_zero}}
+{\footnotesize\ttfamily void($\ast$ eventq\+\_\+timer\+\_\+zero) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$)}
+
+Prime an event queue timer to expire immediately 
+
+Definition at line 863 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_abbda497343b45e4802d7299cfa2b6d8c}\label{structef__vi_1_1ops_abbda497343b45e4802d7299cfa2b6d8c}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!receive\_init@{receive\_init}}
+\index{receive\_init@{receive\_init}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{receive\_init}{receive\_init}}
+{\footnotesize\ttfamily int($\ast$ receive\+\_\+init) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, \mbox{\hyperlink{ef__vi_8h_a45dc6a6b117562bf1fb95bda721aba14}{ef\+\_\+addr}}, \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}})}
+
+Initialize an RX descriptor on the RX descriptor ring 
+
+Definition at line 849 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_a3b0dd840d24904ad0899938502c98f9a}\label{structef__vi_1_1ops_a3b0dd840d24904ad0899938502c98f9a}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!receive\_push@{receive\_push}}
+\index{receive\_push@{receive\_push}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{receive\_push}{receive\_push}}
+{\footnotesize\ttfamily void($\ast$ receive\+\_\+push) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$)}
+
+Submit newly initialized RX descriptors to the NIC 
+
+Definition at line 851 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_ae5d6a6accacf0c43c4a82e51cb48837a}\label{structef__vi_1_1ops_ae5d6a6accacf0c43c4a82e51cb48837a}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!transmit@{transmit}}
+\index{transmit@{transmit}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{transmit}{transmit}}
+{\footnotesize\ttfamily int($\ast$ transmit) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, \mbox{\hyperlink{ef__vi_8h_a45dc6a6b117562bf1fb95bda721aba14}{ef\+\_\+addr}} base, int len, \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}})}
+
+Transmit a packet from a single packet buffer 
+
+Definition at line 806 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_a56f5d260df23920c9fce57d526917686}\label{structef__vi_1_1ops_a56f5d260df23920c9fce57d526917686}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!transmit\_alt\_discard@{transmit\_alt\_discard}}
+\index{transmit\_alt\_discard@{transmit\_alt\_discard}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{transmit\_alt\_discard}{transmit\_alt\_discard}}
+{\footnotesize\ttfamily int($\ast$ transmit\+\_\+alt\+\_\+discard) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, unsigned alt\+\_\+id)}
+
+Transition a TX alternative to the DISCARD state 
+
+Definition at line 847 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_a112fdbfc22d412b52f720d476e3afdcb}\label{structef__vi_1_1ops_a112fdbfc22d412b52f720d476e3afdcb}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!transmit\_alt\_go@{transmit\_alt\_go}}
+\index{transmit\_alt\_go@{transmit\_alt\_go}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{transmit\_alt\_go}{transmit\_alt\_go}}
+{\footnotesize\ttfamily int($\ast$ transmit\+\_\+alt\+\_\+go) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, unsigned alt\+\_\+id)}
+
+Transition a TX alternative to the GO state 
+
+Definition at line 845 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_ada4221a55ac4ff7fefc9b39c623adac3}\label{structef__vi_1_1ops_ada4221a55ac4ff7fefc9b39c623adac3}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!transmit\_alt\_select@{transmit\_alt\_select}}
+\index{transmit\_alt\_select@{transmit\_alt\_select}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{transmit\_alt\_select}{transmit\_alt\_select}}
+{\footnotesize\ttfamily int($\ast$ transmit\+\_\+alt\+\_\+select) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, unsigned alt\+\_\+id)}
+
+Select a TX alternative as the destination for future sends 
+
+Definition at line 839 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_a478e12b45fe3818722671085e6be601b}\label{structef__vi_1_1ops_a478e12b45fe3818722671085e6be601b}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!transmit\_alt\_select\_default@{transmit\_alt\_select\_default}}
+\index{transmit\_alt\_select\_default@{transmit\_alt\_select\_default}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{transmit\_alt\_select\_default}{transmit\_alt\_select\_default}}
+{\footnotesize\ttfamily int($\ast$ transmit\+\_\+alt\+\_\+select\+\_\+default) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$)}
+
+Select the \char`\"{}normal\char`\"{} data path as the destination for future sends 
+
+Definition at line 841 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_a4c9a7c0131a8741a53ed142ad5286bd8}\label{structef__vi_1_1ops_a4c9a7c0131a8741a53ed142ad5286bd8}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!transmit\_alt\_stop@{transmit\_alt\_stop}}
+\index{transmit\_alt\_stop@{transmit\_alt\_stop}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{transmit\_alt\_stop}{transmit\_alt\_stop}}
+{\footnotesize\ttfamily int($\ast$ transmit\+\_\+alt\+\_\+stop) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, unsigned alt\+\_\+id)}
+
+Transition a TX alternative to the STOP state 
+
+Definition at line 843 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_a13803b6bd027e08a287ab3c69c1241de}\label{structef__vi_1_1ops_a13803b6bd027e08a287ab3c69c1241de}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!transmit\_copy\_pio@{transmit\_copy\_pio}}
+\index{transmit\_copy\_pio@{transmit\_copy\_pio}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{transmit\_copy\_pio}{transmit\_copy\_pio}}
+{\footnotesize\ttfamily int($\ast$ transmit\+\_\+copy\+\_\+pio) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, int pio\+\_\+offset, const void $\ast$src\+\_\+buf, int len, \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}} dma\+\_\+id)}
+
+Copy a packet to Programmed I/O region and transmit it 
+
+Definition at line 821 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_a7b93f658a06befd8e727730d954179bb}\label{structef__vi_1_1ops_a7b93f658a06befd8e727730d954179bb}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!transmit\_copy\_pio\_warm@{transmit\_copy\_pio\_warm}}
+\index{transmit\_copy\_pio\_warm@{transmit\_copy\_pio\_warm}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{transmit\_copy\_pio\_warm}{transmit\_copy\_pio\_warm}}
+{\footnotesize\ttfamily void($\ast$ transmit\+\_\+copy\+\_\+pio\+\_\+warm) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, int pio\+\_\+offset, const void $\ast$src\+\_\+buf, int len)}
+
+Copy a packet to Programmed I/O region and warm transmit path 
+
+Definition at line 827 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_a2ce91abb426de9a578e368ff254dddc4}\label{structef__vi_1_1ops_a2ce91abb426de9a578e368ff254dddc4}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!transmit\_pio@{transmit\_pio}}
+\index{transmit\_pio@{transmit\_pio}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{transmit\_pio}{transmit\_pio}}
+{\footnotesize\ttfamily int($\ast$ transmit\+\_\+pio) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, int offset, int len, \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}} dma\+\_\+id)}
+
+Transmit a packet already resident in Programmed I/O 
+
+Definition at line 818 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_ac776fe72d52e061a91d9c1f3660c8e5e}\label{structef__vi_1_1ops_ac776fe72d52e061a91d9c1f3660c8e5e}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!transmit\_pio\_warm@{transmit\_pio\_warm}}
+\index{transmit\_pio\_warm@{transmit\_pio\_warm}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{transmit\_pio\_warm}{transmit\_pio\_warm}}
+{\footnotesize\ttfamily void($\ast$ transmit\+\_\+pio\+\_\+warm) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$)}
+
+Warm Programmed I/O transmit path for subsequent transmit 
+
+Definition at line 825 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_ada462bb5199b2ca2c52464f347692357}\label{structef__vi_1_1ops_ada462bb5199b2ca2c52464f347692357}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!transmit\_push@{transmit\_push}}
+\index{transmit\_push@{transmit\_push}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{transmit\_push}{transmit\_push}}
+{\footnotesize\ttfamily void($\ast$ transmit\+\_\+push) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$)}
+
+Submit newly initialized TX descriptors to the NIC 
+
+Definition at line 816 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_a917a655acac4c71bfaf3665ac5041024}\label{structef__vi_1_1ops_a917a655acac4c71bfaf3665ac5041024}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!transmitv@{transmitv}}
+\index{transmitv@{transmitv}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{transmitv}{transmitv}}
+{\footnotesize\ttfamily int($\ast$ transmitv) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, const \mbox{\hyperlink{structef__iovec}{ef\+\_\+iovec}} $\ast$, int iov\+\_\+len, \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}})}
+
+Transmit a packet from a vector of packet buffers 
+
+Definition at line 809 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_a527e338d35b1a004ea555be2f3a53231}\label{structef__vi_1_1ops_a527e338d35b1a004ea555be2f3a53231}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!transmitv\_ctpio@{transmitv\_ctpio}}
+\index{transmitv\_ctpio@{transmitv\_ctpio}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{transmitv\_ctpio}{transmitv\_ctpio}}
+{\footnotesize\ttfamily void($\ast$ transmitv\+\_\+ctpio) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, size\+\_\+t frame\+\_\+len, const struct iovec $\ast$iov, int iov\+\_\+len, unsigned threshold)}
+
+Transmit a vector of packet buffers using CTPIO 
+
+Definition at line 830 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_a3951f6d219abaf48aec38bcc3ab19fda}\label{structef__vi_1_1ops_a3951f6d219abaf48aec38bcc3ab19fda}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!transmitv\_ctpio\_copy@{transmitv\_ctpio\_copy}}
+\index{transmitv\_ctpio\_copy@{transmitv\_ctpio\_copy}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{transmitv\_ctpio\_copy}{transmitv\_ctpio\_copy}}
+{\footnotesize\ttfamily void($\ast$ transmitv\+\_\+ctpio\+\_\+copy) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, size\+\_\+t frame\+\_\+len, const struct iovec $\ast$iov, int iov\+\_\+len, unsigned threshold, void $\ast$fallback)}
+
+Transmit a vector of packet buffers using CTPIO and copy to fallback 
+
+Definition at line 834 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{structef__vi_1_1ops_ad1e51cd9dcbff253ccf7c3996bfa267f}\label{structef__vi_1_1ops_ad1e51cd9dcbff253ccf7c3996bfa267f}} 
+\index{ef\_vi::ops@{ef\_vi::ops}!transmitv\_init@{transmitv\_init}}
+\index{transmitv\_init@{transmitv\_init}!ef\_vi::ops@{ef\_vi::ops}}
+\doxysubsubsection{\texorpdfstring{transmitv\_init}{transmitv\_init}}
+{\footnotesize\ttfamily int($\ast$ transmitv\+\_\+init) (struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$, const \mbox{\hyperlink{structef__iovec}{ef\+\_\+iovec}} $\ast$, int iov\+\_\+len, \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}})}
+
+Initialize TX descriptors on the TX descriptor ring, for a vector of packet buffers 
+
+Definition at line 813 of file ef\+\_\+vi.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ef__vi_8h}{ef\+\_\+vi.\+h}}\end{DoxyCompactItemize}

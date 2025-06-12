@@ -1,0 +1,390 @@
+\hypertarget{capabilities_8h}{}\doxysection{capabilities.\+h File Reference}
+\label{capabilities_8h}\index{capabilities.h@{capabilities.h}}
+
+
+Capabilities API for Ether\+Fabric Virtual Interface HAL.  
+
+
+{\ttfamily \#include $<$etherfabric/base.\+h$>$}\newline
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586}{ef\+\_\+vi\+\_\+capability}} \{ \newline
+\mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a5647a730834e7372352347bf8c32f4b1}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+PIO}} = 0
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a68f764d2ba3bf064efd0192ea66bc36d}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+PIO\+\_\+\+BUFFER\+\_\+\+SIZE}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a4c539e97a6448353030d32e5df97d10b}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+PIO\+\_\+\+BUFFER\+\_\+\+COUNT}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a4ca6ab3e7b688b770cf8b4e0a113957f}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+HW\+\_\+\+MULTICAST\+\_\+\+LOOPBACK}}
+, \newline
+\mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a7ee06451960e3d316c6c5ad7dc4664e3}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+HW\+\_\+\+MULTICAST\+\_\+\+REPLICATION}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a5beb18b1fc3f7d5393f9482370e09e4c}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+HW\+\_\+\+RX\+\_\+\+TIMESTAMPING}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a55a766c1d9c2a9758e6687fe6c2e76b2}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+HW\+\_\+\+TX\+\_\+\+TIMESTAMPING}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586abfecf35566bfee0d9e9f045fd8cad139}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+PACKED\+\_\+\+STREAM}}
+, \newline
+\mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a21fb7185c22f2482c4b63401b4f62acc}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+PACKED\+\_\+\+STREAM\+\_\+\+BUFFER\+\_\+\+SIZES}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a85d3b9334608f8121bfd5378aae50309}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+VPORTS}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a7ab926d54f59f3475fd7ed1ba9b760f7}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+PHYS\+\_\+\+MODE}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a5d420df578d7f601fd0721ab3ed54bb9}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+BUFFER\+\_\+\+MODE}}
+, \newline
+\mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586afff7e9af56a626536385562f564c5d7e}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+MULTICAST\+\_\+\+FILTER\+\_\+\+CHAINING}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586aa4d62ec4bb7aef81a89262855a3e4f3d}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+MAC\+\_\+\+SPOOFING}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586aad61b4b91e074e72fd21f28b5eee4080}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+UDP\+\_\+\+LOCAL}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a1683894b2bee2756532b2df605ce2b12}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+TCP\+\_\+\+LOCAL}}
+, \newline
+\mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ac3b5ff3e0a7d39b1882daf3f519c05fc}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+UDP\+\_\+\+FULL}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a82fc4b35dfd63a38878b825d20f16bc8}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+TCP\+\_\+\+FULL}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a651acbf4cd09296b001b48cf591365fe}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+IP\+\_\+\+VLAN}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a3bf2905fe2e88bf8c569985fee8e5914}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+UDP6\+\_\+\+LOCAL}}
+, \newline
+\mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a31232196d054fef43924d94c73ecbb03}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+TCP6\+\_\+\+LOCAL}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a5e2e1980bc820f375bc31d773197f84b}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+UDP6\+\_\+\+FULL}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586aab135cc4e66cd44e43a68e66124938bd}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+TCP6\+\_\+\+FULL}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a327a38213e33ac30d3b4c844cd622fb1}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+IP6\+\_\+\+VLAN}}
+, \newline
+\mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a80d81313261890e6711c1e009d0e5c37}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+ETH\+\_\+\+LOCAL}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ad3e5424ee3fd69fb166839c0edb57c10}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+ETH\+\_\+\+LOCAL\+\_\+\+VLAN}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a3f7723e6a0eb18db21599ccc1e6d8d17}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+UCAST\+\_\+\+ALL}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ae318196779a46b3d6df04fd50c1d6ac1}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+MCAST\+\_\+\+ALL}}
+, \newline
+\mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a47c909e85c6eb2fe0b1d0bdc0168a6ac}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+UCAST\+\_\+\+MISMATCH}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a0e928a5b711367e841ed7ffefbdea355}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+MCAST\+\_\+\+MISMATCH}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a016d14b9219813427b2c803738a351ee}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+SNIFF}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586abdd7982eee7855ddb50e8bd3d998346b}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+TX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+SNIFF}}
+, \newline
+\mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a56653b1cfd7ac5d5b7fd34a0535a746d}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+IP4\+\_\+\+PROTO}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a617f27b4c0e5fd5af5a0e677c749122d}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+ETHERTYPE}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ad9d89bf0636fb078c0f284c23bed246f}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RXQ\+\_\+\+SIZES}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a0d21ffa50e301754da075fa05910361e}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+TXQ\+\_\+\+SIZES}}
+, \newline
+\mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a7f01c7cba4de3c5b277eb629b41d62dd}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+EVQ\+\_\+\+SIZES}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ad7d7a908c03d695044af364e328a8390}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+ZERO\+\_\+\+RX\+\_\+\+PREFIX}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a7c85c8bf0c49b4d4c35bb207f337315d}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+TX\+\_\+\+PUSH\+\_\+\+ALWAYS}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586aab2ef614e28e0e271d34119c878e7c8f}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+NIC\+\_\+\+PACE}}
+, \newline
+\mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586abf6388f4a7f5347d1e06e12b1a9a06f1}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+MERGE}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ac395515f57aa1b56129729338415477f}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+TX\+\_\+\+ALTERNATIVES}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a1ca82caf1626898052fd2bb70f5c7af7}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+TX\+\_\+\+ALTERNATIVES\+\_\+\+VFIFOS}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a7a5994a4a745bb1e6c9be87bd1dfc77b}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+TX\+\_\+\+ALTERNATIVES\+\_\+\+CP\+\_\+\+BUFFERS}}
+, \newline
+\mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a57d604205cef978d7009c29a0217fbfd}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FW\+\_\+\+VARIANT}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a44f41f8b6e3a0c9423c0dd120b924b82}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+TX\+\_\+\+FW\+\_\+\+VARIANT}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ad15186b37f61fea9f23ff0912ebed4f6}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+CTPIO}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a8fd5e5012e1e7d25129c8a1d380f52e5}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+TX\+\_\+\+ALTERNATIVES\+\_\+\+CP\+\_\+\+BUFFER\+\_\+\+SIZE}}
+, \newline
+\mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a96fc544eb36e2153d572aded48191ca6}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FORCE\+\_\+\+EVENT\+\_\+\+MERGING}}
+, \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a256fe96a1fad6a1574b637958d40694d}{EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+MAX}}
+ \}
+\begin{DoxyCompactList}\small\item\em Possible capabilities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{capabilities_8h_ae139e415401ac1c57f29e20e0356bbed}{ef\+\_\+vi\+\_\+capabilities\+\_\+get}} (\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}} handle, int ifindex, enum \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586}{ef\+\_\+vi\+\_\+capability}} cap, unsigned long $\ast$value)
+\begin{DoxyCompactList}\small\item\em Get the value of the given capability. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{capabilities_8h_a37e23905e824f75e9452cea34de4a9dd}{ef\+\_\+vi\+\_\+capabilities\+\_\+max}} (void)
+\begin{DoxyCompactList}\small\item\em Gets the maximum supported value of \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586}{ef\+\_\+vi\+\_\+capability}}. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{capabilities_8h_a3a172e16564608f36ce31d658a043bcc}{ef\+\_\+vi\+\_\+capabilities\+\_\+name}} (enum \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586}{ef\+\_\+vi\+\_\+capability}} cap)
+\begin{DoxyCompactList}\small\item\em Gets a human-\/readable string describing the given capability. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Capabilities API for Ether\+Fabric Virtual Interface HAL. 
+
+\begin{DoxyAuthor}{Author}
+Solarflare Communications, Inc. 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2018/11/06 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright \copyright{} 2018 Solarflare Communications, Inc. All rights reserved. Solarflare, Open\+Onload and Enterprise\+Onload are trademarks of Solarflare Communications, Inc. 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586}} 
+\index{capabilities.h@{capabilities.h}!ef\_vi\_capability@{ef\_vi\_capability}}
+\index{ef\_vi\_capability@{ef\_vi\_capability}!capabilities.h@{capabilities.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_capability}{ef\_vi\_capability}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586}{ef\+\_\+vi\+\_\+capability}}}
+
+
+
+Possible capabilities. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_PIO@{EF\_VI\_CAP\_PIO}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_PIO@{EF\_VI\_CAP\_PIO}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a5647a730834e7372352347bf8c32f4b1}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a5647a730834e7372352347bf8c32f4b1}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+PIO&Hardware capable of PIO \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_PIO\_BUFFER\_SIZE@{EF\_VI\_CAP\_PIO\_BUFFER\_SIZE}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_PIO\_BUFFER\_SIZE@{EF\_VI\_CAP\_PIO\_BUFFER\_SIZE}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a68f764d2ba3bf064efd0192ea66bc36d}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a68f764d2ba3bf064efd0192ea66bc36d}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+PIO\+\_\+\+BUFFER\+\_\+\+SIZE&PIO buffer size supplied to each VI \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_PIO\_BUFFER\_COUNT@{EF\_VI\_CAP\_PIO\_BUFFER\_COUNT}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_PIO\_BUFFER\_COUNT@{EF\_VI\_CAP\_PIO\_BUFFER\_COUNT}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a4c539e97a6448353030d32e5df97d10b}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a4c539e97a6448353030d32e5df97d10b}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+PIO\+\_\+\+BUFFER\+\_\+\+COUNT&Total number of PIO buffers \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_HW\_MULTICAST\_LOOPBACK@{EF\_VI\_CAP\_HW\_MULTICAST\_LOOPBACK}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_HW\_MULTICAST\_LOOPBACK@{EF\_VI\_CAP\_HW\_MULTICAST\_LOOPBACK}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a4ca6ab3e7b688b770cf8b4e0a113957f}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a4ca6ab3e7b688b770cf8b4e0a113957f}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+HW\+\_\+\+MULTICAST\+\_\+\+LOOPBACK&Can packets be looped back by hardware \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_HW\_MULTICAST\_REPLICATION@{EF\_VI\_CAP\_HW\_MULTICAST\_REPLICATION}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_HW\_MULTICAST\_REPLICATION@{EF\_VI\_CAP\_HW\_MULTICAST\_REPLICATION}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a7ee06451960e3d316c6c5ad7dc4664e3}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a7ee06451960e3d316c6c5ad7dc4664e3}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+HW\+\_\+\+MULTICAST\+\_\+\+REPLICATION&Can mcast be delivered to many VIs \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_HW\_RX\_TIMESTAMPING@{EF\_VI\_CAP\_HW\_RX\_TIMESTAMPING}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_HW\_RX\_TIMESTAMPING@{EF\_VI\_CAP\_HW\_RX\_TIMESTAMPING}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a5beb18b1fc3f7d5393f9482370e09e4c}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a5beb18b1fc3f7d5393f9482370e09e4c}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+HW\+\_\+\+RX\+\_\+\+TIMESTAMPING&Hardware timestamping of received packets \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_HW\_TX\_TIMESTAMPING@{EF\_VI\_CAP\_HW\_TX\_TIMESTAMPING}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_HW\_TX\_TIMESTAMPING@{EF\_VI\_CAP\_HW\_TX\_TIMESTAMPING}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a55a766c1d9c2a9758e6687fe6c2e76b2}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a55a766c1d9c2a9758e6687fe6c2e76b2}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+HW\+\_\+\+TX\+\_\+\+TIMESTAMPING&Hardware timestamping of transmitted packets \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_PACKED\_STREAM@{EF\_VI\_CAP\_PACKED\_STREAM}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_PACKED\_STREAM@{EF\_VI\_CAP\_PACKED\_STREAM}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586abfecf35566bfee0d9e9f045fd8cad139}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586abfecf35566bfee0d9e9f045fd8cad139}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+PACKED\+\_\+\+STREAM&Is firmware capable of packed stream mode \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_PACKED\_STREAM\_BUFFER\_SIZES@{EF\_VI\_CAP\_PACKED\_STREAM\_BUFFER\_SIZES}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_PACKED\_STREAM\_BUFFER\_SIZES@{EF\_VI\_CAP\_PACKED\_STREAM\_BUFFER\_SIZES}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a21fb7185c22f2482c4b63401b4f62acc}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a21fb7185c22f2482c4b63401b4f62acc}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+PACKED\+\_\+\+STREAM\+\_\+\+BUFFER\+\_\+\+SIZES&Packed stream buffer sizes supported in kB, bitmask \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_VPORTS@{EF\_VI\_CAP\_VPORTS}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_VPORTS@{EF\_VI\_CAP\_VPORTS}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a85d3b9334608f8121bfd5378aae50309}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a85d3b9334608f8121bfd5378aae50309}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+VPORTS&NIC switching, ef\+\_\+pd\+\_\+alloc\+\_\+with\+\_\+vport \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_PHYS\_MODE@{EF\_VI\_CAP\_PHYS\_MODE}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_PHYS\_MODE@{EF\_VI\_CAP\_PHYS\_MODE}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a7ab926d54f59f3475fd7ed1ba9b760f7}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a7ab926d54f59f3475fd7ed1ba9b760f7}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+PHYS\+\_\+\+MODE&Is physical addressing mode supported? \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_BUFFER\_MODE@{EF\_VI\_CAP\_BUFFER\_MODE}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_BUFFER\_MODE@{EF\_VI\_CAP\_BUFFER\_MODE}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a5d420df578d7f601fd0721ab3ed54bb9}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a5d420df578d7f601fd0721ab3ed54bb9}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+BUFFER\+\_\+\+MODE&Is buffer addressing mode (NIC IOMMU) supported \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_MULTICAST\_FILTER\_CHAINING@{EF\_VI\_CAP\_MULTICAST\_FILTER\_CHAINING}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_MULTICAST\_FILTER\_CHAINING@{EF\_VI\_CAP\_MULTICAST\_FILTER\_CHAINING}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586afff7e9af56a626536385562f564c5d7e}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586afff7e9af56a626536385562f564c5d7e}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+MULTICAST\+\_\+\+FILTER\+\_\+\+CHAINING&Chaining of multicast filters \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_MAC\_SPOOFING@{EF\_VI\_CAP\_MAC\_SPOOFING}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_MAC\_SPOOFING@{EF\_VI\_CAP\_MAC\_SPOOFING}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586aa4d62ec4bb7aef81a89262855a3e4f3d}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586aa4d62ec4bb7aef81a89262855a3e4f3d}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+MAC\+\_\+\+SPOOFING&Can functions create filters for \textquotesingle{}wrong\textquotesingle{} MAC addr \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UDP\_LOCAL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UDP\_LOCAL}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UDP\_LOCAL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UDP\_LOCAL}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586aad61b4b91e074e72fd21f28b5eee4080}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586aad61b4b91e074e72fd21f28b5eee4080}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+UDP\+\_\+\+LOCAL&Filter on local IP + UDP port \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_TCP\_LOCAL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_TCP\_LOCAL}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FILTER\_TYPE\_TCP\_LOCAL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_TCP\_LOCAL}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a1683894b2bee2756532b2df605ce2b12}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a1683894b2bee2756532b2df605ce2b12}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+TCP\+\_\+\+LOCAL&Filter on local IP + TCP port \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UDP\_FULL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UDP\_FULL}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UDP\_FULL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UDP\_FULL}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ac3b5ff3e0a7d39b1882daf3f519c05fc}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ac3b5ff3e0a7d39b1882daf3f519c05fc}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+UDP\+\_\+\+FULL&Filter on local and remote IP + UDP port \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_TCP\_FULL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_TCP\_FULL}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FILTER\_TYPE\_TCP\_FULL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_TCP\_FULL}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a82fc4b35dfd63a38878b825d20f16bc8}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a82fc4b35dfd63a38878b825d20f16bc8}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+TCP\+\_\+\+FULL&Filter on local and remote IP + TCP port \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_IP\_VLAN@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_IP\_VLAN}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FILTER\_TYPE\_IP\_VLAN@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_IP\_VLAN}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a651acbf4cd09296b001b48cf591365fe}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a651acbf4cd09296b001b48cf591365fe}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+IP\+\_\+\+VLAN&Filter on any of above four types with addition of VLAN \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UDP6\_LOCAL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UDP6\_LOCAL}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UDP6\_LOCAL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UDP6\_LOCAL}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a3bf2905fe2e88bf8c569985fee8e5914}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a3bf2905fe2e88bf8c569985fee8e5914}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+UDP6\+\_\+\+LOCAL&Filter on local IP + UDP port \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_TCP6\_LOCAL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_TCP6\_LOCAL}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FILTER\_TYPE\_TCP6\_LOCAL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_TCP6\_LOCAL}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a31232196d054fef43924d94c73ecbb03}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a31232196d054fef43924d94c73ecbb03}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+TCP6\+\_\+\+LOCAL&Filter on local IP + TCP port \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UDP6\_FULL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UDP6\_FULL}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UDP6\_FULL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UDP6\_FULL}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a5e2e1980bc820f375bc31d773197f84b}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a5e2e1980bc820f375bc31d773197f84b}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+UDP6\+\_\+\+FULL&Filter on local and remote IP + UDP port \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_TCP6\_FULL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_TCP6\_FULL}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FILTER\_TYPE\_TCP6\_FULL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_TCP6\_FULL}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586aab135cc4e66cd44e43a68e66124938bd}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586aab135cc4e66cd44e43a68e66124938bd}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+TCP6\+\_\+\+FULL&Filter on local and remote IP + TCP port \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_IP6\_VLAN@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_IP6\_VLAN}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FILTER\_TYPE\_IP6\_VLAN@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_IP6\_VLAN}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a327a38213e33ac30d3b4c844cd622fb1}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a327a38213e33ac30d3b4c844cd622fb1}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+IP6\+\_\+\+VLAN&Filter on any of above four types with addition of VLAN \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_ETH\_LOCAL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_ETH\_LOCAL}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FILTER\_TYPE\_ETH\_LOCAL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_ETH\_LOCAL}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a80d81313261890e6711c1e009d0e5c37}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a80d81313261890e6711c1e009d0e5c37}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+ETH\+\_\+\+LOCAL&Filter on local MAC address \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_ETH\_LOCAL\_VLAN@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_ETH\_LOCAL\_VLAN}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FILTER\_TYPE\_ETH\_LOCAL\_VLAN@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_ETH\_LOCAL\_VLAN}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ad3e5424ee3fd69fb166839c0edb57c10}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ad3e5424ee3fd69fb166839c0edb57c10}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+ETH\+\_\+\+LOCAL\+\_\+\+VLAN&Filter on local MAC+\+VLAN \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UCAST\_ALL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UCAST\_ALL}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UCAST\_ALL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UCAST\_ALL}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a3f7723e6a0eb18db21599ccc1e6d8d17}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a3f7723e6a0eb18db21599ccc1e6d8d17}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+UCAST\+\_\+\+ALL&Filter on \char`\"{}all unicast\char`\"{} \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_MCAST\_ALL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_MCAST\_ALL}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FILTER\_TYPE\_MCAST\_ALL@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_MCAST\_ALL}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ae318196779a46b3d6df04fd50c1d6ac1}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ae318196779a46b3d6df04fd50c1d6ac1}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+MCAST\+\_\+\+ALL&Filter on \char`\"{}all multicast\char`\"{} \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UCAST\_MISMATCH@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UCAST\_MISMATCH}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UCAST\_MISMATCH@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_UCAST\_MISMATCH}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a47c909e85c6eb2fe0b1d0bdc0168a6ac}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a47c909e85c6eb2fe0b1d0bdc0168a6ac}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+UCAST\+\_\+\+MISMATCH&Filter on \char`\"{}unicast mismatch\char`\"{} \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_MCAST\_MISMATCH@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_MCAST\_MISMATCH}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FILTER\_TYPE\_MCAST\_MISMATCH@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_MCAST\_MISMATCH}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a0e928a5b711367e841ed7ffefbdea355}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a0e928a5b711367e841ed7ffefbdea355}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+MCAST\+\_\+\+MISMATCH&Filter on \char`\"{}multicast mismatch\char`\"{} \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_SNIFF@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_SNIFF}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FILTER\_TYPE\_SNIFF@{EF\_VI\_CAP\_RX\_FILTER\_TYPE\_SNIFF}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a016d14b9219813427b2c803738a351ee}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a016d14b9219813427b2c803738a351ee}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+SNIFF&Availability of RX sniff filters \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_TX\_FILTER\_TYPE\_SNIFF@{EF\_VI\_CAP\_TX\_FILTER\_TYPE\_SNIFF}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_TX\_FILTER\_TYPE\_SNIFF@{EF\_VI\_CAP\_TX\_FILTER\_TYPE\_SNIFF}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586abdd7982eee7855ddb50e8bd3d998346b}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586abdd7982eee7855ddb50e8bd3d998346b}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+TX\+\_\+\+FILTER\+\_\+\+TYPE\+\_\+\+SNIFF&Availability of TX sniff filters \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FILTER\_IP4\_PROTO@{EF\_VI\_CAP\_RX\_FILTER\_IP4\_PROTO}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FILTER\_IP4\_PROTO@{EF\_VI\_CAP\_RX\_FILTER\_IP4\_PROTO}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a56653b1cfd7ac5d5b7fd34a0535a746d}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a56653b1cfd7ac5d5b7fd34a0535a746d}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+IP4\+\_\+\+PROTO&Filter on IPv4 protocol \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FILTER\_ETHERTYPE@{EF\_VI\_CAP\_RX\_FILTER\_ETHERTYPE}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FILTER\_ETHERTYPE@{EF\_VI\_CAP\_RX\_FILTER\_ETHERTYPE}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a617f27b4c0e5fd5af5a0e677c749122d}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a617f27b4c0e5fd5af5a0e677c749122d}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FILTER\+\_\+\+ETHERTYPE&Filter on ethertype \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RXQ\_SIZES@{EF\_VI\_CAP\_RXQ\_SIZES}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RXQ\_SIZES@{EF\_VI\_CAP\_RXQ\_SIZES}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ad9d89bf0636fb078c0f284c23bed246f}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ad9d89bf0636fb078c0f284c23bed246f}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RXQ\+\_\+\+SIZES&Available RX queue sizes, bitmask \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_TXQ\_SIZES@{EF\_VI\_CAP\_TXQ\_SIZES}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_TXQ\_SIZES@{EF\_VI\_CAP\_TXQ\_SIZES}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a0d21ffa50e301754da075fa05910361e}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a0d21ffa50e301754da075fa05910361e}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+TXQ\+\_\+\+SIZES&Available TX queue sizes, bitmask \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_EVQ\_SIZES@{EF\_VI\_CAP\_EVQ\_SIZES}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_EVQ\_SIZES@{EF\_VI\_CAP\_EVQ\_SIZES}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a7f01c7cba4de3c5b277eb629b41d62dd}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a7f01c7cba4de3c5b277eb629b41d62dd}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+EVQ\+\_\+\+SIZES&Available event queue sizes, bitmask \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_ZERO\_RX\_PREFIX@{EF\_VI\_CAP\_ZERO\_RX\_PREFIX}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_ZERO\_RX\_PREFIX@{EF\_VI\_CAP\_ZERO\_RX\_PREFIX}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ad7d7a908c03d695044af364e328a8390}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ad7d7a908c03d695044af364e328a8390}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+ZERO\+\_\+\+RX\+\_\+\+PREFIX&Availability of zero length RX packet prefix \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_TX\_PUSH\_ALWAYS@{EF\_VI\_CAP\_TX\_PUSH\_ALWAYS}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_TX\_PUSH\_ALWAYS@{EF\_VI\_CAP\_TX\_PUSH\_ALWAYS}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a7c85c8bf0c49b4d4c35bb207f337315d}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a7c85c8bf0c49b4d4c35bb207f337315d}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+TX\+\_\+\+PUSH\+\_\+\+ALWAYS&Is always enabling TX push supported? \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_NIC\_PACE@{EF\_VI\_CAP\_NIC\_PACE}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_NIC\_PACE@{EF\_VI\_CAP\_NIC\_PACE}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586aab2ef614e28e0e271d34119c878e7c8f}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586aab2ef614e28e0e271d34119c878e7c8f}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+NIC\+\_\+\+PACE&Availability of NIC pace feature \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_MERGE@{EF\_VI\_CAP\_RX\_MERGE}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_MERGE@{EF\_VI\_CAP\_RX\_MERGE}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586abf6388f4a7f5347d1e06e12b1a9a06f1}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586abf6388f4a7f5347d1e06e12b1a9a06f1}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+MERGE&Availability of RX event merging mode \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_TX\_ALTERNATIVES@{EF\_VI\_CAP\_TX\_ALTERNATIVES}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_TX\_ALTERNATIVES@{EF\_VI\_CAP\_TX\_ALTERNATIVES}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ac395515f57aa1b56129729338415477f}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ac395515f57aa1b56129729338415477f}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+TX\+\_\+\+ALTERNATIVES&Availability of TX alternatives \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_TX\_ALTERNATIVES\_VFIFOS@{EF\_VI\_CAP\_TX\_ALTERNATIVES\_VFIFOS}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_TX\_ALTERNATIVES\_VFIFOS@{EF\_VI\_CAP\_TX\_ALTERNATIVES\_VFIFOS}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a1ca82caf1626898052fd2bb70f5c7af7}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a1ca82caf1626898052fd2bb70f5c7af7}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+TX\+\_\+\+ALTERNATIVES\+\_\+\+VFIFOS&Number of TX alternatives v\+FIFOs \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_TX\_ALTERNATIVES\_CP\_BUFFERS@{EF\_VI\_CAP\_TX\_ALTERNATIVES\_CP\_BUFFERS}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_TX\_ALTERNATIVES\_CP\_BUFFERS@{EF\_VI\_CAP\_TX\_ALTERNATIVES\_CP\_BUFFERS}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a7a5994a4a745bb1e6c9be87bd1dfc77b}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a7a5994a4a745bb1e6c9be87bd1dfc77b}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+TX\+\_\+\+ALTERNATIVES\+\_\+\+CP\+\_\+\+BUFFERS&Number of TX alternatives common pool buffers \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FW\_VARIANT@{EF\_VI\_CAP\_RX\_FW\_VARIANT}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FW\_VARIANT@{EF\_VI\_CAP\_RX\_FW\_VARIANT}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a57d604205cef978d7009c29a0217fbfd}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a57d604205cef978d7009c29a0217fbfd}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FW\+\_\+\+VARIANT&RX firmware variant \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_TX\_FW\_VARIANT@{EF\_VI\_CAP\_TX\_FW\_VARIANT}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_TX\_FW\_VARIANT@{EF\_VI\_CAP\_TX\_FW\_VARIANT}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a44f41f8b6e3a0c9423c0dd120b924b82}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a44f41f8b6e3a0c9423c0dd120b924b82}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+TX\+\_\+\+FW\+\_\+\+VARIANT&TX firmware variant \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_CTPIO@{EF\_VI\_CAP\_CTPIO}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_CTPIO@{EF\_VI\_CAP\_CTPIO}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ad15186b37f61fea9f23ff0912ebed4f6}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586ad15186b37f61fea9f23ff0912ebed4f6}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+CTPIO&Availability of CTPIO \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_TX\_ALTERNATIVES\_CP\_BUFFER\_SIZE@{EF\_VI\_CAP\_TX\_ALTERNATIVES\_CP\_BUFFER\_SIZE}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_TX\_ALTERNATIVES\_CP\_BUFFER\_SIZE@{EF\_VI\_CAP\_TX\_ALTERNATIVES\_CP\_BUFFER\_SIZE}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a8fd5e5012e1e7d25129c8a1d380f52e5}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a8fd5e5012e1e7d25129c8a1d380f52e5}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+TX\+\_\+\+ALTERNATIVES\+\_\+\+CP\+\_\+\+BUFFER\+\_\+\+SIZE&Size of TX alternatives common pool buffers \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_RX\_FORCE\_EVENT\_MERGING@{EF\_VI\_CAP\_RX\_FORCE\_EVENT\_MERGING}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_RX\_FORCE\_EVENT\_MERGING@{EF\_VI\_CAP\_RX\_FORCE\_EVENT\_MERGING}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a96fc544eb36e2153d572aded48191ca6}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a96fc544eb36e2153d572aded48191ca6}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+RX\+\_\+\+FORCE\+\_\+\+EVENT\+\_\+\+MERGING&RX queue is configured to force event merging \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_CAP\_MAX@{EF\_VI\_CAP\_MAX}!capabilities.h@{capabilities.h}}\index{capabilities.h@{capabilities.h}!EF\_VI\_CAP\_MAX@{EF\_VI\_CAP\_MAX}}}\mbox{\Hypertarget{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a256fe96a1fad6a1574b637958d40694d}\label{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586a256fe96a1fad6a1574b637958d40694d}} 
+EF\+\_\+\+VI\+\_\+\+CAP\+\_\+\+MAX&Maximum value of capabilities enumeration \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 40 of file capabilities.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{capabilities_8h_ae139e415401ac1c57f29e20e0356bbed}\label{capabilities_8h_ae139e415401ac1c57f29e20e0356bbed}} 
+\index{capabilities.h@{capabilities.h}!ef\_vi\_capabilities\_get@{ef\_vi\_capabilities\_get}}
+\index{ef\_vi\_capabilities\_get@{ef\_vi\_capabilities\_get}!capabilities.h@{capabilities.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_capabilities\_get()}{ef\_vi\_capabilities\_get()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+capabilities\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{base_8h_afcca014c719554b834e89f0c30e87561}{ef\+\_\+driver\+\_\+handle}}}]{handle,  }\item[{int}]{ifindex,  }\item[{enum \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586}{ef\+\_\+vi\+\_\+capability}}}]{cap,  }\item[{unsigned long $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+
+Get the value of the given capability. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & The ef\+\_\+driver\+\_\+handle associated with the interface that you wish to query. \\
+\hline
+{\em ifindex} & The index of the interface that you wish to query. You can use if\+\_\+nametoindex() to obtain this. This should be the underlying physical interface, rather than a bond, VLAN, or similar. \\
+\hline
+{\em cap} & The capability to get. \\
+\hline
+{\em value} & Pointer to location at which to store the value.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success (capability is supported and value field is updated), or a negative error code\+:~\newline
+ -\/EOPNOTSUPP if the capability is not supported~\newline
+ -\/ENOSYS if the API does not know how to retreive support for the supplied capability~\newline
+ other negative error if support could not be retrieved 
+\end{DoxyReturn}
+\mbox{\Hypertarget{capabilities_8h_a37e23905e824f75e9452cea34de4a9dd}\label{capabilities_8h_a37e23905e824f75e9452cea34de4a9dd}} 
+\index{capabilities.h@{capabilities.h}!ef\_vi\_capabilities\_max@{ef\_vi\_capabilities\_max}}
+\index{ef\_vi\_capabilities\_max@{ef\_vi\_capabilities\_max}!capabilities.h@{capabilities.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_capabilities\_max()}{ef\_vi\_capabilities\_max()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+capabilities\+\_\+max (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Gets the maximum supported value of \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586}{ef\+\_\+vi\+\_\+capability}}. 
+
+\begin{DoxyReturn}{Returns}
+The maximum capability value, or a negative error code.
+\end{DoxyReturn}
+This function returns the maximum supported value of \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586}{ef\+\_\+vi\+\_\+capability}}, so that all capabilities can be iterated. For example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{max = \mbox{\hyperlink{capabilities_8h_a37e23905e824f75e9452cea34de4a9dd}{ef\_vi\_capabilities\_max}}();}
+\DoxyCodeLine{\textcolor{keywordflow}{for}( cap = 0; cap <= max; ++cap ) \{}
+\DoxyCodeLine{  rc = \mbox{\hyperlink{capabilities_8h_ae139e415401ac1c57f29e20e0356bbed}{ef\_vi\_capabilities\_get}}(driver\_handle, ifindex, cap, \&val);}
+\DoxyCodeLine{  \textcolor{keywordflow}{if}( rc == 0 ) printf(\textcolor{stringliteral}{"{}\%s \%d\(\backslash\)n"{}}, \mbox{\hyperlink{capabilities_8h_a3a172e16564608f36ce31d658a043bcc}{ef\_vi\_capabilities\_name}}(cap), val);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \mbox{\Hypertarget{capabilities_8h_a3a172e16564608f36ce31d658a043bcc}\label{capabilities_8h_a3a172e16564608f36ce31d658a043bcc}} 
+\index{capabilities.h@{capabilities.h}!ef\_vi\_capabilities\_name@{ef\_vi\_capabilities\_name}}
+\index{ef\_vi\_capabilities\_name@{ef\_vi\_capabilities\_name}!capabilities.h@{capabilities.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_capabilities\_name()}{ef\_vi\_capabilities\_name()}}
+{\footnotesize\ttfamily const char$\ast$ ef\+\_\+vi\+\_\+capabilities\+\_\+name (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{capabilities_8h_a6e73dc5d34b6e23da96fb3d4cb768586}{ef\+\_\+vi\+\_\+capability}}}]{cap }\end{DoxyParamCaption})}
+
+
+
+Gets a human-\/readable string describing the given capability. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cap} & The capability for which to get the description.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string describing the capability, or a negative error code. 
+\end{DoxyReturn}

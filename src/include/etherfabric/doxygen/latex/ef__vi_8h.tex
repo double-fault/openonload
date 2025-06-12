@@ -1,0 +1,2357 @@
+\hypertarget{ef__vi_8h}{}\doxysection{ef\+\_\+vi.\+h File Reference}
+\label{ef__vi_8h}\index{ef\_vi.h@{ef\_vi.h}}
+
+
+Virtual Interface definitions for Ether\+Fabric Virtual Interface HAL.  
+
+
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+union \mbox{\hyperlink{unionef__event}{ef\+\_\+event}}
+\begin{DoxyCompactList}\small\item\em A token that identifies something that has happened. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structef__iovec}{ef\+\_\+iovec}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structef__iovec}{ef\+\_\+iovec}} is similar to the standard struct iovec. An array of these is used to designate a scatter/gather list of I/O buffers. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structef__vi__txq__state}{ef\+\_\+vi\+\_\+txq\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em State of TX descriptor ring. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structef__vi__rxq__state}{ef\+\_\+vi\+\_\+rxq\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em State of RX descriptor ring. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structef__eventq__state}{ef\+\_\+eventq\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em State of event queue. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structef__vi__txq}{ef\+\_\+vi\+\_\+txq}}
+\begin{DoxyCompactList}\small\item\em TX descriptor ring. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structef__vi__rxq}{ef\+\_\+vi\+\_\+rxq}}
+\begin{DoxyCompactList}\small\item\em RX descriptor ring. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structef__vi__state}{ef\+\_\+vi\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em State of a virtual interface. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structef__vi__stats}{ef\+\_\+vi\+\_\+stats}}
+\begin{DoxyCompactList}\small\item\em Statistics for a virtual interface. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structef__vi__nic__type}{ef\+\_\+vi\+\_\+nic\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em The type of NIC in use. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structef__vi__transmit__alt__overhead}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+overhead}}
+\begin{DoxyCompactList}\small\item\em Per-\/packet overhead information. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}}
+\begin{DoxyCompactList}\small\item\em A virtual interface. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structef__vi_1_1ops}{ef\+\_\+vi\+::ops}}
+\begin{DoxyCompactList}\small\item\em Driver-\/dependent operations. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structef__vi__layout__entry}{ef\+\_\+vi\+\_\+layout\+\_\+entry}}
+\begin{DoxyCompactList}\small\item\em Layout of the data that is delivered into receive buffers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ef__vi_8h_a517792f8de6164555556e14bad2af92f}\label{ef__vi_8h_a517792f8de6164555556e14bad2af92f}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a517792f8de6164555556e14bad2af92f}{EF\+\_\+\+VI\+\_\+\+DMA\+\_\+\+ALIGN}}~64
+\begin{DoxyCompactList}\small\item\em Cache line sizes for alignment purposes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_ad7197cc7fd7e78d1d887e9df0e26862f}\label{ef__vi_8h_ad7197cc7fd7e78d1d887e9df0e26862f}} 
+\#define \mbox{\hyperlink{ef__vi_8h_ad7197cc7fd7e78d1d887e9df0e26862f}{EF\+\_\+\+VI\+\_\+\+MAX\+\_\+\+QS}}~32
+\begin{DoxyCompactList}\small\item\em The maximum number of queues per virtual interface. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a42333ff5e2f59e11a9708e3cb7118f8d}\label{ef__vi_8h_a42333ff5e2f59e11a9708e3cb7118f8d}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a42333ff5e2f59e11a9708e3cb7118f8d}{EF\+\_\+\+VI\+\_\+\+EVENT\+\_\+\+POLL\+\_\+\+MIN\+\_\+\+EVS}}~2
+\begin{DoxyCompactList}\small\item\em The minimum size of array to pass when polling the event queue. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_abcde202020c6fa9d54c70a89a6f9508d}\label{ef__vi_8h_abcde202020c6fa9d54c70a89a6f9508d}} 
+\#define \mbox{\hyperlink{ef__vi_8h_abcde202020c6fa9d54c70a89a6f9508d}{EF\+\_\+\+REQUEST\+\_\+\+ID\+\_\+\+MASK}}~0xffffffff
+\begin{DoxyCompactList}\small\item\em Mask to use with an ef\+\_\+request\+\_\+id. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a66c3866ad0c965c4a257a02cbb125388}\label{ef__vi_8h_a66c3866ad0c965c4a257a02cbb125388}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a66c3866ad0c965c4a257a02cbb125388}{EF\+\_\+\+EVENT\+\_\+\+TYPE}}(e)~((e).generic.\+type)
+\begin{DoxyCompactList}\small\item\em Type of event in an \mbox{\hyperlink{unionef__event}{ef\+\_\+event}} e. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_abc676af3c8675d8bf305f6313252c55f}\label{ef__vi_8h_abc676af3c8675d8bf305f6313252c55f}} 
+\#define \mbox{\hyperlink{ef__vi_8h_abc676af3c8675d8bf305f6313252c55f}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+BYTES}}(e)~((e).rx.\+len)
+\begin{DoxyCompactList}\small\item\em Get the number of bytes received. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_abe5aeb25a45b9ad5827fe2108bc1b62b}\label{ef__vi_8h_abe5aeb25a45b9ad5827fe2108bc1b62b}} 
+\#define \mbox{\hyperlink{ef__vi_8h_abe5aeb25a45b9ad5827fe2108bc1b62b}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+Q\+\_\+\+ID}}(e)~((e).rx.\+q\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Get the RX descriptor ring ID used for a received packet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a58ef1696c2087e9a569baed9c49fecef}\label{ef__vi_8h_a58ef1696c2087e9a569baed9c49fecef}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a58ef1696c2087e9a569baed9c49fecef}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+RQ\+\_\+\+ID}}(e)~((e).rx.\+rq\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Get the dma\+\_\+id used for a received packet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a2c9f892479de9126f6a731ff5f8d65be}\label{ef__vi_8h_a2c9f892479de9126f6a731ff5f8d65be}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a2c9f892479de9126f6a731ff5f8d65be}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+CONT}}(e)~((e).rx.\+flags \& \mbox{\hyperlink{ef__vi_8h_ab196c8b1dda29433e6b3d03fc32a9017}{EF\+\_\+\+EVENT\+\_\+\+FLAG\+\_\+\+CONT}})
+\begin{DoxyCompactList}\small\item\em True if the CONTinuation Of Packet flag is set for an RX event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_abd17e267e29b4e14d221788f700eeda5}\label{ef__vi_8h_abd17e267e29b4e14d221788f700eeda5}} 
+\#define \mbox{\hyperlink{ef__vi_8h_abd17e267e29b4e14d221788f700eeda5}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+SOP}}(e)~((e).rx.\+flags \& \mbox{\hyperlink{ef__vi_8h_a3c00b0c97c2fa2d0162dae35f48d4740}{EF\+\_\+\+EVENT\+\_\+\+FLAG\+\_\+\+SOP}})
+\begin{DoxyCompactList}\small\item\em True if the Start Of Packet flag is set for an RX event. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_ae76be60f4986e05ebbadb4fa6ebd74aa}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+PS\+\_\+\+NEXT\+\_\+\+BUFFER}}(e)
+\begin{DoxyCompactList}\small\item\em True if the next buffer flag is set for a packed stream event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a75ce4daf52d94b4d4f2914851516b163}\label{ef__vi_8h_a75ce4daf52d94b4d4f2914851516b163}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a75ce4daf52d94b4d4f2914851516b163}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+ISCSI\+\_\+\+OKAY}}(e)~((e).rx.\+flags \& \mbox{\hyperlink{ef__vi_8h_ab7def04c5079f8c9cf1327ab0fbdd236}{EF\+\_\+\+EVENT\+\_\+\+FLAG\+\_\+\+ISCSI\+\_\+\+OK}})
+\begin{DoxyCompactList}\small\item\em True if the i\+SCSIOK flag is set for an RX event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a3c00b0c97c2fa2d0162dae35f48d4740}\label{ef__vi_8h_a3c00b0c97c2fa2d0162dae35f48d4740}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a3c00b0c97c2fa2d0162dae35f48d4740}{EF\+\_\+\+EVENT\+\_\+\+FLAG\+\_\+\+SOP}}~0x1
+\begin{DoxyCompactList}\small\item\em Start Of Packet flag. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_ab196c8b1dda29433e6b3d03fc32a9017}\label{ef__vi_8h_ab196c8b1dda29433e6b3d03fc32a9017}} 
+\#define \mbox{\hyperlink{ef__vi_8h_ab196c8b1dda29433e6b3d03fc32a9017}{EF\+\_\+\+EVENT\+\_\+\+FLAG\+\_\+\+CONT}}~0x2
+\begin{DoxyCompactList}\small\item\em CONTinuation Of Packet flag. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_ab7def04c5079f8c9cf1327ab0fbdd236}\label{ef__vi_8h_ab7def04c5079f8c9cf1327ab0fbdd236}} 
+\#define \mbox{\hyperlink{ef__vi_8h_ab7def04c5079f8c9cf1327ab0fbdd236}{EF\+\_\+\+EVENT\+\_\+\+FLAG\+\_\+\+ISCSI\+\_\+\+OK}}~0x4
+\begin{DoxyCompactList}\small\item\em i\+SCSI CRC validated OK flag. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a680b4ebe8bbd5ac5de8a3dc15c7f1a75}\label{ef__vi_8h_a680b4ebe8bbd5ac5de8a3dc15c7f1a75}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a680b4ebe8bbd5ac5de8a3dc15c7f1a75}{EF\+\_\+\+EVENT\+\_\+\+FLAG\+\_\+\+MULTICAST}}~0x8
+\begin{DoxyCompactList}\small\item\em Multicast flag. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a11585192e94cfb240586406481cf0a7e}\label{ef__vi_8h_a11585192e94cfb240586406481cf0a7e}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a11585192e94cfb240586406481cf0a7e}{EF\+\_\+\+EVENT\+\_\+\+FLAG\+\_\+\+PS\+\_\+\+NEXT\+\_\+\+BUFFER}}~0x10
+\begin{DoxyCompactList}\small\item\em Packed Stream Next Buffer flag. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_aa9b4cab6b392372cee86d45462c26a63}\label{ef__vi_8h_aa9b4cab6b392372cee86d45462c26a63}} 
+\#define \mbox{\hyperlink{ef__vi_8h_aa9b4cab6b392372cee86d45462c26a63}{EF\+\_\+\+EVENT\+\_\+\+FLAG\+\_\+\+CTPIO}}~0x1
+\begin{DoxyCompactList}\small\item\em Packets were sent successfully with CTPIO. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_aa6e256d0f1bc3c61ac6ca7aca8f96008}\label{ef__vi_8h_aa6e256d0f1bc3c61ac6ca7aca8f96008}} 
+\#define \mbox{\hyperlink{ef__vi_8h_aa6e256d0f1bc3c61ac6ca7aca8f96008}{EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+Q\+\_\+\+ID}}(e)~((e).tx.\+q\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Get the TX descriptor ring ID used for a transmitted packet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a5c33526f823fd129554c026113da4f51}\label{ef__vi_8h_a5c33526f823fd129554c026113da4f51}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a5c33526f823fd129554c026113da4f51}{EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+CTPIO}}(e)~((e).tx.\+flags \& \mbox{\hyperlink{ef__vi_8h_aa9b4cab6b392372cee86d45462c26a63}{EF\+\_\+\+EVENT\+\_\+\+FLAG\+\_\+\+CTPIO}})
+\begin{DoxyCompactList}\small\item\em True if packets were sent successfully with CTPIO. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a0d6fd02730dba8f4c8bf844bb86dcca7}\label{ef__vi_8h_a0d6fd02730dba8f4c8bf844bb86dcca7}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a0d6fd02730dba8f4c8bf844bb86dcca7}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+Q\+\_\+\+ID}}(e)~((e).rx\+\_\+discard.\+q\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Get the RX descriptor ring ID used for a discarded packet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a43c62270bb10abf05d0a8f024eb54730}\label{ef__vi_8h_a43c62270bb10abf05d0a8f024eb54730}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a43c62270bb10abf05d0a8f024eb54730}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+RQ\+\_\+\+ID}}(e)~((e).rx\+\_\+discard.\+rq\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Get the dma\+\_\+id used for a discarded packet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a8164edde0ad1b2c56cf092a7e6de1906}\label{ef__vi_8h_a8164edde0ad1b2c56cf092a7e6de1906}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a8164edde0ad1b2c56cf092a7e6de1906}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+CONT}}(e)~((e).rx\+\_\+discard.\+flags\&\mbox{\hyperlink{ef__vi_8h_ab196c8b1dda29433e6b3d03fc32a9017}{EF\+\_\+\+EVENT\+\_\+\+FLAG\+\_\+\+CONT}})
+\begin{DoxyCompactList}\small\item\em True if the CONTinuation Of Packet flag is set for an RX\+\_\+\+DISCARD event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a3a256a38ce090759720cdedbe1b51909}\label{ef__vi_8h_a3a256a38ce090759720cdedbe1b51909}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a3a256a38ce090759720cdedbe1b51909}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+SOP}}(e)~((e).rx\+\_\+discard.\+flags\&\mbox{\hyperlink{ef__vi_8h_a3c00b0c97c2fa2d0162dae35f48d4740}{EF\+\_\+\+EVENT\+\_\+\+FLAG\+\_\+\+SOP}})
+\begin{DoxyCompactList}\small\item\em True if the Start Of Packet flag is set for an RX\+\_\+\+DISCARD event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a5749f57091aca02d94b7990a5f50ac0a}\label{ef__vi_8h_a5749f57091aca02d94b7990a5f50ac0a}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a5749f57091aca02d94b7990a5f50ac0a}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+TYPE}}(e)~((e).rx\+\_\+discard.\+subtype)
+\begin{DoxyCompactList}\small\item\em Get the reason for an EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+DISCARD event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a2b07da5c196b42583c79585411faf8e3}\label{ef__vi_8h_a2b07da5c196b42583c79585411faf8e3}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a2b07da5c196b42583c79585411faf8e3}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+BYTES}}(e)~((e).rx\+\_\+discard.\+len)
+\begin{DoxyCompactList}\small\item\em Get the length of a discarded packet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_af9bdd513eaa45b6aae3671402c038cda}\label{ef__vi_8h_af9bdd513eaa45b6aae3671402c038cda}} 
+\#define \mbox{\hyperlink{ef__vi_8h_af9bdd513eaa45b6aae3671402c038cda}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+Q\+\_\+\+ID}}(e)~((e).rx\+\_\+multi.\+q\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Get the RX descriptor ring ID used for a received packet. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_a461965a585c61f86acfc0fe72eab3c29}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+CONT}}(e)
+\begin{DoxyCompactList}\small\item\em True if the CONTinuation Of Packet flag is set for an RX HT event. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_a6c32676903ff4a7201f9c3e68c9d3373}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+SOP}}(e)
+\begin{DoxyCompactList}\small\item\em True if the Start Of Packet flag is set for an RX HT event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a5a477775c2161f6b640498dbd81ac505}\label{ef__vi_8h_a5a477775c2161f6b640498dbd81ac505}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a5a477775c2161f6b640498dbd81ac505}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+DISCARD\+\_\+\+TYPE}}(e)~((e).rx\+\_\+multi\+\_\+discard.\+subtype)
+\begin{DoxyCompactList}\small\item\em Get the reason for an EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+DISCARD event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a3f2e74c7098131a0ede9ff3b162c5b2d}\label{ef__vi_8h_a3f2e74c7098131a0ede9ff3b162c5b2d}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a3f2e74c7098131a0ede9ff3b162c5b2d}{EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+ERROR\+\_\+\+Q\+\_\+\+ID}}(e)~((e).tx\+\_\+error.\+q\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Get the TX descriptor ring ID used for a transmit error. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_afe9b54d13f4e16ffb9f69f79c80933a6}\label{ef__vi_8h_afe9b54d13f4e16ffb9f69f79c80933a6}} 
+\#define \mbox{\hyperlink{ef__vi_8h_afe9b54d13f4e16ffb9f69f79c80933a6}{EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+ERROR\+\_\+\+TYPE}}(e)~((e).tx\+\_\+error.\+subtype)
+\begin{DoxyCompactList}\small\item\em Get the reason for a TX\+\_\+\+ERROR event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a3723cfe9266e3f18398de9f6568dac14}\label{ef__vi_8h_a3723cfe9266e3f18398de9f6568dac14}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a3723cfe9266e3f18398de9f6568dac14}{EF\+\_\+\+VI\+\_\+\+SYNC\+\_\+\+FLAG\+\_\+\+CLOCK\+\_\+\+SET}}~1
+\begin{DoxyCompactList}\small\item\em The adapter clock has previously been set in sync with the system. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a608a766fb4dc766990691a56b32f7855}\label{ef__vi_8h_a608a766fb4dc766990691a56b32f7855}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a608a766fb4dc766990691a56b32f7855}{EF\+\_\+\+VI\+\_\+\+SYNC\+\_\+\+FLAG\+\_\+\+CLOCK\+\_\+\+IN\+\_\+\+SYNC}}~2
+\begin{DoxyCompactList}\small\item\em The adapter clock is in sync with the external clock (PTP) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_af50f74f0a637bcccadf7ef77515927f3}\label{ef__vi_8h_af50f74f0a637bcccadf7ef77515927f3}} 
+\#define \mbox{\hyperlink{ef__vi_8h_af50f74f0a637bcccadf7ef77515927f3}{EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+WITH\+\_\+\+TIMESTAMP\+\_\+\+Q\+\_\+\+ID}}(e)~((e).tx\+\_\+timestamp.\+q\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Get the TX descriptor ring ID used for a timestamped packet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_aca1f616f6cc695590b1ed225bbe51488}\label{ef__vi_8h_aca1f616f6cc695590b1ed225bbe51488}} 
+\#define \mbox{\hyperlink{ef__vi_8h_aca1f616f6cc695590b1ed225bbe51488}{EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+WITH\+\_\+\+TIMESTAMP\+\_\+\+RQ\+\_\+\+ID}}(e)~((e).tx\+\_\+timestamp.\+rq\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Get the dma\+\_\+id used for a timestamped packet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_ac727b4cb5b1a3accb3c2a958fe519387}\label{ef__vi_8h_ac727b4cb5b1a3accb3c2a958fe519387}} 
+\#define \mbox{\hyperlink{ef__vi_8h_ac727b4cb5b1a3accb3c2a958fe519387}{EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+WITH\+\_\+\+TIMESTAMP\+\_\+\+SEC}}(e)~((e).tx\+\_\+timestamp.\+ts\+\_\+sec)
+\begin{DoxyCompactList}\small\item\em Get the number of seconds from the timestamp of a transmitted packet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a3e7e3f707c6fedfcd9e19b600ff7a048}\label{ef__vi_8h_a3e7e3f707c6fedfcd9e19b600ff7a048}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a3e7e3f707c6fedfcd9e19b600ff7a048}{EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+WITH\+\_\+\+TIMESTAMP\+\_\+\+NSEC}}(e)~((e).tx\+\_\+timestamp.\+ts\+\_\+nsec)
+\begin{DoxyCompactList}\small\item\em Get the number of nanoseconds from the timestamp of a transmitted packet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a2d3d558ad21bd0414b07b266b3c1b948}\label{ef__vi_8h_a2d3d558ad21bd0414b07b266b3c1b948}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a2d3d558ad21bd0414b07b266b3c1b948}{EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+WITH\+\_\+\+TIMESTAMP\+\_\+\+SYNC\+\_\+\+MASK}}~  (\mbox{\hyperlink{ef__vi_8h_a3723cfe9266e3f18398de9f6568dac14}{EF\+\_\+\+VI\+\_\+\+SYNC\+\_\+\+FLAG\+\_\+\+CLOCK\+\_\+\+SET}} $\vert$ \mbox{\hyperlink{ef__vi_8h_a608a766fb4dc766990691a56b32f7855}{EF\+\_\+\+VI\+\_\+\+SYNC\+\_\+\+FLAG\+\_\+\+CLOCK\+\_\+\+IN\+\_\+\+SYNC}})
+\begin{DoxyCompactList}\small\item\em Mask for the sync flags in the timestamp of a transmitted packet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_ae1ce54d4d61dd616db25667c274ad1c7}\label{ef__vi_8h_ae1ce54d4d61dd616db25667c274ad1c7}} 
+\#define \mbox{\hyperlink{ef__vi_8h_ae1ce54d4d61dd616db25667c274ad1c7}{EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+WITH\+\_\+\+TIMESTAMP\+\_\+\+SYNC\+\_\+\+FLAGS}}(e)~  ((e).tx\+\_\+timestamp.\+ts\+\_\+nsec \& \mbox{\hyperlink{ef__vi_8h_a2d3d558ad21bd0414b07b266b3c1b948}{EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+WITH\+\_\+\+TIMESTAMP\+\_\+\+SYNC\+\_\+\+MASK}})
+\begin{DoxyCompactList}\small\item\em Get the sync flags from the timestamp of a transmitted packet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a729567cd6f79dac544027b2faa581f0f}\label{ef__vi_8h_a729567cd6f79dac544027b2faa581f0f}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a729567cd6f79dac544027b2faa581f0f}{EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+ALT\+\_\+\+Q\+\_\+\+ID}}(e)~((e).tx\+\_\+alt.\+q\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Get the TX descriptor ring ID used for a TX alternative packet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a722164b9b16d4faec465a863d223575b}\label{ef__vi_8h_a722164b9b16d4faec465a863d223575b}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a722164b9b16d4faec465a863d223575b}{EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+ALT\+\_\+\+ALT\+\_\+\+ID}}(e)~((e).tx\+\_\+alt.\+alt\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Get the TX alternative ID used for a TX alternative packet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a64e8ede4e5bc6cebff1f11ff19e658a4}\label{ef__vi_8h_a64e8ede4e5bc6cebff1f11ff19e658a4}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a64e8ede4e5bc6cebff1f11ff19e658a4}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+NO\+\_\+\+DESC\+\_\+\+TRUNC\+\_\+\+Q\+\_\+\+ID}}(e)~((e).rx\+\_\+no\+\_\+desc\+\_\+trunc.\+q\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Get the RX descriptor ring ID used for a received packet that was truncated due to a lack of descriptors. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a28c26ec6cccb4532bf988e8907b69cba}\label{ef__vi_8h_a28c26ec6cccb4532bf988e8907b69cba}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a28c26ec6cccb4532bf988e8907b69cba}{EF\+\_\+\+EVENT\+\_\+\+SW\+\_\+\+DATA\+\_\+\+MASK}}~0xffff
+\begin{DoxyCompactList}\small\item\em Mask for the data in a software generated event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_acfff64f6f19146802cb9d49631781791}\label{ef__vi_8h_acfff64f6f19146802cb9d49631781791}} 
+\#define \mbox{\hyperlink{ef__vi_8h_acfff64f6f19146802cb9d49631781791}{EF\+\_\+\+EVENT\+\_\+\+SW\+\_\+\+DATA}}(e)~((e).sw.\+data)
+\begin{DoxyCompactList}\small\item\em Get the data for an EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+SW event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_af5522679c87d0231f4d154402d453425}\label{ef__vi_8h_af5522679c87d0231f4d154402d453425}} 
+\#define \mbox{\hyperlink{ef__vi_8h_af5522679c87d0231f4d154402d453425}{EF\+\_\+\+EVENT\+\_\+\+FMT}}~\char`\"{}\mbox{[}ev\+:\%x\mbox{]}\char`\"{}
+\begin{DoxyCompactList}\small\item\em Output format for an \mbox{\hyperlink{unionef__event}{ef\+\_\+event}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a471254083ccdc96df818aa8178312474}\label{ef__vi_8h_a471254083ccdc96df818aa8178312474}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a471254083ccdc96df818aa8178312474}{EF\+\_\+\+EVENT\+\_\+\+PRI\+\_\+\+ARG}}(e)~(unsigned) (e).generic.\+type
+\begin{DoxyCompactList}\small\item\em Get the type of an event. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_a9e1fbd2c66475fde3aa1b7df19841ef9}{ef\+\_\+vi\+\_\+receive\+\_\+init}}(vi,  addr,  dma\+\_\+id)~  (vi)-\/$>$ops.\+receive\+\_\+init((vi), (addr), (dma\+\_\+id))
+\begin{DoxyCompactList}\small\item\em Initialize an RX descriptor on the RX descriptor ring. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_abcd5dc1be7ff1e9f9a4a84df86305099}{ef\+\_\+vi\+\_\+receive\+\_\+push}}(vi)~(vi)-\/$>$ops.\+receive\+\_\+push((vi))
+\begin{DoxyCompactList}\small\item\em Submit newly initialized RX descriptors to the NIC. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a5a2caf38e4aa9f9c063e86bd137e665e}\label{ef__vi_8h_a5a2caf38e4aa9f9c063e86bd137e665e}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a5a2caf38e4aa9f9c063e86bd137e665e}{EF\+\_\+\+VI\+\_\+\+RECEIVE\+\_\+\+BATCH}}~15
+\begin{DoxyCompactList}\small\item\em Maximum number of receive completions per receive event. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_afe4811464ade4f542564d3c789e1e929}{ef\+\_\+vi\+\_\+transmitv\+\_\+init}}(vi,  iov,  iov\+\_\+len,  dma\+\_\+id)~  (vi)-\/$>$ops.\+transmitv\+\_\+init((vi), (iov), (iov\+\_\+len), (dma\+\_\+id))
+\begin{DoxyCompactList}\small\item\em Initialize TX descriptors on the TX descriptor ring, for a vector of packet buffers. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_a7bb4aa398d5a5735491e3685d6e05912}{ef\+\_\+vi\+\_\+transmit\+\_\+push}}(vi)~(vi)-\/$>$ops.\+transmit\+\_\+push((vi))
+\begin{DoxyCompactList}\small\item\em Submit newly initialized TX descriptors to the NIC. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_a62408f50ae79efed0239d0b8bde3a9d8}{ef\+\_\+vi\+\_\+transmit}}(vi,  base,  len,  dma\+\_\+id)~  (vi)-\/$>$ops.\+transmit((vi), (base), (len), (dma\+\_\+id))
+\begin{DoxyCompactList}\small\item\em Transmit a packet from a single packet buffer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_a10b8bcbc62dab623cd94db5aaf6ddbf0}{ef\+\_\+vi\+\_\+transmitv}}(vi,  iov,  iov\+\_\+len,  dma\+\_\+id)~  (vi)-\/$>$ops.\+transmitv((vi), (iov), (iov\+\_\+len), (dma\+\_\+id))
+\begin{DoxyCompactList}\small\item\em Transmit a packet from a vector of packet buffers. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_a1c5757be9dbfe3271bb2875f89e838b6}{ef\+\_\+vi\+\_\+transmit\+\_\+pio}}(vi,  offset,  len,  dma\+\_\+id)~  (vi)-\/$>$ops.\+transmit\+\_\+pio((vi), (offset), (len), (dma\+\_\+id))
+\begin{DoxyCompactList}\small\item\em Transmit a packet already resident in Programmed I/O. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_a7fd42b3874604101680daca3ceec07a3}{ef\+\_\+vi\+\_\+transmit\+\_\+copy\+\_\+pio}}(vi,  pio\+\_\+offset,  src\+\_\+buf,  len,  dma\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Transmit a packet by copying it into the Programmed I/O region. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_a4d368a21bb9cbd84e86ef453c2e75fc3}{ef\+\_\+vi\+\_\+transmit\+\_\+pio\+\_\+warm}}(vi)~  (vi)-\/$>$ops.\+transmit\+\_\+pio\+\_\+warm((vi))
+\begin{DoxyCompactList}\small\item\em Warm Programmed I/O transmit path for subsequent transmit. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_a78bcb4d42ff752cc3f911769d234960f}{ef\+\_\+vi\+\_\+transmit\+\_\+copy\+\_\+pio\+\_\+warm}}(vi,  pio\+\_\+offset,  src\+\_\+buf,  len)~  (vi)-\/$>$ops.\+transmit\+\_\+copy\+\_\+pio\+\_\+warm((vi), (pio\+\_\+offset), (src\+\_\+buf), (len))
+\begin{DoxyCompactList}\small\item\em Copy a packet to Programmed I/O region and warm transmit path. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a02418d3aac50861ac60f573c37b14487}\label{ef__vi_8h_a02418d3aac50861ac60f573c37b14487}} 
+\#define \mbox{\hyperlink{ef__vi_8h_a02418d3aac50861ac60f573c37b14487}{EF\+\_\+\+VI\+\_\+\+TRANSMIT\+\_\+\+BATCH}}~64
+\begin{DoxyCompactList}\small\item\em Maximum number of transmit completions per transmit event. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_add2a128213fafba3ebb74d137ab36178}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+select}}(vi,  alt\+\_\+id)~  (vi)-\/$>$ops.\+transmit\+\_\+alt\+\_\+select((vi), (alt\+\_\+id))
+\begin{DoxyCompactList}\small\item\em Select a TX alternative as the destination for future sends. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_ab412b762c66f1c89649504a0058cc16e}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+select\+\_\+normal}}(vi)~  (vi)-\/$>$ops.\+transmit\+\_\+alt\+\_\+select\+\_\+default((vi))
+\begin{DoxyCompactList}\small\item\em Select the \char`\"{}normal\char`\"{} data path as the destination for future sends. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_a51050ee6dc126b1326c6d5775808e639}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+stop}}(vi,  alt\+\_\+id)~  (vi)-\/$>$ops.\+transmit\+\_\+alt\+\_\+stop((vi), (alt\+\_\+id))
+\begin{DoxyCompactList}\small\item\em Transition a TX alternative to the STOP state. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_a70e8d8c2fa4927392174223bcdd2cc31}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+go}}(vi,  alt\+\_\+id)~  (vi)-\/$>$ops.\+transmit\+\_\+alt\+\_\+go((vi), (alt\+\_\+id))
+\begin{DoxyCompactList}\small\item\em Transition a TX alternative to the GO state. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_ac273e4b11c2b98664cf7363574eb5f70}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+discard}}(vi,  alt\+\_\+id)~  (vi)-\/$>$ops.\+transmit\+\_\+alt\+\_\+discard((vi), (alt\+\_\+id))
+\begin{DoxyCompactList}\small\item\em Transition a TX alternative to the DISCARD state. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_aca0074ba563465d5effcfc6d54b1bba2}{ef\+\_\+vi\+\_\+transmitv\+\_\+ctpio}}(vi,  frame\+\_\+len,  frame\+\_\+iov,  frame\+\_\+iov\+\_\+len,  ct\+\_\+threshold)
+\begin{DoxyCompactList}\small\item\em Transmit a packet using CTPIO from an array of buffers. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_a87e3c325b1e6a6612fb1feba95d553cb}{ef\+\_\+vi\+\_\+transmitv\+\_\+ctpio\+\_\+copy}}(vi,  frame\+\_\+len,  frame\+\_\+iov,  frame\+\_\+iov\+\_\+len,  ct\+\_\+threshold,  fallback)
+\begin{DoxyCompactList}\small\item\em Transmit a packet using CTPIO from an array of buffers, simultaneously copying the data into a fallback buffer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_a30ec559eea798f581ca853a0966983c5}{EF\+\_\+\+VI\+\_\+\+CTPIO\+\_\+\+CT\+\_\+\+THRESHOLD\+\_\+\+SNF}}~0xffff
+\item 
+\#define \mbox{\hyperlink{ef__vi_8h_aa5e1876ed7bcf6522f4f1262b58d6c7a}{ef\+\_\+eventq\+\_\+prime}}(vi)~(vi)-\/$>$ops.\+eventq\+\_\+prime((vi))
+\begin{DoxyCompactList}\small\item\em Prime a virtual interface allowing you to go to sleep blocking on it. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ef__vi_8h_ab340116b526f45dd378fe279f0c05a48}{ef\+\_\+eventq\+\_\+poll}}(evq,  evs,  evs\+\_\+len)~  (evq)-\/$>$ops.\+eventq\+\_\+poll((evq), (evs), (evs\+\_\+len))
+\begin{DoxyCompactList}\small\item\em Poll an event queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ef__vi_8h_af0de858383958b916bfe38019179bc75}\label{ef__vi_8h_af0de858383958b916bfe38019179bc75}} 
+typedef uint32\+\_\+t \mbox{\hyperlink{ef__vi_8h_af0de858383958b916bfe38019179bc75}{ef\+\_\+eventq\+\_\+ptr}}
+\begin{DoxyCompactList}\small\item\em A pointer to an event queue. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a45dc6a6b117562bf1fb95bda721aba14}\label{ef__vi_8h_a45dc6a6b117562bf1fb95bda721aba14}} 
+typedef uint64\+\_\+t \mbox{\hyperlink{ef__vi_8h_a45dc6a6b117562bf1fb95bda721aba14}{ef\+\_\+addr}}
+\begin{DoxyCompactList}\small\item\em An address. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_ad68493b7b12823bda18218c21c904d84}\label{ef__vi_8h_ad68493b7b12823bda18218c21c904d84}} 
+typedef char $\ast$ \mbox{\hyperlink{ef__vi_8h_ad68493b7b12823bda18218c21c904d84}{ef\+\_\+vi\+\_\+ioaddr\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em An address of an I/O area for a virtual interface. \end{DoxyCompactList}\item 
+typedef int \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em A DMA request identifier. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} \mbox{\hyperlink{ef__vi_8h_af42365b8f316c98e19820fba060c78c4}{ef\+\_\+vi}}
+\begin{DoxyCompactList}\small\item\em A virtual interface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \newline
+\mbox{\hyperlink{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba60ca113e8fe79115ba9efe22471a9001}{EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX}}
+, \mbox{\hyperlink{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba48528de8329421a4ac7785774bb4c894}{EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX}}
+, \mbox{\hyperlink{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba117a208b3f2e58062cc505b88f984057}{EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+DISCARD}}
+, \mbox{\hyperlink{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba5c4334379f99493f4959341575483492}{EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+ERROR}}
+, \newline
+\mbox{\hyperlink{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba8f7d923defae51d9d8c226b51c51d56d}{EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+NO\+\_\+\+DESC\+\_\+\+TRUNC}}
+, \mbox{\hyperlink{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55bac78b3df21df052bbb0339ce14a7ac868}{EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+SW}}
+, \mbox{\hyperlink{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba9b13558fccd35376b33883f7ea08bd47}{EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+OFLOW}}
+, \mbox{\hyperlink{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba2d8d961c8cc517459b15e1ebe9861ffe}{EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+WITH\+\_\+\+TIMESTAMP}}
+, \newline
+\mbox{\hyperlink{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba988a18b2fe55b62a6bbfcb59ba7866c6}{EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+PACKED\+\_\+\+STREAM}}
+, \mbox{\hyperlink{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba3a2e95aa0b4c53d458132f29357a1cfc}{EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+MULTI}}
+, \mbox{\hyperlink{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55babee735660dfebfadc3cffedf549603aa}{EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+ALT}}
+, \mbox{\hyperlink{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba8933dbc77226694d10e1d51784c68876}{EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+DISCARD}}
+ \}
+\begin{DoxyCompactList}\small\item\em Possible types of events. \end{DoxyCompactList}\item 
+enum \{ \newline
+\mbox{\hyperlink{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7a225c5c48ab553585ed8ecd75246d554d}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+CSUM\+\_\+\+BAD}}
+, \mbox{\hyperlink{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7a2cb3ae393b2022b6638e39ef88aafbfe}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+MCAST\+\_\+\+MISMATCH}}
+, \mbox{\hyperlink{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7a38ccd6c3343f9136efde428894d6fb02}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+CRC\+\_\+\+BAD}}
+, \mbox{\hyperlink{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7a1ff9325d627f29841cb146f98bfc77b1}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+TRUNC}}
+, \newline
+\mbox{\hyperlink{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7afc00dd355b562676b74ca0097f481373}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+RIGHTS}}
+, \mbox{\hyperlink{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7ac50e1ade07ecf4b162fccf603a8ba824}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+EV\+\_\+\+ERROR}}
+, \mbox{\hyperlink{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7a92db3d0e3380c5b563253efe654f3ea5}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+OTHER}}
+, \mbox{\hyperlink{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7aa8fa724192bdf960ca9bedc3958da650}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+INNER\+\_\+\+CSUM\+\_\+\+BAD}}
+, \newline
+\mbox{\hyperlink{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7ad5f1cd0bafae7ab088906c30391f8e30}{EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+MAX}}
+ \}
+\begin{DoxyCompactList}\small\item\em The reason for an EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+DISCARD event. \end{DoxyCompactList}\item 
+enum \{ \mbox{\hyperlink{ef__vi_8h_a99fb83031ce9923c84392b4e92f956b5aaf19e12b5e54d15e86c7fa5da5453b67}{EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+ERROR\+\_\+\+RIGHTS}}
+, \mbox{\hyperlink{ef__vi_8h_a99fb83031ce9923c84392b4e92f956b5aac9fd1e4efde54dee9918b66696f2640}{EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+ERROR\+\_\+\+OFLOW}}
+, \mbox{\hyperlink{ef__vi_8h_a99fb83031ce9923c84392b4e92f956b5a03c9b4f6e246faecf0d92d701a15e53a}{EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+ERROR\+\_\+2\+BIG}}
+, \mbox{\hyperlink{ef__vi_8h_a99fb83031ce9923c84392b4e92f956b5a1fee5bc12d0fe43b30541fd46da765f2}{EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+ERROR\+\_\+\+BUS}}
+ \}
+\begin{DoxyCompactList}\small\item\em The reason for an EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+ERROR event. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772}{ef\+\_\+vi\+\_\+flags}} \{ \newline
+\mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a8613875aa5fecb0571267d4d9183572e}{EF\+\_\+\+VI\+\_\+\+FLAGS\+\_\+\+DEFAULT}} = 0x0
+, \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772ae230b7c8cadd05df89c102f48aac31f5}{EF\+\_\+\+VI\+\_\+\+ISCSI\+\_\+\+RX\+\_\+\+HDIG}} = 0x2
+, \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a193ceaa767f0171738113048ded867ed}{EF\+\_\+\+VI\+\_\+\+ISCSI\+\_\+\+TX\+\_\+\+HDIG}} = 0x4
+, \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a00e972964bbc9dd04dad6ce7bb51635b}{EF\+\_\+\+VI\+\_\+\+ISCSI\+\_\+\+RX\+\_\+\+DDIG}} = 0x8
+, \newline
+\mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a991f15ac8719fd3a4eabe4ab90de618b}{EF\+\_\+\+VI\+\_\+\+ISCSI\+\_\+\+TX\+\_\+\+DDIG}} = 0x10
+, \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a6b4d3b527ef39d6a6fded1491d7bbf54}{EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+PHYS\+\_\+\+ADDR}} = 0x20
+, \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772aacb8f1a98e38cc38325a12b26d51cb95}{EF\+\_\+\+VI\+\_\+\+RX\+\_\+\+PHYS\+\_\+\+ADDR}} = 0x40
+, \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772ab0bbd1f4a9520d92a7a8d086882a1847}{EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+IP\+\_\+\+CSUM\+\_\+\+DIS}} = 0x80
+, \newline
+\mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a0899d688f6c4948a76483621bbeb60e5}{EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+TCPUDP\+\_\+\+CSUM\+\_\+\+DIS}} = 0x100
+, \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772ad970724ec2af1874bcc1a33fca79320c}{EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+TCPUDP\+\_\+\+ONLY}} = 0x200
+, \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a25f39fdbf5272a0c9cdd87914d79b38f}{EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+FILTER\+\_\+\+IP}} = 0x400
+, \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772ac7f8c6fb08db5ebfa7c96a23615acf16}{EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+FILTER\+\_\+\+MAC}} = 0x800
+, \newline
+\mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a40b6169fd7d852d8ca4a9b0c6132b576}{EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+FILTER\+\_\+\+MASK\+\_\+1}} = 0x1000
+, \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a3213e162e589d72870a63d37f4e955ec}{EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+FILTER\+\_\+\+MASK\+\_\+2}} = 0x2000
+, \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a66480d0ac2293b3fc5ebbbcbe93c8aa8}{EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+FILTER\+\_\+\+MASK\+\_\+3}} = (0x1000 $\vert$ 0x2000)
+, \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a4151194eb39e20247b15da25c8191225}{EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+PUSH\+\_\+\+DISABLE}} = 0x4000
+, \newline
+\mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772aa632a8d0731544092d1d9c351087d5a0}{EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+PUSH\+\_\+\+ALWAYS}} = 0x8000
+, \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a321a78cb4844b892493fba42ce9d8565}{EF\+\_\+\+VI\+\_\+\+RX\+\_\+\+TIMESTAMPS}} = 0x10000
+, \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a368984f37f8f5e5856f03c938db88607}{EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+TIMESTAMPS}} = 0x20000
+, \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a78f18460bbb6dc756a90b5068c199c37}{EF\+\_\+\+VI\+\_\+\+RX\+\_\+\+PACKED\+\_\+\+STREAM}} = 0x80000
+, \newline
+\mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772af83ecf43c4955864a0f8dba265376b07}{EF\+\_\+\+VI\+\_\+\+RX\+\_\+\+PS\+\_\+\+BUF\+\_\+\+SIZE\+\_\+64K}} = 0x100000
+, \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772ad1a717b3eacea48b13b90392ba0e5c22}{EF\+\_\+\+VI\+\_\+\+RX\+\_\+\+EVENT\+\_\+\+MERGE}} = 0x200000
+, \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772af9ea5aa5a3560431ccedc9a8d20dc531}{EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+ALT}} = 0x400000
+, \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772ad38a4007942862468cf057aac007d8c7}{EF\+\_\+\+VI\+\_\+\+ENABLE\+\_\+\+EV\+\_\+\+TIMER}} = 0x800000
+, \newline
+\mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772acb2c08ccd362c14f972edb232b55e6f7}{EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+CTPIO}} = 0x1000000
+, \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772afcb140813a7bf503d98d3cad0d7f185b}{EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+CTPIO\+\_\+\+NO\+\_\+\+POISON}} = 0x2000000
+ \}
+\begin{DoxyCompactList}\small\item\em Flags that can be requested when allocating an \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}}. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{ef__vi_8h_a0096b5a5f0ec6a67ff4d1ff1b8bbbb4c}{ef\+\_\+vi\+\_\+out\+\_\+flags}} \{ \mbox{\hyperlink{ef__vi_8h_a0096b5a5f0ec6a67ff4d1ff1b8bbbb4cab2131c8a54c3c2c74a5499d201db86bb}{EF\+\_\+\+VI\+\_\+\+OUT\+\_\+\+CLOCK\+\_\+\+SYNC\+\_\+\+STATUS}} = 0x1
+ \}
+\begin{DoxyCompactList}\small\item\em Flags that can be returned when an \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} has been allocated. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{ef__vi_8h_a373d7e8f2d3b8ee8839ddb470163ad96}{ef\+\_\+vi\+\_\+rx\+\_\+discard\+\_\+err\+\_\+flags}} \{ \newline
+\mbox{\hyperlink{ef__vi_8h_a373d7e8f2d3b8ee8839ddb470163ad96ae0b55f8de0997bd4646cc5df311507a3}{EF\+\_\+\+VI\+\_\+\+DISCARD\+\_\+\+RX\+\_\+\+L4\+\_\+\+CSUM\+\_\+\+ERR}} = 0x1
+, \mbox{\hyperlink{ef__vi_8h_a373d7e8f2d3b8ee8839ddb470163ad96acd65997c2802911b3acc2bd4ca794629}{EF\+\_\+\+VI\+\_\+\+DISCARD\+\_\+\+RX\+\_\+\+L3\+\_\+\+CSUM\+\_\+\+ERR}} = 0x2
+, \mbox{\hyperlink{ef__vi_8h_a373d7e8f2d3b8ee8839ddb470163ad96a5a3747fae4c8f722f03055c9cae82f71}{EF\+\_\+\+VI\+\_\+\+DISCARD\+\_\+\+RX\+\_\+\+ETH\+\_\+\+FCS\+\_\+\+ERR}} = 0x4
+, \mbox{\hyperlink{ef__vi_8h_a373d7e8f2d3b8ee8839ddb470163ad96a133c4c51bdec62caee225330439aa361}{EF\+\_\+\+VI\+\_\+\+DISCARD\+\_\+\+RX\+\_\+\+ETH\+\_\+\+LEN\+\_\+\+ERR}} = 0x8
+, \newline
+\mbox{\hyperlink{ef__vi_8h_a373d7e8f2d3b8ee8839ddb470163ad96ac9a41fe2c5e8cdd92445e8d2c2f47043}{EF\+\_\+\+VI\+\_\+\+DISCARD\+\_\+\+RX\+\_\+\+TOBE\+\_\+\+DISC}} = 0x10
+, {\bfseries EF\+\_\+\+VI\+\_\+\+DISCARD\+\_\+\+RX\+\_\+\+INNER\+\_\+\+L4\+\_\+\+CSUM\+\_\+\+ERR} = 0x20
+, {\bfseries EF\+\_\+\+VI\+\_\+\+DISCARD\+\_\+\+RX\+\_\+\+INNER\+\_\+\+L3\+\_\+\+CSUM\+\_\+\+ERR} = 0x40
+ \}
+\begin{DoxyCompactList}\small\item\em Flags that define which errors will cause RX\+\_\+\+DISCARD events. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ef__vi_8h_a0ed3fae25127eb79f580ec2fea89a9a4}\label{ef__vi_8h_a0ed3fae25127eb79f580ec2fea89a9a4}} 
+enum \mbox{\hyperlink{ef__vi_8h_a0ed3fae25127eb79f580ec2fea89a9a4}{ef\+\_\+timestamp\+\_\+format}} \{ {\bfseries TS\+\_\+\+FORMAT\+\_\+\+SECONDS\+\_\+27\+FRACTION} = 0
+, {\bfseries TS\+\_\+\+FORMAT\+\_\+\+SECONDS\+\_\+\+QTR\+\_\+\+NANOSECONDS} = 1
+ \}
+\begin{DoxyCompactList}\small\item\em Timestamp formats supported by various cards. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{ef__vi_8h_add8bf4b8722836b5100a101b4b1c404f}{ef\+\_\+vi\+\_\+arch}} \{ \mbox{\hyperlink{ef__vi_8h_add8bf4b8722836b5100a101b4b1c404fa8162defe54ff79d6b4d1d534254bb7bb}{EF\+\_\+\+VI\+\_\+\+ARCH\+\_\+\+FALCON}}
+, \mbox{\hyperlink{ef__vi_8h_add8bf4b8722836b5100a101b4b1c404fa6e4a035afc5dd76408957ee0fe2e72db}{EF\+\_\+\+VI\+\_\+\+ARCH\+\_\+\+EF10}}
+ \}
+\begin{DoxyCompactList}\small\item\em NIC architectures that are supported. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{ef__vi_8h_a9de8cc5f556c65a62de57a5ea93cbca4}{ef\+\_\+vi\+\_\+layout\+\_\+type}} \{ \mbox{\hyperlink{ef__vi_8h_a9de8cc5f556c65a62de57a5ea93cbca4a55831d9fc6b755df2e52dc2d53a849a1}{EF\+\_\+\+VI\+\_\+\+LAYOUT\+\_\+\+FRAME}}
+, \mbox{\hyperlink{ef__vi_8h_a9de8cc5f556c65a62de57a5ea93cbca4a2196952b719dc57f28e20a6326ba1311}{EF\+\_\+\+VI\+\_\+\+LAYOUT\+\_\+\+MINOR\+\_\+\+TICKS}}
+, \mbox{\hyperlink{ef__vi_8h_a9de8cc5f556c65a62de57a5ea93cbca4a4086c7f67b10d4098a7d40ff7439a414}{EF\+\_\+\+VI\+\_\+\+LAYOUT\+\_\+\+PACKET\+\_\+\+LENGTH}}
+ \}
+\begin{DoxyCompactList}\small\item\em Types of layout that are used for receive buffers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+ef\+\_\+vi\+\_\+inline unsigned \mbox{\hyperlink{ef__vi_8h_a67584be3923c2caff4dfb514e66efc66}{ef\+\_\+vi\+\_\+resource\+\_\+id}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi)
+\begin{DoxyCompactList}\small\item\em Return the resource ID of the virtual interface. \end{DoxyCompactList}\item 
+ef\+\_\+vi\+\_\+inline enum \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772}{ef\+\_\+vi\+\_\+flags}} \mbox{\hyperlink{ef__vi_8h_ae2a3a3a397062f642dbb021db8f4cd72}{ef\+\_\+vi\+\_\+flags}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi)
+\begin{DoxyCompactList}\small\item\em Return the flags of the virtual interface. \end{DoxyCompactList}\item 
+ef\+\_\+vi\+\_\+inline unsigned \mbox{\hyperlink{ef__vi_8h_a6d901b63c46b9a1e6e4f6f53f896022c}{ef\+\_\+vi\+\_\+instance}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi)
+\begin{DoxyCompactList}\small\item\em Return the instance ID of the virtual interface. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{ef__vi_8h_aadb4cde2a10513be23abfb17b414e7ff}{ef\+\_\+vi\+\_\+version\+\_\+str}} (void)
+\begin{DoxyCompactList}\small\item\em Return a string that identifies the version of \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}}. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{ef__vi_8h_a5679d140bd3bb270fa1adc2085ed36a3}{ef\+\_\+vi\+\_\+driver\+\_\+interface\+\_\+str}} (void)
+\begin{DoxyCompactList}\small\item\em Returns a string that identifies the char driver interface required. \end{DoxyCompactList}\item 
+ef\+\_\+vi\+\_\+inline int \mbox{\hyperlink{ef__vi_8h_a7a58c5a2ac989e1b24f33f5d7bb7f348}{ef\+\_\+vi\+\_\+receive\+\_\+prefix\+\_\+len}} (const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi)
+\begin{DoxyCompactList}\small\item\em Returns the length of the prefix at the start of a received packet. \end{DoxyCompactList}\item 
+ef\+\_\+vi\+\_\+inline int \mbox{\hyperlink{ef__vi_8h_a246e386f77279d65149236a1a6265661}{ef\+\_\+vi\+\_\+receive\+\_\+buffer\+\_\+len}} (const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi)
+\begin{DoxyCompactList}\small\item\em Returns the length of a receive buffer. \end{DoxyCompactList}\item 
+ef\+\_\+vi\+\_\+inline void \mbox{\hyperlink{ef__vi_8h_a99a8201d71f23a636ce4737dd73e0c29}{ef\+\_\+vi\+\_\+receive\+\_\+set\+\_\+buffer\+\_\+len}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, unsigned buf\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Sets the length of receive buffers. \end{DoxyCompactList}\item 
+ef\+\_\+vi\+\_\+inline int \mbox{\hyperlink{ef__vi_8h_a4ce37375952e8174b39ec2025955122f}{ef\+\_\+vi\+\_\+receive\+\_\+space}} (const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi)
+\begin{DoxyCompactList}\small\item\em Returns the amount of free space in the RX descriptor ring. \end{DoxyCompactList}\item 
+ef\+\_\+vi\+\_\+inline int \mbox{\hyperlink{ef__vi_8h_ac92576992cc3f58181b15ee6d79a5ac5}{ef\+\_\+vi\+\_\+receive\+\_\+fill\+\_\+level}} (const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi)
+\begin{DoxyCompactList}\small\item\em Returns the fill level of the RX descriptor ring. \end{DoxyCompactList}\item 
+ef\+\_\+vi\+\_\+inline int \mbox{\hyperlink{ef__vi_8h_aa1d1b37d9e0352d4f2eacbbbe535f59e}{ef\+\_\+vi\+\_\+receive\+\_\+capacity}} (const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi)
+\begin{DoxyCompactList}\small\item\em Returns the total capacity of the RX descriptor ring. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ef__vi_8h_aa5ffb14e493b05738eb74fc44ca2be71}{ef\+\_\+vi\+\_\+receive\+\_\+post}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{ef__vi_8h_a45dc6a6b117562bf1fb95bda721aba14}{ef\+\_\+addr}} addr, \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}} dma\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Initialize an RX descriptor on the RX descriptor ring, and submit it to the NIC. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ef__vi_8h_a1cf6f90db5e7cf61139de069dedd9e6b}{ef\+\_\+vi\+\_\+receive\+\_\+get\+\_\+timestamp}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, const void $\ast$pkt, struct timespec $\ast$ts\+\_\+out)
+\begin{DoxyCompactList}\small\item\em {\itshape Deprecated\+:} use \mbox{\hyperlink{ef__vi_8h_aa9652955145145b911fa18f8555db781}{ef\+\_\+vi\+\_\+receive\+\_\+get\+\_\+timestamp\+\_\+with\+\_\+sync\+\_\+flags()}} instead. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ef__vi_8h_aa9652955145145b911fa18f8555db781}{ef\+\_\+vi\+\_\+receive\+\_\+get\+\_\+timestamp\+\_\+with\+\_\+sync\+\_\+flags}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, const void $\ast$pkt, struct timespec $\ast$ts\+\_\+out, unsigned $\ast$flags\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Retrieve the UTC timestamp associated with a received packet, and the clock sync status flags. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ef__vi_8h_a7acdfde8e503ed210170ba45874068f3}{ef\+\_\+vi\+\_\+receive\+\_\+get\+\_\+bytes}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, const void $\ast$pkt, uint16\+\_\+t $\ast$bytes\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Retrieve the number of bytes in a received packet in RX event merge mode. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ef__vi_8h_a7da657579f196e3a895e4527eb958d65}{ef\+\_\+vi\+\_\+receive\+\_\+unbundle}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$ep, const \mbox{\hyperlink{unionef__event}{ef\+\_\+event}} $\ast$event, \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}} $\ast$ids)
+\begin{DoxyCompactList}\small\item\em Unbundle an event of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+MULTI or EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+DISCARD. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ef__vi_8h_aaa0e94f11a40b4f6c5ad88d58eab133f}{ef\+\_\+vi\+\_\+receive\+\_\+set\+\_\+discards}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, unsigned discard\+\_\+err\+\_\+flags)
+\begin{DoxyCompactList}\small\item\em Set which errors cause an EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+DISCARD event. \end{DoxyCompactList}\item 
+ef\+\_\+vi\+\_\+inline int \mbox{\hyperlink{ef__vi_8h_af8272788917c19c6ef8698925066a210}{ef\+\_\+vi\+\_\+transmit\+\_\+space}} (const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi)
+\begin{DoxyCompactList}\small\item\em Returns the amount of free space in the TX descriptor ring. \end{DoxyCompactList}\item 
+ef\+\_\+vi\+\_\+inline int \mbox{\hyperlink{ef__vi_8h_a278e2c789b116a65d2815c527911124a}{ef\+\_\+vi\+\_\+transmit\+\_\+fill\+\_\+level}} (const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi)
+\begin{DoxyCompactList}\small\item\em Returns the fill level of the TX descriptor ring. \end{DoxyCompactList}\item 
+ef\+\_\+vi\+\_\+inline int \mbox{\hyperlink{ef__vi_8h_a1cfb792dab2cfb9d4b48c5d9aa567072}{ef\+\_\+vi\+\_\+transmit\+\_\+capacity}} (const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi)
+\begin{DoxyCompactList}\small\item\em Returns the total capacity of the TX descriptor ring. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ef__vi_8h_a17215be65f036a99857092496676de26}{ef\+\_\+vi\+\_\+transmit\+\_\+init}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{ef__vi_8h_a45dc6a6b117562bf1fb95bda721aba14}{ef\+\_\+addr}} addr, int bytes, \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}} dma\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Initialize a TX descriptor on the TX descriptor ring, for a single packet buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ef__vi_8h_a55e631a7759c64686546491faca4ba06}{ef\+\_\+vi\+\_\+transmit\+\_\+init\+\_\+undo}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi)
+\begin{DoxyCompactList}\small\item\em Remove all TX descriptors from the TX descriptor ring that have been initialized since last transmit. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ef__vi_8h_a03c43da4cdac5419b1d859b20854ec37}{ef\+\_\+vi\+\_\+transmit\+\_\+unbundle}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$ep, const \mbox{\hyperlink{unionef__event}{ef\+\_\+event}} $\ast$event, \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}} $\ast$ids)
+\begin{DoxyCompactList}\small\item\em Unbundle an event of type of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX or EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+ERROR. \end{DoxyCompactList}\item 
+unsigned \mbox{\hyperlink{ef__vi_8h_a068a248d1af10a594c10878fe029ff53}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+num\+\_\+ids}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi)
+\begin{DoxyCompactList}\small\item\em Return the number of TX alternatives allocated for a virtual interface. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ef__vi_8h_a89b67172b16e9baa8ea4a638c17329a9}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+query\+\_\+overhead}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, struct \mbox{\hyperlink{structef__vi__transmit__alt__overhead}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+overhead}} $\ast$params)
+\begin{DoxyCompactList}\small\item\em Query per-\/packet overhead parameters. \end{DoxyCompactList}\item 
+ef\+\_\+vi\+\_\+inline ef\+\_\+vi\+\_\+pure uint32\+\_\+t \mbox{\hyperlink{ef__vi_8h_a18add9a422a88041e5349700a54d457e}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+usage}} (const struct \mbox{\hyperlink{structef__vi__transmit__alt__overhead}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+overhead}} $\ast$params, uint32\+\_\+t pkt\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Calculate a packet\textquotesingle{}s buffer usage. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ef__vi_8h_ad49d074c8ca82d77408de9549109f3bd}{ef\+\_\+vi\+\_\+set\+\_\+tx\+\_\+push\+\_\+threshold}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, unsigned threshold)
+\begin{DoxyCompactList}\small\item\em Set the threshold at which to switch from using TX descriptor push to using a doorbell. \end{DoxyCompactList}\item 
+ef\+\_\+vi\+\_\+inline void \mbox{\hyperlink{ef__vi_8h_af1510ffff8d06a509fb23d9f0bb8f35f}{ef\+\_\+vi\+\_\+transmit\+\_\+ctpio}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, const void $\ast$frame\+\_\+buf, size\+\_\+t frame\+\_\+len, unsigned ct\+\_\+threshold)
+\begin{DoxyCompactList}\small\item\em Transmit a packet using CTPIO. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ef__vi_8h_ab822e083cda691e17b6677629cddaf19}{ef\+\_\+vi\+\_\+transmit\+\_\+ctpio\+\_\+fallback}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, \mbox{\hyperlink{ef__vi_8h_a45dc6a6b117562bf1fb95bda721aba14}{ef\+\_\+addr}} dma\+\_\+addr, size\+\_\+t len, \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}} dma\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Post fallback frame for a CTPIO transmit. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ef__vi_8h_a77c3b1b7a28206c81ae6f67cee7662f9}{ef\+\_\+vi\+\_\+transmitv\+\_\+ctpio\+\_\+fallback}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, const \mbox{\hyperlink{structef__iovec}{ef\+\_\+iovec}} $\ast$dma\+\_\+iov, int dma\+\_\+iov\+\_\+len, \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}} dma\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Post fallback frame for a CTPIO transmit. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ef__vi_8h_a77b5165a8afcdfc8770c46558d9ebd44}{ef\+\_\+eventq\+\_\+has\+\_\+event}} (const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi)
+\begin{DoxyCompactList}\small\item\em Returns true if \mbox{\hyperlink{ef__vi_8h_ab340116b526f45dd378fe279f0c05a48}{ef\+\_\+eventq\+\_\+poll()}} will return event(s) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ef__vi_8h_aa46e63c0fa2249628768c20a92d9bd65}{ef\+\_\+eventq\+\_\+has\+\_\+many\+\_\+events}} (const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$evq, int n\+\_\+events)
+\begin{DoxyCompactList}\small\item\em Returns true if there are a given number of events in the event queue. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ef__vi_8h_afdc0a66b75882ef56a9fad7fe5124f13}{ef\+\_\+eventq\+\_\+capacity}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi)
+\begin{DoxyCompactList}\small\item\em Returns the capacity of an event queue. \end{DoxyCompactList}\item 
+ef\+\_\+vi\+\_\+inline unsigned \mbox{\hyperlink{ef__vi_8h_a4729338fad56b630f44ae1b2515dfd69}{ef\+\_\+eventq\+\_\+current}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$evq)
+\begin{DoxyCompactList}\small\item\em Get the current offset into the event queue. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ef__vi_8h_a3c1a5ccee11cafca42a09646581b8fcb}{ef\+\_\+vi\+\_\+receive\+\_\+query\+\_\+layout}} (\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$vi, const \mbox{\hyperlink{structef__vi__layout__entry}{ef\+\_\+vi\+\_\+layout\+\_\+entry}} $\ast$$\ast$const layout\+\_\+out, int $\ast$layout\+\_\+len\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Gets the layout of the data that the adapter delivers into receive buffers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Virtual Interface definitions for Ether\+Fabric Virtual Interface HAL. 
+
+\begin{DoxyAuthor}{Author}
+Solarflare Communications, Inc. 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2018/11/06 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright \copyright{} 2018 Solarflare Communications, Inc. All rights reserved. Solarflare, Open\+Onload and Enterprise\+Onload are trademarks of Solarflare Communications, Inc. 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{ef__vi_8h_a461965a585c61f86acfc0fe72eab3c29}\label{ef__vi_8h_a461965a585c61f86acfc0fe72eab3c29}} 
+\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_RX\_MULTI\_CONT@{EF\_EVENT\_RX\_MULTI\_CONT}}
+\index{EF\_EVENT\_RX\_MULTI\_CONT@{EF\_EVENT\_RX\_MULTI\_CONT}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{EF\_EVENT\_RX\_MULTI\_CONT}{EF\_EVENT\_RX\_MULTI\_CONT}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+CONT(\begin{DoxyParamCaption}\item[{}]{e }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{                                               ((e).rx\_multi.flags \& \(\backslash\)}
+\DoxyCodeLine{                                               \mbox{\hyperlink{ef__vi_8h_ab196c8b1dda29433e6b3d03fc32a9017}{EF\_EVENT\_FLAG\_CONT}})}
+
+\end{DoxyCode}
+
+
+True if the CONTinuation Of Packet flag is set for an RX HT event. 
+
+
+
+Definition at line 325 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a6c32676903ff4a7201f9c3e68c9d3373}\label{ef__vi_8h_a6c32676903ff4a7201f9c3e68c9d3373}} 
+\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_RX\_MULTI\_SOP@{EF\_EVENT\_RX\_MULTI\_SOP}}
+\index{EF\_EVENT\_RX\_MULTI\_SOP@{EF\_EVENT\_RX\_MULTI\_SOP}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{EF\_EVENT\_RX\_MULTI\_SOP}{EF\_EVENT\_RX\_MULTI\_SOP}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+SOP(\begin{DoxyParamCaption}\item[{}]{e }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{                                               ((e).rx\_multi.flags \& \(\backslash\)}
+\DoxyCodeLine{                                               \mbox{\hyperlink{ef__vi_8h_a3c00b0c97c2fa2d0162dae35f48d4740}{EF\_EVENT\_FLAG\_SOP}})}
+
+\end{DoxyCode}
+
+
+True if the Start Of Packet flag is set for an RX HT event. 
+
+
+
+Definition at line 328 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_ae76be60f4986e05ebbadb4fa6ebd74aa}\label{ef__vi_8h_ae76be60f4986e05ebbadb4fa6ebd74aa}} 
+\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_RX\_PS\_NEXT\_BUFFER@{EF\_EVENT\_RX\_PS\_NEXT\_BUFFER}}
+\index{EF\_EVENT\_RX\_PS\_NEXT\_BUFFER@{EF\_EVENT\_RX\_PS\_NEXT\_BUFFER}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{EF\_EVENT\_RX\_PS\_NEXT\_BUFFER}{EF\_EVENT\_RX\_PS\_NEXT\_BUFFER}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+PS\+\_\+\+NEXT\+\_\+\+BUFFER(\begin{DoxyParamCaption}\item[{}]{e }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{                                         ((e).rx\_packed\_stream.flags \&  \(\backslash\)}
+\DoxyCodeLine{                                         \mbox{\hyperlink{ef__vi_8h_a11585192e94cfb240586406481cf0a7e}{EF\_EVENT\_FLAG\_PS\_NEXT\_BUFFER}})}
+
+\end{DoxyCode}
+
+
+True if the next buffer flag is set for a packed stream event. 
+
+
+
+Definition at line 279 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_ab340116b526f45dd378fe279f0c05a48}\label{ef__vi_8h_ab340116b526f45dd378fe279f0c05a48}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_eventq\_poll@{ef\_eventq\_poll}}
+\index{ef\_eventq\_poll@{ef\_eventq\_poll}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_eventq\_poll}{ef\_eventq\_poll}}
+{\footnotesize\ttfamily \#define ef\+\_\+eventq\+\_\+poll(\begin{DoxyParamCaption}\item[{}]{evq,  }\item[{}]{evs,  }\item[{}]{evs\+\_\+len }\end{DoxyParamCaption})~  (evq)-\/$>$ops.\+eventq\+\_\+poll((evq), (evs), (evs\+\_\+len))}
+
+
+
+Poll an event queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em evq} & The event queue to poll. \\
+\hline
+{\em evs} & Array in which to return polled events. \\
+\hline
+{\em evs\+\_\+len} & Length of the evs array, must be $>$= EF\+\_\+\+VI\+\_\+\+EVENT\+\_\+\+POLL\+\_\+\+MIN\+\_\+\+EVS.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of events retrieved.
+\end{DoxyReturn}
+Poll an event queue. Any events that have been raised are added to the given array. Most events correspond to packets arriving, or packet transmission completing. This function is critical to latency, and must be called as often as possible.
+
+This function returns immediately, even if there are no outstanding events. The array might not be full on return. 
+
+Definition at line 2066 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_aa5e1876ed7bcf6522f4f1262b58d6c7a}\label{ef__vi_8h_aa5e1876ed7bcf6522f4f1262b58d6c7a}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_eventq\_prime@{ef\_eventq\_prime}}
+\index{ef\_eventq\_prime@{ef\_eventq\_prime}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_eventq\_prime}{ef\_eventq\_prime}}
+{\footnotesize\ttfamily \#define ef\+\_\+eventq\+\_\+prime(\begin{DoxyParamCaption}\item[{}]{vi }\end{DoxyParamCaption})~(vi)-\/$>$ops.\+eventq\+\_\+prime((vi))}
+
+
+
+Prime a virtual interface allowing you to go to sleep blocking on it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to prime.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None.
+\end{DoxyReturn}
+Prime a virtual interface allowing you to go to sleep blocking on it. 
+
+Definition at line 2046 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a30ec559eea798f581ca853a0966983c5}\label{ef__vi_8h_a30ec559eea798f581ca853a0966983c5}} 
+\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_CTPIO\_CT\_THRESHOLD\_SNF@{EF\_VI\_CTPIO\_CT\_THRESHOLD\_SNF}}
+\index{EF\_VI\_CTPIO\_CT\_THRESHOLD\_SNF@{EF\_VI\_CTPIO\_CT\_THRESHOLD\_SNF}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{EF\_VI\_CTPIO\_CT\_THRESHOLD\_SNF}{EF\_VI\_CTPIO\_CT\_THRESHOLD\_SNF}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+VI\+\_\+\+CTPIO\+\_\+\+CT\+\_\+\+THRESHOLD\+\_\+\+SNF~0xffff}
+
+Cut-\/through threshold to use if store-\/and-\/forward behavior is wanted for all packet sizes. For use with \mbox{\hyperlink{ef__vi_8h_af1510ffff8d06a509fb23d9f0bb8f35f}{ef\+\_\+vi\+\_\+transmit\+\_\+ctpio()}} and \mbox{\hyperlink{ef__vi_8h_aca0074ba563465d5effcfc6d54b1bba2}{ef\+\_\+vi\+\_\+transmitv\+\_\+ctpio()}}. 
+
+Definition at line 1999 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a9e1fbd2c66475fde3aa1b7df19841ef9}\label{ef__vi_8h_a9e1fbd2c66475fde3aa1b7df19841ef9}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_receive\_init@{ef\_vi\_receive\_init}}
+\index{ef\_vi\_receive\_init@{ef\_vi\_receive\_init}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_receive\_init}{ef\_vi\_receive\_init}}
+{\footnotesize\ttfamily \#define ef\+\_\+vi\+\_\+receive\+\_\+init(\begin{DoxyParamCaption}\item[{}]{vi,  }\item[{}]{addr,  }\item[{}]{dma\+\_\+id }\end{DoxyParamCaption})~  (vi)-\/$>$ops.\+receive\+\_\+init((vi), (addr), (dma\+\_\+id))}
+
+
+
+Initialize an RX descriptor on the RX descriptor ring. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface for which to initialize an RX descriptor. \\
+\hline
+{\em addr} & DMA address of the packet buffer to associate with the descriptor, as obtained from \mbox{\hyperlink{memreg_8h_aa2bb8edc3f2cd0ac924404f25474ac21}{ef\+\_\+memreg\+\_\+dma\+\_\+addr()}}. \\
+\hline
+{\em dma\+\_\+id} & DMA id to associate with the descriptor. This is completely arbitrary, and can be used for subsequent tracking of buffers.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Initialize an RX descriptor on the RX descriptor ring, and prepare the associated packet buffer (identified by its DMA address) to receive packets. This function only writes a few bytes into host memory, and is very fast. 
+
+Definition at line 1077 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_abcd5dc1be7ff1e9f9a4a84df86305099}\label{ef__vi_8h_abcd5dc1be7ff1e9f9a4a84df86305099}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_receive\_push@{ef\_vi\_receive\_push}}
+\index{ef\_vi\_receive\_push@{ef\_vi\_receive\_push}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_receive\_push}{ef\_vi\_receive\_push}}
+{\footnotesize\ttfamily \#define ef\+\_\+vi\+\_\+receive\+\_\+push(\begin{DoxyParamCaption}\item[{}]{vi }\end{DoxyParamCaption})~(vi)-\/$>$ops.\+receive\+\_\+push((vi))}
+
+
+
+Submit newly initialized RX descriptors to the NIC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface for which to push descriptors.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None.
+\end{DoxyReturn}
+Submit newly initialized RX descriptors to the NIC. The NIC can then receive packets into the associated packet buffers.
+
+For Solarflare 7000-\/series NICs, this function submits RX descriptors only in multiples of 8. This is to conform with hardware requirements. If the number of newly initialized RX descriptors is not exactly divisible by 8, this function does not submit any remaining descriptors (up to 7 of them). 
+
+Definition at line 1096 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a62408f50ae79efed0239d0b8bde3a9d8}\label{ef__vi_8h_a62408f50ae79efed0239d0b8bde3a9d8}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit@{ef\_vi\_transmit}}
+\index{ef\_vi\_transmit@{ef\_vi\_transmit}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit}{ef\_vi\_transmit}}
+{\footnotesize\ttfamily \#define ef\+\_\+vi\+\_\+transmit(\begin{DoxyParamCaption}\item[{}]{vi,  }\item[{}]{base,  }\item[{}]{len,  }\item[{}]{dma\+\_\+id }\end{DoxyParamCaption})~  (vi)-\/$>$ops.\+transmit((vi), (base), (len), (dma\+\_\+id))}
+
+
+
+Transmit a packet from a single packet buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface for which to initialize and push a TX descriptor. \\
+\hline
+{\em base} & DMA address of the packet buffer to associate with the descriptor, as obtained from \mbox{\hyperlink{memreg_8h_aa2bb8edc3f2cd0ac924404f25474ac21}{ef\+\_\+memreg\+\_\+dma\+\_\+addr()}}. \\
+\hline
+{\em len} & The size of the packet to transmit. \\
+\hline
+{\em dma\+\_\+id} & DMA id to associate with the descriptor. This is completely arbitrary, and can be used for subsequent tracking of buffers.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EAGAIN if the descriptor ring is full.
+\end{DoxyReturn}
+Transmit a packet from a single packet buffer. This Initializes a TX descriptor on the TX descriptor ring, and submits it to the NIC. The NIC can then transmit a packet from the associated packet buffer.
+
+This function simply wraps \mbox{\hyperlink{ef__vi_8h_a17215be65f036a99857092496676de26}{ef\+\_\+vi\+\_\+transmit\+\_\+init()}} and \mbox{\hyperlink{ef__vi_8h_a7bb4aa398d5a5735491e3685d6e05912}{ef\+\_\+vi\+\_\+transmit\+\_\+push()}}. It is provided as a convenience. It is less efficient than submitting the descriptors in batches by calling the functions separately, but unless there is a batch of packets to transmit, calling this function is often the right thing to do. 
+
+Definition at line 1438 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_ac273e4b11c2b98664cf7363574eb5f70}\label{ef__vi_8h_ac273e4b11c2b98664cf7363574eb5f70}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_alt\_discard@{ef\_vi\_transmit\_alt\_discard}}
+\index{ef\_vi\_transmit\_alt\_discard@{ef\_vi\_transmit\_alt\_discard}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_alt\_discard}{ef\_vi\_transmit\_alt\_discard}}
+{\footnotesize\ttfamily \#define ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+discard(\begin{DoxyParamCaption}\item[{}]{vi,  }\item[{}]{alt\+\_\+id }\end{DoxyParamCaption})~  (vi)-\/$>$ops.\+transmit\+\_\+alt\+\_\+discard((vi), (alt\+\_\+id))}
+
+
+
+Transition a TX alternative to the DISCARD state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface associated with the TX alternative. \\
+\hline
+{\em alt\+\_\+id} & The TX alternative to transition to the DISCARD state.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Transitions a TX alternative to the DISCARD state. Packets buffered in the alternative are discarded.
+
+As packets are discarded, events of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+ALT are returned to the application. The application should normally wait until all packets have been discarded before transitioning to a different state.
+
+Memory for the TX alternative remains allocated, and is not freed until the virtual interface is freed. 
+
+Definition at line 1762 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a70e8d8c2fa4927392174223bcdd2cc31}\label{ef__vi_8h_a70e8d8c2fa4927392174223bcdd2cc31}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_alt\_go@{ef\_vi\_transmit\_alt\_go}}
+\index{ef\_vi\_transmit\_alt\_go@{ef\_vi\_transmit\_alt\_go}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_alt\_go}{ef\_vi\_transmit\_alt\_go}}
+{\footnotesize\ttfamily \#define ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+go(\begin{DoxyParamCaption}\item[{}]{vi,  }\item[{}]{alt\+\_\+id }\end{DoxyParamCaption})~  (vi)-\/$>$ops.\+transmit\+\_\+alt\+\_\+go((vi), (alt\+\_\+id))}
+
+
+
+Transition a TX alternative to the GO state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface associated with the TX alternative. \\
+\hline
+{\em alt\+\_\+id} & The TX alternative to transition to the GO state.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Transitions a TX alternative to the GO state. Packets buffered in the alternative are transmitted to the network.
+
+As packets are transmitted events of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+ALT are returned to the application. The application should normally wait until all packets have been sent before transitioning to a different state. 
+
+Definition at line 1741 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_add2a128213fafba3ebb74d137ab36178}\label{ef__vi_8h_add2a128213fafba3ebb74d137ab36178}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_alt\_select@{ef\_vi\_transmit\_alt\_select}}
+\index{ef\_vi\_transmit\_alt\_select@{ef\_vi\_transmit\_alt\_select}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_alt\_select}{ef\_vi\_transmit\_alt\_select}}
+{\footnotesize\ttfamily \#define ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+select(\begin{DoxyParamCaption}\item[{}]{vi,  }\item[{}]{alt\+\_\+id }\end{DoxyParamCaption})~  (vi)-\/$>$ops.\+transmit\+\_\+alt\+\_\+select((vi), (alt\+\_\+id))}
+
+
+
+Select a TX alternative as the destination for future sends. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface associated with the TX alternative. \\
+\hline
+{\em alt\+\_\+id} & The TX alternative to select.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Selects a TX alternative as the destination for future sends. Packets can be sent to it using normal send calls such as \mbox{\hyperlink{ef__vi_8h_a62408f50ae79efed0239d0b8bde3a9d8}{ef\+\_\+vi\+\_\+transmit()}}. The action then taken depends on the state of the TX alternative\+:
+\begin{DoxyItemize}
+\item if the TX alternative is in the STOP state, the packet is buffered for possible future transmission
+\item if the TX alternative is in the GO state, the packet is immediately transmitted. 
+\end{DoxyItemize}
+
+Definition at line 1697 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_ab412b762c66f1c89649504a0058cc16e}\label{ef__vi_8h_ab412b762c66f1c89649504a0058cc16e}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_alt\_select\_normal@{ef\_vi\_transmit\_alt\_select\_normal}}
+\index{ef\_vi\_transmit\_alt\_select\_normal@{ef\_vi\_transmit\_alt\_select\_normal}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_alt\_select\_normal}{ef\_vi\_transmit\_alt\_select\_normal}}
+{\footnotesize\ttfamily \#define ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+select\+\_\+normal(\begin{DoxyParamCaption}\item[{}]{vi }\end{DoxyParamCaption})~  (vi)-\/$>$ops.\+transmit\+\_\+alt\+\_\+select\+\_\+default((vi))}
+
+
+
+Select the \char`\"{}normal\char`\"{} data path as the destination for future sends. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & A virtual interface associated with a TX alternative.\\
+\hline
+\end{DoxyParams}
+Selects the \char`\"{}normal\char`\"{} data path as the destination for future sends. The virtual interface then transmits packets to the network immediately, in the normal way. This call undoes the effect of \mbox{\hyperlink{ef__vi_8h_add2a128213fafba3ebb74d137ab36178}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+select()}}. 
+
+Definition at line 1711 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a51050ee6dc126b1326c6d5775808e639}\label{ef__vi_8h_a51050ee6dc126b1326c6d5775808e639}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_alt\_stop@{ef\_vi\_transmit\_alt\_stop}}
+\index{ef\_vi\_transmit\_alt\_stop@{ef\_vi\_transmit\_alt\_stop}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_alt\_stop}{ef\_vi\_transmit\_alt\_stop}}
+{\footnotesize\ttfamily \#define ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+stop(\begin{DoxyParamCaption}\item[{}]{vi,  }\item[{}]{alt\+\_\+id }\end{DoxyParamCaption})~  (vi)-\/$>$ops.\+transmit\+\_\+alt\+\_\+stop((vi), (alt\+\_\+id))}
+
+
+
+Transition a TX alternative to the STOP state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface associated with the TX alternative. \\
+\hline
+{\em alt\+\_\+id} & The TX alternative to transition to the STOP state.\\
+\hline
+\end{DoxyParams}
+Transitions a TX alternative to the STOP state. Packets that are sent to a TX alternative in the STOP state are buffered on the adapter. 
+
+Definition at line 1723 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a7fd42b3874604101680daca3ceec07a3}\label{ef__vi_8h_a7fd42b3874604101680daca3ceec07a3}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_copy\_pio@{ef\_vi\_transmit\_copy\_pio}}
+\index{ef\_vi\_transmit\_copy\_pio@{ef\_vi\_transmit\_copy\_pio}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_copy\_pio}{ef\_vi\_transmit\_copy\_pio}}
+{\footnotesize\ttfamily \#define ef\+\_\+vi\+\_\+transmit\+\_\+copy\+\_\+pio(\begin{DoxyParamCaption}\item[{}]{vi,  }\item[{}]{pio\+\_\+offset,  }\item[{}]{src\+\_\+buf,  }\item[{}]{len,  }\item[{}]{dma\+\_\+id }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  (vi)-\/>ops.transmit\_copy\_pio((vi), (pio\_offset), (src\_buf),            \(\backslash\)}
+\DoxyCodeLine{                              (len), (dma\_id))}
+
+\end{DoxyCode}
+
+
+Transmit a packet by copying it into the Programmed I/O region. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface from which to transmit. \\
+\hline
+{\em pio\+\_\+offset} & The offset within its Programmed I/O region to the start of the packet. This must be aligned to at least a 64-\/byte boundary. \\
+\hline
+{\em src\+\_\+buf} & The source buffer from which to read the packet. \\
+\hline
+{\em len} & Length of the packet to transmit. This must be at least 16 bytes. \\
+\hline
+{\em dma\+\_\+id} & DMA id to associate with the descriptor. This is completely arbitrary, and can be used for subsequent tracking of buffers.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EAGAIN if the descriptor ring is full.
+\end{DoxyReturn}
+Transmit a packet by copying it into the Programmed I/O region.
+
+The src\+\_\+buf parameter must point at a complete packet that is copied to the adapter and transmitted. The source buffer need not be registered, and is available for re-\/use immediately after this call returns.
+
+This call does not copy the packet data into the local copy of the adapter\textquotesingle{}s Programmed I/O buffer. As a result it is slightly faster than calling \mbox{\hyperlink{pio_8h_a1966f51d747aea4416d1a20890bb9fb4}{ef\+\_\+pio\+\_\+memcpy()}} followed by \mbox{\hyperlink{ef__vi_8h_a1c5757be9dbfe3271bb2875f89e838b6}{ef\+\_\+vi\+\_\+transmit\+\_\+pio()}}.
+
+The Programmed I/O region used by this call must not be reused until an event indicating TX completion is handled (see \mbox{\hyperlink{using_using_transmit}{Transmitting Packets}}), thus completing the transmit operation for the packet. Failure to do so might corrupt an ongoing transmit.
+
+The Programmed I/O region can hold multiple smaller packets, referenced by different offset parameters. All other constraints must still be observed, including\+:
+\begin{DoxyItemize}
+\item alignment
+\item minimum size
+\item maximum size
+\item avoiding reuse until transmission is complete. 
+\end{DoxyItemize}
+
+Definition at line 1553 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a78bcb4d42ff752cc3f911769d234960f}\label{ef__vi_8h_a78bcb4d42ff752cc3f911769d234960f}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_copy\_pio\_warm@{ef\_vi\_transmit\_copy\_pio\_warm}}
+\index{ef\_vi\_transmit\_copy\_pio\_warm@{ef\_vi\_transmit\_copy\_pio\_warm}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_copy\_pio\_warm}{ef\_vi\_transmit\_copy\_pio\_warm}}
+{\footnotesize\ttfamily \#define ef\+\_\+vi\+\_\+transmit\+\_\+copy\+\_\+pio\+\_\+warm(\begin{DoxyParamCaption}\item[{}]{vi,  }\item[{}]{pio\+\_\+offset,  }\item[{}]{src\+\_\+buf,  }\item[{}]{len }\end{DoxyParamCaption})~  (vi)-\/$>$ops.\+transmit\+\_\+copy\+\_\+pio\+\_\+warm((vi), (pio\+\_\+offset), (src\+\_\+buf), (len))}
+
+
+
+Copy a packet to Programmed I/O region and warm transmit path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface from which transmit is planned. \\
+\hline
+{\em pio\+\_\+offset} & The offset within its Programmed I/O region to the start of the packet. This must be aligned to at least a 64-\/byte boundary. \\
+\hline
+{\em src\+\_\+buf} & The source buffer from which to read the packet. \\
+\hline
+{\em len} & Length of the packet to transmit. This must be at least 16 bytes.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+Copy a packet to Programmed I/O region and warm transmit path
+
+The application can call this function in advance of calls to \mbox{\hyperlink{ef__vi_8h_a7fd42b3874604101680daca3ceec07a3}{ef\+\_\+vi\+\_\+transmit\+\_\+copy\+\_\+pio()}} to reduce latency jitter caused by code and state being evicted from cache during delays between transmits. This is also effective before the first transmit using Programmed I/O.
+
+No data is sent but this function will copy data to the Programmed I/O region. Therefore all constraints regarding copying to the Programmed I/O region must be met. This includes not reusing a region previously transmitted from until the corresponding TX completion has been handled. See \mbox{\hyperlink{ef__vi_8h_a7fd42b3874604101680daca3ceec07a3}{ef\+\_\+vi\+\_\+transmit\+\_\+copy\+\_\+pio()}} for full details of the constraints.
+
+While this may also benefit a subsequent call to \mbox{\hyperlink{ef__vi_8h_a1c5757be9dbfe3271bb2875f89e838b6}{ef\+\_\+vi\+\_\+transmit\+\_\+pio()}}, it follows a different code path. See \mbox{\hyperlink{ef__vi_8h_a4d368a21bb9cbd84e86ef453c2e75fc3}{ef\+\_\+vi\+\_\+transmit\+\_\+pio\+\_\+warm()}} for a warming function designed to warm for \mbox{\hyperlink{ef__vi_8h_a1c5757be9dbfe3271bb2875f89e838b6}{ef\+\_\+vi\+\_\+transmit\+\_\+pio()}}. 
+
+Definition at line 1609 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a1c5757be9dbfe3271bb2875f89e838b6}\label{ef__vi_8h_a1c5757be9dbfe3271bb2875f89e838b6}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_pio@{ef\_vi\_transmit\_pio}}
+\index{ef\_vi\_transmit\_pio@{ef\_vi\_transmit\_pio}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_pio}{ef\_vi\_transmit\_pio}}
+{\footnotesize\ttfamily \#define ef\+\_\+vi\+\_\+transmit\+\_\+pio(\begin{DoxyParamCaption}\item[{}]{vi,  }\item[{}]{offset,  }\item[{}]{len,  }\item[{}]{dma\+\_\+id }\end{DoxyParamCaption})~  (vi)-\/$>$ops.\+transmit\+\_\+pio((vi), (offset), (len), (dma\+\_\+id))}
+
+
+
+Transmit a packet already resident in Programmed I/O. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface from which to transmit. \\
+\hline
+{\em offset} & The offset within its Programmed I/O region to the start of the packet. This must be aligned to at least a 64-\/byte boundary. \\
+\hline
+{\em len} & Length of the packet to transmit. This must be at least 16 bytes. \\
+\hline
+{\em dma\+\_\+id} & DMA id to associate with the descriptor. This is completely arbitrary, and can be used for subsequent tracking of buffers.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EAGAIN if the descriptor ring is full.
+\end{DoxyReturn}
+Transmit a packet already resident in Programmed I/O.
+
+The Programmed I/O region used by this call must not be reused until an event indicating TX completion is handled (see \mbox{\hyperlink{using_using_transmit}{Transmitting Packets}}), thus completing the transmit operation for the packet. Failure to do so might corrupt an ongoing transmit.
+
+The Programmed I/O region can hold multiple packets, referenced by different offset parameters. All other constraints must still be observed, including\+:
+\begin{DoxyItemize}
+\item alignment
+\item minimum size
+\item maximum size
+\item avoiding reuse until transmission is complete. 
+\end{DoxyItemize}
+
+Definition at line 1510 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a4d368a21bb9cbd84e86ef453c2e75fc3}\label{ef__vi_8h_a4d368a21bb9cbd84e86ef453c2e75fc3}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_pio\_warm@{ef\_vi\_transmit\_pio\_warm}}
+\index{ef\_vi\_transmit\_pio\_warm@{ef\_vi\_transmit\_pio\_warm}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_pio\_warm}{ef\_vi\_transmit\_pio\_warm}}
+{\footnotesize\ttfamily \#define ef\+\_\+vi\+\_\+transmit\+\_\+pio\+\_\+warm(\begin{DoxyParamCaption}\item[{}]{vi }\end{DoxyParamCaption})~  (vi)-\/$>$ops.\+transmit\+\_\+pio\+\_\+warm((vi))}
+
+
+
+Warm Programmed I/O transmit path for subsequent transmit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface from which transmit is planned.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+Warm Programmed I/O transmit path for a subsequent transmit.
+
+The application can call this function in advance of calls to \mbox{\hyperlink{ef__vi_8h_a1c5757be9dbfe3271bb2875f89e838b6}{ef\+\_\+vi\+\_\+transmit\+\_\+pio()}} to reduce latency jitter caused by code and state being evicted from cache during delays between transmits. This is also effective before the first transmit using Programmed I/O.
+
+While this may also benefit a subsequent call to \mbox{\hyperlink{ef__vi_8h_a7fd42b3874604101680daca3ceec07a3}{ef\+\_\+vi\+\_\+transmit\+\_\+copy\+\_\+pio()}}, it follows a different code path. See \mbox{\hyperlink{ef__vi_8h_a78bcb4d42ff752cc3f911769d234960f}{ef\+\_\+vi\+\_\+transmit\+\_\+copy\+\_\+pio\+\_\+warm()}} for a warming function designed to warm for \mbox{\hyperlink{ef__vi_8h_a7fd42b3874604101680daca3ceec07a3}{ef\+\_\+vi\+\_\+transmit\+\_\+copy\+\_\+pio()}}. 
+
+Definition at line 1575 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a7bb4aa398d5a5735491e3685d6e05912}\label{ef__vi_8h_a7bb4aa398d5a5735491e3685d6e05912}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_push@{ef\_vi\_transmit\_push}}
+\index{ef\_vi\_transmit\_push@{ef\_vi\_transmit\_push}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_push}{ef\_vi\_transmit\_push}}
+{\footnotesize\ttfamily \#define ef\+\_\+vi\+\_\+transmit\+\_\+push(\begin{DoxyParamCaption}\item[{}]{vi }\end{DoxyParamCaption})~(vi)-\/$>$ops.\+transmit\+\_\+push((vi))}
+
+
+
+Submit newly initialized TX descriptors to the NIC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface for which to push descriptors.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None.
+\end{DoxyReturn}
+Submit newly initialized TX descriptors to the NIC. The NIC can then transmit packets from the associated packet buffers.
+
+New TX descriptors must have been initialized using \mbox{\hyperlink{ef__vi_8h_a17215be65f036a99857092496676de26}{ef\+\_\+vi\+\_\+transmit\+\_\+init()}} or \mbox{\hyperlink{ef__vi_8h_afe4811464ade4f542564d3c789e1e929}{ef\+\_\+vi\+\_\+transmitv\+\_\+init()}} before calling this function, and so in particular it is not legal to call this function more than once without initializing new descriptors in between those calls. 
+
+Definition at line 1411 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a10b8bcbc62dab623cd94db5aaf6ddbf0}\label{ef__vi_8h_a10b8bcbc62dab623cd94db5aaf6ddbf0}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmitv@{ef\_vi\_transmitv}}
+\index{ef\_vi\_transmitv@{ef\_vi\_transmitv}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmitv}{ef\_vi\_transmitv}}
+{\footnotesize\ttfamily \#define ef\+\_\+vi\+\_\+transmitv(\begin{DoxyParamCaption}\item[{}]{vi,  }\item[{}]{iov,  }\item[{}]{iov\+\_\+len,  }\item[{}]{dma\+\_\+id }\end{DoxyParamCaption})~  (vi)-\/$>$ops.\+transmitv((vi), (iov), (iov\+\_\+len), (dma\+\_\+id))}
+
+
+
+Transmit a packet from a vector of packet buffers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface for which to initialize a TX descriptor. \\
+\hline
+{\em iov} & Start of the iovec array describing the packet buffers. \\
+\hline
+{\em iov\+\_\+len} & Length of the iovec array. \\
+\hline
+{\em dma\+\_\+id} & DMA id to associate with the descriptor. This is completely arbitrary, and can be used for subsequent tracking of buffers.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EAGAIN if the descriptor ring is full.
+\end{DoxyReturn}
+Transmit a packet from a vector of packet buffers. This initializes a TX descriptor on the TX descriptor ring, and submits it to the NIC. The NIC can then transmit a packet from the associated packet buffers.
+
+This function simply wraps \mbox{\hyperlink{ef__vi_8h_afe4811464ade4f542564d3c789e1e929}{ef\+\_\+vi\+\_\+transmitv\+\_\+init()}} and \mbox{\hyperlink{ef__vi_8h_a7bb4aa398d5a5735491e3685d6e05912}{ef\+\_\+vi\+\_\+transmit\+\_\+push()}}. It is provided as a convenience. It is less efficient than submitting the descriptors in batches by calling the functions separately, but unless there is a batch of packets to transmit, calling this function is often the right thing to do.
+
+Building a packet by concatenating a vector of buffers allows\+:
+\begin{DoxyItemize}
+\item sending a packet that is larger than a packet buffer
+\begin{DoxyItemize}
+\item the packet is split across multiple buffers in a vector
+\end{DoxyItemize}
+\item optimizing sending packets with only small differences\+:
+\begin{DoxyItemize}
+\item the packet is split into those parts that are constant, and those that vary between transmits
+\item each part is written into its own buffer
+\item after each transmit, the buffers containing varying data must be updated, but the buffers containing constant data are re-\/used
+\item this minimizes the amount of data written between transmits. 
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Definition at line 1476 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_aca0074ba563465d5effcfc6d54b1bba2}\label{ef__vi_8h_aca0074ba563465d5effcfc6d54b1bba2}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmitv\_ctpio@{ef\_vi\_transmitv\_ctpio}}
+\index{ef\_vi\_transmitv\_ctpio@{ef\_vi\_transmitv\_ctpio}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmitv\_ctpio}{ef\_vi\_transmitv\_ctpio}}
+{\footnotesize\ttfamily \#define ef\+\_\+vi\+\_\+transmitv\+\_\+ctpio(\begin{DoxyParamCaption}\item[{}]{vi,  }\item[{}]{frame\+\_\+len,  }\item[{}]{frame\+\_\+iov,  }\item[{}]{frame\+\_\+iov\+\_\+len,  }\item[{}]{ct\+\_\+threshold }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  (vi)-\/>ops.transmitv\_ctpio((vi), (frame\_len), (frame\_iov),     \(\backslash\)}
+\DoxyCodeLine{                            (frame\_iov\_len), (ct\_threshold))}
+
+\end{DoxyCode}
+
+
+Transmit a packet using CTPIO from an array of buffers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface on which to transmit. \\
+\hline
+{\em frame\+\_\+len} & Frame length in bytes. \\
+\hline
+{\em frame\+\_\+iov} & Buffers containing the frame to transmit. \\
+\hline
+{\em frame\+\_\+iov\+\_\+len} & Length of frame\+\_\+iov. \\
+\hline
+{\em ct\+\_\+threshold} & Number of bytes of the packet to buffer before starting to cut-\/through to the wire.\\
+\hline
+\end{DoxyParams}
+Transmit a packet using the CTPIO datapath. The CTPIO interface gives the lowest latency in most cases, and can be used by any number of VIs.
+
+This function implements the latency critical part of a CTPIO send. It should be followed by a call to \mbox{\hyperlink{ef__vi_8h_ab822e083cda691e17b6677629cddaf19}{ef\+\_\+vi\+\_\+transmit\+\_\+ctpio\+\_\+fallback()}} or similar before doing any further send calls on the same VI. \mbox{\hyperlink{ef__vi_8h_ab822e083cda691e17b6677629cddaf19}{ef\+\_\+vi\+\_\+transmit\+\_\+ctpio\+\_\+fallback()}} provides a fallback frame which is sent in cases where the CTPIO send fails.
+
+It is possible for a CTPIO send to fail for a number of reasons, including contention for adapter resources, and timeout due to the whole frame not being written to the adapter sufficiently quickly.
+
+The {\ttfamily ct\+\_\+threshold} indicates how many bytes of the packet should be buffered by the adapter before starting to emit the packet. To disable cut-\/through behavior this must be at least as large as the frame length. To disable cut-\/through across all packet sizes, use EF\+\_\+\+VI\+\_\+\+CTPIO\+\_\+\+CT\+\_\+\+THRESHOLD\+\_\+\+SNF.
+
+The CTPIO path bypasses the adapter\textquotesingle{}s normal transmit path, including checksum offloads, and so the packet is transmitted unmodified. The Ethernet FCS is appended as normal.
+
+The caller must ensure that {\ttfamily frame\+\_\+len} is equal to the sum of the lengths in {\ttfamily frame\+\_\+iov}.
+
+The buffers referenced by {\ttfamily frame\+\_\+iov} can be reused as soon as this call returns. 
+
+Definition at line 1881 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a87e3c325b1e6a6612fb1feba95d553cb}\label{ef__vi_8h_a87e3c325b1e6a6612fb1feba95d553cb}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmitv\_ctpio\_copy@{ef\_vi\_transmitv\_ctpio\_copy}}
+\index{ef\_vi\_transmitv\_ctpio\_copy@{ef\_vi\_transmitv\_ctpio\_copy}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmitv\_ctpio\_copy}{ef\_vi\_transmitv\_ctpio\_copy}}
+{\footnotesize\ttfamily \#define ef\+\_\+vi\+\_\+transmitv\+\_\+ctpio\+\_\+copy(\begin{DoxyParamCaption}\item[{}]{vi,  }\item[{}]{frame\+\_\+len,  }\item[{}]{frame\+\_\+iov,  }\item[{}]{frame\+\_\+iov\+\_\+len,  }\item[{}]{ct\+\_\+threshold,  }\item[{}]{fallback }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  (vi)-\/>ops.transmitv\_ctpio\_copy((vi), (frame\_len), (frame\_iov),     \(\backslash\)}
+\DoxyCodeLine{                                 (frame\_iov\_len), (ct\_threshold),    \(\backslash\)}
+\DoxyCodeLine{                                 (fallback))}
+
+\end{DoxyCode}
+
+
+Transmit a packet using CTPIO from an array of buffers, simultaneously copying the data into a fallback buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface on which to transmit. \\
+\hline
+{\em frame\+\_\+len} & Frame length in bytes. \\
+\hline
+{\em frame\+\_\+iov} & Buffers containing the frame to transmit. \\
+\hline
+{\em frame\+\_\+iov\+\_\+len} & Length of frame\+\_\+iov. \\
+\hline
+{\em ct\+\_\+threshold} & Number of bytes of the packet to buffer before starting to cut-\/through to the wire. \\
+\hline
+{\em fallback} & Fallback buffer to copy the data into\\
+\hline
+\end{DoxyParams}
+This function is identical to ef\+\_\+vi\+\_\+transmitv\+\_\+cptio, but additionally copies the data into a fallback buffer ready to provide to ef\+\_\+vi\+\_\+transmit\+\_\+ctpio\+\_\+fallback. This is an optimisation to avoid the need to copy the data in a separate step. 
+
+Definition at line 1903 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_afe4811464ade4f542564d3c789e1e929}\label{ef__vi_8h_afe4811464ade4f542564d3c789e1e929}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmitv\_init@{ef\_vi\_transmitv\_init}}
+\index{ef\_vi\_transmitv\_init@{ef\_vi\_transmitv\_init}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmitv\_init}{ef\_vi\_transmitv\_init}}
+{\footnotesize\ttfamily \#define ef\+\_\+vi\+\_\+transmitv\+\_\+init(\begin{DoxyParamCaption}\item[{}]{vi,  }\item[{}]{iov,  }\item[{}]{iov\+\_\+len,  }\item[{}]{dma\+\_\+id }\end{DoxyParamCaption})~  (vi)-\/$>$ops.\+transmitv\+\_\+init((vi), (iov), (iov\+\_\+len), (dma\+\_\+id))}
+
+
+
+Initialize TX descriptors on the TX descriptor ring, for a vector of packet buffers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface for which to initialize a TX descriptor. \\
+\hline
+{\em iov} & Start of the iovec array describing the packet buffers. \\
+\hline
+{\em iov\+\_\+len} & Length of the iovec array. \\
+\hline
+{\em dma\+\_\+id} & DMA id to associate with the descriptor. This is completely arbitrary, and can be used for subsequent tracking of buffers.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EAGAIN if the descriptor ring is full.
+\end{DoxyReturn}
+Initialize TX descriptors on the TX descriptor ring, for a vector of packet buffers. The associated packet buffers (identified in the iov vector) must contain the packet to transmit. This function only writes a few bytes into host memory, and is very fast.
+
+Building a packet by concatenating a vector of buffers allows\+:
+\begin{DoxyItemize}
+\item sending a packet that is larger than a packet buffer
+\begin{DoxyItemize}
+\item the packet is split across multiple buffers in a vector
+\end{DoxyItemize}
+\item optimizing sending packets with only small differences\+:
+\begin{DoxyItemize}
+\item the packet is split into those parts that are constant, and those that vary between transmits
+\item each part is written into its own buffer
+\item after each transmit, the buffers containing varying data must be updated, but the buffers containing constant data are re-\/used
+\item this minimizes the amount of data written between transmits. 
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Definition at line 1393 of file ef\+\_\+vi.\+h.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}\label{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_request\_id@{ef\_request\_id}}
+\index{ef\_request\_id@{ef\_request\_id}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_request\_id}{ef\_request\_id}}
+{\footnotesize\ttfamily typedef int \mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}}}
+
+
+
+A DMA request identifier. 
+
+This is an integer token specified by the transport and associated with a DMA request. It is returned to the VI user with DMA completion events. It is typically used to identify the buffer associated with the transfer. 
+
+Definition at line 125 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_af42365b8f316c98e19820fba060c78c4}\label{ef__vi_8h_af42365b8f316c98e19820fba060c78c4}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi@{ef\_vi}}
+\index{ef\_vi@{ef\_vi}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi}{ef\_vi}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}}}
+
+
+
+A virtual interface. 
+
+An \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} represents a virtual interface on a specific NIC. A virtual interface is a collection of an event queue and two DMA queues used to pass Ethernet frames between the transport implementation and the network.
+
+Users should not access this structure. 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55b}\label{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55b}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+
+
+Possible types of events. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_TYPE\_RX@{EF\_EVENT\_TYPE\_RX}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_TYPE\_RX@{EF\_EVENT\_TYPE\_RX}}}\mbox{\Hypertarget{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba60ca113e8fe79115ba9efe22471a9001}\label{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba60ca113e8fe79115ba9efe22471a9001}} 
+EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX&Good data was received. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_TYPE\_TX@{EF\_EVENT\_TYPE\_TX}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_TYPE\_TX@{EF\_EVENT\_TYPE\_TX}}}\mbox{\Hypertarget{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba48528de8329421a4ac7785774bb4c894}\label{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba48528de8329421a4ac7785774bb4c894}} 
+EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX&Packets have been sent. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_TYPE\_RX\_DISCARD@{EF\_EVENT\_TYPE\_RX\_DISCARD}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_TYPE\_RX\_DISCARD@{EF\_EVENT\_TYPE\_RX\_DISCARD}}}\mbox{\Hypertarget{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba117a208b3f2e58062cc505b88f984057}\label{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba117a208b3f2e58062cc505b88f984057}} 
+EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+DISCARD&Data received and buffer consumed, but something is wrong. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_TYPE\_TX\_ERROR@{EF\_EVENT\_TYPE\_TX\_ERROR}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_TYPE\_TX\_ERROR@{EF\_EVENT\_TYPE\_TX\_ERROR}}}\mbox{\Hypertarget{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba5c4334379f99493f4959341575483492}\label{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba5c4334379f99493f4959341575483492}} 
+EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+ERROR&Transmit of packet failed. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_TYPE\_RX\_NO\_DESC\_TRUNC@{EF\_EVENT\_TYPE\_RX\_NO\_DESC\_TRUNC}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_TYPE\_RX\_NO\_DESC\_TRUNC@{EF\_EVENT\_TYPE\_RX\_NO\_DESC\_TRUNC}}}\mbox{\Hypertarget{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba8f7d923defae51d9d8c226b51c51d56d}\label{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba8f7d923defae51d9d8c226b51c51d56d}} 
+EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+NO\+\_\+\+DESC\+\_\+\+TRUNC&Received packet was truncated due to a lack of descriptors. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_TYPE\_SW@{EF\_EVENT\_TYPE\_SW}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_TYPE\_SW@{EF\_EVENT\_TYPE\_SW}}}\mbox{\Hypertarget{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55bac78b3df21df052bbb0339ce14a7ac868}\label{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55bac78b3df21df052bbb0339ce14a7ac868}} 
+EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+SW&Software generated event. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_TYPE\_OFLOW@{EF\_EVENT\_TYPE\_OFLOW}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_TYPE\_OFLOW@{EF\_EVENT\_TYPE\_OFLOW}}}\mbox{\Hypertarget{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba9b13558fccd35376b33883f7ea08bd47}\label{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba9b13558fccd35376b33883f7ea08bd47}} 
+EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+OFLOW&Event queue overflow. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_TYPE\_TX\_WITH\_TIMESTAMP@{EF\_EVENT\_TYPE\_TX\_WITH\_TIMESTAMP}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_TYPE\_TX\_WITH\_TIMESTAMP@{EF\_EVENT\_TYPE\_TX\_WITH\_TIMESTAMP}}}\mbox{\Hypertarget{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba2d8d961c8cc517459b15e1ebe9861ffe}\label{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba2d8d961c8cc517459b15e1ebe9861ffe}} 
+EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+WITH\+\_\+\+TIMESTAMP&TX timestamp event. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_TYPE\_RX\_PACKED\_STREAM@{EF\_EVENT\_TYPE\_RX\_PACKED\_STREAM}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_TYPE\_RX\_PACKED\_STREAM@{EF\_EVENT\_TYPE\_RX\_PACKED\_STREAM}}}\mbox{\Hypertarget{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba988a18b2fe55b62a6bbfcb59ba7866c6}\label{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba988a18b2fe55b62a6bbfcb59ba7866c6}} 
+EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+PACKED\+\_\+\+STREAM&A batch of packets was received in a packed stream. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_TYPE\_RX\_MULTI@{EF\_EVENT\_TYPE\_RX\_MULTI}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_TYPE\_RX\_MULTI@{EF\_EVENT\_TYPE\_RX\_MULTI}}}\mbox{\Hypertarget{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba3a2e95aa0b4c53d458132f29357a1cfc}\label{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba3a2e95aa0b4c53d458132f29357a1cfc}} 
+EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+MULTI&A batch of packets was received on a RX event merge vi. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_TYPE\_TX\_ALT@{EF\_EVENT\_TYPE\_TX\_ALT}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_TYPE\_TX\_ALT@{EF\_EVENT\_TYPE\_TX\_ALT}}}\mbox{\Hypertarget{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55babee735660dfebfadc3cffedf549603aa}\label{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55babee735660dfebfadc3cffedf549603aa}} 
+EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+ALT&Packet has been transmitted via a \char`\"{}\+TX alternative\char`\"{}. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_TYPE\_RX\_MULTI\_DISCARD@{EF\_EVENT\_TYPE\_RX\_MULTI\_DISCARD}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_TYPE\_RX\_MULTI\_DISCARD@{EF\_EVENT\_TYPE\_RX\_MULTI\_DISCARD}}}\mbox{\Hypertarget{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba8933dbc77226694d10e1d51784c68876}\label{ef__vi_8h_a06fc87d81c62e9abb8790b6e5713c55ba8933dbc77226694d10e1d51784c68876}} 
+EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+DISCARD&A batch of packets was received with error condition set. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 238 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7}\label{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+
+
+The reason for an EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+DISCARD event. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_RX\_DISCARD\_CSUM\_BAD@{EF\_EVENT\_RX\_DISCARD\_CSUM\_BAD}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_RX\_DISCARD\_CSUM\_BAD@{EF\_EVENT\_RX\_DISCARD\_CSUM\_BAD}}}\mbox{\Hypertarget{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7a225c5c48ab553585ed8ecd75246d554d}\label{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7a225c5c48ab553585ed8ecd75246d554d}} 
+EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+CSUM\+\_\+\+BAD&IP header or TCP/\+UDP checksum error \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_RX\_DISCARD\_MCAST\_MISMATCH@{EF\_EVENT\_RX\_DISCARD\_MCAST\_MISMATCH}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_RX\_DISCARD\_MCAST\_MISMATCH@{EF\_EVENT\_RX\_DISCARD\_MCAST\_MISMATCH}}}\mbox{\Hypertarget{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7a2cb3ae393b2022b6638e39ef88aafbfe}\label{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7a2cb3ae393b2022b6638e39ef88aafbfe}} 
+EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+MCAST\+\_\+\+MISMATCH&Hash mismatch in a multicast packet \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_RX\_DISCARD\_CRC\_BAD@{EF\_EVENT\_RX\_DISCARD\_CRC\_BAD}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_RX\_DISCARD\_CRC\_BAD@{EF\_EVENT\_RX\_DISCARD\_CRC\_BAD}}}\mbox{\Hypertarget{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7a38ccd6c3343f9136efde428894d6fb02}\label{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7a38ccd6c3343f9136efde428894d6fb02}} 
+EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+CRC\+\_\+\+BAD&Ethernet CRC error \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_RX\_DISCARD\_TRUNC@{EF\_EVENT\_RX\_DISCARD\_TRUNC}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_RX\_DISCARD\_TRUNC@{EF\_EVENT\_RX\_DISCARD\_TRUNC}}}\mbox{\Hypertarget{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7a1ff9325d627f29841cb146f98bfc77b1}\label{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7a1ff9325d627f29841cb146f98bfc77b1}} 
+EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+TRUNC&Frame was truncated \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_RX\_DISCARD\_RIGHTS@{EF\_EVENT\_RX\_DISCARD\_RIGHTS}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_RX\_DISCARD\_RIGHTS@{EF\_EVENT\_RX\_DISCARD\_RIGHTS}}}\mbox{\Hypertarget{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7afc00dd355b562676b74ca0097f481373}\label{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7afc00dd355b562676b74ca0097f481373}} 
+EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+RIGHTS&No ownership rights for the packet \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_RX\_DISCARD\_EV\_ERROR@{EF\_EVENT\_RX\_DISCARD\_EV\_ERROR}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_RX\_DISCARD\_EV\_ERROR@{EF\_EVENT\_RX\_DISCARD\_EV\_ERROR}}}\mbox{\Hypertarget{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7ac50e1ade07ecf4b162fccf603a8ba824}\label{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7ac50e1ade07ecf4b162fccf603a8ba824}} 
+EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+EV\+\_\+\+ERROR&Event queue error, previous RX event has been lost \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_RX\_DISCARD\_OTHER@{EF\_EVENT\_RX\_DISCARD\_OTHER}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_RX\_DISCARD\_OTHER@{EF\_EVENT\_RX\_DISCARD\_OTHER}}}\mbox{\Hypertarget{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7a92db3d0e3380c5b563253efe654f3ea5}\label{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7a92db3d0e3380c5b563253efe654f3ea5}} 
+EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+OTHER&Other unspecified reason \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_RX\_DISCARD\_INNER\_CSUM\_BAD@{EF\_EVENT\_RX\_DISCARD\_INNER\_CSUM\_BAD}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_RX\_DISCARD\_INNER\_CSUM\_BAD@{EF\_EVENT\_RX\_DISCARD\_INNER\_CSUM\_BAD}}}\mbox{\Hypertarget{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7aa8fa724192bdf960ca9bedc3958da650}\label{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7aa8fa724192bdf960ca9bedc3958da650}} 
+EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+INNER\+\_\+\+CSUM\+\_\+\+BAD&Inner IP header or TCP/\+UDP checksum error \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_RX\_DISCARD\_MAX@{EF\_EVENT\_RX\_DISCARD\_MAX}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_RX\_DISCARD\_MAX@{EF\_EVENT\_RX\_DISCARD\_MAX}}}\mbox{\Hypertarget{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7ad5f1cd0bafae7ab088906c30391f8e30}\label{ef__vi_8h_adf764cbdea00d65edcd07bb9953ad2b7ad5f1cd0bafae7ab088906c30391f8e30}} 
+EF\+\_\+\+EVENT\+\_\+\+RX\+\_\+\+DISCARD\+\_\+\+MAX&Maximum value of this enumeration \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 334 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a99fb83031ce9923c84392b4e92f956b5}\label{ef__vi_8h_a99fb83031ce9923c84392b4e92f956b5}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+
+
+The reason for an EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+ERROR event. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_TX\_ERROR\_RIGHTS@{EF\_EVENT\_TX\_ERROR\_RIGHTS}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_TX\_ERROR\_RIGHTS@{EF\_EVENT\_TX\_ERROR\_RIGHTS}}}\mbox{\Hypertarget{ef__vi_8h_a99fb83031ce9923c84392b4e92f956b5aaf19e12b5e54d15e86c7fa5da5453b67}\label{ef__vi_8h_a99fb83031ce9923c84392b4e92f956b5aaf19e12b5e54d15e86c7fa5da5453b67}} 
+EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+ERROR\+\_\+\+RIGHTS&No ownership rights for the packet \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_TX\_ERROR\_OFLOW@{EF\_EVENT\_TX\_ERROR\_OFLOW}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_TX\_ERROR\_OFLOW@{EF\_EVENT\_TX\_ERROR\_OFLOW}}}\mbox{\Hypertarget{ef__vi_8h_a99fb83031ce9923c84392b4e92f956b5aac9fd1e4efde54dee9918b66696f2640}\label{ef__vi_8h_a99fb83031ce9923c84392b4e92f956b5aac9fd1e4efde54dee9918b66696f2640}} 
+EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+ERROR\+\_\+\+OFLOW&TX pacing engine work queue was full \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_TX\_ERROR\_2BIG@{EF\_EVENT\_TX\_ERROR\_2BIG}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_TX\_ERROR\_2BIG@{EF\_EVENT\_TX\_ERROR\_2BIG}}}\mbox{\Hypertarget{ef__vi_8h_a99fb83031ce9923c84392b4e92f956b5a03c9b4f6e246faecf0d92d701a15e53a}\label{ef__vi_8h_a99fb83031ce9923c84392b4e92f956b5a03c9b4f6e246faecf0d92d701a15e53a}} 
+EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+ERROR\+\_\+2\+BIG&Oversized transfer has been indicated by the descriptor \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_EVENT\_TX\_ERROR\_BUS@{EF\_EVENT\_TX\_ERROR\_BUS}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_EVENT\_TX\_ERROR\_BUS@{EF\_EVENT\_TX\_ERROR\_BUS}}}\mbox{\Hypertarget{ef__vi_8h_a99fb83031ce9923c84392b4e92f956b5a1fee5bc12d0fe43b30541fd46da765f2}\label{ef__vi_8h_a99fb83031ce9923c84392b4e92f956b5a1fee5bc12d0fe43b30541fd46da765f2}} 
+EF\+\_\+\+EVENT\+\_\+\+TX\+\_\+\+ERROR\+\_\+\+BUS&Bus or descriptor protocol error occurred when attempting to read the memory referenced by the descriptor \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 389 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_add8bf4b8722836b5100a101b4b1c404f}\label{ef__vi_8h_add8bf4b8722836b5100a101b4b1c404f}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_arch@{ef\_vi\_arch}}
+\index{ef\_vi\_arch@{ef\_vi\_arch}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_arch}{ef\_vi\_arch}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{ef__vi_8h_add8bf4b8722836b5100a101b4b1c404f}{ef\+\_\+vi\+\_\+arch}}}
+
+
+
+NIC architectures that are supported. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_ARCH\_FALCON@{EF\_VI\_ARCH\_FALCON}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_ARCH\_FALCON@{EF\_VI\_ARCH\_FALCON}}}\mbox{\Hypertarget{ef__vi_8h_add8bf4b8722836b5100a101b4b1c404fa8162defe54ff79d6b4d1d534254bb7bb}\label{ef__vi_8h_add8bf4b8722836b5100a101b4b1c404fa8162defe54ff79d6b4d1d534254bb7bb}} 
+EF\+\_\+\+VI\+\_\+\+ARCH\+\_\+\+FALCON&5000 and 6000-\/series NICs \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_ARCH\_EF10@{EF\_VI\_ARCH\_EF10}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_ARCH\_EF10@{EF\_VI\_ARCH\_EF10}}}\mbox{\Hypertarget{ef__vi_8h_add8bf4b8722836b5100a101b4b1c404fa6e4a035afc5dd76408957ee0fe2e72db}\label{ef__vi_8h_add8bf4b8722836b5100a101b4b1c404fa6e4a035afc5dd76408957ee0fe2e72db}} 
+EF\+\_\+\+VI\+\_\+\+ARCH\+\_\+\+EF10&7000 and 8000-\/series NICs \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 552 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_flags@{ef\_vi\_flags}}
+\index{ef\_vi\_flags@{ef\_vi\_flags}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_flags}{ef\_vi\_flags}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772}{ef\+\_\+vi\+\_\+flags}}}
+
+
+
+Flags that can be requested when allocating an \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}}. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_FLAGS\_DEFAULT@{EF\_VI\_FLAGS\_DEFAULT}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_FLAGS\_DEFAULT@{EF\_VI\_FLAGS\_DEFAULT}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a8613875aa5fecb0571267d4d9183572e}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a8613875aa5fecb0571267d4d9183572e}} 
+EF\+\_\+\+VI\+\_\+\+FLAGS\+\_\+\+DEFAULT&Default setting \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_ISCSI\_RX\_HDIG@{EF\_VI\_ISCSI\_RX\_HDIG}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_ISCSI\_RX\_HDIG@{EF\_VI\_ISCSI\_RX\_HDIG}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772ae230b7c8cadd05df89c102f48aac31f5}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772ae230b7c8cadd05df89c102f48aac31f5}} 
+EF\+\_\+\+VI\+\_\+\+ISCSI\+\_\+\+RX\+\_\+\+HDIG&Receive i\+SCSI header digest enable\+: hardware verifies header digest (CRC) when packet is i\+SCSI \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_ISCSI\_TX\_HDIG@{EF\_VI\_ISCSI\_TX\_HDIG}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_ISCSI\_TX\_HDIG@{EF\_VI\_ISCSI\_TX\_HDIG}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a193ceaa767f0171738113048ded867ed}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a193ceaa767f0171738113048ded867ed}} 
+EF\+\_\+\+VI\+\_\+\+ISCSI\+\_\+\+TX\+\_\+\+HDIG&Transmit i\+SCSI header digest enable\+: hardware calculates and inserts header digest (CRC) when packet is i\+SCSI \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_ISCSI\_RX\_DDIG@{EF\_VI\_ISCSI\_RX\_DDIG}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_ISCSI\_RX\_DDIG@{EF\_VI\_ISCSI\_RX\_DDIG}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a00e972964bbc9dd04dad6ce7bb51635b}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a00e972964bbc9dd04dad6ce7bb51635b}} 
+EF\+\_\+\+VI\+\_\+\+ISCSI\+\_\+\+RX\+\_\+\+DDIG&Receive i\+SCSI data digest enable\+: hardware verifies data digest (CRC) when packet is i\+SCSI \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_ISCSI\_TX\_DDIG@{EF\_VI\_ISCSI\_TX\_DDIG}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_ISCSI\_TX\_DDIG@{EF\_VI\_ISCSI\_TX\_DDIG}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a991f15ac8719fd3a4eabe4ab90de618b}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a991f15ac8719fd3a4eabe4ab90de618b}} 
+EF\+\_\+\+VI\+\_\+\+ISCSI\+\_\+\+TX\+\_\+\+DDIG&Transmit i\+SCSI data digest enable\+: hardware calculates and inserts data digest (CRC) when packet is i\+SCSI \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_TX\_PHYS\_ADDR@{EF\_VI\_TX\_PHYS\_ADDR}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_TX\_PHYS\_ADDR@{EF\_VI\_TX\_PHYS\_ADDR}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a6b4d3b527ef39d6a6fded1491d7bbf54}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a6b4d3b527ef39d6a6fded1491d7bbf54}} 
+EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+PHYS\+\_\+\+ADDR&Use physically addressed TX descriptor ring \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_RX\_PHYS\_ADDR@{EF\_VI\_RX\_PHYS\_ADDR}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_RX\_PHYS\_ADDR@{EF\_VI\_RX\_PHYS\_ADDR}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772aacb8f1a98e38cc38325a12b26d51cb95}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772aacb8f1a98e38cc38325a12b26d51cb95}} 
+EF\+\_\+\+VI\+\_\+\+RX\+\_\+\+PHYS\+\_\+\+ADDR&Use physically addressed RX descriptor ring \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_TX\_IP\_CSUM\_DIS@{EF\_VI\_TX\_IP\_CSUM\_DIS}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_TX\_IP\_CSUM\_DIS@{EF\_VI\_TX\_IP\_CSUM\_DIS}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772ab0bbd1f4a9520d92a7a8d086882a1847}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772ab0bbd1f4a9520d92a7a8d086882a1847}} 
+EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+IP\+\_\+\+CSUM\+\_\+\+DIS&IP checksum calculation and replacement is disabled \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_TX\_TCPUDP\_CSUM\_DIS@{EF\_VI\_TX\_TCPUDP\_CSUM\_DIS}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_TX\_TCPUDP\_CSUM\_DIS@{EF\_VI\_TX\_TCPUDP\_CSUM\_DIS}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a0899d688f6c4948a76483621bbeb60e5}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a0899d688f6c4948a76483621bbeb60e5}} 
+EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+TCPUDP\+\_\+\+CSUM\+\_\+\+DIS&TCP/\+UDP checksum calculation and replacement is disabled \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_TX\_TCPUDP\_ONLY@{EF\_VI\_TX\_TCPUDP\_ONLY}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_TX\_TCPUDP\_ONLY@{EF\_VI\_TX\_TCPUDP\_ONLY}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772ad970724ec2af1874bcc1a33fca79320c}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772ad970724ec2af1874bcc1a33fca79320c}} 
+EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+TCPUDP\+\_\+\+ONLY&Drop transmit packets that are not TCP or UDP \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_TX\_FILTER\_IP@{EF\_VI\_TX\_FILTER\_IP}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_TX\_FILTER\_IP@{EF\_VI\_TX\_FILTER\_IP}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a25f39fdbf5272a0c9cdd87914d79b38f}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a25f39fdbf5272a0c9cdd87914d79b38f}} 
+EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+FILTER\+\_\+\+IP&Drop packets with a mismatched IP source address (5000 and 6000 series only) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_TX\_FILTER\_MAC@{EF\_VI\_TX\_FILTER\_MAC}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_TX\_FILTER\_MAC@{EF\_VI\_TX\_FILTER\_MAC}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772ac7f8c6fb08db5ebfa7c96a23615acf16}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772ac7f8c6fb08db5ebfa7c96a23615acf16}} 
+EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+FILTER\+\_\+\+MAC&Drop packets with a mismatched MAC source address (5000 and 6000 series only) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_TX\_FILTER\_MASK\_1@{EF\_VI\_TX\_FILTER\_MASK\_1}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_TX\_FILTER\_MASK\_1@{EF\_VI\_TX\_FILTER\_MASK\_1}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a40b6169fd7d852d8ca4a9b0c6132b576}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a40b6169fd7d852d8ca4a9b0c6132b576}} 
+EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+FILTER\+\_\+\+MASK\+\_\+1&Set lowest bit of queue ID to 0 when matching within filter block (5000 and 6000 series only) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_TX\_FILTER\_MASK\_2@{EF\_VI\_TX\_FILTER\_MASK\_2}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_TX\_FILTER\_MASK\_2@{EF\_VI\_TX\_FILTER\_MASK\_2}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a3213e162e589d72870a63d37f4e955ec}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a3213e162e589d72870a63d37f4e955ec}} 
+EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+FILTER\+\_\+\+MASK\+\_\+2&Set lowest 2 bits of queue ID to 0 when matching within filter block (5000 and 6000 series only) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_TX\_FILTER\_MASK\_3@{EF\_VI\_TX\_FILTER\_MASK\_3}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_TX\_FILTER\_MASK\_3@{EF\_VI\_TX\_FILTER\_MASK\_3}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a66480d0ac2293b3fc5ebbbcbe93c8aa8}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a66480d0ac2293b3fc5ebbbcbe93c8aa8}} 
+EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+FILTER\+\_\+\+MASK\+\_\+3&Set lowest 3 bits of queue ID to 0 when matching within filter block (5000 and 6000 series only) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_TX\_PUSH\_DISABLE@{EF\_VI\_TX\_PUSH\_DISABLE}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_TX\_PUSH\_DISABLE@{EF\_VI\_TX\_PUSH\_DISABLE}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a4151194eb39e20247b15da25c8191225}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a4151194eb39e20247b15da25c8191225}} 
+EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+PUSH\+\_\+\+DISABLE&Disable using TX descriptor push, so always use doorbell for transmit \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_TX\_PUSH\_ALWAYS@{EF\_VI\_TX\_PUSH\_ALWAYS}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_TX\_PUSH\_ALWAYS@{EF\_VI\_TX\_PUSH\_ALWAYS}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772aa632a8d0731544092d1d9c351087d5a0}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772aa632a8d0731544092d1d9c351087d5a0}} 
+EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+PUSH\+\_\+\+ALWAYS&Always use TX descriptor push, so never use doorbell for transmit (7000 series and newer) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_RX\_TIMESTAMPS@{EF\_VI\_RX\_TIMESTAMPS}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_RX\_TIMESTAMPS@{EF\_VI\_RX\_TIMESTAMPS}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a321a78cb4844b892493fba42ce9d8565}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a321a78cb4844b892493fba42ce9d8565}} 
+EF\+\_\+\+VI\+\_\+\+RX\+\_\+\+TIMESTAMPS&Add timestamp to received packets (7000 series and newer) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_TX\_TIMESTAMPS@{EF\_VI\_TX\_TIMESTAMPS}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_TX\_TIMESTAMPS@{EF\_VI\_TX\_TIMESTAMPS}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a368984f37f8f5e5856f03c938db88607}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a368984f37f8f5e5856f03c938db88607}} 
+EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+TIMESTAMPS&Add timestamp to transmitted packets (7000 series and newer), cannot be combined with EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+ALT \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_RX\_PACKED\_STREAM@{EF\_VI\_RX\_PACKED\_STREAM}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_RX\_PACKED\_STREAM@{EF\_VI\_RX\_PACKED\_STREAM}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a78f18460bbb6dc756a90b5068c199c37}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772a78f18460bbb6dc756a90b5068c199c37}} 
+EF\+\_\+\+VI\+\_\+\+RX\+\_\+\+PACKED\+\_\+\+STREAM&Enable packed stream mode for received packets (7000 series and newer) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_RX\_PS\_BUF\_SIZE\_64K@{EF\_VI\_RX\_PS\_BUF\_SIZE\_64K}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_RX\_PS\_BUF\_SIZE\_64K@{EF\_VI\_RX\_PS\_BUF\_SIZE\_64K}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772af83ecf43c4955864a0f8dba265376b07}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772af83ecf43c4955864a0f8dba265376b07}} 
+EF\+\_\+\+VI\+\_\+\+RX\+\_\+\+PS\+\_\+\+BUF\+\_\+\+SIZE\+\_\+64K&Use 64KiB packed stream buffers, instead of the 1024KiB default (7000 series and newer) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_RX\_EVENT\_MERGE@{EF\_VI\_RX\_EVENT\_MERGE}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_RX\_EVENT\_MERGE@{EF\_VI\_RX\_EVENT\_MERGE}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772ad1a717b3eacea48b13b90392ba0e5c22}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772ad1a717b3eacea48b13b90392ba0e5c22}} 
+EF\+\_\+\+VI\+\_\+\+RX\+\_\+\+EVENT\+\_\+\+MERGE&Enable RX event merging mode for received packets; see \mbox{\hyperlink{ef__vi_8h_a7da657579f196e3a895e4527eb958d65}{ef\+\_\+vi\+\_\+receive\+\_\+unbundle()}} and \mbox{\hyperlink{ef__vi_8h_a7acdfde8e503ed210170ba45874068f3}{ef\+\_\+vi\+\_\+receive\+\_\+get\+\_\+bytes()}} for more details on using RX event merging mode \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_TX\_ALT@{EF\_VI\_TX\_ALT}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_TX\_ALT@{EF\_VI\_TX\_ALT}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772af9ea5aa5a3560431ccedc9a8d20dc531}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772af9ea5aa5a3560431ccedc9a8d20dc531}} 
+EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+ALT&Enable the \char`\"{}\+TX alternatives\char`\"{} feature (8000 series and newer), cannot be combined with EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+TIMESTAMPS \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_ENABLE\_EV\_TIMER@{EF\_VI\_ENABLE\_EV\_TIMER}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_ENABLE\_EV\_TIMER@{EF\_VI\_ENABLE\_EV\_TIMER}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772ad38a4007942862468cf057aac007d8c7}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772ad38a4007942862468cf057aac007d8c7}} 
+EF\+\_\+\+VI\+\_\+\+ENABLE\+\_\+\+EV\+\_\+\+TIMER&Controls whether the hardware event timer is enabled (8000 series and newer) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_TX\_CTPIO@{EF\_VI\_TX\_CTPIO}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_TX\_CTPIO@{EF\_VI\_TX\_CTPIO}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772acb2c08ccd362c14f972edb232b55e6f7}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772acb2c08ccd362c14f972edb232b55e6f7}} 
+EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+CTPIO&Enable the \char`\"{}cut-\/through PIO\char`\"{} feature (X2000 series and newer). \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_TX\_CTPIO\_NO\_POISON@{EF\_VI\_TX\_CTPIO\_NO\_POISON}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_TX\_CTPIO\_NO\_POISON@{EF\_VI\_TX\_CTPIO\_NO\_POISON}}}\mbox{\Hypertarget{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772afcb140813a7bf503d98d3cad0d7f185b}\label{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772afcb140813a7bf503d98d3cad0d7f185b}} 
+EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+CTPIO\+\_\+\+NO\+\_\+\+POISON&When using CTPIO, prevent poisoned frames from reaching the wire (X2000 series and newer). \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 435 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a9de8cc5f556c65a62de57a5ea93cbca4}\label{ef__vi_8h_a9de8cc5f556c65a62de57a5ea93cbca4}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_layout\_type@{ef\_vi\_layout\_type}}
+\index{ef\_vi\_layout\_type@{ef\_vi\_layout\_type}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_layout\_type}{ef\_vi\_layout\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{ef__vi_8h_a9de8cc5f556c65a62de57a5ea93cbca4}{ef\+\_\+vi\+\_\+layout\+\_\+type}}}
+
+
+
+Types of layout that are used for receive buffers. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_LAYOUT\_FRAME@{EF\_VI\_LAYOUT\_FRAME}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_LAYOUT\_FRAME@{EF\_VI\_LAYOUT\_FRAME}}}\mbox{\Hypertarget{ef__vi_8h_a9de8cc5f556c65a62de57a5ea93cbca4a55831d9fc6b755df2e52dc2d53a849a1}\label{ef__vi_8h_a9de8cc5f556c65a62de57a5ea93cbca4a55831d9fc6b755df2e52dc2d53a849a1}} 
+EF\+\_\+\+VI\+\_\+\+LAYOUT\+\_\+\+FRAME&An Ethernet frameo \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_LAYOUT\_MINOR\_TICKS@{EF\_VI\_LAYOUT\_MINOR\_TICKS}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_LAYOUT\_MINOR\_TICKS@{EF\_VI\_LAYOUT\_MINOR\_TICKS}}}\mbox{\Hypertarget{ef__vi_8h_a9de8cc5f556c65a62de57a5ea93cbca4a2196952b719dc57f28e20a6326ba1311}\label{ef__vi_8h_a9de8cc5f556c65a62de57a5ea93cbca4a2196952b719dc57f28e20a6326ba1311}} 
+EF\+\_\+\+VI\+\_\+\+LAYOUT\+\_\+\+MINOR\+\_\+\+TICKS&Hardware timestamp (minor ticks) -\/ 32 bits \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_LAYOUT\_PACKET\_LENGTH@{EF\_VI\_LAYOUT\_PACKET\_LENGTH}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_LAYOUT\_PACKET\_LENGTH@{EF\_VI\_LAYOUT\_PACKET\_LENGTH}}}\mbox{\Hypertarget{ef__vi_8h_a9de8cc5f556c65a62de57a5ea93cbca4a4086c7f67b10d4098a7d40ff7439a414}\label{ef__vi_8h_a9de8cc5f556c65a62de57a5ea93cbca4a4086c7f67b10d4098a7d40ff7439a414}} 
+EF\+\_\+\+VI\+\_\+\+LAYOUT\+\_\+\+PACKET\+\_\+\+LENGTH&Packet length -\/ 16 bits \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 2111 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a0096b5a5f0ec6a67ff4d1ff1b8bbbb4c}\label{ef__vi_8h_a0096b5a5f0ec6a67ff4d1ff1b8bbbb4c}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_out\_flags@{ef\_vi\_out\_flags}}
+\index{ef\_vi\_out\_flags@{ef\_vi\_out\_flags}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_out\_flags}{ef\_vi\_out\_flags}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{ef__vi_8h_a0096b5a5f0ec6a67ff4d1ff1b8bbbb4c}{ef\+\_\+vi\+\_\+out\+\_\+flags}}}
+
+
+
+Flags that can be returned when an \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} has been allocated. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_OUT\_CLOCK\_SYNC\_STATUS@{EF\_VI\_OUT\_CLOCK\_SYNC\_STATUS}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_OUT\_CLOCK\_SYNC\_STATUS@{EF\_VI\_OUT\_CLOCK\_SYNC\_STATUS}}}\mbox{\Hypertarget{ef__vi_8h_a0096b5a5f0ec6a67ff4d1ff1b8bbbb4cab2131c8a54c3c2c74a5499d201db86bb}\label{ef__vi_8h_a0096b5a5f0ec6a67ff4d1ff1b8bbbb4cab2131c8a54c3c2c74a5499d201db86bb}} 
+EF\+\_\+\+VI\+\_\+\+OUT\+\_\+\+CLOCK\+\_\+\+SYNC\+\_\+\+STATUS&Clock sync status \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 513 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a373d7e8f2d3b8ee8839ddb470163ad96}\label{ef__vi_8h_a373d7e8f2d3b8ee8839ddb470163ad96}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_rx\_discard\_err\_flags@{ef\_vi\_rx\_discard\_err\_flags}}
+\index{ef\_vi\_rx\_discard\_err\_flags@{ef\_vi\_rx\_discard\_err\_flags}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_rx\_discard\_err\_flags}{ef\_vi\_rx\_discard\_err\_flags}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{ef__vi_8h_a373d7e8f2d3b8ee8839ddb470163ad96}{ef\+\_\+vi\+\_\+rx\+\_\+discard\+\_\+err\+\_\+flags}}}
+
+
+
+Flags that define which errors will cause RX\+\_\+\+DISCARD events. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_DISCARD\_RX\_L4\_CSUM\_ERR@{EF\_VI\_DISCARD\_RX\_L4\_CSUM\_ERR}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_DISCARD\_RX\_L4\_CSUM\_ERR@{EF\_VI\_DISCARD\_RX\_L4\_CSUM\_ERR}}}\mbox{\Hypertarget{ef__vi_8h_a373d7e8f2d3b8ee8839ddb470163ad96ae0b55f8de0997bd4646cc5df311507a3}\label{ef__vi_8h_a373d7e8f2d3b8ee8839ddb470163ad96ae0b55f8de0997bd4646cc5df311507a3}} 
+EF\+\_\+\+VI\+\_\+\+DISCARD\+\_\+\+RX\+\_\+\+L4\+\_\+\+CSUM\+\_\+\+ERR&TCP or UDP checksum error \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_DISCARD\_RX\_L3\_CSUM\_ERR@{EF\_VI\_DISCARD\_RX\_L3\_CSUM\_ERR}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_DISCARD\_RX\_L3\_CSUM\_ERR@{EF\_VI\_DISCARD\_RX\_L3\_CSUM\_ERR}}}\mbox{\Hypertarget{ef__vi_8h_a373d7e8f2d3b8ee8839ddb470163ad96acd65997c2802911b3acc2bd4ca794629}\label{ef__vi_8h_a373d7e8f2d3b8ee8839ddb470163ad96acd65997c2802911b3acc2bd4ca794629}} 
+EF\+\_\+\+VI\+\_\+\+DISCARD\+\_\+\+RX\+\_\+\+L3\+\_\+\+CSUM\+\_\+\+ERR&IP checksum error \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_DISCARD\_RX\_ETH\_FCS\_ERR@{EF\_VI\_DISCARD\_RX\_ETH\_FCS\_ERR}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_DISCARD\_RX\_ETH\_FCS\_ERR@{EF\_VI\_DISCARD\_RX\_ETH\_FCS\_ERR}}}\mbox{\Hypertarget{ef__vi_8h_a373d7e8f2d3b8ee8839ddb470163ad96a5a3747fae4c8f722f03055c9cae82f71}\label{ef__vi_8h_a373d7e8f2d3b8ee8839ddb470163ad96a5a3747fae4c8f722f03055c9cae82f71}} 
+EF\+\_\+\+VI\+\_\+\+DISCARD\+\_\+\+RX\+\_\+\+ETH\+\_\+\+FCS\+\_\+\+ERR&Ethernet FCS error \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_DISCARD\_RX\_ETH\_LEN\_ERR@{EF\_VI\_DISCARD\_RX\_ETH\_LEN\_ERR}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_DISCARD\_RX\_ETH\_LEN\_ERR@{EF\_VI\_DISCARD\_RX\_ETH\_LEN\_ERR}}}\mbox{\Hypertarget{ef__vi_8h_a373d7e8f2d3b8ee8839ddb470163ad96a133c4c51bdec62caee225330439aa361}\label{ef__vi_8h_a373d7e8f2d3b8ee8839ddb470163ad96a133c4c51bdec62caee225330439aa361}} 
+EF\+\_\+\+VI\+\_\+\+DISCARD\+\_\+\+RX\+\_\+\+ETH\+\_\+\+LEN\+\_\+\+ERR&Ethernet frame length error \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EF\_VI\_DISCARD\_RX\_TOBE\_DISC@{EF\_VI\_DISCARD\_RX\_TOBE\_DISC}!ef\_vi.h@{ef\_vi.h}}\index{ef\_vi.h@{ef\_vi.h}!EF\_VI\_DISCARD\_RX\_TOBE\_DISC@{EF\_VI\_DISCARD\_RX\_TOBE\_DISC}}}\mbox{\Hypertarget{ef__vi_8h_a373d7e8f2d3b8ee8839ddb470163ad96ac9a41fe2c5e8cdd92445e8d2c2f47043}\label{ef__vi_8h_a373d7e8f2d3b8ee8839ddb470163ad96ac9a41fe2c5e8cdd92445e8d2c2f47043}} 
+EF\+\_\+\+VI\+\_\+\+DISCARD\+\_\+\+RX\+\_\+\+TOBE\+\_\+\+DISC&To be discard in software (includes frame length error) \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 520 of file ef\+\_\+vi.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ef__vi_8h_afdc0a66b75882ef56a9fad7fe5124f13}\label{ef__vi_8h_afdc0a66b75882ef56a9fad7fe5124f13}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_eventq\_capacity@{ef\_eventq\_capacity}}
+\index{ef\_eventq\_capacity@{ef\_eventq\_capacity}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_eventq\_capacity()}{ef\_eventq\_capacity()}}
+{\footnotesize\ttfamily int ef\+\_\+eventq\+\_\+capacity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi }\end{DoxyParamCaption})}
+
+
+
+Returns the capacity of an event queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The event queue to query.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The capacity of an event queue.
+\end{DoxyReturn}
+Returns the capacity of an event queue. This is the maximum number of events that can be stored into the event queue before overflow.
+
+It is up to the application to avoid event queue overflow by ensuring that the maximum number of events that can be delivered into an event queue is limited to its capacity. In general each RX descriptor and TX descriptor posted can cause an event to be generated.
+
+In addition, when time-\/stamping is enabled time-\/sync events are generated at a rate of 4 per second. When TX timestamps are enabled you may get up to one event for each descriptor plus two further events per packet. \mbox{\Hypertarget{ef__vi_8h_a4729338fad56b630f44ae1b2515dfd69}\label{ef__vi_8h_a4729338fad56b630f44ae1b2515dfd69}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_eventq\_current@{ef\_eventq\_current}}
+\index{ef\_eventq\_current@{ef\_eventq\_current}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_eventq\_current()}{ef\_eventq\_current()}}
+{\footnotesize\ttfamily ef\+\_\+vi\+\_\+inline unsigned ef\+\_\+eventq\+\_\+current (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{evq }\end{DoxyParamCaption})}
+
+
+
+Get the current offset into the event queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em evq} & The event queue to query.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The current offset into the eventq.
+\end{DoxyReturn}
+Get the current offset into the event queue. 
+
+Definition at line 2100 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a77b5165a8afcdfc8770c46558d9ebd44}\label{ef__vi_8h_a77b5165a8afcdfc8770c46558d9ebd44}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_eventq\_has\_event@{ef\_eventq\_has\_event}}
+\index{ef\_eventq\_has\_event@{ef\_eventq\_has\_event}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_eventq\_has\_event()}{ef\_eventq\_has\_event()}}
+{\footnotesize\ttfamily int ef\+\_\+eventq\+\_\+has\+\_\+event (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi }\end{DoxyParamCaption})}
+
+
+
+Returns true if \mbox{\hyperlink{ef__vi_8h_ab340116b526f45dd378fe279f0c05a48}{ef\+\_\+eventq\+\_\+poll()}} will return event(s) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if \mbox{\hyperlink{ef__vi_8h_ab340116b526f45dd378fe279f0c05a48}{ef\+\_\+eventq\+\_\+poll()}} will return event(s).
+\end{DoxyReturn}
+Returns true if \mbox{\hyperlink{ef__vi_8h_ab340116b526f45dd378fe279f0c05a48}{ef\+\_\+eventq\+\_\+poll()}} will return event(s). \mbox{\Hypertarget{ef__vi_8h_aa46e63c0fa2249628768c20a92d9bd65}\label{ef__vi_8h_aa46e63c0fa2249628768c20a92d9bd65}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_eventq\_has\_many\_events@{ef\_eventq\_has\_many\_events}}
+\index{ef\_eventq\_has\_many\_events@{ef\_eventq\_has\_many\_events}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_eventq\_has\_many\_events()}{ef\_eventq\_has\_many\_events()}}
+{\footnotesize\ttfamily int ef\+\_\+eventq\+\_\+has\+\_\+many\+\_\+events (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{evq,  }\item[{int}]{n\+\_\+events }\end{DoxyParamCaption})}
+
+
+
+Returns true if there are a given number of events in the event queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em evq} & The event queue to query. \\
+\hline
+{\em n\+\_\+events} & Number of events to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the event queue contains at least {\ttfamily n\+\_\+events} events.
+\end{DoxyReturn}
+Returns true if there are a given number of events in the event queue.
+
+This looks ahead in the event queue, so has the property that it will not ping-\/pong a cache-\/line when it is called concurrently with events being delivered.
+
+This function returns quickly. It is useful for an application to determine whether it is falling behind in its event processing. \mbox{\Hypertarget{ef__vi_8h_a5679d140bd3bb270fa1adc2085ed36a3}\label{ef__vi_8h_a5679d140bd3bb270fa1adc2085ed36a3}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_driver\_interface\_str@{ef\_vi\_driver\_interface\_str}}
+\index{ef\_vi\_driver\_interface\_str@{ef\_vi\_driver\_interface\_str}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_driver\_interface\_str()}{ef\_vi\_driver\_interface\_str()}}
+{\footnotesize\ttfamily const char$\ast$ ef\+\_\+vi\+\_\+driver\+\_\+interface\+\_\+str (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Returns a string that identifies the char driver interface required. 
+
+\begin{DoxyReturn}{Returns}
+A string that identifies the char driver interface required by this build of \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}}.
+\end{DoxyReturn}
+Returns a string that identifies the char driver interface required by this build of \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}}.
+
+Returns the current version of the drivers that are running -\/ useful to check that it is new enough. \mbox{\Hypertarget{ef__vi_8h_ae2a3a3a397062f642dbb021db8f4cd72}\label{ef__vi_8h_ae2a3a3a397062f642dbb021db8f4cd72}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_flags@{ef\_vi\_flags}}
+\index{ef\_vi\_flags@{ef\_vi\_flags}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_flags()}{ef\_vi\_flags()}}
+{\footnotesize\ttfamily ef\+\_\+vi\+\_\+inline enum \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772}{ef\+\_\+vi\+\_\+flags}} \mbox{\hyperlink{ef__vi_8h_ae6c52ae7258f201cdea370fbcf697772}{ef\+\_\+vi\+\_\+flags}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi }\end{DoxyParamCaption})}
+
+
+
+Return the flags of the virtual interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The flags of the virtual interface.
+\end{DoxyReturn}
+Return the flags of the virtual interface. 
+
+Definition at line 891 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a6d901b63c46b9a1e6e4f6f53f896022c}\label{ef__vi_8h_a6d901b63c46b9a1e6e4f6f53f896022c}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_instance@{ef\_vi\_instance}}
+\index{ef\_vi\_instance@{ef\_vi\_instance}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_instance()}{ef\_vi\_instance()}}
+{\footnotesize\ttfamily ef\+\_\+vi\+\_\+inline unsigned ef\+\_\+vi\+\_\+instance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi }\end{DoxyParamCaption})}
+
+
+
+Return the instance ID of the virtual interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The instance ID of the virtual interface.
+\end{DoxyReturn}
+Return the instance ID of the virtual interface. 
+
+Definition at line 906 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a246e386f77279d65149236a1a6265661}\label{ef__vi_8h_a246e386f77279d65149236a1a6265661}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_receive\_buffer\_len@{ef\_vi\_receive\_buffer\_len}}
+\index{ef\_vi\_receive\_buffer\_len@{ef\_vi\_receive\_buffer\_len}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_receive\_buffer\_len()}{ef\_vi\_receive\_buffer\_len()}}
+{\footnotesize\ttfamily ef\+\_\+vi\+\_\+inline int ef\+\_\+vi\+\_\+receive\+\_\+buffer\+\_\+len (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi }\end{DoxyParamCaption})}
+
+
+
+Returns the length of a receive buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The length of a receive buffer.
+\end{DoxyReturn}
+Returns the length of a receive buffer.
+
+When a packet arrives that does not fit within a single receive buffer, it is spread over multiple buffers.
+
+The application must ensure that receive buffers are at least as large as the value returned by this function, else there is a risk that a DMA may overrun the buffer. 
+
+Definition at line 985 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_aa1d1b37d9e0352d4f2eacbbbe535f59e}\label{ef__vi_8h_aa1d1b37d9e0352d4f2eacbbbe535f59e}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_receive\_capacity@{ef\_vi\_receive\_capacity}}
+\index{ef\_vi\_receive\_capacity@{ef\_vi\_receive\_capacity}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_receive\_capacity()}{ef\_vi\_receive\_capacity()}}
+{\footnotesize\ttfamily ef\+\_\+vi\+\_\+inline int ef\+\_\+vi\+\_\+receive\+\_\+capacity (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi }\end{DoxyParamCaption})}
+
+
+
+Returns the total capacity of the RX descriptor ring. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The total capacity of the RX descriptor ring, as slots for descriptor entries.
+\end{DoxyReturn}
+Returns the total capacity of the RX descriptor ring. 
+
+Definition at line 1054 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_ac92576992cc3f58181b15ee6d79a5ac5}\label{ef__vi_8h_ac92576992cc3f58181b15ee6d79a5ac5}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_receive\_fill\_level@{ef\_vi\_receive\_fill\_level}}
+\index{ef\_vi\_receive\_fill\_level@{ef\_vi\_receive\_fill\_level}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_receive\_fill\_level()}{ef\_vi\_receive\_fill\_level()}}
+{\footnotesize\ttfamily ef\+\_\+vi\+\_\+inline int ef\+\_\+vi\+\_\+receive\+\_\+fill\+\_\+level (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi }\end{DoxyParamCaption})}
+
+
+
+Returns the fill level of the RX descriptor ring. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The fill level of the RX descriptor ring, as slots for descriptor entries.
+\end{DoxyReturn}
+Returns the fill level of the RX descriptor ring. This is the number of slots that hold a descriptor (and an associated packet buffer). The fill level should be kept as high as possible, so there are enough slots available to handle a burst of incoming packets. 
+
+Definition at line 1038 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a7acdfde8e503ed210170ba45874068f3}\label{ef__vi_8h_a7acdfde8e503ed210170ba45874068f3}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_receive\_get\_bytes@{ef\_vi\_receive\_get\_bytes}}
+\index{ef\_vi\_receive\_get\_bytes@{ef\_vi\_receive\_get\_bytes}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_receive\_get\_bytes()}{ef\_vi\_receive\_get\_bytes()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+receive\+\_\+get\+\_\+bytes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{const void $\ast$}]{pkt,  }\item[{uint16\+\_\+t $\ast$}]{bytes\+\_\+out }\end{DoxyParamCaption})}
+
+
+
+Retrieve the number of bytes in a received packet in RX event merge mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface that received the packet. \\
+\hline
+{\em pkt} & The first packet buffer for the received packet. \\
+\hline
+{\em bytes\+\_\+out} & Pointer to a uint16\+\_\+t, that is updated on return with the number of bytes in the packet.\\
+\hline
+\end{DoxyParams}
+Note that this function returns the number of bytes in a received packet, not received into a single buffer, ie it must only be called for the first buffer in a packet. For jumbos it will return the full length of the jumbo. Buffers prior to the last buffer in the packet will be filled completely.
+
+The length does not include the length of the packet prefix.
+
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ef__vi_8h_a1cf6f90db5e7cf61139de069dedd9e6b}\label{ef__vi_8h_a1cf6f90db5e7cf61139de069dedd9e6b}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_receive\_get\_timestamp@{ef\_vi\_receive\_get\_timestamp}}
+\index{ef\_vi\_receive\_get\_timestamp@{ef\_vi\_receive\_get\_timestamp}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_receive\_get\_timestamp()}{ef\_vi\_receive\_get\_timestamp()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+receive\+\_\+get\+\_\+timestamp (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{const void $\ast$}]{pkt,  }\item[{struct timespec $\ast$}]{ts\+\_\+out }\end{DoxyParamCaption})}
+
+
+
+{\itshape Deprecated\+:} use \mbox{\hyperlink{ef__vi_8h_aa9652955145145b911fa18f8555db781}{ef\+\_\+vi\+\_\+receive\+\_\+get\+\_\+timestamp\+\_\+with\+\_\+sync\+\_\+flags()}} instead. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface that received the packet. \\
+\hline
+{\em pkt} & The received packet. \\
+\hline
+{\em ts\+\_\+out} & Pointer to a timespec, that is updated on return with the UTC timestamp for the packet.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+{\itshape This function is now deprecated.} Use \mbox{\hyperlink{ef__vi_8h_aa9652955145145b911fa18f8555db781}{ef\+\_\+vi\+\_\+receive\+\_\+get\+\_\+timestamp\+\_\+with\+\_\+sync\+\_\+flags()}} instead.
+
+Retrieve the UTC timestamp associated with a received packet.
+
+This function must be called after retrieving the associated RX event via \mbox{\hyperlink{ef__vi_8h_ab340116b526f45dd378fe279f0c05a48}{ef\+\_\+eventq\+\_\+poll()}}, and before calling \mbox{\hyperlink{ef__vi_8h_ab340116b526f45dd378fe279f0c05a48}{ef\+\_\+eventq\+\_\+poll()}} again.
+
+If the virtual interface does not have RX timestamps enabled, the behavior of this function is undefined. \mbox{\Hypertarget{ef__vi_8h_aa9652955145145b911fa18f8555db781}\label{ef__vi_8h_aa9652955145145b911fa18f8555db781}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_receive\_get\_timestamp\_with\_sync\_flags@{ef\_vi\_receive\_get\_timestamp\_with\_sync\_flags}}
+\index{ef\_vi\_receive\_get\_timestamp\_with\_sync\_flags@{ef\_vi\_receive\_get\_timestamp\_with\_sync\_flags}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_receive\_get\_timestamp\_with\_sync\_flags()}{ef\_vi\_receive\_get\_timestamp\_with\_sync\_flags()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+receive\+\_\+get\+\_\+timestamp\+\_\+with\+\_\+sync\+\_\+flags (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{const void $\ast$}]{pkt,  }\item[{struct timespec $\ast$}]{ts\+\_\+out,  }\item[{unsigned $\ast$}]{flags\+\_\+out }\end{DoxyParamCaption})}
+
+
+
+Retrieve the UTC timestamp associated with a received packet, and the clock sync status flags. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface that received the packet. \\
+\hline
+{\em pkt} & The first packet buffer for the received packet. \\
+\hline
+{\em ts\+\_\+out} & Pointer to a timepsec, that is updated on return with the UTC timestamp for the packet. \\
+\hline
+{\em flags\+\_\+out} & Pointer to an unsigned, that is updated on return with the sync flags for the packet.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+
+\begin{DoxyItemize}
+\item ENOMSG -\/ Synchronization with adapter has not yet been achieved.~\newline
+ This only happens with old firmware.~\newline
+
+\item ENODATA -\/ Packet does not have a timestamp.~\newline
+ On current Solarflare adapters, packets that are switched from TX to RX do not get timestamped.~\newline
+
+\item EL2\+NSYNC -\/ Synchronization with adapter has been lost.~\newline
+ This should never happen!
+\end{DoxyItemize}
+\end{DoxyReturn}
+Retrieve the UTC timestamp associated with a received packet, and the clock sync status flags.
+
+This function\+:
+\begin{DoxyItemize}
+\item must be called after retrieving the associated RX event via \mbox{\hyperlink{ef__vi_8h_ab340116b526f45dd378fe279f0c05a48}{ef\+\_\+eventq\+\_\+poll()}}, and before calling \mbox{\hyperlink{ef__vi_8h_ab340116b526f45dd378fe279f0c05a48}{ef\+\_\+eventq\+\_\+poll()}} again
+\item must only be called for the first segment of a jumbo packet
+\item must not be called for any events other than RX.
+\end{DoxyItemize}
+
+If the virtual interface does not have RX timestamps enabled, the behavior of this function is undefined.
+
+This function will also fail if the virtual interface has not yet synchronized with the adapter clock. This can take from a few hundred milliseconds up to several seconds from when the virtual interface is allocated.
+
+On success the ts\+\_\+out and flags\+\_\+out fields are updated, and a value of zero is returned. The flags\+\_\+out field contains the following flags\+:
+\begin{DoxyItemize}
+\item EF\+\_\+\+VI\+\_\+\+SYNC\+\_\+\+FLAG\+\_\+\+CLOCK\+\_\+\+SET is set if the adapter clock has ever been set (in sync with system)
+\item EF\+\_\+\+VI\+\_\+\+SYNC\+\_\+\+FLAG\+\_\+\+CLOCK\+\_\+\+IN\+\_\+\+SYNC is set if the adapter clock is in sync with the external clock (PTP).
+\end{DoxyItemize}
+
+In case of error the timestamp result ($\ast$ts\+\_\+out) is set to zero, and a non-\/zero error code is returned (see Return value above). \mbox{\Hypertarget{ef__vi_8h_aa5ffb14e493b05738eb74fc44ca2be71}\label{ef__vi_8h_aa5ffb14e493b05738eb74fc44ca2be71}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_receive\_post@{ef\_vi\_receive\_post}}
+\index{ef\_vi\_receive\_post@{ef\_vi\_receive\_post}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_receive\_post()}{ef\_vi\_receive\_post()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+receive\+\_\+post (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{ef__vi_8h_a45dc6a6b117562bf1fb95bda721aba14}{ef\+\_\+addr}}}]{addr,  }\item[{\mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}}}]{dma\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Initialize an RX descriptor on the RX descriptor ring, and submit it to the NIC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface for which to initialize and push an RX descriptor. \\
+\hline
+{\em addr} & DMA address of the packet buffer to associate with the descriptor, as obtained from \mbox{\hyperlink{memreg_8h_aa2bb8edc3f2cd0ac924404f25474ac21}{ef\+\_\+memreg\+\_\+dma\+\_\+addr()}}. \\
+\hline
+{\em dma\+\_\+id} & DMA id to associate with the descriptor. This is completely arbitrary, and can be used for subsequent tracking of buffers.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Initialize an RX descriptor on the RX descriptor ring, and submit it to the NIC. The NIC can then receive a packet into the associated packet buffer.
+
+This function simply wraps \mbox{\hyperlink{ef__vi_8h_a9e1fbd2c66475fde3aa1b7df19841ef9}{ef\+\_\+vi\+\_\+receive\+\_\+init()}} and \mbox{\hyperlink{ef__vi_8h_abcd5dc1be7ff1e9f9a4a84df86305099}{ef\+\_\+vi\+\_\+receive\+\_\+push()}}. It is provided as a convenience, but is less efficient than submitting the descriptors in batches by calling the functions separately.
+
+Note that for Solarflare 7000-\/series NICs, this function submits RX descriptors only in multiples of 8. This is to conform with hardware requirements. If the number of newly initialized RX descriptors is not exactly divisible by 8, this function does not submit any remaining descriptors (including, potentially, the RX descriptor initialized in this call). \mbox{\Hypertarget{ef__vi_8h_a7a58c5a2ac989e1b24f33f5d7bb7f348}\label{ef__vi_8h_a7a58c5a2ac989e1b24f33f5d7bb7f348}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_receive\_prefix\_len@{ef\_vi\_receive\_prefix\_len}}
+\index{ef\_vi\_receive\_prefix\_len@{ef\_vi\_receive\_prefix\_len}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_receive\_prefix\_len()}{ef\_vi\_receive\_prefix\_len()}}
+{\footnotesize\ttfamily ef\+\_\+vi\+\_\+inline int ef\+\_\+vi\+\_\+receive\+\_\+prefix\+\_\+len (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi }\end{DoxyParamCaption})}
+
+
+
+Returns the length of the prefix at the start of a received packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The length of the prefix at the start of a received packet.
+\end{DoxyReturn}
+Returns the length of the prefix at the start of a received packet.
+
+The NIC may be configured to deliver meta-\/data in a prefix before the packet payload data. This call returns the size of the prefix.
+
+When a large packet is received that is scattered over multiple packet buffers, the prefix is only present in the first buffer. 
+
+Definition at line 964 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a3c1a5ccee11cafca42a09646581b8fcb}\label{ef__vi_8h_a3c1a5ccee11cafca42a09646581b8fcb}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_receive\_query\_layout@{ef\_vi\_receive\_query\_layout}}
+\index{ef\_vi\_receive\_query\_layout@{ef\_vi\_receive\_query\_layout}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_receive\_query\_layout()}{ef\_vi\_receive\_query\_layout()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+receive\+\_\+query\+\_\+layout (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{const \mbox{\hyperlink{structef__vi__layout__entry}{ef\+\_\+vi\+\_\+layout\+\_\+entry}} $\ast$$\ast$const}]{layout\+\_\+out,  }\item[{int $\ast$}]{layout\+\_\+len\+\_\+out }\end{DoxyParamCaption})}
+
+
+
+Gets the layout of the data that the adapter delivers into receive buffers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query. \\
+\hline
+{\em layout\+\_\+out} & Pointer to an ef\+\_\+vi\+\_\+layout\+\_\+entry$\ast$, that is updated on return with a reference to the layout table. \\
+\hline
+{\em layout\+\_\+len\+\_\+out} & Pointer to an int, that is updated on return with the length of the layout table.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Gets the layout of the data that the adapter delivers into receive buffers. Depending on the adapter type and options selected, there can be a meta-\/data prefix in front of each packet delivered into memory. Note that this prefix is per-\/packet, not per buffer, ie for jumbos the prefix will only be present in the first buffer of the packet.
+
+The first entry is always of type EF\+\_\+\+VI\+\_\+\+LAYOUT\+\_\+\+FRAME, and the offset is the same as the value returned by \mbox{\hyperlink{ef__vi_8h_a7a58c5a2ac989e1b24f33f5d7bb7f348}{ef\+\_\+vi\+\_\+receive\+\_\+prefix\+\_\+len()}}. \mbox{\Hypertarget{ef__vi_8h_a99a8201d71f23a636ce4737dd73e0c29}\label{ef__vi_8h_a99a8201d71f23a636ce4737dd73e0c29}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_receive\_set\_buffer\_len@{ef\_vi\_receive\_set\_buffer\_len}}
+\index{ef\_vi\_receive\_set\_buffer\_len@{ef\_vi\_receive\_set\_buffer\_len}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_receive\_set\_buffer\_len()}{ef\_vi\_receive\_set\_buffer\_len()}}
+{\footnotesize\ttfamily ef\+\_\+vi\+\_\+inline void ef\+\_\+vi\+\_\+receive\+\_\+set\+\_\+buffer\+\_\+len (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{unsigned}]{buf\+\_\+len }\end{DoxyParamCaption})}
+
+
+
+Sets the length of receive buffers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface for which to set the length of receive buffers. \\
+\hline
+{\em buf\+\_\+len} & The length of receive buffers.\\
+\hline
+\end{DoxyParams}
+Sets the length of receive buffers for this VI. The new length is used for subsequent calls to \mbox{\hyperlink{ef__vi_8h_a9e1fbd2c66475fde3aa1b7df19841ef9}{ef\+\_\+vi\+\_\+receive\+\_\+init()}} and \mbox{\hyperlink{ef__vi_8h_aa5ffb14e493b05738eb74fc44ca2be71}{ef\+\_\+vi\+\_\+receive\+\_\+post()}}.
+
+This call has no effect for 5000 and 6000-\/series (Falcon) adapters. 
+
+Definition at line 1002 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_aaa0e94f11a40b4f6c5ad88d58eab133f}\label{ef__vi_8h_aaa0e94f11a40b4f6c5ad88d58eab133f}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_receive\_set\_discards@{ef\_vi\_receive\_set\_discards}}
+\index{ef\_vi\_receive\_set\_discards@{ef\_vi\_receive\_set\_discards}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_receive\_set\_discards()}{ef\_vi\_receive\_set\_discards()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+receive\+\_\+set\+\_\+discards (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{unsigned}]{discard\+\_\+err\+\_\+flags }\end{DoxyParamCaption})}
+
+
+
+Set which errors cause an EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+DISCARD event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to configure. \\
+\hline
+{\em discard\+\_\+err\+\_\+flags} & Flags which indicate which errors will cause discard events\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Set which errors cause an EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+DISCARD event \mbox{\Hypertarget{ef__vi_8h_a4ce37375952e8174b39ec2025955122f}\label{ef__vi_8h_a4ce37375952e8174b39ec2025955122f}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_receive\_space@{ef\_vi\_receive\_space}}
+\index{ef\_vi\_receive\_space@{ef\_vi\_receive\_space}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_receive\_space()}{ef\_vi\_receive\_space()}}
+{\footnotesize\ttfamily ef\+\_\+vi\+\_\+inline int ef\+\_\+vi\+\_\+receive\+\_\+space (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi }\end{DoxyParamCaption})}
+
+
+
+Returns the amount of free space in the RX descriptor ring. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The amount of free space in the RX descriptor ring, as slots for descriptor entries.
+\end{DoxyReturn}
+Returns the amount of free space in the RX descriptor ring. This is the number of slots that are available for pushing a new descriptor (and an associated unfilled packet buffer). 
+
+Definition at line 1019 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a7da657579f196e3a895e4527eb958d65}\label{ef__vi_8h_a7da657579f196e3a895e4527eb958d65}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_receive\_unbundle@{ef\_vi\_receive\_unbundle}}
+\index{ef\_vi\_receive\_unbundle@{ef\_vi\_receive\_unbundle}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_receive\_unbundle()}{ef\_vi\_receive\_unbundle()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+receive\+\_\+unbundle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{ep,  }\item[{const \mbox{\hyperlink{unionef__event}{ef\+\_\+event}} $\ast$}]{event,  }\item[{\mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}} $\ast$}]{ids }\end{DoxyParamCaption})}
+
+
+
+Unbundle an event of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+MULTI or EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+DISCARD. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ep} & The virtual interface that has raised the event. \\
+\hline
+{\em event} & The event, of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+MULTI or EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+DISCARD. \\
+\hline
+{\em ids} & Array of size EF\+\_\+\+VI\+\_\+\+RECEIVE\+\_\+\+BATCH, that is updated on return with the DMA ids that were used in the original \mbox{\hyperlink{ef__vi_8h_a9e1fbd2c66475fde3aa1b7df19841ef9}{ef\+\_\+vi\+\_\+receive\+\_\+init()}} call.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of valid ef\+\_\+request\+\_\+ids (can be zero).
+\end{DoxyReturn}
+Unbundle an event of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+MULTI or EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+RX\+\_\+\+MULTI\+\_\+\+DISCARD.
+
+In RX event merge mode the NIC will coalesce multiple packet receptions into a single RX event. This reduces PCIe load, enabling higher potential throughput at the cost of latency.
+
+This function returns the number of descriptors whose reception has completed, and updates the ids array with the ef\+\_\+request\+\_\+ids for each completed DMA request.
+
+After calling this function, the RX descriptors for the completed RX event are ready to be re-\/used.
+
+In order to determine the length of each packet \mbox{\hyperlink{ef__vi_8h_a7acdfde8e503ed210170ba45874068f3}{ef\+\_\+vi\+\_\+receive\+\_\+get\+\_\+bytes()}} must be called, or the length examined in the packet prefix (see \mbox{\hyperlink{ef__vi_8h_a3c1a5ccee11cafca42a09646581b8fcb}{ef\+\_\+vi\+\_\+receive\+\_\+query\+\_\+layout()}}). \mbox{\Hypertarget{ef__vi_8h_a67584be3923c2caff4dfb514e66efc66}\label{ef__vi_8h_a67584be3923c2caff4dfb514e66efc66}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_resource\_id@{ef\_vi\_resource\_id}}
+\index{ef\_vi\_resource\_id@{ef\_vi\_resource\_id}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_resource\_id()}{ef\_vi\_resource\_id()}}
+{\footnotesize\ttfamily ef\+\_\+vi\+\_\+inline unsigned ef\+\_\+vi\+\_\+resource\+\_\+id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi }\end{DoxyParamCaption})}
+
+
+
+Return the resource ID of the virtual interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resource ID of the virtual interface.
+\end{DoxyReturn}
+Return the resource ID of the virtual interface. 
+
+Definition at line 877 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_ad49d074c8ca82d77408de9549109f3bd}\label{ef__vi_8h_ad49d074c8ca82d77408de9549109f3bd}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_set\_tx\_push\_threshold@{ef\_vi\_set\_tx\_push\_threshold}}
+\index{ef\_vi\_set\_tx\_push\_threshold@{ef\_vi\_set\_tx\_push\_threshold}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_set\_tx\_push\_threshold()}{ef\_vi\_set\_tx\_push\_threshold()}}
+{\footnotesize\ttfamily void ef\+\_\+vi\+\_\+set\+\_\+tx\+\_\+push\+\_\+threshold (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{unsigned}]{threshold }\end{DoxyParamCaption})}
+
+
+
+Set the threshold at which to switch from using TX descriptor push to using a doorbell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface for which to set the threshold. \\
+\hline
+{\em threshold} & The threshold to set, as the number of outstanding transmits at which to switch.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code.
+\end{DoxyReturn}
+Set the threshold at which to switch from using TX descriptor push to using a doorbell. TX descriptor push has better latency, but a doorbell is more efficient.
+
+The default value for this is controlled using the EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+PUSH\+\_\+\+DISABLE and EF\+\_\+\+VI\+\_\+\+TX\+\_\+\+PUSH\+\_\+\+ALWAYS flags to ef\+\_\+vi\+\_\+init().
+
+This is not supported by all Solarflare NICs. At the time of writing, 7000-\/series NICs support this, but it is ignored by earlier NICs. \mbox{\Hypertarget{ef__vi_8h_a068a248d1af10a594c10878fe029ff53}\label{ef__vi_8h_a068a248d1af10a594c10878fe029ff53}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_alt\_num\_ids@{ef\_vi\_transmit\_alt\_num\_ids}}
+\index{ef\_vi\_transmit\_alt\_num\_ids@{ef\_vi\_transmit\_alt\_num\_ids}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_alt\_num\_ids()}{ef\_vi\_transmit\_alt\_num\_ids()}}
+{\footnotesize\ttfamily unsigned ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+num\+\_\+ids (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi }\end{DoxyParamCaption})}
+
+
+
+Return the number of TX alternatives allocated for a virtual interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of TX alternatives, or a negative error code.
+\end{DoxyReturn}
+Gets the number of TX alternatives for the given virtual interface. \mbox{\Hypertarget{ef__vi_8h_a89b67172b16e9baa8ea4a638c17329a9}\label{ef__vi_8h_a89b67172b16e9baa8ea4a638c17329a9}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_alt\_query\_overhead@{ef\_vi\_transmit\_alt\_query\_overhead}}
+\index{ef\_vi\_transmit\_alt\_query\_overhead@{ef\_vi\_transmit\_alt\_query\_overhead}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_alt\_query\_overhead()}{ef\_vi\_transmit\_alt\_query\_overhead()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+query\+\_\+overhead (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{struct \mbox{\hyperlink{structef__vi__transmit__alt__overhead}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+overhead}} $\ast$}]{params }\end{DoxyParamCaption})}
+
+
+
+Query per-\/packet overhead parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & Interface to be queried \\
+\hline
+{\em params} & Returned overhead parameters\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success or -\/EINVAL if this VI doesn\textquotesingle{}t support alternatives.
+\end{DoxyReturn}
+This function returns parameters which are needed by the \mbox{\hyperlink{ef__vi_8h_a18add9a422a88041e5349700a54d457e}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+usage()}} function below. \mbox{\Hypertarget{ef__vi_8h_a18add9a422a88041e5349700a54d457e}\label{ef__vi_8h_a18add9a422a88041e5349700a54d457e}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_alt\_usage@{ef\_vi\_transmit\_alt\_usage}}
+\index{ef\_vi\_transmit\_alt\_usage@{ef\_vi\_transmit\_alt\_usage}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_alt\_usage()}{ef\_vi\_transmit\_alt\_usage()}}
+{\footnotesize\ttfamily ef\+\_\+vi\+\_\+inline ef\+\_\+vi\+\_\+pure uint32\+\_\+t ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+usage (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structef__vi__transmit__alt__overhead}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+overhead}} $\ast$}]{params,  }\item[{uint32\+\_\+t}]{pkt\+\_\+len }\end{DoxyParamCaption})}
+
+
+
+Calculate a packet\textquotesingle{}s buffer usage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em params} & Parameters returned by ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+query\+\_\+overhead\\
+\hline
+{\em pkt\+\_\+len} & Packet length in bytes\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Packet buffer usage in bytes including per-\/packet overhead
+\end{DoxyReturn}
+This function calculates the number of bytes of buffering which will be used by the NIC to store a packet with the given length.
+
+The returned value includes per-\/packet overheads, but does not include any other overhead which may be incurred by the hardware. Note that if the application has successfully requested N bytes of buffering using \mbox{\hyperlink{vi_8h_aca91a5b7b6569d14c434ca242ecf3af9}{ef\+\_\+vi\+\_\+transmit\+\_\+alt\+\_\+alloc()}} then it is guaranteed to be able to store at least N bytes of packet data + per-\/packet overhead as calculated by this function.
+
+It is possible that the application may be able to use more space in some situations if the non-\/per-\/packet overheads are low enough.
+
+It is important that callers do not use \mbox{\hyperlink{capabilities_8h_ae139e415401ac1c57f29e20e0356bbed}{ef\+\_\+vi\+\_\+capabilities\+\_\+get()}} to query the available buffering. That function does not take into account non-\/per-\/packet overheads and so is likely to return more space than can actually be used by the application. This function is provided instead to allow applications to calculate their buffer usage accurately. 
+
+Definition at line 1811 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a1cfb792dab2cfb9d4b48c5d9aa567072}\label{ef__vi_8h_a1cfb792dab2cfb9d4b48c5d9aa567072}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_capacity@{ef\_vi\_transmit\_capacity}}
+\index{ef\_vi\_transmit\_capacity@{ef\_vi\_transmit\_capacity}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_capacity()}{ef\_vi\_transmit\_capacity()}}
+{\footnotesize\ttfamily ef\+\_\+vi\+\_\+inline int ef\+\_\+vi\+\_\+transmit\+\_\+capacity (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi }\end{DoxyParamCaption})}
+
+
+
+Returns the total capacity of the TX descriptor ring. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The total capacity of the TX descriptor ring, as slots for descriptor entries.
+\end{DoxyReturn}
+Returns the total capacity of the TX descriptor ring. 
+
+Definition at line 1333 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_af1510ffff8d06a509fb23d9f0bb8f35f}\label{ef__vi_8h_af1510ffff8d06a509fb23d9f0bb8f35f}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_ctpio@{ef\_vi\_transmit\_ctpio}}
+\index{ef\_vi\_transmit\_ctpio@{ef\_vi\_transmit\_ctpio}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_ctpio()}{ef\_vi\_transmit\_ctpio()}}
+{\footnotesize\ttfamily ef\+\_\+vi\+\_\+inline void ef\+\_\+vi\+\_\+transmit\+\_\+ctpio (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{const void $\ast$}]{frame\+\_\+buf,  }\item[{size\+\_\+t}]{frame\+\_\+len,  }\item[{unsigned}]{ct\+\_\+threshold }\end{DoxyParamCaption})}
+
+
+
+Transmit a packet using CTPIO. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface on which to transmit. \\
+\hline
+{\em frame\+\_\+buf} & Buffer containing the frame to transmit. \\
+\hline
+{\em frame\+\_\+len} & Frame length in bytes. \\
+\hline
+{\em ct\+\_\+threshold} & Number of bytes of the packet to buffer before starting to cut-\/through to the wire.\\
+\hline
+\end{DoxyParams}
+Transmit a packet using the CTPIO datapath. The CTPIO interface gives the lowest latency in most cases, and can be used by any number of VIs.
+
+This function implements the latency critical part of a CTPIO send. It should be followed by a call to \mbox{\hyperlink{ef__vi_8h_ab822e083cda691e17b6677629cddaf19}{ef\+\_\+vi\+\_\+transmit\+\_\+ctpio\+\_\+fallback()}} or similar before doing any further send calls on the same VI. \mbox{\hyperlink{ef__vi_8h_ab822e083cda691e17b6677629cddaf19}{ef\+\_\+vi\+\_\+transmit\+\_\+ctpio\+\_\+fallback()}} provides a fallback frame which is sent in cases where the CTPIO send fails.
+
+It is possible for a CTPIO send to fail for a number of reasons, including contention for adapter resources, and timeout due to the whole frame not being written to the adapter sufficiently quickly.
+
+The {\ttfamily ct\+\_\+threshold} indicates how many bytes of the packet should be buffered by the adapter before starting to emit the packet. To disable cut-\/through behavior this must be at least as large as the frame length. To disable cut-\/through across all packet sizes, use EF\+\_\+\+VI\+\_\+\+CTPIO\+\_\+\+CT\+\_\+\+THRESHOLD\+\_\+\+SNF.
+
+The CTPIO path bypasses the adapter\textquotesingle{}s normal transmit path, including checksum offloads, and so the packet is transmitted unmodified. The Ethernet FCS is appended as normal.
+
+The buffer {\ttfamily frame\+\_\+buf} can be reused as soon as this call returns. 
+
+Definition at line 1944 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_ab822e083cda691e17b6677629cddaf19}\label{ef__vi_8h_ab822e083cda691e17b6677629cddaf19}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_ctpio\_fallback@{ef\_vi\_transmit\_ctpio\_fallback}}
+\index{ef\_vi\_transmit\_ctpio\_fallback@{ef\_vi\_transmit\_ctpio\_fallback}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_ctpio\_fallback()}{ef\_vi\_transmit\_ctpio\_fallback()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+transmit\+\_\+ctpio\+\_\+fallback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{ef__vi_8h_a45dc6a6b117562bf1fb95bda721aba14}{ef\+\_\+addr}}}]{dma\+\_\+addr,  }\item[{size\+\_\+t}]{len,  }\item[{\mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}}}]{dma\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Post fallback frame for a CTPIO transmit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface on which to transmit. \\
+\hline
+{\em dma\+\_\+addr} & DMA address of frame. \\
+\hline
+{\em len} & Frame length in bytes. \\
+\hline
+{\em dma\+\_\+id} & DMA ID to be returned on completion.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EAGAIN if the descriptor ring is full.
+\end{DoxyReturn}
+This should be called after \mbox{\hyperlink{ef__vi_8h_af1510ffff8d06a509fb23d9f0bb8f35f}{ef\+\_\+vi\+\_\+transmit\+\_\+ctpio()}} or similar. It provides the fallback frame which is sent in the event that a CTPIO transmit fails.
+
+Ordinarily the fallback frame will be the same as the CTPIO frame, but it doesn\textquotesingle{}t have to be. \mbox{\Hypertarget{ef__vi_8h_a278e2c789b116a65d2815c527911124a}\label{ef__vi_8h_a278e2c789b116a65d2815c527911124a}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_fill\_level@{ef\_vi\_transmit\_fill\_level}}
+\index{ef\_vi\_transmit\_fill\_level@{ef\_vi\_transmit\_fill\_level}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_fill\_level()}{ef\_vi\_transmit\_fill\_level()}}
+{\footnotesize\ttfamily ef\+\_\+vi\+\_\+inline int ef\+\_\+vi\+\_\+transmit\+\_\+fill\+\_\+level (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi }\end{DoxyParamCaption})}
+
+
+
+Returns the fill level of the TX descriptor ring. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The fill level of the TX descriptor ring, as slots for descriptor entries.
+\end{DoxyReturn}
+Returns the fill level of the TX descriptor ring. This is the number of slots that hold a descriptor (and an associated filled packet buffer). The fill level should be low or 0, unless a large number of packets have recently been posted for transmission. A consistently high fill level should be investigated. 
+
+Definition at line 1317 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a17215be65f036a99857092496676de26}\label{ef__vi_8h_a17215be65f036a99857092496676de26}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_init@{ef\_vi\_transmit\_init}}
+\index{ef\_vi\_transmit\_init@{ef\_vi\_transmit\_init}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_init()}{ef\_vi\_transmit\_init()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+transmit\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{\mbox{\hyperlink{ef__vi_8h_a45dc6a6b117562bf1fb95bda721aba14}{ef\+\_\+addr}}}]{addr,  }\item[{int}]{bytes,  }\item[{\mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}}}]{dma\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Initialize a TX descriptor on the TX descriptor ring, for a single packet buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface for which to initialize a TX descriptor. \\
+\hline
+{\em addr} & DMA address of the packet buffer to associate with the descriptor, as obtained from \mbox{\hyperlink{memreg_8h_aa2bb8edc3f2cd0ac924404f25474ac21}{ef\+\_\+memreg\+\_\+dma\+\_\+addr()}}. \\
+\hline
+{\em bytes} & The size of the packet to transmit. \\
+\hline
+{\em dma\+\_\+id} & DMA id to associate with the descriptor. This is completely arbitrary, and can be used for subsequent tracking of buffers.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EAGAIN if the descriptor ring is full.
+\end{DoxyReturn}
+Initialize a TX descriptor on the TX descriptor ring, for a single packet buffer. The associated packet buffer (identified by its DMA address) must contain the packet to transmit. This function only writes a few bytes into host memory, and is very fast. \mbox{\Hypertarget{ef__vi_8h_a55e631a7759c64686546491faca4ba06}\label{ef__vi_8h_a55e631a7759c64686546491faca4ba06}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_init\_undo@{ef\_vi\_transmit\_init\_undo}}
+\index{ef\_vi\_transmit\_init\_undo@{ef\_vi\_transmit\_init\_undo}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_init\_undo()}{ef\_vi\_transmit\_init\_undo()}}
+{\footnotesize\ttfamily void ef\+\_\+vi\+\_\+transmit\+\_\+init\+\_\+undo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi }\end{DoxyParamCaption})}
+
+
+
+Remove all TX descriptors from the TX descriptor ring that have been initialized since last transmit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface for which to remove initialized TX descriptors from the TX descriptor ring.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+Remove all TX descriptors from the TX descriptor ring that have been initialized since last transmit. This will undo the effects of calls made to ef\+\_\+vi\+\_\+transmit\+\_\+init or ef\+\_\+vi\+\_\+transmitv\+\_\+init since the last \char`\"{}push\char`\"{}.
+
+Initializing and then removing descriptors can have a warming effect on the transmit code path for subsequent transmits. This can reduce latency jitter caused by code and state being evicted from cache during delays between transmitting packets. This technique is also effective before the first transmit. \mbox{\Hypertarget{ef__vi_8h_af8272788917c19c6ef8698925066a210}\label{ef__vi_8h_af8272788917c19c6ef8698925066a210}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_space@{ef\_vi\_transmit\_space}}
+\index{ef\_vi\_transmit\_space@{ef\_vi\_transmit\_space}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_space()}{ef\_vi\_transmit\_space()}}
+{\footnotesize\ttfamily ef\+\_\+vi\+\_\+inline int ef\+\_\+vi\+\_\+transmit\+\_\+space (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi }\end{DoxyParamCaption})}
+
+
+
+Returns the amount of free space in the TX descriptor ring. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface to query.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The amount of free space in the TX descriptor ring, as slots for descriptor entries.
+\end{DoxyReturn}
+Returns the amount of free space in the TX descriptor ring. This is the number of slots that are available for pushing a new descriptor (and an associated filled packet buffer). 
+
+Definition at line 1297 of file ef\+\_\+vi.\+h.
+
+\mbox{\Hypertarget{ef__vi_8h_a03c43da4cdac5419b1d859b20854ec37}\label{ef__vi_8h_a03c43da4cdac5419b1d859b20854ec37}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmit\_unbundle@{ef\_vi\_transmit\_unbundle}}
+\index{ef\_vi\_transmit\_unbundle@{ef\_vi\_transmit\_unbundle}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmit\_unbundle()}{ef\_vi\_transmit\_unbundle()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+transmit\+\_\+unbundle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{ep,  }\item[{const \mbox{\hyperlink{unionef__event}{ef\+\_\+event}} $\ast$}]{event,  }\item[{\mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}} $\ast$}]{ids }\end{DoxyParamCaption})}
+
+
+
+Unbundle an event of type of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX or EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+ERROR. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ep} & The virtual interface that has raised the event. \\
+\hline
+{\em event} & The event, of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX or EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+ERROR \\
+\hline
+{\em ids} & Array of size EF\+\_\+\+VI\+\_\+\+TRANSMIT\+\_\+\+BATCH, that is updated on return with the DMA ids that were used in the originating ef\+\_\+vi\+\_\+transmit\+\_\+$\ast$() calls.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of valid ef\+\_\+request\+\_\+ids (can be zero).
+\end{DoxyReturn}
+Unbundle an event of type of type EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX or EF\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+TX\+\_\+\+ERROR.
+
+The NIC might coalesce multiple packet transmissions into a single TX event in the event queue. This function returns the number of descriptors whose transmission has completed, and updates the ids array with the ef\+\_\+request\+\_\+ids for each completed DMA request.
+
+After calling this function, the TX descriptors for the completed TX event are ready to be re-\/initialized. The associated packet buffers are no longer in use by \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}}. Each buffer can then be freed, or can be re-\/used (for example as a packet buffer for a descriptor on the TX ring, or on the RX ring). \mbox{\Hypertarget{ef__vi_8h_a77c3b1b7a28206c81ae6f67cee7662f9}\label{ef__vi_8h_a77c3b1b7a28206c81ae6f67cee7662f9}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_transmitv\_ctpio\_fallback@{ef\_vi\_transmitv\_ctpio\_fallback}}
+\index{ef\_vi\_transmitv\_ctpio\_fallback@{ef\_vi\_transmitv\_ctpio\_fallback}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_transmitv\_ctpio\_fallback()}{ef\_vi\_transmitv\_ctpio\_fallback()}}
+{\footnotesize\ttfamily int ef\+\_\+vi\+\_\+transmitv\+\_\+ctpio\+\_\+fallback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} $\ast$}]{vi,  }\item[{const \mbox{\hyperlink{structef__iovec}{ef\+\_\+iovec}} $\ast$}]{dma\+\_\+iov,  }\item[{int}]{dma\+\_\+iov\+\_\+len,  }\item[{\mbox{\hyperlink{ef__vi_8h_a9e0f01ff75c678adc326588fd3c14258}{ef\+\_\+request\+\_\+id}}}]{dma\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Post fallback frame for a CTPIO transmit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vi} & The virtual interface on which to transmit. \\
+\hline
+{\em dma\+\_\+iov} & Array of source buffer DMA addresses. \\
+\hline
+{\em dma\+\_\+iov\+\_\+len} & Length of dma\+\_\+iov. \\
+\hline
+{\em dma\+\_\+id} & DMA ID to be returned on completion.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, or a negative error code\+:~\newline
+ -\/EAGAIN if the descriptor ring is full.
+\end{DoxyReturn}
+This should be called after \mbox{\hyperlink{ef__vi_8h_af1510ffff8d06a509fb23d9f0bb8f35f}{ef\+\_\+vi\+\_\+transmit\+\_\+ctpio()}} or similar. It provides the fallback frame which is sent in the event that a CTPIO transmit fails.
+
+Ordinarily the fallback frame will be the same as the CTPIO frame, but it doesn\textquotesingle{}t have to be. \mbox{\Hypertarget{ef__vi_8h_aadb4cde2a10513be23abfb17b414e7ff}\label{ef__vi_8h_aadb4cde2a10513be23abfb17b414e7ff}} 
+\index{ef\_vi.h@{ef\_vi.h}!ef\_vi\_version\_str@{ef\_vi\_version\_str}}
+\index{ef\_vi\_version\_str@{ef\_vi\_version\_str}!ef\_vi.h@{ef\_vi.h}}
+\doxysubsubsection{\texorpdfstring{ef\_vi\_version\_str()}{ef\_vi\_version\_str()}}
+{\footnotesize\ttfamily const char$\ast$ ef\+\_\+vi\+\_\+version\+\_\+str (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Return a string that identifies the version of \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}}. 
+
+\begin{DoxyReturn}{Returns}
+A string that identifies the version of \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}}.
+\end{DoxyReturn}
+Return a string that identifies the version of \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}}. This should be treated as an unstructured string. At time of writing it is the version of Open\+Onload or Enterprise\+Onload in which \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} is distributed.
+
+Note that Onload will check this is a version that it recognizes. It recognizes the version strings generated by itself, and those generated by older official releases of Onload (when the API hasn\textquotesingle{}t changed), but not those generated by older patched releases of Onload. Consequently, \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} applications built against patched versions of Onload will not be supported by future versions of Onload. 

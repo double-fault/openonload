@@ -1,0 +1,52 @@
+This part of the documentation gives an overview of ef\+\_\+vi and how it is often used.\hypertarget{overview_capabilities}{}\doxysection{Capabilities}\label{overview_capabilities}
+Ef\+\_\+vi is a low level OSI level 2 interface which sends and receives raw Ethernet frames. It is essentially a thin wrapper around the VNIC (virtual network interface controller) interface offered by the network adapters. It exposes, and can be used with, many of the advanced capabilities of Solarflare network adapters, including\+:
+\begin{DoxyItemize}
+\item Checksum offloads
+\item Hardware time stamping (RX and TX)
+\item Switching functions, including\+:
+\begin{DoxyItemize}
+\item multicast replication
+\item loopback
+\item VLAN tag insert/strip
+\end{DoxyItemize}
+\item Load spreading by hashing (also known as receive-\/side scaling) and flow steering
+\item Data path sniffing
+\item PIO mode for low latency
+\item CTPIO mode for ultra-\/low latency
+\item Scatter gather transmit and receive
+\item PCI pass-\/through and SR-\/\+IOV for virtualized environments.
+\end{DoxyItemize}
+
+But because the ef\+\_\+vi API operates at this low level, any application using it must implement the higher layer protocols itself, and also deal with any exceptions or other unusual conditions.\hypertarget{overview_flexibility}{}\doxysection{Flexibility}\label{overview_flexibility}
+A key advantage of ef\+\_\+vi when compared to other similar technologies is the flexibility it offers. Each ef\+\_\+vi instance can be thought of as a virtual port on the network adapter\textquotesingle{}s switch. Ef\+\_\+vi can be used to handle all packets associated with a physical port, or just a subset. This means that ef\+\_\+vi can be used in parallel with the standard Linux kernel network stack and other acceleration technologies such as Solarflare\textquotesingle{}s Open\+Onload sockets acceleration. For example, a trading application might use ef\+\_\+vi to receive UDP market data, but use Onload sockets to make TCP trades.\hypertarget{overview_scalability}{}\doxysection{Scalability}\label{overview_scalability}
+Ef\+\_\+vi is also very scalable. Each physical network port on Solarflare\textquotesingle{}s network adapters supports up to 1024 VNIC interfaces. There can be many independent channels between software and the adapter, which can be used to spread load over many cores, or to accelerate large numbers of virtual machines and applications simultaneously.\hypertarget{overview_use_cases}{}\doxysection{Use cases}\label{overview_use_cases}
+This section gives some examples of how ef\+\_\+vi can and is being used\+:\hypertarget{overview_sockets}{}\doxysubsection{Sockets acceleration}\label{overview_sockets}
+Ef\+\_\+vi can be used to replace the BSD sockets API, or another API, for sending and receiving streams of traffic. A common example is handling multicast UDP datagrams in electronic trading systems, where low latency is needed and message rates can be very high.
+
+In this scenario the application establishes an ef\+\_\+vi instance, and specifies which packets it would like to receive via this path. For example, an application can select UDP packets with a given destination IP address and port number. All other packets arriving at the network interface continue to be delivered to the regular driver in the kernel stack via a separate path, so only the packets that need to be accelerated are handled by ef\+\_\+vi.
+
+Applications can create multiple ef\+\_\+vi instances if needed to handle different streams of packets, or to spread load over multiple threads. If transmitting threads each have their own ef\+\_\+vi instance then they can transmit packets concurrently without interlocking and without sharing state. This improves efficiency considerably.\hypertarget{overview_capture}{}\doxysubsection{Packet capture}\label{overview_capture}
+Solarflare\textquotesingle{}s Solar\+Capture software is built on top of the ef\+\_\+vi API. Like traditional capture APIs ef\+\_\+vi can be used to capture all of the packets arriving at a network port, or a subset. Ef\+\_\+vi can capture traffic from a 10 gigabit link at line rate at all packet sizes with a single core, and can provide a hardware timestamp for each captured packet.
+
+In \char`\"{}sniffing\char`\"{} mode an ef\+\_\+vi instance receives a copy of packets transmitted and/or received by other applications on the host.\hypertarget{overview_replay}{}\doxysubsection{Packet replay}\label{overview_replay}
+Ef\+\_\+vi can transmit packets from host memory to the network at very high rates, so can be used to construct high performance packet replay applications. (This is another feature of the Solar\+Capture software).\hypertarget{overview_end_station}{}\doxysubsection{Application as an end-\/station}\label{overview_end_station}
+Ef\+\_\+vi can select packets by destination MAC address, which allows an application to behave as if it were a separate end-\/station on the Ethernet network. This can be used to implement arbitrary protocols over Ethernet, or to develop applications that simulate behaviour of an end station for benchmarking or test purposes.
+
+Other applications and virtual machines on the host can use the adapter at the same time, via kernel stack, via ef\+\_\+vi or via Open\+Onload. The application simulating an end-\/station can communicate with those applications via the adapter, as well as with other remote applications over the physical network.\hypertarget{overview_bridging}{}\doxysubsection{Software defined bridging, switching and routing}\label{overview_bridging}
+Ef\+\_\+vi is ideally suited to applications that forward packets between physical or virtual network ports. Zero-\/copy makes the forwarding path very efficient, and forwarding can be achieved with very low latency.
+
+An ef\+\_\+vi instance can be configured to receive \char`\"{}mismatching\char`\"{} packets. That is, all packets not wanted by other applications or virtual machines on the same host. This makes it possible to forward packets to another network segment without knowing the MAC addresses involved, and without cutting the host OS off from the network.
+
+Applications include\+: High performance firewall applications, network monitoring, intrusion detection, and custom switching and routing. Packets can be forwarded between physical ports and/or between virtual ports. (Virtual ports are logical network ports associated with virtual machines using PCI pass-\/through).
+
+Ef\+\_\+vi is particularly well suited to Network Functions Virtualization (NFV).\hypertarget{overview_activation_requirements}{}\doxysection{Activation requirements}\label{overview_activation_requirements}
+The activation requirements for \mbox{\hyperlink{structef__vi}{ef\+\_\+vi}} depend on the network adapter being used\+:
+
+
+\begin{DoxyItemize}
+\item If an SFN7000 series adapter is being used, it must have an Onload activation key installed.
+\item If an SFN8000 or X2 series adapter is being used, and the fastest performance is required, an Onload activation key must be installed.
+
+Without an Onload activation key, the EF\+\_\+\+VI\+\_\+\+RX\+\_\+\+EVENT\+\_\+\+MERGE flag must be set when allocating a virtual interface. This typically reduces performance.
+\end{DoxyItemize}\hypertarget{overview_sniffing}{}\doxysubsection{Using sniffing}\label{overview_sniffing}
+A Solar\+Capture Pro activation key is always required to use \char`\"{}sniffing\char`\"{} mode, whatever network adapter is used. 

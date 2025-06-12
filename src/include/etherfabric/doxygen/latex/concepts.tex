@@ -1,0 +1,127 @@
+This part of the documentation describes the concepts involved in ef\+\_\+vi.\hypertarget{concepts_vi}{}\doxysection{Virtual Interface}\label{concepts_vi}
+Each ef\+\_\+vi instance provides a {\itshape virtual interface} to the network adapter.
+
+  
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{efvi_vnic.png}
+\doxyfigcaption{Virtual Interface Components}
+\end{DoxyImage}
+
+
+A virtual interface includes the following components\+:
+\begin{DoxyItemize}
+\item an \mbox{\hyperlink{concepts_event_queue}{Event queue}}
+\item a \mbox{\hyperlink{concepts_tx_ring}{Transmit descriptor ring}}
+\item a \mbox{\hyperlink{concepts_rx_ring}{Receive descriptor ring}}.
+\end{DoxyItemize}
+
+A virtual interface can be allocated one of each of these components, but if the event queue is omitted an alternative virtual interface that has an event queue must be specified.
+
+A virtual interface also has a few hardware resources\+:
+\begin{DoxyItemize}
+\item a doorbell register to inform the card that new RX buffers are available for it to use
+\item a doorbell register to inform the card that new TX buffers are ready for it to send
+\item some timers
+\item a share of an interrupt.
+\end{DoxyItemize}\hypertarget{concepts_vi_sets}{}\doxysubsection{Virtual Interface Set.}\label{concepts_vi_sets}
+A set of virtual interfaces can be created, to distribute load on the matching filters automatically, via {\itshape receive side scaling} (RSS).
+
+\begin{DoxyNote}{Note}
+For this to be of use, multiple filters or a wildcard filter are required. A single stream filter will have the same RSS hash for all packets. See \mbox{\hyperlink{concepts_filters}{Filters}}.
+\end{DoxyNote}
+\hypertarget{concepts_event_queue}{}\doxysubsection{Event queue}\label{concepts_event_queue}
+An {\itshape event queue} is a channel for passing information from the network adapter to the application. It is used to notify the application of events such as the arrival of packets.\hypertarget{concepts_tx_ring}{}\doxysubsection{Transmit descriptor ring}\label{concepts_tx_ring}
+The {\itshape transmit descriptor ring} is used to pass packets from the application to the adapter. Each entry in the ring is a descriptor which references a buffer containing packet data. Each packet is described by one or more descriptors.
+
+The transmission of packets proceeds in the background, and the adapter notifies the application when they have finished via the event queue.\hypertarget{concepts_rx_ring}{}\doxysubsection{Receive descriptor ring}\label{concepts_rx_ring}
+The {\itshape receive descriptor ring} is used to pass packets from the adapter to the application. The application must pre-\/allocate buffers and post them to the receive descriptor ring. Each entry in the ring is a descriptor which references a \textquotesingle{}free\textquotesingle{} buffer that the adapter can place a packet into.
+
+When the adapter delivers a packet to an ef\+\_\+vi instance, it copies the packet data into the next available receive buffer and notifies the application via the event queue. Large packets can be scattered over multiple receive buffers.\hypertarget{concepts_pd}{}\doxysection{Protection Domain}\label{concepts_pd}
+A {\itshape protection domain} identifies a separate address space for the DMA addresses passed to the adapter. It is used to protect multiple ef\+\_\+vi applications from one another, or to allow them to share resources\+:
+\begin{DoxyItemize}
+\item Each \mbox{\hyperlink{concepts_vi}{Virtual Interface}} is associated with one protection domain.
+\item Multiple VIs can be associated with the same protection domain.
+\item Each \mbox{\hyperlink{concepts_memory_region}{Memory Region}} is registered with one or more protection domains.
+\item A memory region can only be used by a virtual interface that is in the same protection domain.
+\item Memory regions that are registered with multiple protection domains can be used as a shared resource, for example for zero-\/copy forwarding. See also \mbox{\hyperlink{using_pb_addressing}{Packet Buffer Addressing}}.
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Traditionally device drivers pass the physical addresses of memory buffers to I/O devices. This is usually acceptable because device drivers run within the privileged kernel, and so are isolated from untrusted user-\/space applications.
+
+Applications using ef\+\_\+vi cannot in general use unprotected physical addresses, because by manipulating those addresses prior to passing them to the adapter it would be possible to access memory and devices not otherwise accessible by the application. Protection domains are used to solve this problem.
+\end{DoxyNote}
+\hypertarget{concepts_memory_region}{}\doxysection{Memory Region}\label{concepts_memory_region}
+Any {\itshape memory region} used for transmit or receive buffers must be {\itshape registered} using the \mbox{\hyperlink{structef__memreg}{ef\+\_\+memreg}} interface. This ensures the memory region meets the requirements of ef\+\_\+vi\+:
+\begin{DoxyItemize}
+\item The memory is pinned, so that it can\textquotesingle{}t be swapped out to disk.
+\item The memory is mapped for DMA, so that the network adapter can access it. The adapter translates the DMA addresses provided by the application to I/O addresses used on the PCIe bus.
+\item The memory region is page-\/aligned, for performance.
+\item The size of the memory region is a multiple of the packet buffer size, so no memory is wasted.
+\end{DoxyItemize}\hypertarget{concepts_packet_buffer}{}\doxysection{Packet Buffer}\label{concepts_packet_buffer}
+A {\itshape packet buffer} is a memory allocations on the host which the card will read from when sending packets, or write to when receiving packets. They are usually 2KB in size.
+
+Packets buffers are mapped by the card in such a way that only virtual interfaces in the same protection domain can access them, unless physical addressing mode is explicitly requested. (This feature can only be granted to a group of users by the root user setting an option on the driver.)\hypertarget{concepts_jumbo}{}\doxysubsection{Jumbo Packets}\label{concepts_jumbo}
+Typically, some portion of a packet buffer will be used for meta-\/data, leaving enough space for a standard sized packet. On receive, large packets will be spread out over multiple packet buffers.
+
+When sending, multiple buffers may be used either to accommodate larger sends, or for convenience (for example\+: splitting off a standard header that is common to multiple packets).\hypertarget{concepts_descriptor}{}\doxysubsection{Packet Buffer Descriptor}\label{concepts_descriptor}
+Each packet buffer is referred to by a descriptor, which contains\+:
+\begin{DoxyItemize}
+\item a pointer
+\item an offset
+\item a length.
+\end{DoxyItemize}
+
+It is those descriptors which are actually placed onto the receive and transmit descriptor rings.\hypertarget{concepts_pio}{}\doxysection{Programmed I/O}\label{concepts_pio}
+The ef\+\_\+pio interface exposes a region of memory on the network adapter that can be used for low-\/latency sends. When using this interface packet data is pushed to the adapter using CPU instructions, instead of being pulled by the adapter using DMA. This reduces latency because it avoids the latency associated with a DMA read.
+
+Applications can get even better latency by writing packet data to the adapter in advance, before the latency critical path. On the critical path the packet data can optionally be updated before being transmitted. This improves latency because it reduces the amount of data that needs to be passed to the adapter on the critical path.\hypertarget{concepts_ctpio}{}\doxysection{Cut-\/through PIO}\label{concepts_ctpio}
+CTPIO (Cut-\/through PIO) improves send latency by moving packets from the PCIe bus to network port with minimal latency. It can be used in three modes\+:
+\begin{DoxyEnumerate}
+\item Cut-\/through\+: The frame is transmitted onto the network as it is streamed across the PCIe bus. This mode offers the best latency.
+\item Store-\/and-\/forward\+: The frame is buffered on the adapter before transmitting onto the network.
+\item Store-\/and-\/forward with poison disabled\+: As for (2), except that it is guaranteed that frames are never poisoned. When this mode is enabled on any VI, all VIs are placed into store-\/and-\/forward mode.
+\end{DoxyEnumerate}
+
+Due to differences in hardware architecture, CTPIO is not available on SFN8000-\/series or earlier adapters.\hypertarget{concepts_poisoning}{}\doxysubsection{Underrun, poisoning and fallback}\label{concepts_poisoning}
+When using cut-\/through mode, if the frame is not streamed to the adapter at at least line rate, then the frame is likely to be poisoned. This is most likely to happen if the application thread is interrupted while writing the frame to the adapter. In the underrun case, the frame is terminated with an invalid FCS -- this is referred to as \char`\"{}poisoning\char`\"{} -- and so will be discarded by the link partner. Cut-\/through mode is currently expected to perform well only on 10G links.
+
+CTPIO may be aborted for other reasons, including timeout while writing a frame, contention between threads using CTPIO at the same time, and the CPU writing data to the adapter in the wrong order.
+
+In all of the above failure cases the adapter falls-\/back to sending via the traditional DMA mechanism, which incurs a latency penalty. So a valid copy of the packet is always transmitted, whether the CTPIO operation succeeds or not.
+
+After a non-\/\+CTPIO send (including DMA fallback), the TX queue must empty before a CTPIO can again succeed.
+
+Normally only an underrun in cut-\/through mode will result in a poisoned frame being transmitted. In rare cases it is also possible for a poisoned frame to be emitted in store-\/and-\/forward mode. If it is necessary to strictly prevent poisoned packets from reaching the network, then poisoning can be disabled globally.\hypertarget{concepts_ctpio_diagnostics}{}\doxysubsection{CTPIO diagnostics}\label{concepts_ctpio_diagnostics}
+The adapter maintains counters that show whether CTPIO is being used, and any reasons for CTPIO sends failing. These can be inspected as follows\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ethtool -\/S ethX | grep ctpio}
+
+\end{DoxyCode}
+
+
+Note that some of these counters are maintained on a per-\/adapter basis, whereas others are per network port.\hypertarget{concepts_filters}{}\doxysection{Filters}\label{concepts_filters}
+{\itshape Filters} select which packets are delivered to a virtual interface. Packets that are not selected are ignored and allowed to pass on to the kernel.
+
+Each filter specifies the characteristics of packets for selection. These characteristics are typically packet header fields, including Ethernet MAC address, VLAN tags, IP addresses and port numbers.
+
+A selected packet can be\+:
+\begin{DoxyItemize}
+\item Stolen\+: the packet is delivered to the virtual interface, but not to the kernel stack.
+\item Replicated\+: a copy is delivered to the virtual interface, and might also be delivered to other consumers. Used for multicast packets.
+\item Sniffed\+: the packet is delivered to the virtual interface, and to the kernel stack.
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+The set of header fields and filter modes that are available vary between adapter model and firmware variant.
+\end{DoxyNote}
+\hypertarget{concepts_multiple_filters}{}\doxysubsection{Multiple Filters}\label{concepts_multiple_filters}
+An ef\+\_\+vi application can set multiple types of filters on the same virtual interface. Setting an invalid filter or combination of filters causes an error.\hypertarget{concepts_vlan}{}\doxysection{Virtual LANs}\label{concepts_vlan}
+Ef\+\_\+vi only has limited support for {\itshape Virtual LANs} (VLANs). This is because ef\+\_\+vi operates at the Ethernet frame level, whereas VLANs are usually handled at a higher level\+:
+\begin{DoxyItemize}
+\item Received packets can be filtered by VLAN, but this requires a recent adapter running full feature firmware. There are also limitations on what other filters can simultaneously be used. For more details, see \mbox{\hyperlink{vi_8h_a5f8e4fb095dc588c49cfcbc064ef7810}{ef\+\_\+filter\+\_\+spec\+\_\+set\+\_\+vlan()}}.
+\item Transmitted packets can have their VLAN set by adding the desired VLAN tag to the extended header. Unlike checksums, ef\+\_\+vi does not provide an offload for this.
+\end{DoxyItemize}\hypertarget{concepts_tx_alternatives}{}\doxysection{TX Alternatives}\label{concepts_tx_alternatives}
+{\itshape TX alternatives} is a feature available on Solarflare SFN8000 series adapters to provide multiple alternative queues for transmission, that can be used to minimize latency. Different possible responses can be pushed through the TX path on the NIC, and held in different queues ready to transmit. When it is decided which response to transmit, the appropriate alternative queue is selected, and the queued packets are sent. Because the packets are already prepared, and are held close to the wire, latency is greatly reduced. 
